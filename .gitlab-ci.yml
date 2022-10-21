@@ -1,0 +1,37 @@
+stages:
+  - build
+  - deploy
+
+before_script:
+  - echo "Making SSH Connection Environtment"
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+
+deploy_master:
+  only:
+    refs:
+      - main
+  when: manual
+  stage: deploy
+  script: 
+    - echo "Deploying to Production Server ....."
+    - echo "Please wait ....."
+    - ssh-add <(echo "$PROD_PRIVATE_KEY")
+    - ssh-keyscan -H -p $PORT $PROD_HOST >> ~/.ssh/known_hosts
+    - rsync -avzuh -O -e "ssh -p $PORT" ./ deployer-blt@$PROD_HOST:/DATA/blt/ --no-perms --delete --progress --exclude '.git*' --exclude-from=".gitignore"
+    - echo "Deploying to Production DONE"
+
+
+# deploy_dev:
+#   only:
+#     refs:
+#       - dev
+#   #when: manual
+#   stage: deploy
+#   script: 
+#     - echo "Deploying to Production Server ....."
+#     - echo "Please wait ....."
+#     - ssh-add <(echo "$PROD_PRIVATE_KEY")
+#     - ssh-keyscan -H -p $PORT $PROD_HOST >> ~/.ssh/known_hosts
+#     - rsync -avzuh -O -e "ssh -p $PORT" ./ deployer-umkm@$PROD_HOST:/data/dev/ --no-perms --delete --progress --exclude '.git*' --exclude-from=".gitignore"
+#     - echo "Deploying to Production DONE"
