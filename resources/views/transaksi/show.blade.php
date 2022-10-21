@@ -36,8 +36,11 @@
 
                         </div>
                         <div id="root"></div>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn-sm btn-success btn">Update</button>
+                        <div class="d-flex justify-content-end gap-2">
+                            @if (!is_null($kpmBlt->transaksi))
+                                <a href="{{route('transaksi.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
+                            @endif
+                            <button class="btn-sm btn-success btn" type="submit">Update</button>
                         </div>
                     </form>
                 </div>
@@ -46,6 +49,14 @@
     </div>
 @endsection
 @push('script')
+<script>
+    // Delete Alert Confirmation
+    const btn_delete=document.getElementById('btn-delete');
+    btn_delete.addEventListener('click',(ev)=>{
+        if (!confirm('Apakah Yakin Ingin Membatalkan Transaksi ?')) ev.preventDefault()
+    })
+</script>
+
 <script>
 const MAX_WIDTH = 1200;
 const MAX_HEIGHT = 1200;
@@ -63,7 +74,7 @@ foto_pengambilan.addEventListener('change',(ev)=>{
 
     img.onerror=()=>{
         URL.revokeObjectURL(this.src)
-        console.log('Cannot Load Image');
+        alert('Cannot Load Image');
     }
 
     img.onload=function(){

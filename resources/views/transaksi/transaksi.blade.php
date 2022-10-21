@@ -19,7 +19,8 @@
 
 <div class="col-md-6 col-sm-12 col-12">
     <div class="bg-white shadow p-3 rounded-3 my-3">
-        <form action="{{route('transaksi.show')}}" method="get">
+        <form action="{{route('transaksi.find')}}" method="post">
+            @csrf
             <div class="mb-2">
                 <label for="" class="form-label">No. Urut / NIK KPM</label>
                 <input type="text" class="form-control" placeholder="No. Urut / NIK KPM" name="id_kpm">

@@ -20,6 +20,7 @@ class DashboardService{
         return DB::table('kpm_blts as a')
             ->selectRaw('count(a.id) as tersalur')
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
+            ->where('b.deleted_at',null)
             ->get();
     }
 
@@ -55,6 +56,7 @@ class DashboardService{
             ->selectRaw('count(a.id) as tersalur')
             ->groupBy('a.kecamatan')
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
+            ->where('b.deleted_at',null)
             ->get();
     }
 

@@ -41,14 +41,18 @@ Route::group([
         Route::get('/detail-data','detail')->name('detail');
     });
     
-    Route::group([
-        'controller'=>TransaksiController::class,
-        'as'=>'transaksi.',
-        'prefix'=>'/transkasi-salur',
-    ], function(){
-        Route::get('/','index')->name('index');
-        Route::get('/show','show')->name('show');
-        Route::post('/store','store')->name('store');
+    Route::prefix('/blt')->group(function(){
+        Route::group([
+            'controller'=>TransaksiController::class,
+            'as'=>'transaksi.',
+            'prefix'=>'/transkasi-salur',
+        ], function(){
+            Route::get('/','index')->name('index');
+            Route::post('/find','find')->name('find');
+            Route::get('/show/{id}','show')->name('show');
+            Route::post('/store','store')->name('store');
+            Route::get('/soft-delete/{id}','softDelete')->name('softDelete');
+        });
     });
 });
 

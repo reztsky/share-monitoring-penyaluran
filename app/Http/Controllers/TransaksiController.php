@@ -14,12 +14,17 @@ class TransaksiController extends Controller
         return view('transaksi.transaksi');
     }
 
-    public function show(Request $request){
+    
+    public function find(Request $request){
         $validated=$request->validate([
             'id_kpm'=>'required|numeric|min:1'
         ]);
+        
+        return redirect()->route('transaksi.show',['id'=>$request->id_kpm]);
+    }
 
-        $kpmBlt=KpmBlt::with('transaksi')->whereId($validated['id_kpm'])->orWhere('nik',$validated['id_kpm'])->get()->first();
+    public function show($id){
+        $kpmBlt=KpmBlt::with('transaksi')->whereId($id)->orWhere('nik',$id)->get()->first();
         
         abort_if(is_null($kpmBlt),'404', 'Not Found');
 
@@ -33,5 +38,12 @@ class TransaksiController extends Controller
         $transaksiBlt=TransaksiBlt::updateOrCreate(['id_kpm'=>$request->id_kpm],$validated);
         
         return redirect()->route('transaksi.index')->with('notifikasi','Sukses Menambahkan Data');
+    }
+
+    public function softDelete($id){
+        $transaksiBlt=TransaksiBlt::findOrFail($id);
+        $transaksiBlt->delete();
+
+        return redirect()->route('transaksi.index')->with('notifikasi','Sukses Menghapus Data');
     }
 }

@@ -25,6 +25,7 @@ class KpmBlt extends Model
         'updated_at',
     ];
 
+
     protected function statusKpmSebagai():Attribute{
         return Attribute::make(
             get:fn($value)=>$value==1 ? 'Buruh Rokok' : 'Masyarakat Umum'
