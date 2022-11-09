@@ -9,7 +9,7 @@
     </div>    
     <div class="col-md-6 col-12">
         <div class="bg-white shadow rounded-3 p-3 my-3 border-1 border">
-            <canvas id="chart-2" style="max-height: 350px; min-height: 350px"></canvas>
+            <canvas id="chart-2" style="max-height: 350px; min-height: 350px;"></canvas>
         </div>
     </div>
     <div class="col-md-12 col-12">

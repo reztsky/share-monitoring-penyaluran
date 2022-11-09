@@ -28,6 +28,7 @@ class DetailService{
         return DB::table('kpm_blts as a')
             ->select('a.*')
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
+            ->where('b.deleted_at',null)
             ->where('a.kecamatan',$this->kecamatan)
             ->paginate(15);
     }
