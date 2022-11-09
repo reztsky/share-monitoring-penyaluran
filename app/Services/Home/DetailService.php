@@ -30,7 +30,12 @@ class DetailService{
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
             ->where('b.deleted_at',null)
             ->where('a.kecamatan',$this->kecamatan)
-            ->paginate(15);
+            ->when($this->jenis=='SISA',function($q){
+                return $q->get();
+            }, function($q){
+                return $q->paginate(15);
+            });
+            
     }
 
     private function totalData(){
@@ -42,6 +47,7 @@ class DetailService{
 
     private function sisa(){
         $tesalur=$this->tersalur();
+        // dd($tesalur);
         // dd($tesalur->pluck('id')->toArray());
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
