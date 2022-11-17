@@ -42,6 +42,7 @@ class TransaksiController extends Controller
 
     public function softDelete($id){
         $transaksiBlt=TransaksiBlt::findOrFail($id);
+        UploadFotoService::deleteFotoIfExist($transaksiBlt->id_kpm);
         $transaksiBlt->delete();
 
         return redirect()->route('transaksi.index')->with('notifikasi','Sukses Menghapus Data');

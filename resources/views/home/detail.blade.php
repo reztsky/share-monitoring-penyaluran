@@ -31,10 +31,16 @@
                     <tbody>
                         @forelse ($result as $row)
                             <tr>
-                                <td>{{$result->currentPage() + $loop->index}}</td>
+                                <td>{{$result->firstItem() + $loop->index}}</td>
                                 @foreach ($row as $key=>$value)
                                     @continue(in_array($key,['id','created_at','updated_at']))
-                                    <td>{{$value}}</td>
+                                    @if (in_array($key,['nik','no_kk']))
+                                        <td>{{Str::mask($value,'*',-10,9)}}</td>
+                                    @elseif($key=='status_kpm_sebagai')
+                                        <td>{{$value==1 ? 'Buruh Pabrik' : 'Masyarakat Lainnya'}}</td>
+                                    @else
+                                        <td>{{$value}}</td>
+                                    @endif
                                 @endforeach
                             </tr>
                         @empty

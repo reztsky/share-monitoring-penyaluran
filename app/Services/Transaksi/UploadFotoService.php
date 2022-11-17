@@ -15,9 +15,9 @@ class UploadFotoService{
         return $fileName;
     }
 
-    private static function deleteFotoIfExist($id_kpm){
+    public static function deleteFotoIfExist($id_kpm){    
         $transaksiBlt=TransaksiBlt::where('id_kpm',$id_kpm)->get();
-
+    
         if(count($transaksiBlt)<1) return;
 
         if(Storage::exists('public/foto_pengambilan/'.$transaksiBlt->first()->foto_pengambilan)){
