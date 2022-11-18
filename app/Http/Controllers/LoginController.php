@@ -20,8 +20,8 @@ class LoginController extends Controller
 
         $credentials=$request->only(['username','password']);
 
-        // $rememberMe=$request->has('remember_me') ? true : false;
-        $rememberMe=false;
+        $rememberMe=$request->has('remember_me') ? true : false;
+        // $rememberMe=false;
 
         if(Auth::attempt($credentials,$rememberMe)){
             return redirect()->route('landing.index');

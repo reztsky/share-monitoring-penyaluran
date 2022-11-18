@@ -81,10 +81,10 @@
                                 @enderror
 
                                 <!-- Checkbox -->
-                                {{-- <div class="form-check d-flex justify-content-start mb-3">
+                                <div class="form-check d-flex justify-content-start mb-3">
                                     <input class="form-check-input" name="remember_me" type="checkbox" value="true" id="form1Example3" />
                                     <label class="form-check-label ms-3" for="form1Example3"> Remember Me </label>
-                                </div> --}}
+                                </div>
                 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                             </div>
