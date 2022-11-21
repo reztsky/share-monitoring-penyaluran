@@ -16,6 +16,24 @@ class DashboardService{
         ];
     }
 
+    public function getBuruhCount(){
+        return DB::table('kpm_blts as a')
+            ->selectRaw('count(a.id) as buruh')
+            ->where('status_kpm_sebagai',1)
+            ->groupBy('kecamatan')
+            ->orderBy('kecamatan')
+            ->get();
+    }
+
+    public function getMasyarakatUmumCount(){
+        return DB::table('kpm_blts as a')
+            ->selectRaw('count(a.id) as umum')
+            ->where('status_kpm_sebagai',2)
+            ->groupBy('kecamatan')
+            ->orderBy('kecamatan')
+            ->get();
+    }
+
     private function getTersalurCount(){
         return DB::table('kpm_blts as a')
             ->selectRaw('count(a.id) as tersalur')

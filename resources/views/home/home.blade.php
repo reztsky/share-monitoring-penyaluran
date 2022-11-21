@@ -20,6 +20,8 @@
                         <tr>
                             <th>No.</th>
                             <th>Kecamatan</th>
+                            <th>Buruh Pabrik</th>
+                            <th>Masyarakat Umum</th>
                             <th>Total Data</th>
                             <th>Tersalur</th>
                             <th>Sisa</th>
@@ -30,6 +32,9 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$row['x']}}</td>
+                                {{-- <td>{{$buruhPabrik[5]}}</td> --}}
+                                <td>{{$buruhPabrik[$loop->index]->buruh}}</td>
+                                <td>{{$masyarakatUmum[$loop->index]->umum}}</td>
                                 <td>
                                     <a href="{{route('landing.detail',['kecamatan'=>$row['x'],'jenis'=>'TOTAL'])}}">{{$row['total_data']}}</a>
                                 </td>

@@ -12,8 +12,10 @@ class LandingController extends Controller
         $dashboardService=new DashboardService();
         $chartKecamatan=$dashboardService->chartByKecamatan();
         $chartTersalur=$dashboardService->chartTersalur();
+        $buruhPabrik=$dashboardService->getBuruhCount()->toArray();
+        $masyarakatUmum=$dashboardService->getMasyarakatUmumCount()->toArray();
         
-        return view('home.home',compact('chartTersalur','chartKecamatan'));
+        return view('home.home',compact('chartTersalur','chartKecamatan','buruhPabrik','masyarakatUmum'));
     }
 
     public function detail(Request $request){
