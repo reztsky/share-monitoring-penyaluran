@@ -34,7 +34,8 @@ class KpmBlt extends Model
 
     protected function nik():Attribute{
         return Attribute::make(
-            get:fn($value)=>Str::mask($value,'*',-10,9)
+            // get:fn($value)=>Str::mask($value,'*',-10,9)
+            get:fn($value)=>$value
         );
     }
 

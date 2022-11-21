@@ -16,24 +16,6 @@ class DashboardService{
         ];
     }
 
-    public function getBuruhCount(){
-        return DB::table('kpm_blts as a')
-            ->selectRaw('count(a.id) as buruh')
-            ->where('status_kpm_sebagai',1)
-            ->groupBy('kecamatan')
-            ->orderBy('kecamatan')
-            ->get();
-    }
-
-    public function getMasyarakatUmumCount(){
-        return DB::table('kpm_blts as a')
-            ->selectRaw('count(a.id) as umum')
-            ->where('status_kpm_sebagai',2)
-            ->groupBy('kecamatan')
-            ->orderBy('kecamatan')
-            ->get();
-    }
-
     private function getTersalurCount(){
         return DB::table('kpm_blts as a')
             ->selectRaw('count(a.id) as tersalur')
@@ -48,41 +30,5 @@ class DashboardService{
             ->get();
     }
 
-    public function chartByKecamatan(){
-        $tersalur=$this->getTersalurByKecamatan();
-        $total=$this->getTotalByKecamatan();
-        $result=collect([]);
-
-        $total->each(function($item,$key) use($result,$tersalur){
-            $dataSalur=$tersalur->firstWhere('kecamatan',$item->kecamatan);
-
-            $result->push([
-                'x'=>$item->kecamatan,
-                'total_data'=>$item->total_data,
-                'tersalur'=> (is_null($dataSalur)) ?  0 : $dataSalur->tersalur,
-                'sisa'=> (is_null($dataSalur)) ?  $item->total_data : $item->total_data-$dataSalur->tersalur,
-            ]);
-            
-        });
-
-        return $result->toArray();
-    }
-
-    private function getTersalurByKecamatan(){
-        return DB::table('kpm_blts as a')
-            ->select('a.kecamatan')
-            ->selectRaw('count(a.id) as tersalur')
-            ->groupBy('a.kecamatan')
-            ->join('transaksi_blts as b','a.id','=','b.id_kpm')
-            ->where('b.deleted_at',null)
-            ->get();
-    }
-
-    private function getTotalByKecamatan(){
-        return DB::table('kpm_blts')
-            ->select('kecamatan')
-            ->selectRaw('count(id) as total_data')
-            ->groupBy('kecamatan')
-            ->get();
-    }
+   
 }

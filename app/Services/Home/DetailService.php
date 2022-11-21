@@ -5,20 +5,22 @@ use Illuminate\Support\Facades\DB;
 
 class DetailService{
 
-    public function __construct(public $kecamatan,public $jenis){}
+    public function __construct(public $lokasi,public $jenis,public $statuskpm){}
 
     public function detail(){
         $result=[];
 
         if(!in_array($this->jenis,['TERSALUR','TOTAL','SISA'])) return abort(404,'Not Found');
+        if(!in_array($this->statuskpm,[1,2])) return abort(404, 'NOT FOUND');
 
         if($this->jenis=='TERSALUR') $result=$this->tersalur();
         if($this->jenis=='TOTAL') $result=$this->totalData();
         if($this->jenis=='SISA') $result=$this->sisa();
 
         $result->appends([
-            'kecamatan'=>$this->kecamatan,
+            'lokasi'=>$this->lokasi,
             'jenis'=>$this->jenis,
+            'statuskpm'=>$this->statuskpm,
         ]);
 
         return $result;
@@ -28,8 +30,14 @@ class DetailService{
         return DB::table('kpm_blts as a')
             ->select('a.*')
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
+            ->when($this->statuskpm==1,function($q){
+                //buruh pabrik
+                return $q->where('keterangan',$this->lokasi);
+            }, function($q){
+                //masyarakat umum
+                return $q->where('a.kecamatan',$this->lokasi);
+            })
             ->where('b.deleted_at',null)
-            ->where('a.kecamatan',$this->kecamatan)
             ->when($this->jenis=='SISA',function($q){
                 return $q->get();
             }, function($q){
@@ -41,18 +49,29 @@ class DetailService{
     private function totalData(){
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
-            ->where('a.kecamatan',$this->kecamatan)
+            ->when($this->statuskpm==1,function($q){
+                //buruh pabrik
+                return $q->where('a.keterangan',$this->lokasi);
+            }, function($q){
+                //masyarakat umum
+                return $q->where('a.kecamatan',$this->lokasi);
+            })
             ->paginate(15);
     }
 
     private function sisa(){
         $tesalur=$this->tersalur();
-        // dd($tesalur);
-        // dd($tesalur->pluck('id')->toArray());
+        
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
             ->whereNotIn('id',$tesalur->pluck('id')->toArray())
-            ->where('a.kecamatan',$this->kecamatan)
+            ->when($this->statuskpm==1,function($q){
+                //buruh pabrik
+                return $q->where('a.keterangan',$this->lokasi);
+            }, function($q){
+                //masyarakat umum
+                return $q->where('a.kecamatan',$this->lokasi);
+            })
             ->paginate(15);
     }
 
