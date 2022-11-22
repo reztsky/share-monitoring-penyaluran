@@ -27,6 +27,7 @@
                         @empty
 
                         @endforelse
+                           
                         @endif
                     </tr>
                 </thead>
@@ -40,6 +41,8 @@
                                 <td>{{Str::mask($value,'*',-10,9)}}</td>
                             @elseif($key=='status_kpm_sebagai')
                                 <td>{{$value==1 ? 'Buruh Pabrik' : 'Masyarakat Lainnya'}}</td>
+                            @elseif($key=='foto_pengambilan')
+                                <td><a href="{{asset('storage/foto_pengambilan/'.$value)}}" target="_blank" rel="noopener noreferrer">Dokumentasi</a></td>
                             @else
                                 <td>{{$value}}</td>
                             @endif

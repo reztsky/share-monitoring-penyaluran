@@ -16,7 +16,7 @@ class DetailService{
         if($this->jenis=='TERSALUR') $result=$this->tersalur();
         if($this->jenis=='TOTAL') $result=$this->totalData();
         if($this->jenis=='SISA') $result=$this->sisa();
-
+        
         $result->appends([
             'lokasi'=>$this->lokasi,
             'jenis'=>$this->jenis,
@@ -28,14 +28,15 @@ class DetailService{
 
     private function tersalur(){
         return DB::table('kpm_blts as a')
-            ->select('a.*')
+            ->select(['a.*','b.foto_pengambilan'])
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
             ->when($this->statuskpm==1,function($q){
                 //buruh pabrik
                 return $q->where('keterangan',$this->lokasi);
             }, function($q){
                 //masyarakat umum
-                return $q->where('a.kecamatan',$this->lokasi);
+                return $q->where('a.kecamatan',$this->lokasi)
+                    ->where('status_kpm_sebagai',2);
             })
             ->where('b.deleted_at',null)
             ->when($this->jenis=='SISA',function($q){
@@ -51,10 +52,12 @@ class DetailService{
             ->select(['a.*'])
             ->when($this->statuskpm==1,function($q){
                 //buruh pabrik
-                return $q->where('a.keterangan',$this->lokasi);
+                return $q->where('a.keterangan',$this->lokasi)
+                    ->where('a.status_kpm_sebagai',1);
             }, function($q){
                 //masyarakat umum
-                return $q->where('a.kecamatan',$this->lokasi);
+                return $q->where('a.kecamatan',$this->lokasi)
+                ->where('a.status_kpm_sebagai',2);
             })
             ->paginate(15);
     }
@@ -67,10 +70,12 @@ class DetailService{
             ->whereNotIn('id',$tesalur->pluck('id')->toArray())
             ->when($this->statuskpm==1,function($q){
                 //buruh pabrik
-                return $q->where('a.keterangan',$this->lokasi);
+                return $q->where('a.keterangan',$this->lokasi)
+                ->where('a.status_kpm_sebagai',1);
             }, function($q){
                 //masyarakat umum
-                return $q->where('a.kecamatan',$this->lokasi);
+                return $q->where('a.kecamatan',$this->lokasi)
+                ->where('a.status_kpm_sebagai',2);
             })
             ->paginate(15);
     }
