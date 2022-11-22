@@ -20,9 +20,11 @@
                     <li class="nav-item">
                         <a class="nav-link @yield('link-active-home')" aria-current="page" href="{{route('landing.index')}}">Home</a>
                     </li>
+                    @if (Auth::user()->id!=3)
                     <li class="nav-item">
                         <a class="nav-link @yield('link-active-transaksi')" href="{{route('transaksi.index')}}">Transaksi</a>
-                    </li>
+                    </li>    
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}">Logout</a>
                     </li>
