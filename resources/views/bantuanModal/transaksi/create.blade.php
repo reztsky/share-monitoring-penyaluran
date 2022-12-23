@@ -22,7 +22,8 @@
     <div class="bg-white shadow p-3 rounded-3 my-3">
         <dl class="row">
             @foreach ($kpm->toArray() as $key=>$value)
-                @continue($key=='transaksi')
+                @continue(in_array($key,['transaksi','status_aktif','kelurahan']))
+
                 <dt class="col-md-2 col-12">{{Str::upper(str_replace('_',' ',$key))}}</dt>
                 <dl class="col-md-10 col-12">{{Str::upper($value)}}</dl>
             @endforeach
