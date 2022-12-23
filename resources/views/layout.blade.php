@@ -22,8 +22,19 @@
                     </li>
                     @if (Auth::user()->id!=3)
                     <li class="nav-item">
-                        <a class="nav-link @yield('link-active-transaksi')" href="{{route('transaksi.index')}}">Transaksi</a>
+                        <a class="nav-link @yield('link-active-transaksi')" href="{{route('transaksi.index')}}">BLT Tunai</a>
                     </li>    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link @yield('link-active-bantuan-modal') dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Bantuan Modal
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item @yield('link-active-bantuan-modal-dashboard')" href="{{route('bantuanmodal.dashboard.index')}}">Dashboard</a></li>
+                          <li><a class="dropdown-item @yield('link-active-bantuan-modal-transaksi')" href="{{route('bantuanmodal.transaksi.index')}}">Transaksi</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          
+                        </ul>
+                      </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}">Logout</a>

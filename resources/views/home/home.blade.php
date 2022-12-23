@@ -123,51 +123,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script>
-// Register the plugin to all charts:
-// Chart.register(ChartDataLabels);
-
-// const chartKecamatan={{Js::from($masyarakatUmum)}}
-// const pluck = (arr, key) => arr.map(i => i[key]);
-// const data_1 = {
-//     labels: pluck(chartKecamatan,'x'),
-//     datasets: [{
-//             label: 'Tersalur',
-//             data: chartKecamatan,
-//             backgroundColor: 'rgba(54, 162, 235, 0.5)',
-//             borderWidth: 1,
-//             parsing: {
-//                 yAxisKey: 'tersalur'
-//             }
-//         }, {
-//             label: 'Total Data',
-//             data: chartKecamatan,
-//             backgroundColor: 'rgba(255, 159, 64, 0.5)',
-//             borderWidth: 1,
-//             parsing: {
-//                 yAxisKey: 'total_data'
-//             }
-//         }, {
-//             label: 'Sisa',
-//             data: chartKecamatan,
-//             backgroundColor:'rgba(255, 99, 132, 0.5)',
-//             borderWidth: 1,
-//             parsing: {
-//                 yAxisKey: 'sisa'
-//             }
-            
-//         }]
-//   };
-//   const config_1 = {
-//     type: 'bar',
-//     data: data_1,
-//   };
-
-//   const myChart1 = new Chart(
-//     document.getElementById('chart-2'),
-//     config_1
-//   );
-</script>
-<script>
   const data_2 = {
     labels: [
         'Tersalur',
