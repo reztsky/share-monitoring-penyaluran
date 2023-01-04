@@ -12,7 +12,7 @@ class DashboardBantuanModalService{
         // dd($total);
         $tersalur=$this->tersalur();
         $result=collect([]);
-
+        
         $total->each(function($item,$key) use ($tersalur,$result){
             $filterTersalur=$tersalur->firstWhere('jenis_bantuan_modal',$item->jenis_bantuan_modal);
 
@@ -45,6 +45,7 @@ class DashboardBantuanModalService{
         ->select('a.jenis_bantuan_modal')
         ->selectRaw('count(a.id) as tersalur')
         ->where('b.deleted_at',null)
+        ->where('status_aktif',1)
         ->groupBy('a.jenis_bantuan_modal')
         ->get();
     }
