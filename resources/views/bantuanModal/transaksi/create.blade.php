@@ -40,7 +40,7 @@
         </dl>
       
         <div class="d-flex">
-            <div class="col-md-6 col-12">
+            <div class="col-md-12 col-12">
                 <form action="{{route('bantuanmodal.transaksi.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id_kpm" value="{{$kpm->id}}">

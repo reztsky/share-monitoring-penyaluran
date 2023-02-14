@@ -1,5 +1,5 @@
 <div class="g-3">
-    <h5 class="h5">DATA PENERIMA</h5>
+    <h5 class="mb-4">DATA PENERIMA</h5>
     <div class="row mb-3 ">
         <label for="" class="col-sm-2 col-form-label">NIK</label>
         <div class="col-sm-10">
@@ -15,12 +15,12 @@
             <div class="form-text text-danger" id="nik-message"></div>
         </div>
     </div>
-    <div class="row mb-3">
+    {{-- <div class="row mb-3">
         <label for="" class="col-sm-2 col-form-label">No. KK</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" value="" id="no_kk" placeholder="No. KK" name="no_kk" readonly>
         </div>
-    </div>
+    </div> --}}
     <div class="row mb-3">
         <label for="" class="col-sm-2 col-form-label">Nama Penerima</label>
         <div class="col-sm-10">
@@ -45,13 +45,13 @@
     <div class="row mb-3">
         <label for="" class="col-sm-2 col-form-label">No. Hp</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" value="" id="no_hp" placeholder="No. Hp" name="no_hp">
+            <input type="number" class="form-control" value="" id="no_hp" placeholder="No. Hp" name="no_hp">
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-2 col-form-label">Jenis Modal Usaha</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" value="" id="jenis_bantuan_modal" placeholder="No. Hp"
+            <input type="text" class="form-control" value="" id="jenis_bantuan_modal" placeholder="Jenis modal Usaha"
                 name="jenis_bantuan_modal" readonly>
         </div>
     </div>

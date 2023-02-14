@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="app-page-title">Dashboard</h1>
 <div class="row">
-    <div class="col-md-6 col-12">
+    <div class="col-md-12 col-12">
         <div class="app-card shadow-sm rounded-3 p-3 my-3 border-1 border">
             <div class="app-card-body">
                 <canvas id="chart-1" style="max-height: 350px; min-height: 350px"></canvas>
@@ -13,12 +13,12 @@
     </div>
     
     <div class="col-md-12 col-12">
-        <h5>Rekap Penyaluran BLT DBHCHT 2020 Buruh Pabrik</h5>
-        <div class="app-card shadow-sm mb-5">
+        <h5 class="mt-4">Rekap Penyaluran BLT DBHCHT 2020 Buruh Pabrik</h5>
+        <div class="mt-2 app-card shadow-sm mb-5">
             <div class="app-card-body">
-                <div class="table-responsive">
-                    <table class="table app-table-hover mb-0 text-left">
-                        <thead class="">
+                <div class="table-responsive p-4">
+                    <table class="table table-hover mb-0 text-left">
+                        <thead style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th class="cell">No.</th>
                                 <th class="cell">Pabrik</th>
@@ -55,7 +55,7 @@
                             @endphp
                             @endforeach
                         </tbody>
-                        <tfoot>
+                        <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th class="cell" colspan="2">Total</th>
                                 <th class="cell">{{number_format($totalKpm,0,',','.')}}</th>
@@ -74,9 +74,9 @@
         <h5>Rekap Penyaluran BLT DBHCHT 2022 Masyarakat Umum</h5>
         <div class="app-card  shadow-sm mb-5">
             <div class="app-card-body">
-                <div class="table-responsive">
-                    <table class="table table app-table-hover mb-0 text-left">
-                        <thead class="">
+                <div class="table-responsive p-4">
+                    <table class="table table-hover mb-0 text-left">
+                        <thead style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th class="cell">No.</th>
                                 <th class="cell">Kecamatan</th>
@@ -116,7 +116,7 @@
 
                             @endforelse
                         </tbody>
-                        <tfoot>
+                        <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th colspan="2">Total</th>
                                 <th class="cell">{{number_format($totalKpm,0,',','.')}}</th>
@@ -146,8 +146,8 @@
     datasets: [{
         label: 'Rekap Penyaluran',
         backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
+            'rgb(188, 76, 76)',
+            'rgb(94, 194, 175)',
         ],
         data: {{Js::from($chartTersalur)}}
     }]

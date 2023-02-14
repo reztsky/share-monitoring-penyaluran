@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name'=>'Kepala Dinas Sosial',
-            'username'=>'kadinsos',
-            'password'=>Hash::make('f4jriatin'),
+            'username'=>'admin',
+            'password'=>Hash::make('nad123'),
         ]);
     }
 }
