@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BantuanModalHomeController;
 use App\Http\Controllers\BantuanModalTransaksiController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MonitoringBantuanModalController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,18 +37,26 @@ Route::group([
     'middleware'=>'auth'
 ], function(){
     Route::group([
-        'controller'=>LandingController::class,
-        'as'=>'landing.',
-        'prefix'=>'/home',
+        'controller'=>HomeController::class,
+        'as'=>'home.',
+        'prefix'=>'/home'
     ], function(){
         Route::get('/','index')->name('index');
-        Route::get('/detail-data','detail')->name('detail');
     });
     
     Route::prefix('/blt-tunai')->group(function(){
         Route::group([
+            'controller'=>LandingController::class,
+            'as'=>'blt.dashboard.',
+            'prefix'=>'/dashboard',
+        ], function(){
+            Route::get('/','index')->name('index');
+            Route::get('/detail-data','detail')->name('detail');
+        });
+
+        Route::group([
             'controller'=>TransaksiController::class,
-            'as'=>'transaksi.',
+            'as'=>'blt.transaksi.',
             'prefix'=>'/transkasi-salur',
         ], function(){
             Route::get('/','index')->name('index');
@@ -57,10 +67,13 @@ Route::group([
         });
     });
 
-    Route::prefix('/bantuan-modal')->group(function(){
+    Route::group([
+        'prefix'=>'bantuan-modal',
+        'as'=>'bantuanmodal.',
+    ], function(){
         Route::group([
             'controller'=>BantuanModalHomeController::class,
-            'as'=>'bantuanmodal.dashboard.',
+            'as'=>'dashboard.',
             'prefix'=>'/dashboard',
         ], function(){
             Route::get('/','index')->name('index');
@@ -69,7 +82,7 @@ Route::group([
 
         Route::group([
             'controller'=>BantuanModalTransaksiController::class,
-            'as'=>'bantuanmodal.transaksi.',
+            'as'=>'transaksi.',
             'prefix'=>'/transaksi',
         ], function(){
             Route::get('/','index')->name('index');
@@ -77,6 +90,20 @@ Route::group([
             Route::get('/{id}/create','create')->name('create');
             Route::post('/store','store')->name('store');
             Route::get('/soft-delete/{id}','softDelete')->name('softDelete');
+        });
+
+        Route::group([
+            'controller'=>MonitoringBantuanModalController::class,
+            'as'=>'monitoring.',
+            'prefix'=>'monitoring'
+        ], function(){
+            Route::get('/','index')->name('index');
+            Route::get('/create','create')->name('create');
+            Route::post('/store','store')->name('store');
+            Route::get('/{id}/edit','edit')->name('edit');
+            Route::post('/{id}/update','update')->name('update');
+            Route::get('/{id}','delete')->name('delete');
+            Route::get('/find/{nik}','find')->name('find');
         });
     });
 });

@@ -24,7 +24,7 @@ class LoginController extends Controller
         // $rememberMe=false;
 
         if(Auth::attempt($credentials,$rememberMe)){
-            return redirect()->route('landing.index');
+            return redirect()->route('home.index');
         }
 
         return redirect()->route('login')->with('failed_login','Periksa Password dan Username Anda');

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class LandingController extends Controller
 {
     public function index(){
+        
         $dashboardService=new DashboardService();
         $buruhPabrikService=new BuruhPabrikService();
         $masyarakatUmumService=new MasyarakatUmumService();
@@ -19,13 +20,13 @@ class LandingController extends Controller
         $buruhPabriks=$buruhPabrikService->rekap();
         $masyarakatUmum=$masyarakatUmumService->rekap();
         
-        return view('home.home',compact('chartTersalur','masyarakatUmum','buruhPabriks'));
+        return view('blt.dashboard.home',compact('chartTersalur','masyarakatUmum','buruhPabriks'));
     }
 
     public function detail(Request $request){
         $detailService=new DetailService($request->lokasi,$request->jenis,$request->statuskpm);
         $result=$detailService->detail();
         
-        return view('home.detail',compact('result'));
+        return view('blt.dashboard.detail',compact('result'));
     }
 }

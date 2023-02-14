@@ -1,5 +1,5 @@
 @extends('layout')
-@section('link-active-transaksi','active')
+@section('link-active-blt','active')
 @section('content')
     <div class="col-md-12 col-12">
         <div class="bg-white shadow p-3 rounded-3 my-3">
@@ -19,7 +19,7 @@
           
             <div class="d-flex">
                 <div class="col-md-6 col-12">
-                    <form action="{{route('transaksi.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('blt.transaksi.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="kecamatan" value="{{$kpmBlt->kecamatan}}">
                         <input type="hidden" name="kelurahan" value="{{$kpmBlt->kelurahan}}">
@@ -38,7 +38,7 @@
                         <div id="root"></div>
                         <div class="d-flex justify-content-end gap-2">
                             @if (!is_null($kpmBlt->transaksi))
-                                <a href="{{route('transaksi.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
+                                <a href="{{route('blt.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
                             @endif
                             <button class="btn-sm btn-success btn" type="submit">Update</button>
                         </div>

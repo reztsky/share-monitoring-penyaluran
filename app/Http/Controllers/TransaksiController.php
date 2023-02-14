@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class TransaksiController extends Controller
 {
     public function index(){
-        return view('transaksi.transaksi');
+        return view('blt.transaksi.transaksi');
     }
 
     
@@ -20,7 +20,7 @@ class TransaksiController extends Controller
             'id_kpm'=>'required|numeric|min:1'
         ]);
         
-        return redirect()->route('transaksi.show',['id'=>$request->id_kpm]);
+        return redirect()->route('blt.transaksi.show',['id'=>$request->id_kpm]);
     }
 
     public function show($id){
@@ -28,7 +28,7 @@ class TransaksiController extends Controller
         
         abort_if(is_null($kpmBlt),'404', 'Not Found');
 
-        return view('transaksi.show',compact('kpmBlt'));
+        return view('blt.transaksi.show',compact('kpmBlt'));
     }
 
     public function store(StoreTransaksiRequest $request){
@@ -37,7 +37,7 @@ class TransaksiController extends Controller
         
         $transaksiBlt=TransaksiBlt::updateOrCreate(['id_kpm'=>$request->id_kpm],$validated);
         
-        return redirect()->route('transaksi.index')->with('notifikasi','Sukses Menambahkan Data');
+        return redirect()->route('blt.transaksi.index')->with('notifikasi','Sukses Menambahkan Data');
     }
 
     public function softDelete($id){
@@ -45,6 +45,6 @@ class TransaksiController extends Controller
         UploadFotoService::deleteFotoIfExist($transaksiBlt->id_kpm);
         $transaksiBlt->delete();
 
-        return redirect()->route('transaksi.index')->with('notifikasi','Sukses Menghapus Data');
+        return redirect()->route('blt.transaksi.index')->with('notifikasi','Sukses Menghapus Data');
     }
 }
