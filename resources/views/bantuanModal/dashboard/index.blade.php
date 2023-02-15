@@ -5,6 +5,7 @@
 @section('content')
 @if (session('notifikasi'))
 <div class="position-relative">
+    
     <div class="toast-conteiner position-absolute  top-0 end-0 p-3">
         <div class="toast align-items-center text-dark bg-light show">
             <div class="d-flex">
@@ -19,12 +20,13 @@
 </div>
 @endif
 <div class="row">
+    <h5 class="mt-4">Rekap Bantuan Modal 2023</h5>
     <div class="col-md-12 col-sm-12 col-12">
         <div class="app-card shadow-sm mb-5">
             <div class="app-card-body">
-                <div class="table-responsive">
-                    <table class="table app-table-hover mb-0 text-left">
-                        <thead class="">
+                <div class="table-responsive p-4">
+                    <table class="table table-hover mb-0 text-left">
+                        <thead style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th>No.</th>
                                 <th>Jenis Bantuan Modal</th>
@@ -50,7 +52,7 @@
                             </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
+                        <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th colspan="2">Total</th>
                                 <th>{{$rekap->sum('total')}}</th>

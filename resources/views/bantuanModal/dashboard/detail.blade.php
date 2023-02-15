@@ -16,9 +16,9 @@
     <div class="app-card shadow">
         <div class="app-card-body">
             <hr>
-            <div class="table table-responsive">
-                <table class="table app-table-hover mb-0 text-left">
-                    <thead>
+            <div class="table table-responsive p-2">
+                <table class="table table-hover mb-0 text-left">
+                    <thead style="background-color: #5EC2AF;color:white">
                         <tr>
                             @if ($details->count()>0)
                                 <th>No.</th>

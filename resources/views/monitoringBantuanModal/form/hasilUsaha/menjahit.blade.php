@@ -1,4 +1,4 @@
-<h5 class="h5">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
+<h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
 <div class="row mb-3 ">
     <label for="" class="col-sm-2 col-form-label form-label">Berapa Jahitan yang diterima dalam sebulan ?</label>
     <div class="col-sm-10">
@@ -21,7 +21,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
     <div class="col-sm-10">
-        <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha"></textarea>
+        <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;"></textarea>
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror

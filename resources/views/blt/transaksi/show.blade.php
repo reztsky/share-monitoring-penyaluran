@@ -3,6 +3,7 @@
 @section('content')
     <div class="col-md-12 col-12">
         <div class="bg-white shadow p-3 rounded-3 my-3">
+            <label style="font-size: 20px" class="form-label"><b>Data KPM</b></label><hr/>
             <dl class="row">
                 @foreach ($kpmBlt->toArray() as $key=>$value)
                     @continue($key=='transaksi')
@@ -18,7 +19,7 @@
             </dl>
           
             <div class="d-flex">
-                <div class="col-md-6 col-12">
+                <div class="col-md-12 col-12">
                     <form action="{{route('blt.transaksi.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="kecamatan" value="{{$kpmBlt->kecamatan}}">
@@ -26,7 +27,7 @@
                         <input type="hidden" name="id_kpm" value="{{$kpmBlt->id}}">
                         
                         <div class="mb-2">
-                            <label for="" class="form-label">Foto Pengambilan</label>
+                            <label for="" class="form-label"><b>Foto Pengambilan</b></label>
                             <input type="file" class="form-control" name="foto_pengambilan" id="foto_pengambilan" accept="image/*">
 
                             @error('foto_pengambilan')<div class="form-text text-danger">{{$message}}</div>@enderror

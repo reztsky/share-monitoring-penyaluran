@@ -2,7 +2,6 @@
 @section('link-active-blt','active')
 @section('content')
 <div class="col-md-12 col-12">
-    <h1 class="app-page-title">Home</h1>
     <div class="app-card shadow p-3 rounded-3 my-3">
         <div class="app-card-body">
             <h5 class="h5  text-center">Daftar Nama
@@ -14,12 +13,10 @@
                 Penerima BLT DBHCT
                 @endif
                 {{request('lokasi')}} </h5>
-            <hr>
-
-            <hr>
-            <div class="table-responsive">
-                <table class="table app-table-hover mb-0 text-left">
-                    <thead>
+ 
+            <div class="table-responsive p-2">
+                <table class="table table-hover mb-0 text-left">
+                    <thead style="background-color: #5EC2AF;color:white">
                         <tr>
                             @if ($result->count()>0)
                             <th>No.</th>
