@@ -29,6 +29,14 @@ class TransaksiMonitoring extends Model
         'harapan',
     ];
 
+    public function kpm(){
+        return $this->belongsTo(KpmBantuanModal::class,'id_kpm_modal','id');
+    }
+
+    public function scopeInsertBy($query,$idUser){
+        return $query->where('inserted_by',$idUser);
+    }
+
     protected function pengeloalaanUsaha(): Attribute
     {
         return Attribute::make(

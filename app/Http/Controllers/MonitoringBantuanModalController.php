@@ -14,6 +14,7 @@ use App\Models\TransaksiMonitoring;
 use App\Services\Monitoring\ItemTokelService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MonitoringBantuanModalController extends Controller
 {
@@ -40,7 +41,14 @@ class MonitoringBantuanModalController extends Controller
 
     public function index()
     {
-        return view($this->view . 'index');
+        $user=Auth::user();
+        $monitorings=TransaksiMonitoring::insertBy($user->id)->with('kpm')->paginate(15);
+        return view($this->view . 'index',compact('monitorings'));
+    }
+
+    public function show($id){
+        // $monitoring=TransaksiMonitoring::with('kpm')->findOrFail($id)->
+        return view($this->view.'show');
     }
 
     public function create()
