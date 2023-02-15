@@ -62,10 +62,10 @@
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
                                 <td>
-                                    <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}" class="col-md-5 btn btn-sm" style="background-color: #4CBCA1">
+                                    <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}" class="col-md-5 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
-                                    <a class="col-md-5 btn btn-sm" style="background-color: #BC4C4C;color:white"
+                                    <a class="col-md-5 btn btn-sm" style="background-color: #BC4C4C;color:white;height: 34px"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="bi bi-trash-fill"></i>
                                     </a>

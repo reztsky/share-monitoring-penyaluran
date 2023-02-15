@@ -12,4 +12,8 @@
             <textarea name="harapan" id="" cols="30" rows="10" class="form-control" placeholder="Harapan" style=" min-height:100px;"></textarea>
         </div>
     </div>
+
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success px-3 py-1">Simpan</button>
+    </div>
 </div>

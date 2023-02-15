@@ -3,7 +3,7 @@
     <label for="" class="col-sm-2 col-form-label form-label">Berapa Jahitan yang diterima dalam sebulan ?</label>
     <div class="col-sm-10">
         <input type="number" class="form-control" value="" id="jahitan_dalam_sebulan"
-            placeholder="Jahitan Dalam Sebulan" name="jahitan_dalam_sebulan">
+            placeholder="Jahitan Dalam Sebulan" name="jahitan_dalam_sebulan" min=1>
         @error('jahitan_dalam_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -12,7 +12,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-2 col-form-label">Berapa penghasilan dalam sebulan ?</label>
     <div class="col-sm-10">
-        <input type="number" class="form-control" value="" id="penghasilan_sebulan" name="penghasilan_sebulan" placeholder="Penghasilan dalam sebulan">
+        <input type="number" class="form-control" min=1000 id="penghasilan_sebulan" name="penghasilan_sebulan" placeholder="Penghasilan dalam sebulan">
         @error('penghasilan_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror

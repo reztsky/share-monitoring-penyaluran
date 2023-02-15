@@ -39,13 +39,13 @@
         <label for="" class="col-sm-2 col-form-label">Alamat Tempat Usaha</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" value="" id="alamat_tempat_usaha" placeholder="Alamat Tempat Usaha"
-                name="alamat_tempat_usaha">
+                name="alamat_tempat_usaha" >
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-2 col-form-label">No. Hp</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" value="" id="no_hp" placeholder="No. Hp" name="no_hp">
+            <input type="number" class="form-control" value="" id="no_hp" placeholder="No. Hp" name="no_hp" min=0>
         </div>
     </div>
     <div class="row mb-3">
