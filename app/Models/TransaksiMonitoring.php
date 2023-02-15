@@ -17,7 +17,7 @@ class TransaksiMonitoring extends Model
         'jenis_bantuan_modal',
         'no_hp',
         // Pengelolaan Usaha
-        'pengeloalaan_usaha',
+        'pengelolaan_usaha',
         'bentuk_usaha',
         'penggunaan_bantuan',
         'alasan_pengunaan_bantuan',

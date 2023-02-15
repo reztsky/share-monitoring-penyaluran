@@ -11,7 +11,7 @@
                     </div>
                 </span>
             </div>
-            <input type="hidden" name="id_kpm" id="id_kpm">
+            <input type="hidden" name="id_kpm_modal" id="id_kpm_modal">
             <div class="form-text text-danger" id="nik-message"></div>
         </div>
     </div>
@@ -91,7 +91,7 @@
         $('#no_kk').val(data.no_kk)
         $('#alamat_ktp').val(data.alamat)
         $('#jenis_bantuan_modal').val(data.jenis_bantuan_modal)
-        $('#id_kpm').val(data.id)
+        $('#id_kpm_modal').val(data.id)
     }
 </script>
 @endpush
