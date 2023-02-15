@@ -63,11 +63,27 @@
                                         </a>
                                         
                                         <a class="col-md-5 btn btn-sm"
-                                            style="background-color: #BC4C4C;color:white"
-                                            href="#"
-                                            onclick="return confirm('Yakin Ingin Menghapus Data ?')">
+                                            style="background-color: #BC4C4C;color:white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="bi bi-trash-fill"></i>
-                                        </a>
+                                        </a>                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  Yakin Menghapus Data Ini ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn" style="background-color: #BC4C4C;color:white" data-bs-dismiss="modal">Batal</button>
+                                                  <button type="button" class="btn" style="background-color: #4CBCA1;color:white">Ya</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                     </td>
                                 </tr>
                             </tbody>
