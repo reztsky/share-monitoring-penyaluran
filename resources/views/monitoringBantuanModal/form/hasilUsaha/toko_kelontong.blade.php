@@ -3,7 +3,7 @@
     <label for="" class="col-sm-2 col-form-label">Berapa penghasilan dalam sebulan ?</label>
     <div class="col-sm-10">
         <input type="number" class="form-control" value="" id="penghasilan_sebulan" name="penghasilan_sebulan"
-            placeholder="Penghasilan dalam sebulan">
+            placeholder="Penghasilan dalam sebulan" min=1000>
         @error('penghasilan_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -13,7 +13,7 @@
     <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
     <div class="col-sm-10">
         <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha"
-            placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;"></textarea>
+            placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;max-height:100px"></textarea>
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -46,10 +46,10 @@
                         <input type="hidden" name="jumlah_awal[{{$loop->index}}]" value="{{$item['jumlah_awal']}}">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
+                        <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="harga[{{$loop->index}}]" placeholder="Harga Jual">
+                        <input type="number" class="form-control" name="harga[{{$loop->index}}]" placeholder="Harga Jual" min=1000>
                     </td>
                 </tr>
             @endforeach
@@ -60,7 +60,7 @@
     <label for="" class="col-sm-2 col-form-label">Catatan ?</label>
     <div class="col-sm-10">
         <textarea class="form-control" value="" id="catatan" name="catatan"
-            placeholder="Catatan" style=" min-height:100px;"></textarea>
+            placeholder="Catatan" style=" min-height:100px;max-height:100px"></textarea>
         @error('catatan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror

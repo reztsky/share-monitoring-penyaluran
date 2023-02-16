@@ -101,7 +101,8 @@ Route::group([
         Route::group([
             'controller'=>MonitoringBantuanModalController::class,
             'as'=>'monitoring.',
-            'prefix'=>'monitoring'
+            'prefix'=>'monitoring',
+            'middleware'=>'role:Surveyor|Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/create','create')->name('create');

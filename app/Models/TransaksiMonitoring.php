@@ -81,7 +81,7 @@ class TransaksiMonitoring extends Model
         });
     }
 
-    protected function pengeloalaanUsaha(): Attribute
+    protected function pengelolaanUsaha(): Attribute
     {
         return Attribute::make(
             get: function ($value) {
