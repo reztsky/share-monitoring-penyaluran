@@ -13,7 +13,7 @@
     <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
     <div class="col-sm-10">
         <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha"
-            placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;"></textarea>
+            placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;max-height:100px"></textarea>
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -60,7 +60,7 @@
     <label for="" class="col-sm-2 col-form-label">Catatan ?</label>
     <div class="col-sm-10">
         <textarea class="form-control" value="" id="catatan" name="catatan"
-            placeholder="Catatan" style=" min-height:100px;"></textarea>
+            placeholder="Catatan" style=" min-height:100px;max-height:100px"></textarea>
         @error('catatan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror

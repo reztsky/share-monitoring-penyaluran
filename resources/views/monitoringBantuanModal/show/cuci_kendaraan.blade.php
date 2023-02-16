@@ -4,7 +4,7 @@
     }
 </style>
 <body>
-    <h5 class="mb-4">Hasil Usaha</h5>
+    <h5 class="mb-4">Hasil Monitoring Usaha </h5>
     <div class="row mb-3 ">
         <label for="" class="col-sm-4 col-form-label form-label">Jumlah Kendaraan yang dicuci dalam sebulan </label>
         <p id="kendaraan_dicuci_sebulan" class="bold col-sm-1 col-form-label form-label">0</p>
