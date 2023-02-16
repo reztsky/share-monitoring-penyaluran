@@ -41,9 +41,19 @@
             <a href="{{route('bantuanmodal.monitoring.create')}}" class="button" style="padding-top: 5px">Tambah
                 Monitoring</a>
         </div>
-        <div class="app-card shadow bg-white mt-4">
+        <div class="app-card shadow bg-white mt-4 p-2">
             <div class="app-card-body">
-                <div class="table-responsive p-2">
+                <div class="d-flex justify-content-end">
+                    <div class="col-md-4 col-sm-12 co-12">
+                        <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
+                            <div class="input-group  mb-3 shadow">
+                                <input type="text" placeholder="Search..." class="form-control" name="keyword" value="{{request('keyword')}}">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
                     <table class="table table-hover mb-0 text-left">
                         <thead style="background-color: #5EC2AF;color:white">
                             <tr>
@@ -62,11 +72,17 @@
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
                                 <td>
-                                    <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}" class="col-md-5 btn btn-sm" style="background-color: #4CBCA1">
+                                    <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
+                                        class="col-md-5 btn btn-sm" style="background-color: #4CBCA1">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
-                                    <a class="col-md-5 btn btn-sm" style="background-color: #BC4C4C;color:white"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <a href="{{route('bantuanmodal.monitoring.edit',$monitoring->id)}}"
+                                        class="col-md-5 btn btn-sm" style="background-color: #4CBCA1">
+                                        Edit
+                                    </a>
+                                    <a class="col-md-5 btn btn-sm btn-delete" data-model-id="{{$monitoring->id}}"
+                                        style="background-color: #BC4C4C;color:white" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
                                         <i class="bi bi-trash-fill"></i>
                                     </a>
                                 </td>
@@ -99,12 +115,22 @@
             <div class="modal-body">
                 Yakin Menghapus Data Ini ?
             </div>
+            <a href=""></a>
             <div class="modal-footer">
                 <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
                     data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn" style="background-color: #4CBCA1;color:white">Ya</button>
+                <a href="" class="btn" id="confirm-delete" style="background-color: #4CBCA1;color:white">Ya</a>
             </div>
         </div>
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+    $('.btn-delete').on('click',function(e){
+            var id=$(this).attr('data-model-id')
+            var url="{{route('bantuanmodal.monitoring.delete','')}}/"+id
+            $('#confirm-delete').attr('href',url)
+        })
+</script>
+@endpush

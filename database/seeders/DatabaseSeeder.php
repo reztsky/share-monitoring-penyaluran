@@ -23,7 +23,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // KPMBLTSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
+            // RoleSeeder::class,
+            SurveyorSeeder::class,
         ]);
     }
 }

@@ -39,15 +39,19 @@ Route::group([
     Route::group([
         'controller'=>HomeController::class,
         'as'=>'home.',
-        'prefix'=>'/home'
+        'prefix'=>'/home',
     ], function(){
         Route::get('/','index')->name('index');
     });
     
-    Route::prefix('/blt-tunai')->group(function(){
+    Route::group([
+        'prefix'=>'/blt-tunai',
+        'middleware'=>'role:Super Admin',
+        'as'=>'blt.'
+    ],function(){
         Route::group([
             'controller'=>LandingController::class,
-            'as'=>'blt.dashboard.',
+            'as'=>'dashboard.',
             'prefix'=>'/dashboard',
         ], function(){
             Route::get('/','index')->name('index');
@@ -56,7 +60,7 @@ Route::group([
 
         Route::group([
             'controller'=>TransaksiController::class,
-            'as'=>'blt.transaksi.',
+            'as'=>'transaksi.',
             'prefix'=>'/transkasi-salur',
         ], function(){
             Route::get('/','index')->name('index');
@@ -75,6 +79,7 @@ Route::group([
             'controller'=>BantuanModalHomeController::class,
             'as'=>'dashboard.',
             'prefix'=>'/dashboard',
+            'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('detail/{jenis_bantuan}/{kategori}','detail')->name('detail');
@@ -84,6 +89,7 @@ Route::group([
             'controller'=>BantuanModalTransaksiController::class,
             'as'=>'transaksi.',
             'prefix'=>'/transaksi',
+            'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
             Route::post('/find','find')->name('find');
@@ -103,7 +109,7 @@ Route::group([
             Route::get('/{id}/show','show')->name('show');
             Route::get('/{id}/edit','edit')->name('edit');
             Route::post('/{id}/update','update')->name('update');
-            Route::get('/{id}','delete')->name('delete');
+            Route::get('/delete/{id}','delete')->name('delete');
             Route::get('/find/{nik}','find')->name('find');
         });
     });

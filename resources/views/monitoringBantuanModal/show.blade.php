@@ -39,7 +39,7 @@
         <h3 class="app-page-title">Monitoring Bantuan Modal</h3>
         <div class="app-card shadow bg-white mt-4">
             <div class="app-card-body">
-                
+                {{$monitoring}}
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMonitoringRequest;
+use App\Http\Requests\UpdateMonitoringRequest;
 use App\Models\DetailMonitoringCuciKendaraan;
 use App\Models\DetailMonitoringLaundry;
 use App\Models\DetailMonitoringMenjahit;
@@ -39,16 +40,17 @@ class MonitoringBantuanModalController extends Controller
     ];
 
 
-    public function index()
+    public function index(Request $request)
     {
         $user=Auth::user();
-        $monitorings=TransaksiMonitoring::insertBy($user->id)->with('kpm')->paginate(15);
+        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with('kpm')->paginate(15)->withQueryString();
         return view($this->view . 'index',compact('monitorings'));
     }
 
     public function show($id){
-        // $monitoring=TransaksiMonitoring::with('kpm')->findOrFail($id)->
-        return view($this->view.'show');
+        $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
+        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        return view($this->view.'show',compact('monitoring','detail'));
     }
 
     public function create()
@@ -70,18 +72,40 @@ class MonitoringBantuanModalController extends Controller
         $detailMonitoring = $this->storeDetailByJenisBantuanModal($request->jenis_bantuan_modal, $formDetailMonitoring);
 
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menambahkan Data');
+        
     }
 
     public function edit($id)
     {
+        $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
+        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        return view($this->view.'edit',compact('monitoring','detail'));
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateMonitoringRequest $request)
     {
+        // Retrive Form Input
+        $formTransaksiMonitoring = $request->safe()->only($this->arrayMonitoring);
+        $formDetailMonitoring = $request->safe()->except($this->arrayMonitoring);
+
+        // Get Monitoring & Update It
+        $monitoring=TransaksiMonitoring::findOrFail($id);
+        $monitoring->update($formTransaksiMonitoring);
+
+        // Get Detail Monitoring & Update It
+        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
+
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menambahkan Data');
     }
 
     public function delete($id)
     {
+        $monitoring=TransaksiMonitoring::findOrFail($id);
+        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        $detail->delete();
+        $monitoring->delete();
+
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menghapus Data');
     }
 
     public function find($nik)
@@ -92,6 +116,7 @@ class MonitoringBantuanModalController extends Controller
         return response()->json(['data' => $kpm, 'template' => $template], 200);
     }
 
+    
     private function storeDetailByJenisBantuanModal($jenis_bantuan_modal, $form)
     {
         if ($jenis_bantuan_modal == 'MENJAHIT') {
