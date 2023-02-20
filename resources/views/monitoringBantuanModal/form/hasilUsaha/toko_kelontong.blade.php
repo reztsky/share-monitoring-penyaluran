@@ -18,10 +18,21 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-4 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
+    <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
     <div class="col-sm-8">
-        <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha"
-            placeholder="Kegunaan Hasil Usaha" style=" min-height:100px;max-height:100px"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="1">
+            <label class="form-check-label" id="kegunaan_hasil_usaha" for="1">Kebutuhan sehari-hari</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="2">
+            <label class="form-check-label" id="kegunaan_hasil_usaha" for="2">Pengembangan Usaha</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
+            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
+        </div>
+        {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -60,12 +71,28 @@
                         <td>
                             <input type="number" class="form-control" name="harga[{{$loop->index}}]" placeholder="Harga Jual" min=1000>
                         </td>
+                        {{-- <td><input type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)"/></td>
+                        <td><input type="button" id="addmorePOIbutton" value="Add More POIs" onclick="insRow()"/></td> --}}
+                    </tr>
+                    <tr id="templateRow" style="display:none">
+                        <td>{{$loop->iteration}}</td>
+                        <td>
+                            <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
-            <button type="button" onclick="addRows()" class="btn btn-xs justify-content-center" style="background-color: #5EC2AF;color:white">+ Tambah Barang</button>
-            <button type="button" onclick="deleteRows()" class="btn btn-xs justify-content-center" style="background-color: #BC4C4C;color:white">- Hapus Barang</button>
         </table>
+        <button onclick="addRow();">Go</button>
     </div>
     
 </div>
@@ -79,37 +106,54 @@
         @enderror
     </div>
 </div> --}}
-<script type="text/javascript">
-    function addRows(){ 
-        var table = document.getElementById('table-kelontongs');
-        var rowCount = table.rows.length;
-        var cellCount = table.rows[0].cells.length; 
-        var row = table.insertRow(rowCount);
-        for(var i =0; i <= cellCount; i++){
-            var cell = 'cell'+i;
-            cell = row.insertCell(i);
-            var copycel = document.getElementById('col'+i).innerHTML;
-            cell.innerHTML=copycel;
-            if(i == 3){ 
-                var radioinput = document.getElementById('col3').getElementsByTagName('input'); 
-                for(var j = 0; j <= radioinput.length; j++) { 
-                    if(radioinput[j].type == 'radio') { 
-                        var rownum = rowCount;
-                        radioinput[j].name = 'gender['+rownum+']';
-                    }
-                }
-            }
+
+
+<!--ADD ROW-->
+{{-- <script type="text/javascript">
+    function deleteRow(row){
+            var i=row.parentNode.parentNode.rowIndex;
+            document.getElementById('table-kelontong').deleteRow(i);
         }
+
+
+    function insRow(){
+        var x=document.getElementById('table-kelontong');
+        // deep clone the targeted row
+        var new_row = x.rows[1].cloneNode(true);
+        // get the total number of rows
+        var len = x.rows.length;
+        // set the innerHTML of the first row 
+        new_row.cells[0].innerHTML = len;
+
+        // grab the input from the first cell and update its ID and value
+        var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
+        inp1.id += len;
+        inp1.value = '';
+
+        // grab the input from the first cell and update its ID and value
+        var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
+        inp2.id += len;
+        inp2.value = '';
+
+        // append the new row to the table
+        x.appendChild( new_row );
     }
-    function deleteRows(){
-        var table = document.getElementById('emptbl');
-        var rowCount = table.rows.length;
-        if(rowCount > '2'){
-            var row = table.deleteRow(rowCount-1);
-            rowCount--;
-        }
-        else{
-            alert('There should be atleast one row');
-        }
+</script> --}}
+
+<script>
+    var maxID = 0;
+    function getTemplateRow() {
+    var x = document.getElementById("templateRow").cloneNode(true);
+    x.id = "";
+    x.style.display = "";
+    x.innerHTML = x.innerHTML.replace(/{id}/, ++maxID);
+    return x;
+    }
+    function addRow() {
+    var t = document.getElementById("table-kelontong");
+    var rows = t.getElementsByTagName("tr");
+    var r = rows[rows.length - 1];
+    r.parentNode.insertBefore(getTemplateRow(), r);
+    
     }
     </script>

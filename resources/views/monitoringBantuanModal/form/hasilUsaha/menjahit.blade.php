@@ -1,7 +1,7 @@
 <h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label form-label">Berapa Pesanan yang diterima dalam sebulan ?</label>
-    <div class="col-sm-10">
+    <label for="" class="col-sm-4 col-form-label form-label">Banyak Pesanan yang diterima dalam Sebulan</label>
+    <div class="col-sm-8">
         <input type="number" class="form-control" value="" id="jahitan_dalam_sebulan"
             placeholder="Jahitan Dalam Sebulan" name="jahitan_dalam_sebulan" min=1>
         @error('jahitan_dalam_sebulan')
@@ -10,8 +10,8 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label">Range Penghasilan Bersih  dalam sebulan</label>
-    <div class="col-sm-10">
+    <label for="" class="col-sm-4 col-form-label">Range Penghasilan Bersih  dalam Sebulan</label>
+    <div class="col-sm-8">
         <select name="penghasilan_sebulan" id="penghasilan_sebulan" class="form-select">
             <option value="1">Rp. 0</option>
             <option value="2">Rp. 1 - Rp. 299.999</option>
@@ -27,8 +27,8 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
-    <div class="col-sm-10">
+    <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
+    <div class="col-sm-8">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="1">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="1">Kebutuhan sehari-hari</label>
@@ -38,16 +38,8 @@
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="2">Pengembangan Usaha</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="3">
-            <label class="form-check-label" id="kegunaan_hasil_usaha" for="3">Lain-Lain</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="4">
-            <label class="form-check-label" id="kegunaan_hasil_usaha" for="4">Kebutuhan sehari-hari</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" style="margin-top:10px" type="checkbox" value="" id="5">
-            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="4" placeholder="Lain - lain">
+            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
+            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
         </div>
         {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
         @error('kegunaan_hasil_usaha')
