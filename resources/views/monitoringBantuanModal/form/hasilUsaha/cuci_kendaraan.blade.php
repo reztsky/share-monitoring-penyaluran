@@ -36,7 +36,7 @@
         @enderror 
     </div>
 </div>
-<div class="row mb-3 ">
+<div class="row mb-3 " style="margin-top: 0.5cm">
     <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
     <div class="col-sm-8">
         <div class="form-check">

@@ -17,7 +17,7 @@
         @enderror
     </div>
 </div>
-<div class="row mb-3 ">
+<div class="row mb-3 " style="margin-top: 0.5cm">
     <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
     <div class="col-sm-8">
         <div class="form-check">
@@ -38,9 +38,6 @@
         @enderror
     </div>
 </div>
-{{-- <div class="d-flex justify-content-end mb-2">
-    <button type="button" id="btn-tambah-item" class="btn btn-primary btn-sm py-1 px-2">Tambah Item</button>
-</div> --}}
 <div class="table-responsive">
     <div class="panel-group">
         <table class="table table-bordered app-table-hover text-left" id="table-kelontong">
@@ -49,7 +46,7 @@
                     <th>No.</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Awal</th>
-                    <th>Jumlah Saat ini</th>
+                    <th>Jumlah Terjual</th>
                     <th>Harga Jual</th>
                 </tr>
             </thead>
@@ -71,10 +68,8 @@
                         <td>
                             <input type="number" class="form-control" name="harga[{{$loop->index}}]" placeholder="Harga Jual" min=1000>
                         </td>
-                        {{-- <td><input type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)"/></td>
-                        <td><input type="button" id="addmorePOIbutton" value="Add More POIs" onclick="insRow()"/></td> --}}
                     </tr>
-                    <tr id="templateRow" style="display:none">
+                    {{-- <tr id="templateRow" style="display:none">
                         <td>{{$loop->iteration}}</td>
                         <td>
                             <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
@@ -88,11 +83,19 @@
                         <td>
                             <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
                         </td>
-                    </tr>
+                    </tr> --}}
                 @endforeach
-            </tbody>
+            </tbody>          
         </table>
-        <button onclick="addRow();">Go</button>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" id="btn-tambah-item" class="btn rounded-pill" style="background-color: #5EC2AF;color:white;">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </span>&nbsp;Tambah Barang</button>
+        </div>
     </div>
     
 </div>
@@ -106,10 +109,8 @@
         @enderror
     </div>
 </div> --}}
-
-
-<!--ADD ROW-->
-{{-- <script type="text/javascript">
+@push('script')
+<script type="text/javascript">
     function deleteRow(row){
             var i=row.parentNode.parentNode.rowIndex;
             document.getElementById('table-kelontong').deleteRow(i);
@@ -138,22 +139,5 @@
         // append the new row to the table
         x.appendChild( new_row );
     }
-</script> --}}
-
-<script>
-    var maxID = 0;
-    function getTemplateRow() {
-    var x = document.getElementById("templateRow").cloneNode(true);
-    x.id = "";
-    x.style.display = "";
-    x.innerHTML = x.innerHTML.replace(/{id}/, ++maxID);
-    return x;
-    }
-    function addRow() {
-    var t = document.getElementById("table-kelontong");
-    var rows = t.getElementsByTagName("tr");
-    var r = rows[rows.length - 1];
-    r.parentNode.insertBefore(getTemplateRow(), r);
-    
-    }
-    </script>
+</script>
+@endpush
