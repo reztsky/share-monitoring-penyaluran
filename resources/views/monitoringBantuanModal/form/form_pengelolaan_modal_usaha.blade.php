@@ -13,12 +13,16 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Bentuk Usaha</label>
+        <label for="" class="col-sm-2 col-form-label">Sumber Penghasilan KPM</label>
         <div class="col-sm-10">
             <select name="bentuk_usaha" id="" class="form-select">
-                <option value="1">Usaha Utama</option>
-                <option value="2">Usaha Sampingan</option>
+                <option value="1">Penghasilan Utama</option>
+                <option value="2">Penghasilan Sampingan</option>
             </select>
+            <div class="form-text text-sm" style="color: crimson">
+                * Penjelasan :<br/>- Penghasilan Utama (Modal Usaha sebagai Penghasilan Pokok)<br/>
+                - Penghasilan Sampingan (Modal Usaha sebagai Tambahan Penghasilan)
+            </div>
             @error('bentuk_usaha')
             <div class="form-text text-danger">{{$message}}</div>
             @enderror
@@ -28,10 +32,14 @@
         <label for="" class="col-sm-2 col-form-label">Pengunaan Bantuan</label>
         <div class="col-sm-10">
             <select name="penggunaan_bantuan" id="" class="form-select">
-                <option value="1">Mengawali Kegiatan Usaha</option>
-                <option value="2">Tambahan Modal Usaha</option>
+                <option value="1">Usaha Baru</option>
+                <option value="2">Usaha Tambahan</option>
                 <option value="3">Belum Digunakan</option>
             </select>
+            <div class="form-text text-sm" style="color: crimson">
+                * Penjelasan :<br/>- Usaha baru ( Usaha yang Tidak Sama dengan milik KPM )<br/>
+                - Usaha tambahan ( Usaha yang sama dengan milik KPM )
+            </div>
             @error('penggunaan_bantuan')
             <div class="form-text text-danger">{{$message}}</div>
             @enderror

@@ -40,9 +40,17 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label">Berapa penghasilan dalam sebulan ?</label>
+    <label for="" class="col-sm-2 col-form-label">Range Penghasilan Bersih  dalam sebulan</label>
     <div class="col-sm-10">
-        <input type="number" class="form-control" value="Penghasilan dalam sebulan" min=1000 id="penghasilan_sebulan" name="penghasilan_sebulan" placeholder="Penghasilan dalam sebulan">
+        <select name="penghasilan_sebulan" id="penghasilan_sebulan" class="form-select">
+            <option value="1">Rp. 0</option>
+            <option value="2">Rp. 1 - Rp. 299.999</option>
+            <option value="3">Rp. 300.000 - Rp. 599.999</option>
+            <option value="4">Rp. 600.000 - Rp. 999.999</option>
+            <option value="5">Rp. 1.000.000 - Rp. 1.499.999</option>
+            <option value="6">> Rp. 1.500.000</option>
+        </select>
+        {{-- <input type="number" class="form-control" value="Penghasilan dalam sebulan" min=1000 id="penghasilan_sebulan" name="penghasilan_sebulan" placeholder="Penghasilan dalam sebulan"> --}}
         @error('penghasilan_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
