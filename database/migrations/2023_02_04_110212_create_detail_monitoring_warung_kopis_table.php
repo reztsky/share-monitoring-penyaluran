@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('detail_monitoring_warung_kopis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_transaksi');
-            $table->integer('lebih_banyak_kopi_teh')->comment('1 : Lebih Banyak Kopi / 2 : Lebih Banyak Teh');
-            $table->integer('harga_jual_kopi')->default(0);
-            $table->integer('harga_jual_teh')->default(0);
+            $table->json('nama_barang');
+            $table->json('jumlah_awal');
+            $table->json('jumlah_saat_ini');
+            $table->json('harga');
+            $table->string('catatan');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_monitoring_warung_kopis');
+        Schema::dropIfExists('detail_monitoring_warung_kopis');
     }
 };

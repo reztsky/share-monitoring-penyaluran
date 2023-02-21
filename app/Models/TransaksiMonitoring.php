@@ -27,6 +27,11 @@ class TransaksiMonitoring extends Model
         // Lain Lain
         'kendala',
         'harapan',
+        'dokumentasi',
+    ];
+
+    protected $casts=[
+        'kegunaan_hasil_usaha'=>'array',
     ];
 
     public function kpm()

@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_monitoring_cuci_kendaraans');
+        Schema::dropIfExists('detail_monitoring_cuci_kendaraans');
     }
 };

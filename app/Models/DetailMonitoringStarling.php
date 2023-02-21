@@ -10,19 +10,19 @@ class DetailMonitoringStarling extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable=[
         'id_transaksi',
-        'lebih_banyak_kopi_teh',
-        'harga_jual_kopi',
-        'harga_jual_teh',
+        'nama_barang',
+        'jumlah_awal',
+        'jumlah_saat_ini',
+        'harga',
+        'catatan',
     ];
 
-    protected function lebihBanyakKopiTeh(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value) {
-                return $value == 1 ? 'Kopi' : 'Teh';
-            }
-        );
-    }
+    protected $casts=[
+        'nama_barang'=>'array',
+        'jumlah_awal'=>'array',
+        'jumlah_saat_ini'=>'array',
+        'harga'=>'array'
+    ];
 }

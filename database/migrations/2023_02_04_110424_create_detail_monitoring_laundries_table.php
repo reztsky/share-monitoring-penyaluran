@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_monitoring_laundries');
+        Schema::dropIfExists('detail_monitoring_laundries');
     }
 };
