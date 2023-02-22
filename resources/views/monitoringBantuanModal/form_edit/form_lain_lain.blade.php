@@ -1,24 +1,30 @@
 <div class="g-3">
     <h5 class="mb-4">Lain - Lain</h5>
     <div class="row mb-3 ">
-        <label for="" class="col-sm-2 col-form-label">Kendala</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Kendala</label>
+        <div class="col-sm-8">
             <textarea name="kendala" id="" cols="30" rows="10" class="form-control" placeholder="Kendala" style=" min-height:100px;">{{$monitoring->kendala}}</textarea>
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Harapan</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Harapan</label>
+        <div class="col-sm-8">
             <textarea name="harapan" id="" cols="30" rows="10" class="form-control" placeholder="Harapan" style=" min-height:100px;">{{$monitoring->harapan}}</textarea>
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Dokumentasi</label>
+        <label for="" class="col-sm-4 col-form-label">Dokumentasi</label>
         <div class="col-sm-8">
             <input type="file" class="form-control" name="dokumentasi" id="dokumentasi">
-            <div class="form-text">Jika Tidak Ingin Mengubah Foto Biarkan Kosong</div>
+            <div class="form-text text-sm" style="color: crimson">
+                Jika Tidak Ingin Mengubah Foto Biarkan Kosong
+            </div>
             <img src="{{asset('storage/foto_monitoring/'.$monitoring->dokumentasi)}}" alt="" class="img-fluid img-thumbnail mt-3" style="object-fit:contain; max-width:150px; max-height:150px">
         </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success px-3 py-1">Simpan</button>
     </div>
 </div>
 <script>

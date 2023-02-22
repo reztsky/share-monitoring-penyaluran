@@ -1,7 +1,7 @@
 <h5 class="mb-4">Hasil Usaha {{Str::title($monitoring->jenis_bantuan_modal)}}</h5>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label form-label">Berapa Kendaraan yang dicuci dalam sebulan ?</label>
-    <div class="col-sm-10">
+    <label for="" class="col-sm-4 col-form-label form-label">Berapa Kendaraan yang dicuci dalam sebulan ?</label>
+    <div class="col-sm-8">
         <input type="number" class="form-control" value="{{$detail->kendaraan_dicuci_sebulan}}" id="kendaraan_dicuci_sebulan"
             placeholder="Kendaraan Dicucui Dalam Sebulan" name="kendaraan_dicuci_sebulan">
         @error('kendaraan_dicuci_sebulan')
@@ -10,8 +10,8 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label form-label">Berapa Harga Cuci ?</label>
-    <div class="col-sm-10">
+    <label for="" class="col-sm-4 col-form-label form-label">Berapa Harga Cuci ?</label>
+    <div class="col-sm-8">
         <input type="number" class="form-control" value="{{$detail->harga_cuci}}" id="harga_cuci"
             placeholder="Harga Cuci" name="harga_cuci">
         @error('harga_cuci')

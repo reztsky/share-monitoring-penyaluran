@@ -44,7 +44,6 @@
                         @include('monitoringBantuanModal.form.form_lain_lain')
                     </div>
                 </div>
-            
         </form>
     </div>
 </div>

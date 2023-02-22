@@ -31,7 +31,7 @@
         <ul class="list-unstyled bold col-sm-8 col-form-label form-label">
             @foreach ($monitoring->kegunaan_hasil_usaha as $kegunaan)
                 <li>
-                    {{$kegunaan}}
+                    - {{$kegunaan}}
                 </li>
             @endforeach
         </ul>

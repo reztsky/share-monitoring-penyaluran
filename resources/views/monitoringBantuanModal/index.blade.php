@@ -47,8 +47,11 @@
                     <div class="col-md-4 col-sm-12 co-12">
                         <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
                             <div class="input-group  mb-3 shadow">
-                                <input type="text" placeholder="Search..." class="form-control" name="keyword" value="{{request('keyword')}}">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <input type="text" placeholder="Cari Data" class="form-control" name="keyword" value="{{request('keyword')}}">
+                                <button type="submit" class="btn" style="background-color: #5EC2AF;color:white"><span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                      </svg></span></button>
                             </div>
                         </form>
                     </div>
@@ -73,14 +76,14 @@
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
                                 <td>
                                     <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
-                                        class="col-md-5 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
+                                        class="col-md-3 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
                                     <a href="{{route('bantuanmodal.monitoring.edit',$monitoring->id)}}"
-                                        class="col-md-5 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
+                                        class="col-md-3 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
                                         <i class="bi bi-pencil-fill white"></i>
                                     </a>
-                                    <a class="col-md-5 btn btn-sm btn-delete" data-model-id="{{$monitoring->id}}"
+                                    <a class="col-md-3 btn btn-sm btn-delete" data-model-id="{{$monitoring->id}}"
                                         style="background-color: #BC4C4C;color:white;height: 34px" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                                     </a>

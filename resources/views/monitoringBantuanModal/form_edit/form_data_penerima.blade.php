@@ -1,8 +1,8 @@
 <div class="g-3">
     <h5 class="mb-4">DATA PENERIMA</h5>
     <div class="row mb-3 ">
-        <label for="" class="col-sm-2 col-form-label">NIK</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">NIK</label>
+        <div class="col-sm-8">
             <div class="input-group">
                 <input type="text" class="form-control" value="{{$monitoring->kpm->nik}}" id="nik" placeholder="NIK" name="nik">
                 <span class="input-group-text d-none" id="spinner">
@@ -16,41 +16,41 @@
         </div>
     </div>
     {{-- <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">No. KK</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">No. KK</label>
+        <div class="col-sm-8">
             <input type="text" class="form-control" value="" id="no_kk" placeholder="No. KK" name="no_kk" readonly>
         </div>
     </div> --}}
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Nama Penerima</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Nama Penerima</label>
+        <div class="col-sm-8">
             <input type="text" class="form-control" value="{{$monitoring->kpm->nama}}" id="nama_penerima" placeholder="Nama Penerima"
                 name="nama_penerima" readonly>
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Alamat KTP</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Alamat KTP</label>
+        <div class="col-sm-8">
             <input type="text" class="form-control" value="{{$monitoring->kpm->alamat}}" id="alamat_ktp" placeholder="Alamat KTP" name="alamat_ktp"
                 readonly>
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Alamat Tempat Usaha</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Alamat Tempat Usaha</label>
+        <div class="col-sm-8">
             <input type="text" class="form-control" value="{{$monitoring->alamat_tempat_usaha}}" id="alamat_tempat_usaha" placeholder="Alamat Tempat Usaha"
                 name="alamat_tempat_usaha">
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">No. Hp</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">No. Hp</label>
+        <div class="col-sm-8">
             <input type="number" class="form-control" value="{{$monitoring->no_hp}}" id="no_hp" placeholder="No. Hp" name="no_hp">
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-2 col-form-label">Jenis Modal Usaha</label>
-        <div class="col-sm-10">
+        <label for="" class="col-sm-4 col-form-label">Jenis Modal Usaha</label>
+        <div class="col-sm-8">
             <input type="text" class="form-control" value="{{$monitoring->jenis_bantuan_modal}}" id="jenis_bantuan_modal" placeholder="Jenis modal Usaha"
                 name="jenis_bantuan_modal" readonly>
         </div>

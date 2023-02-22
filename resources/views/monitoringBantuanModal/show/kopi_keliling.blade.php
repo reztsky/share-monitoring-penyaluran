@@ -14,7 +14,7 @@
         <ul class="list-unstyled bold col-sm-8 col-form-label form-label">
             @foreach ($monitoring->kegunaan_hasil_usaha as $kegunaan)
                 <li>
-                    {{$kegunaan}}
+                    - {{$kegunaan}}
                 </li>
             @endforeach
         </ul>
@@ -23,8 +23,8 @@
         <button type="button" id="btn-tambah-item" class="btn btn-primary btn-sm py-1 px-2">Tambah Item</button>
     </div> --}}
     <div class="table-responsive">
-        <table class="table table-bordered app-table-hover text-left" id="table-kelontong">
-            <thead>
+        <table class="table table-hover mb-0 text-left" id="table-kelontong">
+            <thead style="background-color: #5EC2AF;color:white">
                 <tr>
                     <th>No.</th>
                     <th>Nama Barang</th>

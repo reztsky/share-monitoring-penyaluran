@@ -19,7 +19,6 @@
         @endif
         <form action="{{route('bantuanmodal.monitoring.update',$monitoring->id)}}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="app-card shadow-sm bg-white p-3">
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">
                         @include('monitoringBantuanModal.form_edit.form_data_penerima')
@@ -33,15 +32,17 @@
                         <hr />
                         {{-- Hasil Usaha --}}
                         @include('monitoringBantuanModal.form_edit.form_hasil_usaha')
-                        {{-- Lain Lain --}}
-                        @include('monitoringBantuanModal.form_edit.form_lain_lain')
-
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-success px-3 py-1">Submit</button>
-                        </div>
+                        
+                        
                     </div>
                 </div>
-            </div>
+
+                <div class="row app-card shadow-sm bg-white p-3 mt-4">
+                    <div class="app-card-body">
+                        {{-- Lain Lain --}}
+                        @include('monitoringBantuanModal.form_edit.form_lain_lain')
+                    </div>
+                </div>
         </form>
     </div>
 </div>

@@ -70,10 +70,10 @@
                         <input type="text" class="form-control" name="jumlah_awal[{{$i+1}}]" value="{{$detail->jumlah_awal[$i+1]}}">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="jumlah_terjual[{{$i+1}}]" value="{{$detail->jumlah_terjual[$i+1]}}" placeholder="Jumlah Terjual">
+                        <input type="number" min=1 class="form-control" name="jumlah_terjual[{{$i+1}}]" value="{{$detail->jumlah_terjual[$i+1]}}" placeholder="Jumlah Terjual">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="harga[{{$i+1}}]" value="{{$detail->harga[$i+1]}}" placeholder="Harga Jual">
+                        <input type="number" min=1000 class="form-control" name="harga[{{$i+1}}]" value="{{$detail->harga[$i+1]}}" value="Rp. ">
                     </td>
                 </tr>
             @endfor

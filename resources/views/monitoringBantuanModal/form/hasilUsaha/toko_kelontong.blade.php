@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
+    <label for="" class="col-sm-2 col-form-label">Hasil dari usaha digunakan untuk </label>
     <div class="col-sm-8">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="Kebutuhan sehari-hari" id="1"
@@ -66,7 +66,7 @@
                         <input type="hidden" name="jumlah_awal[{{$loop->iteration}}]" value="{{$item['jumlah_awal']}}">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
+                        <input type="number" min=1 class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
                             placeholder="Jumlah Terjual">
                     </td>
                     <td>
@@ -87,7 +87,8 @@
                         <path
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
-                </span>&nbsp;Tambah Barang</button>
+                </span>&nbsp;Tambah Barang
+            </button>
         </div>
     </div>
 </div>
@@ -101,36 +102,3 @@
         @enderror
     </div>
 </div> --}}
-@push('script')
-<script type="text/javascript">
-    function deleteRow(row){
-            var i=row.parentNode.parentNode.rowIndex;
-            document.getElementById('table-kelontong').deleteRow(i);
-        }
-
-
-    function insRow(){
-        var x=document.getElementById('table-kelontong');
-        // deep clone the targeted row
-        var new_row = x.rows[1].cloneNode(true);
-        // get the total number of rows
-        var len = x.rows.length;
-        // set the innerHTML of the first row 
-        new_row.cells[0].innerHTML = len;
-
-        // grab the input from the first cell and update its ID and value
-        var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
-        inp1.id += len;
-        inp1.value = '';
-
-        // grab the input from the first cell and update its ID and value
-        var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
-        inp2.id += len;
-        inp2.value = '';
-
-        console.log(new_row);
-        // append the new row to the table
-        x.appendChild( new_row );
-    }
-</script>
-@endpush
