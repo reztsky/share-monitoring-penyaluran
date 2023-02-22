@@ -30,16 +30,16 @@
     <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
     <div class="col-sm-8">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="1">
+            <input class="form-check-input" type="checkbox" value="Kebutuhan sehari-hari" id="1" name="kegunaan_hasil_usaha[]">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="1">Kebutuhan sehari-hari</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2">
+            <input class="form-check-input" type="checkbox" name="kegunaan_hasil_usaha[]" value="Pengembangan Usaha" id="2">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="2">Pengembangan Usaha</label>
         </div>
         <div class="form-check">
             <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
-            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
+            <input type="text" class="form-control" name="kegunaan_hasil_usaha[]" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
         </div>
         {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
         @error('kegunaan_hasil_usaha')

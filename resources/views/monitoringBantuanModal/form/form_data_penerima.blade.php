@@ -4,14 +4,14 @@
         <label for="" class="col-sm-4 col-form-label">NIK</label>
         <div class="col-sm-8">
             <div class="input-group">
-                <input type="text" class="form-control" value="" id="nik" placeholder="NIK" name="nik">
+                <input type="text" class="form-control" value="{{old('nik')}}" id="nik" placeholder="NIK" name="nik">
                 <span class="input-group-text d-none" id="spinner">
                     <div class="spinner-border spinner-border-sm" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </span>
             </div>
-            <input type="hidden" name="id_kpm_modal" id="id_kpm_modal">
+            <input type="hidden" name="id_kpm_modal" id="id_kpm_modal" value="{{old('id_kpm_modal')}}">
             <div class="form-text text-danger" id="nik-message"></div>
         </div>
     </div>
@@ -24,34 +24,34 @@
     <div class="row mb-3">
         <label for="" class="col-sm-4 col-form-label">Nama Penerima</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" value="" id="nama_penerima" placeholder="Nama Penerima"
+            <input type="text" class="form-control" value="{{old('nama_penerima')}}" id="nama_penerima" placeholder="Nama Penerima"
                 name="nama_penerima" readonly>
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-4 col-form-label">Alamat KTP</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" value="" id="alamat_ktp" placeholder="Alamat KTP" name="alamat_ktp"
+            <input type="text" class="form-control" value="{{old('alamat_ktp')}}" id="alamat_ktp" placeholder="Alamat KTP" name="alamat_ktp"
                 readonly>
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-4 col-form-label">Alamat Tempat Usaha</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" value="" id="alamat_tempat_usaha" placeholder="Alamat Tempat Usaha"
+            <input type="text" class="form-control" value="{{old('alamat_tempat_usaha')}}" id="alamat_tempat_usaha" placeholder="Alamat Tempat Usaha"
                 name="alamat_tempat_usaha" >
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-4 col-form-label">No. Hp</label>
         <div class="col-sm-8">
-            <input type="number" class="form-control" value="" id="no_hp" placeholder="No. Hp" name="no_hp" min=0>
+            <input type="number" class="form-control" value="{{old('no_hp')}}" id="no_hp" placeholder="No. Hp" name="no_hp" min=0>
         </div>
     </div>
     <div class="row mb-3">
         <label for="" class="col-sm-4 col-form-label">Jenis Modal Usaha</label>
         <div class="col-sm-8">
-            <input type="text" class="form-control" value="" id="jenis_bantuan_modal" placeholder="Jenis modal Usaha"
+            <input type="text" class="form-control" value="{{old('jenis_bantuan_modal')}}" id="jenis_bantuan_modal" placeholder="Jenis modal Usaha"
                 name="jenis_bantuan_modal" readonly>
         </div>
     </div>

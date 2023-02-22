@@ -17,7 +17,7 @@
             </ul>
         </div>
         @endif
-        <form action="{{route('bantuanmodal.monitoring.update',$monitoring->id)}}" method="post">
+        <form action="{{route('bantuanmodal.monitoring.update',$monitoring->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="app-card shadow-sm bg-white p-3">
                 <div class="row app-card shadow-sm bg-white p-3">

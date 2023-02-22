@@ -18,9 +18,8 @@ return new class extends Migration
             $table->bigInteger('id_transaksi');
             $table->json('nama_barang');
             $table->json('jumlah_awal');
-            $table->json('jumlah_saat_ini');
+            $table->json('jumlah_terjual');
             $table->json('harga');
-            $table->string('catatan');
             $table->timestamps();
         });
     }

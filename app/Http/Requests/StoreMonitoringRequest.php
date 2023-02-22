@@ -35,10 +35,11 @@ class StoreMonitoringRequest extends FormRequest
             'bentuk_usaha'=>'required|numeric|min:1|max:2',
             'penggunaan_bantuan'=>'required|numeric|min:1|max:3',
             'alasan_pengunaan_bantuan'=>'required_if:penggunaan_bantuan,3|nullable',
-            'penghasilan_sebulan'=>'required',
-            'kegunaan_hasil_usaha'=>'required',
+            'penghasilan_sebulan'=>'required|numeric|min:1|max:6',
+            'kegunaan_hasil_usaha'=>'required|array|min:1',
             'kendala'=>'required',
             'harapan'=>'required',
+            'dokumentasi'=>'required|image|max:5120'
         ];
         $validationByJenisModal=$this->validationByJenisModal();
         $rules=$rules+$validationByJenisModal;
@@ -70,9 +71,10 @@ class StoreMonitoringRequest extends FormRequest
 
         if($jenis_bantuan_modal=='KOPI KELILING'){
             return [
-                'lebih_banyak_kopi_teh'=>'required|numeric|min:1|max:2',
-                'harga_jual_kopi'=>'required|numeric',
-                'harga_jual_teh'=>'required|numeric',
+                'nama_barang.*'=>'required',
+                'jumlah_awal.*'=>'required',
+                'jumlah_terjual.*'=>'required',
+                'harga.*'=>'required|numeric',
             ];
         }
 
@@ -87,9 +89,10 @@ class StoreMonitoringRequest extends FormRequest
 
         if($jenis_bantuan_modal=='WARUNG KOPI'){
             return [
-                'lebih_banyak_kopi_teh'=>'required|numeric|min:1|max:2',
-                'harga_jual_kopi'=>'required|numeric',
-                'harga_jual_teh'=>'required|numeric',
+                'nama_barang.*'=>'required',
+                'jumlah_awal.*'=>'required',
+                'jumlah_terjual.*'=>'required',
+                'harga.*'=>'required|numeric',
             ];
         }
 
@@ -97,9 +100,8 @@ class StoreMonitoringRequest extends FormRequest
             return [
                 'nama_barang.*'=>'required',
                 'jumlah_awal.*'=>'required',
-                'jumlah_saat_ini.*'=>'required',
+                'jumlah_terjual.*'=>'required',
                 'harga.*'=>'required|numeric',
-                'catatan'=>'required',
             ];
         }
     }

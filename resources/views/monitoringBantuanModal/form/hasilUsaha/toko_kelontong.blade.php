@@ -1,6 +1,6 @@
 <h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-4 col-form-label">Range Penghasilan Bersih  dalam sebulan</label>
+    <label for="" class="col-sm-4 col-form-label">Range Penghasilan Bersih dalam sebulan</label>
     <div class="col-sm-8">
         <select name="penghasilan_sebulan" id="penghasilan_sebulan" class="form-select">
             <option value="1">Rp. 0</option>
@@ -17,22 +17,25 @@
         @enderror
     </div>
 </div>
-<div class="row mb-3 " style="margin-top: 0.5cm">
-    <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
+<div class="row mb-3 ">
+    <label for="" class="col-sm-2 col-form-label">Hasil dari usaha tersebut digunakan untuk apa ?</label>
     <div class="col-sm-8">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="1">
+            <input class="form-check-input" type="checkbox" value="Kebutuhan sehari-hari" id="1"
+                name="kegunaan_hasil_usaha[]">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="1">Kebutuhan sehari-hari</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2">
+            <input class="form-check-input" type="checkbox" name="kegunaan_hasil_usaha[]" value="Pengembangan Usaha"
+                id="2">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="2">Pengembangan Usaha</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
-            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
+            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3"
+                onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
+            <input type="text" class="form-control" name="kegunaan_hasil_usaha[]" id="kegunaan_hasil_usaha" for="3"
+                placeholder="Lain - lain" disabled>
         </div>
-        {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -52,58 +55,47 @@
             </thead>
             <tbody id="items-tbody">
                 @foreach ($items as $item)
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>
-                            {{$item['nama_barang']}}
-                            <input type="hidden" name="nama_barang[{{$loop->index}}]" value="{{$item['nama_barang']}}">
-                        </td>
-                        <td>
-                            {{$item['jumlah_awal']}}
-                            <input type="hidden" name="jumlah_awal[{{$loop->index}}]" value="{{$item['jumlah_awal']}}">
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" name="harga[{{$loop->index}}]" placeholder="Harga Jual" min=1000>
-                        </td>
-                    </tr>
-                    {{-- <tr id="templateRow" style="display:none">
-                        <td>{{$loop->iteration}}</td>
-                        <td>
-                            <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini">
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control" name="jumlah_saat_ini[{{$loop->index}}]" placeholder="Jumlah Saat ini" min=1>
-                        </td>
-                    </tr> --}}
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>
+                        {{$item['nama_barang']}}
+                        <input type="hidden" name="nama_barang[{{$loop->iteration}}]" value="{{$item['nama_barang']}}">
+                    </td>
+                    <td>
+                        {{$item['jumlah_awal']}}
+                        <input type="hidden" name="jumlah_awal[{{$loop->iteration}}]" value="{{$item['jumlah_awal']}}">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
+                            placeholder="Jumlah Terjual">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="harga[{{$loop->iteration}}]"
+                            placeholder="Harga Jual" min=1000>
+                    </td>
+                </tr>
                 @endforeach
-            </tbody>          
+            </tbody>
         </table>
 
         <div class="d-flex justify-content-center">
-            <button type="button" id="btn-tambah-item" class="btn rounded-pill" style="background-color: #5EC2AF;color:white;">
+            <button type="button" id="btn-tambah-item" class="btn rounded-pill"
+                style="background-color: #5EC2AF;color:white;">
                 <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                 </span>&nbsp;Tambah Barang</button>
         </div>
     </div>
-    
 </div>
 {{-- <div class="row mb-3 ">
     <label for="" class="col-sm-2 col-form-label">Catatan ?</label>
     <div class="col-sm-10">
-        <textarea class="form-control" value="" id="catatan" name="catatan"
-            placeholder="Catatan" style=" min-height:100px;max-height:100px"></textarea>
+        <textarea class="form-control" value="" id="catatan" name="catatan" placeholder="Catatan"
+            style=" min-height:100px;max-height:100px"></textarea>
         @error('catatan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -136,6 +128,7 @@
         inp2.id += len;
         inp2.value = '';
 
+        console.log(new_row);
         // append the new row to the table
         x.appendChild( new_row );
     }

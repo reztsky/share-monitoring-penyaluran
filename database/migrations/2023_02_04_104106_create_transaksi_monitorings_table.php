@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('penggunaan_bantuan')->comment('1 : Mengawali Kegiatan Usaha / 2 : Tambahan Modal Usaha / 3 : Belum Digunakan ');
             $table->string('alasan_penggunaan_bantuan')->nullable();
             // Hasil Usaha
-            $table->string('penghasilan_sebulan')->default('')->comment('Range Penghasilan');
+            $table->integer('penghasilan_sebulan')->comment('Range Penghasilan');
             $table->text('kegunaan_hasil_usaha')->nullable()->comment('Array');
             // Lain Lain
             $table->string('kendala')->nullable();

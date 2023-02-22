@@ -12,7 +12,9 @@ use App\Models\DetailMonitoringTokel;
 use App\Models\DetailMonitoringWarungKopi;
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiMonitoring;
+use App\Services\Monitoring\FotoMonitoringService;
 use App\Services\Monitoring\ItemTokelService;
+use App\Services\Monitoring\UploadFotoMonitoringService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,7 @@ class MonitoringBantuanModalController extends Controller
         // Lain Lain
         'kendala',
         'harapan',
+        'dokumentasi',
     ];
 
 
@@ -58,13 +61,14 @@ class MonitoringBantuanModalController extends Controller
         return view($this->view . 'create');
     }
 
-    public function store(StoreMonitoringRequest $request)
+    public function store(StoreMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)
     {
         // Retrive Form Input
         $formTransaksiMonitoring = $request->safe()->only($this->arrayMonitoring);
         $detailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
         // Create Transaksi Monitoring
+        $formTransaksiMonitoring['dokumentasi']=$fotoMonitoringService->upload($request->dokumentasi);
         $transaksiMonitoring = TransaksiMonitoring::create($formTransaksiMonitoring);
 
         // Create Detail Transaksi
@@ -82,14 +86,22 @@ class MonitoringBantuanModalController extends Controller
         return view($this->view.'edit',compact('monitoring','detail'));
     }
 
-    public function update($id, UpdateMonitoringRequest $request)
+    public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)
     {
         // Retrive Form Input
         $formTransaksiMonitoring = $request->safe()->only($this->arrayMonitoring);
         $formDetailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
-        // Get Monitoring & Update It
+        // Get Monitoring
         $monitoring=TransaksiMonitoring::findOrFail($id);
+
+        // Check If Has Upload Dokumentasi & Upload It
+        if ($request->has('dokumentasi')) {
+            $fotoMonitoringService->delete($monitoring->dokumentasi);
+            $formTransaksiMonitoring['dokumentasi']=$fotoMonitoringService->upload($request->dokumentasi);
+        }
+
+        //  Update Monitoring
         $monitoring->update($formTransaksiMonitoring);
 
         // Get Detail Monitoring & Update It
@@ -98,12 +110,13 @@ class MonitoringBantuanModalController extends Controller
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menambahkan Data');
     }
 
-    public function delete($id)
+    public function delete($id, FotoMonitoringService $fotoMonitoringService)
     {
         $monitoring=TransaksiMonitoring::findOrFail($id);
         $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
         $detail->delete();
         $monitoring->delete();
+        $fotoMonitoringService->delete($monitoring->dokumentasi);
 
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menghapus Data');
     }

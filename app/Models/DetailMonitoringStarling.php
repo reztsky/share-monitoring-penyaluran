@@ -14,15 +14,14 @@ class DetailMonitoringStarling extends Model
         'id_transaksi',
         'nama_barang',
         'jumlah_awal',
-        'jumlah_saat_ini',
+        'jumlah_terjual',
         'harga',
-        'catatan',
     ];
 
     protected $casts=[
         'nama_barang'=>'array',
         'jumlah_awal'=>'array',
-        'jumlah_saat_ini'=>'array',
+        'jumlah_terjual'=>'array',
         'harga'=>'array'
     ];
 }

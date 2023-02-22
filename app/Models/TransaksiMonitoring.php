@@ -114,4 +114,18 @@ class TransaksiMonitoring extends Model
             }
         );
     }
+
+    protected function penghasilanSebulan(): Attribute
+    {
+        return Attribute::make(
+            get:function($value){
+                if($value==1) return 'Rp. 0';
+                if($value==2) return 'Rp. 1 - Rp. 299.999';
+                if($value==3) return 'Rp. 300.000 - Rp. 599.999';
+                if($value==4) return 'Rp. 600.000 - Rp. 999.999';
+                if($value==5) return 'Rp. 1.000.000 - Rp. 1.499.999';
+                return '> Rp. 1.500.000';
+            }
+        );
+    }
 }

@@ -1,37 +1,5 @@
 <h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-4 col-form-label form-label">Produk Terlaris</label>
-    <div class="col-sm-8">
-        <select name="lebih_banyak_kopi_teh" id="lebih_banyak_kopi_teh" class="form-select">
-            <option value="1">Kopi</option>
-            <option value="2">Teh</option>
-        </select>
-        @error('lebih_banyak_kopi_teh')
-        <div class="form-text text-danger">{{$message}}</div>
-        @enderror
-    </div>
-</div>
-<div class="row mb-3 ">
-    <label for="" class="col-sm-4 col-form-label form-label">Harga Jual Kopi</label>
-    <div class="col-sm-8">
-        <input type="number" class="form-control" value="" id="harga_jual_kopi"
-            placeholder="Harga Jual Kopi" name="harga_jual_kopi" min=1000>
-        @error('harga_jual_kopi')
-        <div class="form-text text-danger">{{$message}}</div>
-        @enderror
-    </div>
-</div>
-<div class="row mb-3 ">
-    <label for="" class="col-sm-4 col-form-label form-label">Harga Jual Teh</label>
-    <div class="col-sm-8">
-        <input type="number" class="form-control" value="" id="harga_jual_teh"
-            placeholder="Harga Jual Teh" name="harga_jual_teh" min=1000>
-        @error('harga_jual_teh')
-        <div class="form-text text-danger">{{$message}}</div>
-        @enderror
-    </div>
-</div>
-<div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label">Range Penghasilan Bersih dalam sebulan</label>
     <div class="col-sm-8">
         <select name="penghasilan_sebulan" id="penghasilan_sebulan" class="form-select">
@@ -42,7 +10,8 @@
             <option value="5">Rp. 1.000.000 - Rp. 1.499.999</option>
             <option value="6">> Rp. 1.500.000</option>
         </select>
-        {{-- <input type="number" class="form-control" value="" min=1000 id="penghasilan_sebulan" name="penghasilan_sebulan" placeholder="Penghasilan dalam sebulan"> --}}
+        {{-- <input type="number" class="form-control" value="" id="penghasilan_sebulan" name="penghasilan_sebulan"
+            placeholder="Penghasilan dalam sebulan" min=1000> --}}
         @error('penghasilan_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -52,20 +21,84 @@
     <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
     <div class="col-sm-8">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="1">
+            <input class="form-check-input" type="checkbox" value="Kebutuhan sehari-hari" id="1"
+                name="kegunaan_hasil_usaha[]">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="1">Kebutuhan sehari-hari</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="2">
+            <input class="form-check-input" type="checkbox" name="kegunaan_hasil_usaha[]" value="Pengembangan Usaha"
+                id="2">
             <label class="form-check-label" id="kegunaan_hasil_usaha" for="2">Pengembangan Usaha</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
-            <input type="text" class="form-control" value="" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
+            <input class="form-check-input" style="margin-top:10px" type="checkbox" id="3"
+                onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
+            <input type="text" class="form-control" name="kegunaan_hasil_usaha[]" id="kegunaan_hasil_usaha" for="3"
+                placeholder="Lain - lain" disabled>
         </div>
-        {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
         @error('kegunaan_hasil_usaha')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
     </div>
 </div>
+<div class="table-responsive">
+    <div class="panel-group">
+        <table class="table table-bordered app-table-hover text-left" id="table-kelontong">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah Awal</th>
+                    <th>Jumlah Terjual</th>
+                    <th>Harga Jual</th>
+                </tr>
+            </thead>
+            <tbody id="items-tbody"></tbody>
+        </table>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" id="btn-tambah-item" class="btn rounded-pill"
+                style="background-color: #5EC2AF;color:white;">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                    </svg>
+                </span>&nbsp;Tambah Barang</button>
+        </div>
+    </div>
+</div>
+@push('script')
+<script type="text/javascript">
+    function deleteRow(row){
+            var i=row.parentNode.parentNode.rowIndex;
+            document.getElementById('table-kelontong').deleteRow(i);
+        }
+
+
+    function insRow(){
+        var x=document.getElementById('table-kelontong');
+        // deep clone the targeted row
+        var new_row = x.rows[1].cloneNode(true);
+        // get the total number of rows
+        var len = x.rows.length;
+        // set the innerHTML of the first row 
+        new_row.cells[0].innerHTML = len;
+
+        // grab the input from the first cell and update its ID and value
+        var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
+        inp1.id += len;
+        inp1.value = '';
+
+        // grab the input from the first cell and update its ID and value
+        var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
+        inp2.id += len;
+        inp2.value = '';
+
+        console.log(new_row);
+        // append the new row to the table
+        x.appendChild( new_row );
+    }
+</script>
+@endpush

@@ -18,7 +18,7 @@
         </div>
         @endif
         
-        <form action="{{route('bantuanmodal.monitoring.store')}}" method="post">
+        <form action="{{route('bantuanmodal.monitoring.store')}}" method="post" enctype="multipart/form-data">
             @csrf
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">

@@ -4,34 +4,36 @@
     }
 </style>
 <body>
-    <h5 class="mb-4">Hasil Monitoring Usaha </h5>
+    <h5 class="mb-4">Hasil Monitoring Usaha {{Str::title($monitoring->jenis_bantuan_modal)}}</h5>
     <div class="row mb-3 ">
         <label for="" class="col-sm-4 col-form-label form-label">Harga Cuci Kering </label>
-        <p class="bold col-sm-1 col-form-label form-label">Rp</p>
-        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_kering">{{$detail->harga_cuci_kering}}</p>
+        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_kering">Rp. {{number_format($detail->harga_cuci_kering,0,',','.')}}</p>
     </div>
     <div class="row mb-3 ">
         <label for="" class="col-sm-4 col-form-label form-label">Harga Cuci Basah</label>
-        <p class="bold col-sm-1 col-form-label form-label">Rp</p>
-        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_basah">{{$detail->harga_cuci_basah}}</p>
+        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_basah">Rp. {{number_format($detail->harga_cuci_basah,0,',','.')}}</p>
     </div>
     <div class="row mb-3 ">
         <label for="" class="col-sm-4 col-form-label form-label">Harga Cuci Setrika</label>
-        <p class="bold col-sm-1 col-form-label form-label">Rp</p>
-        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_setrika">{{$detail->harga_cuci_setrika}}</p>
+        <p class="bold col-sm-7 col-form-label form-label" id="harga_cuci_setrika">Rp. {{number_format($detail->harga_cuci_setrika,0,',','.')}}</p>
     </div>
     <div class="row mb-3 ">
         <label for="" class="col-sm-4 col-form-label form-label">Harga Setrika</label>
-        <p class="bold col-sm-1 col-form-label form-label">Rp</p>
-        <p class="bold col-sm-7 col-form-label form-label" id="harga_setrika">{{$detail->harga_setrika}}</p>
+        <p class="bold col-sm-7 col-form-label form-label" id="harga_setrika">Rp. {{number_format($detail->harga_setrika,0,',','.')}}</p>
     </div>
     <div class="row mb-3 ">
-        <label for="" class="col-sm-5 col-form-label">Penghasilan dalam sebulan </label>
-        <p class="bold col-sm-1 col-form-label form-label" id="jahitan_dalam_sebulan">Rp</p>
-        <p class="bold col-sm-6 col-form-label form-label" id="penghasilan_sebulan">{{number_format($monitoring->penghasilan_sebulan,0,',','.')}}</p>
+        <label for="" class="col-sm-4 col-form-label">Penghasilan dalam sebulan </label>
+        <p class="bold col-sm-6 col-form-label form-label" id="penghasilan_sebulan">{{$monitoring->penghasilan_sebulan}}
+        </p>
     </div>
     <div class="row mb-3 ">
-        <label for="" class="col-sm-4 col-form-label">Hasil dari usaha tersebut digunakan untuk</label>
-        <p class="bold col-sm-8 col-form-label form-label" id="kegunaan_hasil_usaha">{{$monitoring->kegunaan_hasil_usaha}}</p>
+        <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
+        <ul class="list-unstyled bold col-sm-8 col-form-label form-label">
+            @foreach ($monitoring->kegunaan_hasil_usaha as $kegunaan)
+                <li>
+                    {{$kegunaan}}
+                </li>
+            @endforeach
+        </ul>
     </div>
 </body>
