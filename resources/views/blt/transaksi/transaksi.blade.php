@@ -2,20 +2,6 @@
 @section('link-active-blt','active')
 
 @section('content')
-@if (session('notifikasi'))
-<div class="position-relative">
-    <div class="toast-conteiner position-absolute  top-0 end-0 p-3">
-        <div class="toast align-items-center text-dark bg-light show">
-            <div class="d-flex">
-                <div class="toast-body">
-                  {{session('notifikasi')}}
-                </div>
-                <button type="button" class="btn-close btn-close-dark me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
-</div>    
-@endif
 
 <div class="col-md-12 col-sm-12 col-12">
     <div class="bg-white shadow p-3 rounded-3 my-3">

@@ -107,7 +107,7 @@ class MonitoringBantuanModalController extends Controller
         // Get Detail Monitoring & Update It
         $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
 
-        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menambahkan Data');
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Mengubah Data');
     }
 
     public function delete($id, FotoMonitoringService $fotoMonitoringService)
