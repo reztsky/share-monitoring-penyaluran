@@ -29,8 +29,8 @@
                     <th>No.</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Awal</th>
-                    <th>Jumlah Saat ini</th>
-                    <th>Harga Jual (Rp.)</th>
+                    <th>Jumlah Terjual</th>
+                    <th>Harga Jual Satuan(Rp.)</th>
                 </tr>
             </thead>
             <tbody id="items-tbody">
