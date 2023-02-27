@@ -80,6 +80,8 @@ class TransaksiMonitoring extends Model
                 return $que->where('nama', 'like', "%{$request->keyword}%")
                     ->orWhere('nik', $request->keyword)
                     ->orWhere('jenis_bantuan_modal', 'like', "%{$request->keyword}%");
+            })->orWhereHas('user',function($que) use ($request){
+                return $que->where('users.name','like',"%{$request->keyword}%");
             });
         });
     }
