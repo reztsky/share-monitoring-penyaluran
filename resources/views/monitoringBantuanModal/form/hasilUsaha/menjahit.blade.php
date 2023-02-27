@@ -3,7 +3,7 @@
     <label for="" class="col-sm-4 col-form-label form-label">Banyak Pesanan yang diterima dalam Sebulan</label>
     <div class="col-sm-8">
         <input type="number" class="form-control" value="" id="jahitan_dalam_sebulan"
-            placeholder="Jahitan Dalam Sebulan" name="jahitan_dalam_sebulan" min=1>
+            placeholder="Jahitan Dalam Sebulan" name="jahitan_dalam_sebulan" min=0>
         @error('jahitan_dalam_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
