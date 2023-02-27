@@ -20,7 +20,7 @@ class TransaksiMonitoring extends Model
         'pengelolaan_usaha',
         'bentuk_usaha',
         'penggunaan_bantuan',
-        'alasan_pengunaan_bantuan',
+        'alasan_penggunaan_bantuan',
         // Hasil Usaha
         'penghasilan_sebulan',
         'kegunaan_hasil_usaha',

@@ -33,7 +33,7 @@ class UpdateMonitoringRequest extends FormRequest
             'pengelolaan_usaha'=>'required|numeric|min:1|max:2',
             'bentuk_usaha'=>'required|numeric|min:1|max:2',
             'penggunaan_bantuan'=>'required|numeric|min:1|max:3',
-            'alasan_pengunaan_bantuan'=>'required_if:penggunaan_bantuan,3|nullable',
+            'alasan_penggunaan_bantuan'=>'required_if:penggunaan_bantuan,3',
             'penghasilan_sebulan'=>'required|numeric|min:1|max:6',
             'kegunaan_hasil_usaha'=>'required|array|min:1',
             'kendala'=>'required',
