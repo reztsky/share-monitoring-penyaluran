@@ -50,10 +50,32 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Awal</th>
                     <th>Jumlah Terjual</th>
-                    <th>Harga Jual</th>
+                    <th>Harga Jual Satuan</th>
                 </tr>
             </thead>
-            <tbody id="items-tbody"></tbody>
+            <tbody id="items-tbody">
+                @foreach ($items as $item)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>
+                        {{$item['nama_barang']}}
+                        <input type="hidden" name="nama_barang[{{$loop->iteration}}]" value="{{$item['nama_barang']}}">
+                    </td>
+                    <td>
+                        {{$item['jumlah_awal']}}
+                        <input type="hidden" name="jumlah_awal[{{$loop->iteration}}]" value="{{$item['jumlah_awal']}}">
+                    </td>
+                    <td>
+                        <input type="number" min=1 class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
+                            placeholder="Jumlah Terjual">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="harga[{{$loop->iteration}}]"
+                            placeholder="Harga Jual Satuan" min=1000>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
 
         <div class="d-flex justify-content-center">

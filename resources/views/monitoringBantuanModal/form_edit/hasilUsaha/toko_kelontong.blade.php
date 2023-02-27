@@ -56,7 +56,7 @@
                 <th>Nama Barang</th>
                 <th>Jumlah Awal</th>
                 <th>Jumlah Terjual</th>
-                <th>Harga Jual</th>
+                <th>Harga Jual Satuan</th>
             </tr>
         </thead>
         <tbody id="items-tbody">
@@ -73,7 +73,7 @@
                         <input type="number" min=1 class="form-control" name="jumlah_terjual[{{$i+1}}]" value="{{$detail->jumlah_terjual[$i+1]}}" placeholder="Jumlah Terjual">
                     </td>
                     <td>
-                        <input type="number" min=1000 class="form-control" name="harga[{{$i+1}}]" value="{{$detail->harga[$i+1]}}" value="Rp. ">
+                        <input type="number" min=1000 class="form-control" name="harga[{{$i+1}}]" value="{{$detail->harga[$i+1]}}">
                     </td>
                 </tr>
             @endfor

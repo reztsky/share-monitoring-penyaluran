@@ -14,6 +14,7 @@ use App\Models\KpmBantuanModal;
 use App\Models\TransaksiMonitoring;
 use App\Services\Monitoring\FotoMonitoringService;
 use App\Services\Monitoring\ItemTokelService;
+use App\Services\Monitoring\ItemWarkop_KopKelService;
 use App\Services\Monitoring\UploadFotoMonitoringService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class MonitoringBantuanModalController extends Controller
     public function index(Request $request)
     {
         $user=Auth::user();
-        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with('kpm')->paginate(15)->withQueryString();
+        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm','user'])->paginate(15)->withQueryString();
         return view($this->view . 'index',compact('monitorings'));
     }
 
@@ -168,7 +169,11 @@ class MonitoringBantuanModalController extends Controller
         }
 
         if ($kpm->jenis_bantuan_modal == 'KOPI KELILING') {
-            return view($this->view . 'form.hasilUsaha.kopi_keliling')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
+            $items = ItemWarkop_KopKelService::getItem();
+            return view($this->view . 'form.hasilUsaha.kopi_keliling')->with([
+                'jenis_bantuan_modal'=>$kpm->jenis_bantuan_modal,
+                'items'=>$items,
+            ])->render();
         }
 
         if ($kpm->jenis_bantuan_modal == 'LAUNDRY') {
@@ -184,7 +189,11 @@ class MonitoringBantuanModalController extends Controller
         }
 
         if ($kpm->jenis_bantuan_modal == 'WARUNG KOPI') {
-            return view($this->view . 'form.hasilUsaha.warung_kopi')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
+            $items = ItemWarkop_KopKelService::getItem();
+            return view($this->view . 'form.hasilUsaha.warung_kopi')->with([
+                'jenis_bantuan_modal'=>$kpm->jenis_bantuan_modal,
+                'items'=>$items,
+            ])->render();
         }
     }
 }

@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="" class="col-sm-4 col-form-label">No. Hp</label>
+        <label for="" class="col-sm-4 col-form-label fw-bold">No. Hp</label>
         <div class="col-sm-8">
             <input type="number" class="form-control" value="{{old('no_hp')}}" id="no_hp" placeholder="No. Hp" name="no_hp" min=0>
         </div>

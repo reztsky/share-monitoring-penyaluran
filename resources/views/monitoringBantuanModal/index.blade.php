@@ -64,6 +64,7 @@
                                 <th class="cell">NIK</th>
                                 <th class="cell">Nama</th>
                                 <th class="cell">Jenis Modal Bantuan</th>
+                                <th class="cell">Dientry Oleh</th>
                                 <th class="cell">Aksi</th>
                             </tr>
                         </thead>
@@ -74,6 +75,7 @@
                                 <td>{{$monitoring->kpm->nik}}</td>
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
+                                <td>{{$monitoring->user->name}}</td>
                                 <td>
                                     <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
                                         class="col-md-3 btn btn-sm" style="background-color: #4CBCA1;height: 34px">

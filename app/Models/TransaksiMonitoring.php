@@ -30,13 +30,18 @@ class TransaksiMonitoring extends Model
         'dokumentasi',
     ];
 
-    protected $casts=[
-        'kegunaan_hasil_usaha'=>'array',
+    protected $casts = [
+        'kegunaan_hasil_usaha' => 'array',
     ];
 
     public function kpm()
     {
         return $this->belongsTo(KpmBantuanModal::class, 'id_kpm_modal', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'inserted_by','id');
     }
 
     public function detail($jenis_bantuan_modal)
@@ -70,11 +75,11 @@ class TransaksiMonitoring extends Model
 
     public function scopeSearch($query, $request)
     {
-        return $query->when($request->filled('keyword'),function($q) use ($request){
-            return $q->whereHas('kpm',function($que) use ($request){
-                return $que->where('nama','like',"%{$request->keyword}%")
-                ->orWhere('nik',$request->keyword)
-                ->orWhere('jenis_bantuan_modal','like',"%{$request->keyword}%");
+        return $query->when($request->filled('keyword'), function ($q) use ($request) {
+            return $q->whereHas('kpm', function ($que) use ($request) {
+                return $que->where('nama', 'like', "%{$request->keyword}%")
+                    ->orWhere('nik', $request->keyword)
+                    ->orWhere('jenis_bantuan_modal', 'like', "%{$request->keyword}%");
             });
         });
     }
@@ -118,12 +123,12 @@ class TransaksiMonitoring extends Model
     protected function penghasilanSebulan(): Attribute
     {
         return Attribute::make(
-            get:function($value){
-                if($value==1) return 'Rp. 0';
-                if($value==2) return 'Rp. 1 - Rp. 299.999';
-                if($value==3) return 'Rp. 300.000 - Rp. 599.999';
-                if($value==4) return 'Rp. 600.000 - Rp. 999.999';
-                if($value==5) return 'Rp. 1.000.000 - Rp. 1.499.999';
+            get: function ($value) {
+                if ($value == 1) return 'Rp. 0';
+                if ($value == 2) return 'Rp. 1 - Rp. 299.999';
+                if ($value == 3) return 'Rp. 300.000 - Rp. 599.999';
+                if ($value == 4) return 'Rp. 600.000 - Rp. 999.999';
+                if ($value == 5) return 'Rp. 1.000.000 - Rp. 1.499.999';
                 return '> Rp. 1.500.000';
             }
         );

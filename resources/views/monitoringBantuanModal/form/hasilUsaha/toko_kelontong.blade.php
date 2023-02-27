@@ -50,7 +50,7 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Awal</th>
                     <th>Jumlah Terjual</th>
-                    <th>Harga Jual</th>
+                    <th>Harga Jual Satuan</th>
                 </tr>
             </thead>
             <tbody id="items-tbody">
@@ -71,7 +71,7 @@
                     </td>
                     <td>
                         <input type="number" class="form-control" name="harga[{{$loop->iteration}}]"
-                            placeholder="Harga Jual" min=1000>
+                            placeholder="Harga Jual Satuan" min=1000>
                     </td>
                 </tr>
                 @endforeach
