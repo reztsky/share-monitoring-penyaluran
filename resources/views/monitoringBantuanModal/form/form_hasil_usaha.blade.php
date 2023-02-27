@@ -23,10 +23,10 @@
                     <input type="text" name="jumlah_awal[${rowCount}]" class="form-control" placeholder="Jumlah Awal"/> 
                 </td>
                 <td>
-                    <input type="number" min=1 name="jumlah_terjual[${rowCount}]" class="form-control" placeholder="Jumlah Terjual"/> 
+                    <input type="number" min=0 name="jumlah_terjual[${rowCount}]" class="form-control" placeholder="Jumlah Terjual"/> 
                 </td>
                 <td>
-                    <input type="number" min=1000 name="harga[${rowCount}]" class="form-control" placeholder="Harga Jual"/> 
+                    <input type="number" min=0 name="harga[${rowCount}]" class="form-control" placeholder="Harga Jual"/> 
                 </td>
             </tr>`
         // <button type="button" class="btn btn-danger">X</button>
