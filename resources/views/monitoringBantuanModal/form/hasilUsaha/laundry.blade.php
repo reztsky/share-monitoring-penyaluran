@@ -2,7 +2,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label form-label"> Harga Cuci Kering</label>
     <div class="col-md-8">
-        <input type="number" class="form-control" value=" Harga Cuci Kering" min=1000 id="harga_cuci_kering"
+        <input type="number" class="form-control" value=" Harga Cuci Kering" min=0 id="harga_cuci_kering"
             placeholder="Harga Cuci Kering" name="harga_cuci_kering">
         @error('harga_cuci_kering')
         <div class="form-text text-danger">{{$message}}</div>
@@ -12,7 +12,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label form-label">Harga Cuci Basah</label>
     <div class="col-md-8">
-        <input type="number" class="form-control" value="Harga Cuci Basah" min=1000 id="harga_cuci_basah"
+        <input type="number" class="form-control" value="Harga Cuci Basah" min=0 id="harga_cuci_basah"
             placeholder="Harga Cuci Basah" name="harga_cuci_basah">
         @error('harga_cuci_basah')
         <div class="form-text text-danger">{{$message}}</div>
@@ -22,7 +22,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label form-label">Harga Cuci Setrika</label>
     <div class="col-md-8">
-        <input type="number" class="form-control" value="Harga Cuci Setrika" min=1000 id="harga_cuci_setrika"
+        <input type="number" class="form-control" value="Harga Cuci Setrika" min=0 id="harga_cuci_setrika"
             placeholder="Harga Cuci Setrika" name="harga_cuci_setrika">
         @error('harga_cuci_setrika')
         <div class="form-text text-danger">{{$message}}</div>
@@ -32,7 +32,7 @@
 <div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label form-label">Harga Setrika</label>
     <div class="col-md-8">
-        <input type="number" class="form-control" value="Harga Setrika" min=1000 id="harga_setrika"
+        <input type="number" class="form-control" value="Harga Setrika" min=0 id="harga_setrika"
             placeholder="Harga Setrika" name="harga_setrika">
         @error('harga_setrika')
         <div class="form-text text-danger">{{$message}}</div>

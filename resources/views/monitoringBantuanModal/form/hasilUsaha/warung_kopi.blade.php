@@ -66,12 +66,12 @@
                         <input type="hidden" name="jumlah_awal[{{$loop->iteration}}]" value="{{$item['jumlah_awal']}}">
                     </td>
                     <td>
-                        <input type="number" min=1 class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
+                        <input type="number" min=0 class="form-control" name="jumlah_terjual[{{$loop->iteration}}]"
                             placeholder="Jumlah Terjual">
                     </td>
                     <td>
                         <input type="number" class="form-control" name="harga[{{$loop->iteration}}]"
-                            placeholder="Harga Jual Satuan" min=1000>
+                            placeholder="Harga Jual Satuan" min=0>
                     </td>
                 </tr>
                 @endforeach

@@ -3,7 +3,7 @@
     <label for="" class="col-sm-4 col-form-label form-label">Berapa Kendaraan yang dicuci dalam sebulan ?</label>
     <div class="col-sm-8">
         <input type="number" class="form-control" value="" id="kendaraan_dicuci_sebulan"
-            placeholder="Kendaraan Dicucui Dalam Sebulan" name="kendaraan_dicuci_sebulan" min=1>
+            placeholder="Kendaraan Dicucui Dalam Sebulan" name="kendaraan_dicuci_sebulan" min=0>
         @error('kendaraan_dicuci_sebulan')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
@@ -13,7 +13,7 @@
     <label for="" class="col-sm-4 col-form-label form-label">Berapa Harga Cuci ?</label>
     <div class="col-sm-8">
         <input type="number" class="form-control" value="" id="harga_cuci"
-            placeholder="Harga Cuci" name="harga_cuci" min=1000>
+            placeholder="Harga Cuci" name="harga_cuci" min=0>
         @error('harga_cuci')
         <div class="form-text text-danger">{{$message}}</div>
         @enderror
