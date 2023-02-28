@@ -71,7 +71,7 @@
                         <tbody>
                             @forelse ($monitorings as $monitoring)
                             <tr>
-                                <td>{{$monitorings->currentPage()+$loop->index}}</td>
+                                <td>{{$monitorings->firstItem()+$loop->index}}</td>
                                 <td>{{$monitoring->kpm->nik}}</td>
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
