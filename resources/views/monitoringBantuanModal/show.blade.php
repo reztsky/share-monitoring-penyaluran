@@ -153,7 +153,7 @@
                     <div class="row mb-3">
                         <label for="" class="col-sm-4 col-form-label">Dokumentasi</label>
                         <div class="col-sm-8">
-                            <img src="{{asset('storage/foto_monitoring/'.$monitoring->dokumentasi)}}" alt="" class="img-fluid img-thumbnail" style="object-fit:contain; max-width:150px; max-height:150px">
+                            <img data-action="zoom" src="{{asset('storage/foto_monitoring/'.$monitoring->dokumentasi)}}" alt="" class="img-fluid img-thumbnail" style="object-fit:contain; max-width:150px; max-height:150px;">
                         </div>
                     </div>
                 </div>
