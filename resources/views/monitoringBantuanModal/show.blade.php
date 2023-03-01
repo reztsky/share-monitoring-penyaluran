@@ -103,8 +103,8 @@
                     </div>
                     <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
                         <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
-                        <p class="bold col-sm-8 col-form-label form-label" id="alasan_penggunaan_bantuan">
-                            {{$monitoring->alasan_penggunaan_bantuan}}</p>
+                        <div class="col-sm-8 col-form-label form-label" id="alasan_penggunaan_bantuan">
+                            {!!$monitoring->alasan_penggunaan_bantuan!!}</div>
                     </div>
                 </div>
             </div>
@@ -141,13 +141,13 @@
                     <div class="row mb-3 ">
                         <label for="" class="col-sm-4 col-form-label">Kendala</label>
                         <div class="col-sm-8">
-                            <p class="text" id="kendala">{{$monitoring->kendala}}</p>
+                            <p class="text" id="kendala">{!!$monitoring->kendala!!}</p>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="" class="col-sm-4 col-form-label">Harapan</label>
                         <div class="col-sm-8">
-                            <p class="text" id="harapan">{{$monitoring->harapan}}</p>
+                            <p class="text" id="harapan">{!!$monitoring->harapan!!}</p>
                         </div>
                     </div>
                     <div class="row mb-3">

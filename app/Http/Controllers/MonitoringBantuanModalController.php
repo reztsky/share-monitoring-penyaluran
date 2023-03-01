@@ -114,12 +114,12 @@ class MonitoringBantuanModalController extends Controller
     public function delete($id, FotoMonitoringService $fotoMonitoringService)
     {
         $monitoring=TransaksiMonitoring::findOrFail($id);
-        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-        $detail->delete();
         $monitoring->delete();
-        $fotoMonitoringService->delete($monitoring->dokumentasi);
-
+        
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menghapus Data');
+        // $fotoMonitoringService->delete($monitoring->dokumentasi);
+        // $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        // $detail->delete();
     }
 
     public function find($nik)
