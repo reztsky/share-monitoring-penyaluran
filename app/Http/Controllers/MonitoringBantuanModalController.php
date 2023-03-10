@@ -22,12 +22,15 @@ use Illuminate\Support\Facades\Auth;
 class MonitoringBantuanModalController extends Controller
 {
     private $view = 'monitoringBantuanModal.';
+    private $radio_penggunaan_bantuan = 'radio_penggunaan_bantuan';
+    
     private $arrayMonitoring = [
         'inserted_by',
         'id_kpm_modal',
         'alamat_tempat_usaha',
         'jenis_bantuan_modal',
         'no_hp',
+        'radio_penggunaan_bantuan',
         // Pengelolaan Usaha
         'pengelolaan_usaha',
         'bentuk_usaha',
@@ -42,7 +45,6 @@ class MonitoringBantuanModalController extends Controller
         'dokumentasi',
     ];
 
-
     public function index(Request $request)
     {
         $user=Auth::user();
@@ -51,9 +53,16 @@ class MonitoringBantuanModalController extends Controller
     }
 
     public function show($id){
+        $radio_penggunaan_bantuan = 'radio_penggunaan_bantuan';
+
         $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-        return view($this->view.'show',compact('monitoring','detail'));
+        if ($monitoring->radio_penggunaan_bantuan==1) {
+            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+            return view($this->view.'show',compact('monitoring','detail'));
+        }
+
+        return view($this->view.'show',compact('monitoring'));
+    
     }
 
     public function create()
@@ -81,9 +90,16 @@ class MonitoringBantuanModalController extends Controller
 
     public function edit($id)
     {
+        $radio_penggunaan_bantuan = 'radio_penggunaan_bantuan';
+
         $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-        return view($this->view.'edit',compact('monitoring','detail'));
+        if ($radio_penggunaan_bantuan==1) {
+            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+            return view($this->view.'edit',compact('monitoring','detail'));
+        }else if ($radio_penggunaan_bantuan==2) {
+            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+            return view($this->view.'edit',compact('monitoring','detail'));
+        }
     }
 
     public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)

@@ -1,4 +1,4 @@
-<h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
+<hr/><h5 class="mb-4">Hasil Usaha {{$jenis_bantuan_modal}}</h5>
 <div class="row mb-3 ">
     <label for="" class="col-sm-4 col-form-label form-label"> Harga Cuci Kering</label>
     <div class="col-md-8">

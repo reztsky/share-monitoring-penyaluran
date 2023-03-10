@@ -110,6 +110,7 @@
             </div>
         </div>
 
+        @if ($monitoring->radio_penggunaan_bantuan==1)
         <div class="row app-card shadow-sm bg-white p-3 mt-4">
             <div class="app-card-body">
                 @switch($monitoring->jenis_bantuan_modal)
@@ -133,6 +134,8 @@
                 @endswitch
             </div>
         </div>
+    
+        @endif
 
         <div class="row app-card shadow-sm bg-white p-3 mt-4">
             <div class="app-card-body">

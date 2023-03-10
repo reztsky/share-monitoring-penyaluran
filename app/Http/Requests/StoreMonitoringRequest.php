@@ -25,26 +25,43 @@ class StoreMonitoringRequest extends FormRequest
      */
     public function rules()
     {
-        $rules=[
+        $rules_required=[
             'inserted_by'=>'required|numeric|min:1',
             'id_kpm_modal'=>'required|numeric|',
             'alamat_tempat_usaha'=>'required',
             'jenis_bantuan_modal'=>'required',
             'no_hp'=>'required',
-            'pengelolaan_usaha'=>'required|numeric|min:1|max:2',
-            'bentuk_usaha'=>'required|numeric|min:1|max:2',
-            'penggunaan_bantuan'=>'required|numeric|min:1|max:3',
-            'alasan_pengunaan_bantuan'=>'required_if:penggunaan_bantuan,3|nullable',
-            'penghasilan_sebulan'=>'required|numeric|min:1|max:6',
-            'kegunaan_hasil_usaha'=>'required|array|min:1',
+            'radio_penggunaan_bantuan'=>'required|numeric'
+        ];
+
+        $rules_optional_1=[
+            'radio_penggunaan_bantuan'=>'required|numeric',
+            'pengelolaan_usaha'=>'numeric|min:1|max:2|',
+            'bentuk_usaha'=>'numeric|min:1|max:2|',
+            'penggunaan_bantuan'=>'numeric|min:1|max:3|',
+            'penghasilan_sebulan'=>'numeric|min:1|max:6|',
+            'kegunaan_hasil_usaha'=>'array|min:1|',
             'kendala'=>'required',
             'harapan'=>'required',
             'dokumentasi'=>'required|image|max:5120'
         ];
+
+        $rules_optional_2=[
+            'alasan_pengunaan_bantuan'=>'nullable',
+            'kendala'=>'required',
+            'harapan'=>'required',
+            'dokumentasi'=>'required|image|max:5120'
+        ];
+
         $validationByJenisModal=$this->validationByJenisModal();
-        $rules=$rules+$validationByJenisModal;
-        
-        return $rules;
+        $rules=$rules_required+$rules_optional_1+$validationByJenisModal;
+        $rules_2=$rules_required+$rules_optional_2;
+
+        if($this->radio_penggunaan_bantuan==2){
+            return $rules_2;
+        }else if($this->radio_penggunaan_bantuan==1){
+            return $rules;
+        }
     }
 
     protected function prepareForValidation(){
