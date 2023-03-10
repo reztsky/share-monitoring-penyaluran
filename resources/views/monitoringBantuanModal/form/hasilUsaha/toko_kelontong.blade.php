@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="row mb-3 ">
-    <label for="" class="col-sm-2 col-form-label">Hasil dari usaha digunakan untuk </label>
+    <label for="" class="col-sm-4 col-form-label">Hasil dari usaha digunakan untuk </label>
     <div class="col-sm-8">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="Kebutuhan sehari-hari" id="1"
