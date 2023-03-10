@@ -17,6 +17,7 @@ class TransaksiMonitoring extends Model
         'alamat_tempat_usaha',
         'jenis_bantuan_modal',
         'no_hp',
+        'radio_penggunaan_bantuan',
         // Pengelolaan Usaha
         'pengelolaan_usaha',
         'bentuk_usaha',
@@ -98,7 +99,15 @@ class TransaksiMonitoring extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                return $value == 1 ? 'Usaha Perorangan' : 'Usaha Kelompok';
+                if ($value == 1) {
+                    return 'Usaha Perorangan';
+                } else if ($value == 2) {
+                    return 'Usaha Kelompok';
+                }else {
+                    return '-';
+                }
+
+                // return $value == 1 ? 'Usaha Perorangan' : 'Usaha Kelompok';
             }
         );
     }
@@ -107,7 +116,15 @@ class TransaksiMonitoring extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                return $value == 1 ? 'Usaha Utama' : 'Usaha Sampingan';
+                if ($value == 1) {
+                    return 'Usaha Utama';
+                } else if ($value == 2) {
+                    return 'Usaha Sampingan';
+                }else {
+                    return '-';
+                }
+                
+                // return $value == 1 ? 'Usaha Utama' : 'Usaha Sampingan';
             }
         );
     }
