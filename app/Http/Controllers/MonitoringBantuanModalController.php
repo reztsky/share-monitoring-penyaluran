@@ -23,15 +23,15 @@ use Illuminate\Support\Facades\Auth;
 class MonitoringBantuanModalController extends Controller
 {
     private $view = 'monitoringBantuanModal.';
-    
+
     private $arrayMonitoring = [
         'inserted_by',
         'id_kpm_modal',
         'alamat_tempat_usaha',
         'jenis_bantuan_modal',
         'no_hp',
-        'radio_penggunaan_bantuan',
         // Pengelolaan Usaha
+        'status_penggunaan_bantuan',
         'pengelolaan_usaha',
         'bentuk_usaha',
         'penggunaan_bantuan',
@@ -47,21 +47,20 @@ class MonitoringBantuanModalController extends Controller
 
     public function index(Request $request)
     {
-        $user=Auth::user();
-        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm','user'])->paginate(15)->withQueryString();
-        return view($this->view . 'index',compact('monitorings'));
+        $user = Auth::user();
+        $monitorings = TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm', 'user'])->paginate(15)->withQueryString();
+        return view($this->view . 'index', compact('monitorings'));
     }
 
-    public function show($id){
-
-        $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        if ($monitoring->radio_penggunaan_bantuan==1) {
-            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view.'show',compact('monitoring','detail'));
+    public function show($id)
+    {
+        $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
+        if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1) {
+            $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+            return view($this->view . 'show', compact('monitoring', 'detail'));
         }
 
-        return view($this->view.'show',compact('monitoring'));
-    
+        return view($this->view . 'show', compact('monitoring'));
     }
 
     public function create()
@@ -76,22 +75,24 @@ class MonitoringBantuanModalController extends Controller
         $detailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
         // Create Transaksi Monitoring
-        $formTransaksiMonitoring['dokumentasi']=$fotoMonitoringService->upload($request->dokumentasi);
+        $formTransaksiMonitoring['dokumentasi'] = $fotoMonitoringService->upload($request->dokumentasi);
         $transaksiMonitoring = TransaksiMonitoring::create($formTransaksiMonitoring);
 
         // Create Detail Transaksi
-        $formDetailMonitoring = array_merge($detailMonitoring, ['id_transaksi'=> $transaksiMonitoring->id]);
-        $detailMonitoring = $this->storeDetailByJenisBantuanModal($request->jenis_bantuan_modal, $formDetailMonitoring);
+        if ($request->status_penggunaan_bantuan == 1) {
+            $formDetailMonitoring = array_merge($detailMonitoring, ['id_transaksi' => $transaksiMonitoring->id]);
+            $detailMonitoring = $this->storeDetailByJenisBantuanModal($request->jenis_bantuan_modal, $formDetailMonitoring);
+        }
 
-        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menambahkan Data');
-        
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi', 'Sukses Menambahkan Data');
     }
 
     public function edit($id)
     {
-        $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        
-        if($monitoring->radio_penggunaan_bantuan==1){
+        $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
+        $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+
+        if ($monitoring->radio_penggunaan_bantuan==1) {
             $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
             return view($this->view.'edit',compact('monitoring','detail'));
         }
@@ -106,29 +107,29 @@ class MonitoringBantuanModalController extends Controller
         $formDetailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
         // Get Monitoring
-        $monitoring=TransaksiMonitoring::findOrFail($id);
+        $monitoring = TransaksiMonitoring::findOrFail($id);
 
         // Check If Has Upload Dokumentasi & Upload It
         if ($request->has('dokumentasi')) {
             $fotoMonitoringService->delete($monitoring->dokumentasi);
-            $formTransaksiMonitoring['dokumentasi']=$fotoMonitoringService->upload($request->dokumentasi);
+            $formTransaksiMonitoring['dokumentasi'] = $fotoMonitoringService->upload($request->dokumentasi);
         }
 
         //  Update Monitoring
         $monitoring->update($formTransaksiMonitoring);
 
         // Get Detail Monitoring & Update It
-        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
+        $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
 
-        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Mengubah Data');
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi', 'Sukses Mengubah Data');
     }
 
     public function delete($id, FotoMonitoringService $fotoMonitoringService)
     {
-        $monitoring=TransaksiMonitoring::findOrFail($id);
+        $monitoring = TransaksiMonitoring::findOrFail($id);
         $monitoring->delete();
-        
-        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi','Sukses Menghapus Data');
+
+        return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi', 'Sukses Menghapus Data');
         // $fotoMonitoringService->delete($monitoring->dokumentasi);
         // $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
         // $detail->delete();
@@ -142,7 +143,7 @@ class MonitoringBantuanModalController extends Controller
         return response()->json(['data' => $kpm, 'template' => $template], 200);
     }
 
-    
+
     private function storeDetailByJenisBantuanModal($jenis_bantuan_modal, $form)
     {
         if ($jenis_bantuan_modal == 'MENJAHIT') {
@@ -183,8 +184,8 @@ class MonitoringBantuanModalController extends Controller
         if ($kpm->jenis_bantuan_modal == 'KOPI KELILING') {
             $items = ItemWarkop_KopKelService::getItem();
             return view($this->view . 'form.hasilUsaha.kopi_keliling')->with([
-                'jenis_bantuan_modal'=>$kpm->jenis_bantuan_modal,
-                'items'=>$items,
+                'jenis_bantuan_modal' => $kpm->jenis_bantuan_modal,
+                'items' => $items,
             ])->render();
         }
 
@@ -203,8 +204,8 @@ class MonitoringBantuanModalController extends Controller
         if ($kpm->jenis_bantuan_modal == 'WARUNG KOPI') {
             $items = ItemWarkop_KopKelService::getItem();
             return view($this->view . 'form.hasilUsaha.warung_kopi')->with([
-                'jenis_bantuan_modal'=>$kpm->jenis_bantuan_modal,
-                'items'=>$items,
+                'jenis_bantuan_modal' => $kpm->jenis_bantuan_modal,
+                'items' => $items,
             ])->render();
         }
     }

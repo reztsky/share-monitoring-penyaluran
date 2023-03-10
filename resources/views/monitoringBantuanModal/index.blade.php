@@ -78,14 +78,14 @@
                                 <td>{{$monitoring->user->name}}</td>
                                 <td>
                                     <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
-                                        class="col-md-3 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
+                                        class="col-md-3 btn btn-sm text-left" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
-                                    <a href="{{route('bantuanmodal.monitoring.edit',$monitoring->id)}}"
+                                    {{-- <a href="{{route('bantuanmodal.monitoring.edit',$monitoring->id)}}"
                                         class="col-md-3 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
                                         <i class="bi bi-pencil-fill white"></i>
-                                    </a>
-                                    <a class="col-md-3 btn btn-sm btn-delete" data-model-id="{{$monitoring->id}}"
+                                    </a> --}}
+                                    <a class="col-md-3 btn btn-sm btn-delete text-left" data-model-id="{{$monitoring->id}}"
                                         style="background-color: #BC4C4C;color:white;height: 34px" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                                     </a>

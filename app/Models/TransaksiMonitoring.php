@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TransaksiMonitoring extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'inserted_by',
@@ -17,8 +17,8 @@ class TransaksiMonitoring extends Model
         'alamat_tempat_usaha',
         'jenis_bantuan_modal',
         'no_hp',
-        'radio_penggunaan_bantuan',
         // Pengelolaan Usaha
+        'status_penggunaan_bantuan',
         'pengelolaan_usaha',
         'bentuk_usaha',
         'penggunaan_bantuan',
@@ -43,7 +43,7 @@ class TransaksiMonitoring extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'inserted_by','id');
+        return $this->belongsTo(User::class, 'inserted_by', 'id');
     }
 
     public function detail($jenis_bantuan_modal)
@@ -82,8 +82,8 @@ class TransaksiMonitoring extends Model
                 return $que->where('nama', 'like', "%{$request->keyword}%")
                     ->orWhere('nik', $request->keyword)
                     ->orWhere('jenis_bantuan_modal', 'like', "%{$request->keyword}%");
-            })->orWhereHas('user',function($que) use ($request){
-                return $que->where('users.name','like',"%{$request->keyword}%");
+            })->orWhereHas('user', function ($que) use ($request) {
+                return $que->where('users.name', 'like', "%{$request->keyword}%");
             });
         });
     }
@@ -95,19 +95,24 @@ class TransaksiMonitoring extends Model
         });
     }
 
+    protected function statusPenggunaanBantuan(): Attribute
+    {
+        return Attribute::make(
+            get:function($value){
+                if($value==1) return 'Sudah Digunakan';
+                if($value==2) return 'Belum Digunakan';
+                return '-';
+            }
+        );
+    }
+
     protected function pengelolaanUsaha(): Attribute
     {
         return Attribute::make(
             get: function ($value) {
-                if ($value == 1) {
-                    return 'Usaha Perorangan';
-                } else if ($value == 2) {
-                    return 'Usaha Kelompok';
-                }else {
-                    return '-';
-                }
-
-                // return $value == 1 ? 'Usaha Perorangan' : 'Usaha Kelompok';
+                if ($value == 1) return 'Usaha Perorangan';
+                if ($value == 2) return 'Usaha Kelompok';
+                return '-';
             }
         );
     }
@@ -116,15 +121,9 @@ class TransaksiMonitoring extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                if ($value == 1) {
-                    return 'Usaha Utama';
-                } else if ($value == 2) {
-                    return 'Usaha Sampingan';
-                }else {
-                    return '-';
-                }
-                
-                // return $value == 1 ? 'Usaha Utama' : 'Usaha Sampingan';
+                if ($value == 1) return 'Usaha Utama';
+                if ($value == 2) return 'Usaha Sampingan';
+                return '-';
             }
         );
     }
@@ -135,7 +134,7 @@ class TransaksiMonitoring extends Model
             get: function ($value) {
                 if ($value == 1) return 'Mengawali Kegiatan Usaha';
                 if ($value == 2) return 'Tambahan Modal Usaha';
-                return 'Belum Digunakan';
+                return '-';
             }
         );
     }
@@ -149,7 +148,7 @@ class TransaksiMonitoring extends Model
                 if ($value == 3) return 'Rp. 300.000 - Rp. 599.999';
                 if ($value == 4) return 'Rp. 600.000 - Rp. 999.999';
                 if ($value == 5) return 'Rp. 1.000.000 - Rp. 1.499.999';
-                return '> Rp. 1.500.000';
+                return '>= Rp. 1.500.000';
             }
         );
     }

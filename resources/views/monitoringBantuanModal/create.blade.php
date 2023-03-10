@@ -30,30 +30,30 @@
                     <h5 class="mb-4">Pengelolaan Modal Usaha</h5>
                     <div class="mb-3">
                         <center>
-                            <label for="" class="col-form-label"><strong>Penggunaan Bantuan</strong></label><br/>
+                            <label for="" class="col-form-label"><strong>Status Penggunaan Bantuan</strong></label><br/>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_penggunaan_bantuan" id="RadioOptions" value="1" onchange="showStatus(this)">
-                                <label class="form-check-label" for="RadioOptions">Sudah Digunakan</label>
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan" id="RadioOptions1" value="1" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions1">Sudah Digunakan</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_penggunaan_bantuan" id="RadioOptions" value="2" onchange="showStatus(this)">
-                                <label class="form-check-label" for="RadioOptions">Belum Digunakan</label>
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan" id="RadioOptions2" value="2" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions2">Belum Digunakan</label>
                             </div>
                         </center>
                     </div>
                     <div class="app-card-body">
                         {{-- Modal Usaha Belum Digunakan --}}
-                        <div id="form-belum-digunakan" style="display: none">
+                        <div id="form-belum-digunakan" class="d-none">
                             @include('monitoringBantuanModal.form.form_belum_digunakan')
                         </div>
 
                         {{-- Pengelolaan Modal Usaha --}}
-                        <div id="form-modal-usaha" style="display: none">
+                        <div id="form-modal-usaha" class="d-none">
                             @include('monitoringBantuanModal.form.form_pengelolaan_modal_usaha')
                         </div>
                         
                         {{-- Hasil Usaha --}}
-                        <div id="form-hasil-usaha" style="display: none">
+                        <div id="form-hasil-usaha" class="d-none" >
                             @include('monitoringBantuanModal.form.form_hasil_usaha')
                         </div>
                         
@@ -74,13 +74,13 @@
 <script>
     function showStatus(select) {
         if (select.value == 1) {
-            document.getElementById('form-modal-usaha').style.display = "block"
-            document.getElementById('form-hasil-usaha').style.display = "block"
-            document.getElementById('form-belum-digunakan').style.display = "none"
+            document.getElementById('form-modal-usaha').classList.remove("d-none")
+            document.getElementById('form-hasil-usaha').classList.remove("d-none")
+            document.getElementById('form-belum-digunakan').classList.add("d-none")
         } else if (select.value == 2){
-            document.getElementById('form-modal-usaha').style.display = "none"
-            document.getElementById('form-hasil-usaha').style.display = "none"
-            document.getElementById('form-belum-digunakan').style.display = "block"
+            document.getElementById('form-modal-usaha').classList.add("d-none")
+            document.getElementById('form-hasil-usaha').classList.add("d-none")
+            document.getElementById('form-belum-digunakan').classList.remove("d-none")
         }
     }
 </script>

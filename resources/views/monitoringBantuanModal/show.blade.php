@@ -87,30 +87,37 @@
                 <div class="g-3">
                     <h5 class="mb-4" style="margin-top: 10px">Pengelolaan Modal Usaha</h5>
                     <div class="row mb-3">
-                        <label for="" class="col-sm-4 col-form-label">Pengelolaan Usaha</label>
-                        <p class="bold col-sm-8 col-form-label form-label" id="pengelolaan_usaha">
-                            {{$monitoring->pengelolaan_usaha}}</p>
+                        <label for="" class="col-sm-4 col-form-label">Status Penggunaan Bantuan</label>
+                        <p class="bold col-sm-8 col-form-label form-label" id="status_penggunaan_bantuan">{{$monitoring->status_penggunaan_bantuan}}</p>
                     </div>
-                    <div class="row mb-3">
-                        <label for="" class="col-sm-4 col-form-label">Bentuk Usaha</label>
-                        <p class="bold col-sm-8 col-form-label form-label" id="bentuk_usaha">
-                            {{$monitoring->bentuk_usaha}}</p>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="" class="col-sm-4 col-form-label">Pengunaan Bantuan</label>
-                        <p class="bold col-sm-8 col-form-label form-label" id="penggunaan_bantuan">
-                            {{$monitoring->penggunaan_bantuan}}</p>
-                    </div>
-                    <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
-                        <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
-                        <div class="col-sm-8 col-form-label form-label" id="alasan_penggunaan_bantuan">
-                            {!!$monitoring->alasan_penggunaan_bantuan!!}</div>
-                    </div>
+                    @if ($monitoring->getRawOriginal('status_penggunaan_bantuan')==1)
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-4 col-form-label">Pengelolaan Usaha</label>
+                            <p class="bold col-sm-8 col-form-label form-label" id="pengelolaan_usaha">
+                                {{$monitoring->pengelolaan_usaha}}</p>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-4 col-form-label">Bentuk Usaha</label>
+                            <p class="bold col-sm-8 col-form-label form-label" id="bentuk_usaha">
+                                {{$monitoring->bentuk_usaha}}</p>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="" class="col-sm-4 col-form-label">Pengunaan Bantuan</label>
+                            <p class="bold col-sm-8 col-form-label form-label" id="penggunaan_bantuan">
+                                {{$monitoring->penggunaan_bantuan}}</p>
+                        </div>
+                    @else
+                        <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
+                            <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
+                            <div class="col-sm-8 col-form-label form-label" id="alasan_penggunaan_bantuan">
+                                {!!$monitoring->alasan_penggunaan_bantuan!!}</div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
 
-        @if ($monitoring->radio_penggunaan_bantuan==1)
+        @if ($monitoring->getRawOriginal('status_penggunaan_bantuan')==1)
         <div class="row app-card shadow-sm bg-white p-3 mt-4">
             <div class="app-card-body">
                 @switch($monitoring->jenis_bantuan_modal)

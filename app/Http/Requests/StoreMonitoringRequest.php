@@ -25,43 +25,33 @@ class StoreMonitoringRequest extends FormRequest
      */
     public function rules()
     {
-        $rules_required=[
+        // dd($this);
+        $rules=[
             'inserted_by'=>'required|numeric|min:1',
             'id_kpm_modal'=>'required|numeric|',
             'alamat_tempat_usaha'=>'required',
             'jenis_bantuan_modal'=>'required',
             'no_hp'=>'required',
-            'status_penggunaan_bantuan'=>'required|numeric'
-        ];
-
-        $rules_optional_1=[
             'status_penggunaan_bantuan'=>'required|numeric',
-            'pengelolaan_usaha'=>'numeric|min:1|max:2|',
-            'bentuk_usaha'=>'numeric|min:1|max:2|',
-            'penggunaan_bantuan'=>'numeric|min:1|max:3|',
-            'penghasilan_sebulan'=>'numeric|min:1|max:6|',
-            'kegunaan_hasil_usaha'=>'array|min:1|',
+            'alasan_penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,2|nullable',
+            'pengelolaan_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'bentuk_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'penghasilan_sebulan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:6|nullable',
+            'kegunaan_hasil_usaha'=>'required_if:status_penggunaan_bantuan,1|array|min:1|nullable',
             'kendala'=>'required',
             'harapan'=>'required',
-            'dokumentasi'=>'required|image|max:5120'
+            'dokumentasi'=>'required|image|max:5120',
         ];
 
-        $rules_optional_2=[
-            'alasan_pengunaan_bantuan'=>'nullable',
-            'kendala'=>'required',
-            'harapan'=>'required',
-            'dokumentasi'=>'required|image|max:5120'
-        ];
-
-        $validationByJenisModal=$this->validationByJenisModal();
-        $rules=$rules_required+$rules_optional_1+$validationByJenisModal;
-        $rules_2=$rules_required+$rules_optional_2;
-
-        if($this->radio_penggunaan_bantuan==2){
-            return $rules_2;
-        }else if($this->radio_penggunaan_bantuan==1){
+        if($this->status_penggunaan_bantuan==2){
             return $rules;
         }
+
+        $rulesByJenisModal=$this->validationByJenisModal();
+        $rules=$rules+$rulesByJenisModal;
+        return $rules;
+
     }
 
     protected function prepareForValidation(){
