@@ -30,13 +30,13 @@
                     <h5 class="mb-4">Pengelolaan Modal Usaha</h5>
                     <div class="mb-3">
                         <center>
-                            <label for="" class="col-form-label"><strong>Penggunaan Bantuan</strong></label><br/>
+                            <label for="" class="col-form-label"><strong>Status Penggunaan Bantuan</strong></label><br/>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_penggunaan_bantuan" id="RadioOptions" value="1" onchange="showStatus(this)">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan" id="RadioOptions" value="1" onchange="showStatus(this)">
                                 <label class="form-check-label" for="RadioOptions">Sudah Digunakan</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="radio_penggunaan_bantuan" id="RadioOptions" value="2" onchange="showStatus(this)">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan" id="RadioOptions" value="2" onchange="showStatus(this)">
                                 <label class="form-check-label" for="RadioOptions">Belum Digunakan</label>
                             </div>
                         </center>

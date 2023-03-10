@@ -53,8 +53,6 @@ class MonitoringBantuanModalController extends Controller
     }
 
     public function show($id){
-        $radio_penggunaan_bantuan = 'radio_penggunaan_bantuan';
-
         $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
         if ($monitoring->radio_penggunaan_bantuan==1) {
             $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
@@ -90,16 +88,16 @@ class MonitoringBantuanModalController extends Controller
 
     public function edit($id)
     {
-        $radio_penggunaan_bantuan = 'radio_penggunaan_bantuan';
-
         $monitoring=TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        if ($radio_penggunaan_bantuan==1) {
-            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view.'edit',compact('monitoring','detail'));
-        }else if ($radio_penggunaan_bantuan==2) {
-            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view.'edit',compact('monitoring','detail'));
-        }
+        $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        return view($this->view.'edit',compact('monitoring','detail'));
+        
+        // if ($monitoring->radio_penggunaan_bantuan==1) {
+        //     $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        //     return view($this->view.'edit',compact('monitoring','detail'));
+        // }
+
+        // return view($this->view.'edit',compact('monitoring'));
     }
 
     public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)

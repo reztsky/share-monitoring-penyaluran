@@ -31,11 +31,11 @@ class StoreMonitoringRequest extends FormRequest
             'alamat_tempat_usaha'=>'required',
             'jenis_bantuan_modal'=>'required',
             'no_hp'=>'required',
-            'radio_penggunaan_bantuan'=>'required|numeric'
+            'status_penggunaan_bantuan'=>'required|numeric'
         ];
 
         $rules_optional_1=[
-            'radio_penggunaan_bantuan'=>'required|numeric',
+            'status_penggunaan_bantuan'=>'required|numeric',
             'pengelolaan_usaha'=>'numeric|min:1|max:2|',
             'bentuk_usaha'=>'numeric|min:1|max:2|',
             'penggunaan_bantuan'=>'numeric|min:1|max:3|',
@@ -57,9 +57,9 @@ class StoreMonitoringRequest extends FormRequest
         $rules=$rules_required+$rules_optional_1+$validationByJenisModal;
         $rules_2=$rules_required+$rules_optional_2;
 
-        if($this->radio_penggunaan_bantuan==2){
+        if($this->status_penggunaan_bantuan==2){
             return $rules_2;
-        }else if($this->radio_penggunaan_bantuan==1){
+        }else if($this->status_penggunaan_bantuan==1){
             return $rules;
         }
     }
