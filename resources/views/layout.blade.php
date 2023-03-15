@@ -14,10 +14,10 @@
     @include('template.header')
     <div class="app-wrapper">
         <div class="app-content pt-3 p-md-3 p-lg-4">
-            <div class="container-xl">
+            {{-- <div class="container-xl"> --}}
                 @yield('content')
                 @include('template.Notifikasi')
-            </div>
+            {{-- </div> --}}
             @include('template/footer')
         </div>
         <!--//container-fluid-->

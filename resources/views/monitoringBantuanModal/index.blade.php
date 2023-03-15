@@ -31,6 +31,12 @@
     .white a {
         color: #fff;
     }
+
+    .ff{
+        text-align: left;
+        display: inline-block;
+    }
+
 </style>
 @endpush
 @section('content')
@@ -58,34 +64,129 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover mb-0 text-left">
-                        <thead style="background-color: #5EC2AF;color:white">
+                        <thead style="background-color: #5EC2AF;color:white;">
                             <tr>
-                                <th class="cell">No.</th>
-                                <th class="cell">NIK</th>
-                                <th class="cell">Nama</th>
-                                <th class="cell">Jenis Modal Bantuan</th>
-                                <th class="cell">Dientry Oleh</th>
-                                <th class="cell">Aksi</th>
+                                <th rowspan="2">No.</th>
+                                <th rowspan="2">Nama</th>
+                                <th rowspan="2">Jenis Modal Bantuan</th>
+                                <th colspan="12" style="text-align:center">Penghasilan Per Bulan</th>
+                                <th rowspan="2">Detail</th>
+                            </tr>
+                            <tr>
+                                <th>Januari</th>
+                                <th>Februari</th>
+                                <th>Maret</th>
+                                <th>April</th>
+                                <th>Mei</th>
+                                <th>Juni</th>
+                                <th>Juli</th>
+                                <th>Agustus</th>
+                                <th>September</th>
+                                <th>Oktober</th>
+                                <th>November</th>
+                                <th>Desember</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($monitorings as $monitoring)
                             <tr>
                                 <td>{{$monitorings->firstItem()+$loop->index}}</td>
-                                <td>{{$monitoring->kpm->nik}}</td>
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
-                                <td>{{$monitoring->user->name}}</td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>
+                                <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td>                                
                                 <td>
                                     <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
-                                        class="col-md-3 btn btn-sm text-left" style="background-color: #4CBCA1;height: 34px">
-                                        <i class="bi bi-eye-fill white"></i>
+                                        class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
+                                        <i class="bi bi-eye-fill white" style="align:center"></i>
                                     </a>
                                     {{-- <a href="{{route('bantuanmodal.monitoring.edit',$monitoring->id)}}"
                                         class="col-md-3 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
                                         <i class="bi bi-pencil-fill white"></i>
                                     </a> --}}
-                                    <a class="col-md-3 btn btn-sm btn-delete text-left" data-model-id="{{$monitoring->id}}"
+                                    <a class="center  btn btn-sm btn-delete" data-model-id="{{$monitoring->id}}"
                                         style="background-color: #BC4C4C;color:white;height: 34px" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal"><i class="bi bi-trash-fill"></i>
                                     </a>

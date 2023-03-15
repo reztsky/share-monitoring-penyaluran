@@ -148,7 +148,8 @@ class TransaksiMonitoring extends Model
                 if ($value == 3) return 'Rp. 300.000 - Rp. 599.999';
                 if ($value == 4) return 'Rp. 600.000 - Rp. 999.999';
                 if ($value == 5) return 'Rp. 1.000.000 - Rp. 1.499.999';
-                return '>= Rp. 1.500.000';
+                if ($value == 6) return '>= Rp. 1.500.000';
+                // return '>= Rp. 1.500.000';
             }
         );
     }
