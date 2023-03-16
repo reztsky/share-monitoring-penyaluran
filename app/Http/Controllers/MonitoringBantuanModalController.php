@@ -15,10 +15,11 @@ use App\Models\TransaksiMonitoring;
 use App\Services\Monitoring\FotoMonitoringService;
 use App\Services\Monitoring\ItemTokelService;
 use App\Services\Monitoring\ItemWarkop_KopKelService;
-use App\Services\Monitoring\UploadFotoMonitoringService;
+use App\Services\Monitoring\DashboardMonitoringService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MonitoringBantuanModalController extends Controller
 {
@@ -48,8 +49,9 @@ class MonitoringBantuanModalController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $monitorings = TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm', 'user'])->paginate(15)->withQueryString();
-        return view($this->view . 'index', compact('monitorings'));
+        $DashboardMonitoringService = new DashboardMonitoringService($request, $user);
+        $results=$DashboardMonitoringService->rekapTable();
+        return view($this->view . 'index', compact('results'));
     }
 
     public function show($id)
@@ -92,12 +94,12 @@ class MonitoringBantuanModalController extends Controller
         $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
         $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
 
-        if ($monitoring->radio_penggunaan_bantuan==1) {
-            $detail=$monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view.'edit',compact('monitoring','detail'));
+        if ($monitoring->radio_penggunaan_bantuan == 1) {
+            $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+            return view($this->view . 'edit', compact('monitoring', 'detail'));
         }
 
-        return view($this->view.'edit',compact('monitoring'));
+        return view($this->view . 'edit', compact('monitoring'));
     }
 
     public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)

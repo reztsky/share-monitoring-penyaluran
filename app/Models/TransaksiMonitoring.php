@@ -75,6 +75,19 @@ class TransaksiMonitoring extends Model
         return null;
     }
 
+    // public function getMonth($query,$request)
+    // {
+    //     return DB::table('transaksi_monitorings')
+    //         ->select(['inserted_by'])
+    //         ->selectRaw('sum(jumlah_porsi) as jumlah_porsi')
+    //         ->groupBy('inserted_by')
+    //         ->where([
+    //             ['tanggal_masak', '=', "{$tahun}-{$bulan}-{$tanggal}"],
+    //             ['sumber_dana', '=', "{$sumber_dana}"],
+    //         ])
+    //         ->get();
+    // }
+
     public function scopeSearch($query, $request)
     {
         return $query->when($request->filled('keyword'), function ($q) use ($request) {
@@ -88,6 +101,12 @@ class TransaksiMonitoring extends Model
         });
     }
 
+    public function scopeMonth($query, $request)
+    {
+        return $query->when($request->filled('periode_monitoring'),function($q) use ($request){
+            return $q->whereMonth('created_at',$request->periode_monitoring);
+        });
+    }
     public function scopeInsertBy($query, $user)
     {
         return $query->when($user->getRoleNames()->first() != 'Super Admin', function ($q) use ($user) {

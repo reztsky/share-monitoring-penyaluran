@@ -47,12 +47,48 @@
             <a href="{{route('bantuanmodal.monitoring.create')}}" class="button" style="padding-top: 5px">Tambah
                 Monitoring</a>
         </div>
+
         <div class="app-card shadow bg-white mt-4 p-2">
+            <div class="d-flex mb-3 justify-content-center">
+                <div class="col-md-4 col-sm-6 co-12">
+                    <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
+                        <div class="row mb-3">
+                            <label class="h4 d-flex mt-3 justify-content-left" style="margin-left: 40px;"><strong>Periode Bulan Monitoring</strong></label>
+                            <div class="col-md-10">
+                                <select name="periode_monitoring" id="periode_monitoring" class="form-select">
+                                    <option value="">Pilih Periode</option>
+                                    <option value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn" style="background-color: #5EC2AF;color:white"><span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><hr/>
+            
             <div class="app-card-body">
-                <div class="d-flex justify-content-end">
-                    <div class="col-md-4 col-sm-12 co-12">
+                
+                <div class="d-flex mb-3 justify-content-end">                   
+                    <div class="col-md-4 col-sm-6 co-12">
                         <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
-                            <div class="input-group  mb-3 shadow">
+                            <div class="input-group shadow">
                                 <input type="text" placeholder="Cari Data" class="form-control" name="keyword" value="{{request('keyword')}}">
                                 <button type="submit" class="btn" style="background-color: #5EC2AF;color:white"><span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -88,9 +124,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($monitorings as $monitoring)
+                            @forelse ($results as $monitoring)
                             <tr>
-                                <td>{{$monitorings->firstItem()+$loop->index}}</td>
+                                <td>{{$results->firstItem()+$loop->index}}</td>
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
                                 <td class="sub" style="background-color: #E8F3F1">
@@ -100,6 +136,16 @@
                                         {{$monitoring->penghasilan_sebulan}}
                                     @endif
                                 </td>
+                                @foreach ($monitoring->penghasilan_sebulan as $item)
+                                    <td>{{$item}}</td>
+                                @endforeach
+                                {{-- <td class="sub" style="background-color: #E8F3F1">
+                                    @if ($monitoring->penghasilan_sebulan == null)
+                                        <p style="color:red">Belum Digunakan</p>
+                                    @else
+                                        {{$monitoring->penghasilan_sebulan}}
+                                    @endif
+                                </td> --}}
                                 <td class="sub" style="background-color: #E8F3F1">
                                     @if ($monitoring->penghasilan_sebulan == null)
                                         <p style="color:red">Belum Digunakan</p>
