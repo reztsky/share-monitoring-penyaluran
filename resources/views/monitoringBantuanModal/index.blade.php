@@ -140,18 +140,18 @@
                                 $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
                                 @endphp
                                 
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? '-' : $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan}}</td>
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? '-' : $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? '-' : $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? '-' : $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? '-' : $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? '-' : $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? '-' : $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? '-' : $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? '-' : $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
                                 
                                 <td>
                                     <a href="{{route('bantuanmodal.monitoring.show',$monitoring->id)}}"
