@@ -22,7 +22,7 @@ class DashboardMonitoringService
         $monitorings = $this->getMonitorings();
         $penghasilans=$this->getPenghasilans($monitorings->pluck('id_kpm_modal'));
         $monitorings->put('penghasilan_sebulan',$penghasilans);
-        dd($monitorings);
+        return $monitorings;
     }
 
     private function getMonitorings()
@@ -45,6 +45,7 @@ class DashboardMonitoringService
                 DB::raw('MONTH(created_at)'),
                 'penghasilan_sebulan'
             )
+            ->orderBy(DB::raw('MONTH(created_at)'))
             ->get();
     }
 }
