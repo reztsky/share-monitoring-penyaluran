@@ -90,7 +90,7 @@
                             <ul class="submenu-list list-unstyled">
                                 <li class="submenu-item"><a href="{{route('bantuanmodal.dashboard.index')}}"
                                         class="submenu-link">Dashboard</a></li>
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.transaksi.index')}}"
+                                <li class="submenu-item"><a href="{{route('bantuanmodal.report.index')}}"
                                         class="submenu-link">Transaksi</a></li>
                             </ul>
                         </div>
@@ -98,11 +98,27 @@
 
                     {{-- Moniotring Bantuan Modal --}}
                     <li class="nav-item">
-                        <a href="{{route('bantuanmodal.monitoring.index')}}" class="nav-link @yield('link-active-monitoring')">
-                            <span class="nav-icon fs-5 fw-bold"><i class="bi bi-graph-up-arrow"></i></span>
-                            <span class="nav-link-text">Monitoring Bantuan Modal</span>
+                        <a href="#" class="nav-link @yield('link-active-monev-modal') submenu-toggle"
+                            data-bs-toggle="collapse" data-bs-target="#submenu-monev-modal">
+                            <span class="nav-icon fs-5 fw-bold">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </span>
+                            <span>Monitoring Bantuan Modal</span>
+                            <span class="submenu-arrow">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
                         </a>
-                    </li><hr style="border: 2px solid #7fd6c6;border-radius: 5px;"/>
+                        <div id="submenu-monev-modal" class="submenu collapse submenu-monev-modal"
+                            data-bs-parent="#menu-accrodion">
+                            <ul class="submenu-list list-unstyled">
+                                <li class="submenu-item"><a href="{{route('bantuanmodal.report.index')}}"
+                                    class="submenu-link">Dashboard</a></li>
+                                <li class="submenu-item"><a href="{{route('bantuanmodal.monitoring.index')}}"
+                                        class="submenu-link">Transaksi</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><hr style="border: 2px solid #7fd6c6;border-radius: 5px;"/>
 
                     <li class="nav-item">
                         <a href="{{route('logout')}}" class="nav-link @yield('link-active-logout')">

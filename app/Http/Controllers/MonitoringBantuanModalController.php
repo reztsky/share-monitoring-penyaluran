@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\DB;
 
 class MonitoringBantuanModalController extends Controller
 {
-    private $view = 'monitoringBantuanModal.';
+    private $view = 'monitoringBantuanModal.transaksi.';
 
     private $arrayMonitoring = [
         'inserted_by',
@@ -49,9 +49,8 @@ class MonitoringBantuanModalController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $DashboardMonitoringService = new DashboardMonitoringService($request, $user);
-        $monitorings=$DashboardMonitoringService->rekapTable();
-        return view($this->view . 'index', compact('monitorings'));
+        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm','user'])->paginate(15)->withQueryString();
+        return view($this->view . 'index',compact('monitorings'));
     }
 
     public function show($id)
@@ -99,7 +98,7 @@ class MonitoringBantuanModalController extends Controller
             return view($this->view . 'edit', compact('monitoring', 'detail'));
         }
 
-        return view($this->view . 'edit', compact('monitoring'));
+        return view($this->view . 'edit', compact('monitoring','detail'));
     }
 
     public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)
