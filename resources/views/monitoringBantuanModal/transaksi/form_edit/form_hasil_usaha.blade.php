@@ -2,22 +2,22 @@
     <div id="form-hasil-usaha">
         @switch($monitoring->jenis_bantuan_modal)
             @case('MENJAHIT')
-                @include('monitoringBantuanModal.form_edit.hasilUsaha.menjahit')
+                @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.menjahit')
             @break
             @case('CUCI KENDARAAN')
-                @include('monitoringBantuanModal.form_edit.hasilUsaha.cuci_kendaraan')
+                @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.cuci_kendaraan')
             @break
             @case('KOPI KELILING')
-                @include('monitoringBantuanModal.form_edit.hasilUsaha.kopi_keliling')
+                @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.kopi_keliling')
             @break
             @case('LAUNDRY')
-                @include('monitoringBantuanModal.form_edit.hasilUsaha.laundry')
+                @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.laundry')
             @break
             @case('TOKO KELONTONG')
-                @include('monitoringBantuanModal.form_edit.hasilUsaha.toko_kelontong')
+                @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.toko_kelontong')
             @break
         @default
-            @include('monitoringBantuanModal.form_edit.hasilUsaha.warung_kopi')
+            @include('monitoringBantuanModal.transaksi.form_edit.hasilUsaha.warung_kopi')
         @endswitch
     </div>
 </div>

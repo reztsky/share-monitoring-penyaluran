@@ -111,10 +111,10 @@
                         <div id="submenu-monev-modal" class="submenu collapse submenu-monev-modal"
                             data-bs-parent="#menu-accrodion">
                             <ul class="submenu-list list-unstyled">
+                                <li class="submenu-item"><a href="{{route('bantuanmodal.report.index')}}"
+                                    class="submenu-link">Dashboard</a></li>
                                 <li class="submenu-item"><a href="{{route('bantuanmodal.monitoring.index')}}"
                                         class="submenu-link">Transaksi</a></li>
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.report.index')}}"
-                                        class="submenu-link">Dashboard</a></li>
                             </ul>
                         </div>
                     </li>

@@ -22,7 +22,7 @@
             @csrf
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">
-                        @include('monitoringBantuanModal.form.form_data_penerima')
+                        @include('monitoringBantuanModal.transaksi.form.form_data_penerima')
                     </div>
                 </div>
 
@@ -44,17 +44,17 @@
                     <div class="app-card-body">
                         {{-- Modal Usaha Belum Digunakan --}}
                         <div id="form-belum-digunakan" class="d-none">
-                            @include('monitoringBantuanModal.form.form_belum_digunakan')
+                            @include('monitoringBantuanModal.transaksi.form.form_belum_digunakan')
                         </div>
 
                         {{-- Pengelolaan Modal Usaha --}}
                         <div id="form-modal-usaha" class="d-none">
-                            @include('monitoringBantuanModal.form.form_pengelolaan_modal_usaha')
+                            @include('monitoringBantuanModal.transaksi.form.form_pengelolaan_modal_usaha')
                         </div>
                         
                         {{-- Hasil Usaha --}}
                         <div id="form-hasil-usaha" class="d-none" >
-                            @include('monitoringBantuanModal.form.form_hasil_usaha')
+                            @include('monitoringBantuanModal.transaksi.form.form_hasil_usaha')
                         </div>
                         
                         
@@ -64,7 +64,7 @@
                 <div class="row app-card shadow-sm bg-white p-3 mt-4">
                     <div class="app-card-body">
                         {{-- Lain Lain --}}
-                        @include('monitoringBantuanModal.form.form_lain_lain')
+                        @include('monitoringBantuanModal.transaksi.form.form_lain_lain')
                     </div>
                 </div>
         </form>

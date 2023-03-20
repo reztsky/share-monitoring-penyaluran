@@ -103,43 +103,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>                                
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td>15</td>
-                                <td>16</td> 
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>                                
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td>20</td>
-                                <td>16</td> 
-                            </tr>
-                        </tbody>
+                            <tbody>
+                                @forelse ($monitorings as $key=>$monitoring)
+                                @continue($key=='penghasilan_sebulan')
+                                <tr>
+                                    <td>{{$monitorings->firstItem()+$loop->index}}</td>
+                                    <td>{{$monitoring->kpm->nama}}</td>
+                                    <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
+                                    @php
+                                    $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
+                                    @endphp
+                                    
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                                    <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5">No Found Record</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
                         {{-- <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th colspan="2">Total</th>

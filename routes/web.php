@@ -109,8 +109,8 @@ Route::group([
             Route::get('/create','create')->name('create');
             Route::post('/store','store')->name('store');
             Route::get('/{id}/show','show')->name('show');
-            // Route::get('/{id}/edit','edit')->name('edit');
-            // Route::post('/{id}/update','update')->name('update');
+            Route::get('/{id}/edit','edit')->name('edit');
+            Route::post('/{id}/update','update')->name('update');
             Route::get('/delete/{id}','delete')->name('delete');
             Route::get('/find/{nik}','find')->name('find');
         });

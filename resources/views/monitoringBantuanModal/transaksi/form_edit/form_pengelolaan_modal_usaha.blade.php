@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
-        <label for="" class="col-sm-4 col-form-label">Asalan Belum Digunakan</label>
+        <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
         <div class="col-sm-8">
             <textarea name="alasan_penggunaan_bantuan" id="" rows="25" class="form-control" placeholder="Alasan Belum Digunakan" style=" min-height:100px;">{{$monitoring->alasan_penggunaan_bantuan}}</textarea>
             @error('penggunaan_bantuan')

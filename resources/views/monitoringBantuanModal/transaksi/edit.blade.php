@@ -21,17 +21,17 @@
             @csrf
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">
-                        @include('monitoringBantuanModal.form_edit.form_data_penerima')
+                        @include('monitoringBantuanModal.transaksi.form_edit.form_data_penerima')
                     </div>
                 </div>
 
                 <div class="row app-card shadow-sm bg-white p-3 mt-4">
                     <div class="app-card-body">
                         {{-- Pengelolaan Modal Usaha --}}
-                        @include('monitoringBantuanModal.form_edit.form_pengelolaan_modal_usaha')
+                        @include('monitoringBantuanModal.transaksi.form_edit.form_pengelolaan_modal_usaha')
                         <hr />
                         {{-- Hasil Usaha --}}
-                        @include('monitoringBantuanModal.form_edit.form_hasil_usaha')
+                        @include('monitoringBantuanModal.transaksi.form_edit.form_hasil_usaha')
                         
                         
                     </div>
@@ -40,7 +40,7 @@
                 <div class="row app-card shadow-sm bg-white p-3 mt-4">
                     <div class="app-card-body">
                         {{-- Lain Lain --}}
-                        @include('monitoringBantuanModal.form_edit.form_lain_lain')
+                        @include('monitoringBantuanModal.transaksi.form_edit.form_lain_lain')
                     </div>
                 </div>
         </form>
