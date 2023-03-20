@@ -42,6 +42,8 @@ class StoreMonitoringRequest extends FormRequest
             'kendala'=>'required',
             'harapan'=>'required',
             'dokumentasi'=>'required|image|max:5120',
+            'periode_monitoring'=>'required|numeric|min:1|max:12',
+            'tahun_monitoring'=>'required'
         ];
 
         if($this->status_penggunaan_bantuan==2){

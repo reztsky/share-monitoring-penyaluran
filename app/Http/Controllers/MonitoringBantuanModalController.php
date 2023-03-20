@@ -44,6 +44,8 @@ class MonitoringBantuanModalController extends Controller
         'kendala',
         'harapan',
         'dokumentasi',
+        'periode_monitoring',
+        'tahun_monitoring'
     ];
 
     public function index(Request $request)

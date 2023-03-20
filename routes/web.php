@@ -7,6 +7,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitoringBantuanModalController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportMonitoringBantuanModalController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -116,7 +117,7 @@ Route::group([
         });
 
         Route::group([
-            'controller'=>ReportController::class,
+            'controller'=>ReportMonitoringBantuanModalController::class,
             'as'=>'report.',
             'prefix'=>'report',
             'middleware'=>'role:Surveyor|Super Admin',

@@ -37,15 +37,17 @@ class DashboardMonitoringService
 
     private function getPenghasilans($id_kpm_modals)
     {
-        return TransaksiMonitoring::select(['id_kpm_modal', 'penghasilan_sebulan'])
-            ->selectRaw('MONTH(created_at) bulan')
+        return TransaksiMonitoring::select(['id_kpm_modal', 'penghasilan_sebulan','periode_monitoring as bulan'])
             ->whereIn('id_kpm_modal',$id_kpm_modals)
+            ->where('tahun_monitoring',date("Y"))
             ->groupBy(
                 'id_kpm_modal',
-                DB::raw('MONTH(created_at)'),
-                'penghasilan_sebulan'
+                'periode_monitoring',
+                'penghasilan_sebulan',
+                'tahun_monitoring'
             )
-            ->orderBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('periode_monitoring')
+            ->orderBy('tahun_monitoring')
             ->get();
     }
 }

@@ -42,43 +42,62 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-12">
         <div class="app-card shadow-sm mb-5">
-            <div class="app-card-body">
-                <div class="d-flex mb-3 justify-content-between">
+            <div class="app-card-body p-3">
+                <div class="d-flex">
                     <div class="col-md-4 col-sm-6 co-12">
                         <form action="#" method="get">
                             <div class="row mb-3">
-                                <label class="h4 d-flex mt-3" style="margin-left: 40px;">
+                                <label class="h4 d-flex ">
                                     <strong>Periode Bulan Monitoring</strong></label>
-                                <div class="col-md-10">
-                                    <select name="periode_monitoring" id="periode_monitoring" class="form-select mt-2" style="margin-left:35px">
-                                        <option value="">Pilih Periode</option>
-                                        <option value="01">Januari</option>
-                                        <option value="02">Februari</option>
-                                        <option value="03">Maret</option>
-                                        <option value="04">April</option>
-                                        <option value="05">Mei</option>
-                                        <option value="06">Juni</option>
-                                        <option value="07">Juli</option>
-                                        <option value="08">Agustus</option>
-                                        <option value="09">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
+                                <div class="col-md-10 pe-1">
+                                    <select name="periode_monitoring" id="periode_monitoring" class="form-select mt-2">
+                                        <option value="" @selected(request('periode_monitoring')=="" )>Pilih Periode</option>
+                                        <option value="1" @selected(request('periode_monitoring')==1)>Januari</option>
+                                        <option value="2" @selected(request('periode_monitoring')==2)>Februari</option>
+                                        <option value="3" @selected(request('periode_monitoring')==3)>Maret</option>
+                                        <option value="4" @selected(request('periode_monitoring')==4)>April</option>
+                                        <option value="5" @selected(request('periode_monitoring')==5)>Mei</option>
+                                        <option value="6" @selected(request('periode_monitoring')==6)>Juni</option>
+                                        <option value="7" @selected(request('periode_monitoring')==7)>Juli</option>
+                                        <option value="8" @selected(request('periode_monitoring')==8)>Agustus</option>
+                                        <option value="9" @selected(request('periode_monitoring')==9)>September</option>
+                                        <option value="10 @selected(request('periode_monitoring')==10)">Oktober</option>
+                                        <option value="11 @selected(request('periode_monitoring')==11)">November</option>
+                                        <option value="12 @selected(request('periode_monitoring')==12)">Desember</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn mt-2" style="background-color: #5EC2AF;color:white;margin-left:15px"><span>
+                                <div class="col-md-2 ps-0">
+                                    <button type="submit" class="btn mt-2"
+                                        style="background-color: #5EC2AF;color:white;"><span>
                                             Filter
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div><hr style="margin-left:30px;margin-right:30px" />
-
-                <div class="table-responsive p-4">
-                    <h3 class="mb-4">Report Bantuan Modal Bulan xx 2023</h3>
-                    <table id="tabs" class="table table-hover mb-0 text-left">
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <div class="col-md-4 col-sm-12 co-12">
+                        <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
+                            <div class="input-group mb-3 shadow">
+                                <input type="text" placeholder="Cari Data" class="form-control" name="keyword"
+                                    value="{{request('keyword')}}">
+                                <button type="submit" class="btn" style="background-color: #5EC2AF;color:white">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 text-left">
                         <thead style="background-color: #5EC2AF;color:white;">
                             <tr>
                                 <th rowspan="2">No.</th>
@@ -103,49 +122,62 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tbody>
-                                @forelse ($monitorings as $key=>$monitoring)
-                                @continue($key=='penghasilan_sebulan')
-                                <tr>
-                                    <td>{{$monitorings->firstItem()+$loop->index}}</td>
-                                    <td>{{$monitoring->kpm->nama}}</td>
-                                    <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
-                                    @php
-                                    $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
-                                    @endphp
-                                    
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                                    <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? 'Belum Digunakan' : $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="5">No Found Record</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
+                        <tbody>
+                            @forelse ($monitorings as $key=>$monitoring)
+                            @continue($key=='penghasilan_sebulan')
+                            <tr>
+                                <td>{{$monitorings->firstItem()+$loop->index}}</td>
+                                <td>{{$monitoring->kpm->nama}}</td>
+                                <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
+                                @php
+                                $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
+                                @endphp
+
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5">No Found Record</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
                         {{-- <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th colspan="2">Total</th>
                                 <th>x</th>
                                 <th>x</th>
                                 <th>x</th>
-                            </tr> --}}
-                        </tfoot>
+                            </tr>
+                        </tfoot> --}}
                     </table>
                 </div>
+                {{$monitorings->links()}}
             </div>
-
         </div>
     </div>
 </div>

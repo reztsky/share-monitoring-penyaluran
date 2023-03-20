@@ -30,6 +30,8 @@ class TransaksiMonitoring extends Model
         'kendala',
         'harapan',
         'dokumentasi',
+        'periode_monitoring',
+        'tahun_monitoring',
     ];
 
     protected $casts = [
@@ -75,19 +77,6 @@ class TransaksiMonitoring extends Model
         return null;
     }
 
-    // public function getMonth($query,$request)
-    // {
-    //     return DB::table('transaksi_monitorings')
-    //         ->select(['inserted_by'])
-    //         ->selectRaw('sum(jumlah_porsi) as jumlah_porsi')
-    //         ->groupBy('inserted_by')
-    //         ->where([
-    //             ['tanggal_masak', '=', "{$tahun}-{$bulan}-{$tanggal}"],
-    //             ['sumber_dana', '=', "{$sumber_dana}"],
-    //         ])
-    //         ->get();
-    // }
-
     public function scopeSearch($query, $request)
     {
         return $query->when($request->filled('keyword'), function ($q) use ($request) {
@@ -104,9 +93,11 @@ class TransaksiMonitoring extends Model
     public function scopeMonth($query, $request)
     {
         return $query->when($request->filled('periode_monitoring'),function($q) use ($request){
-            return $q->whereMonth('created_at',$request->periode_monitoring);
+            return $q->where('periode_monitoring',$request->periode_monitoring)
+            ->where('tahun_monitoring',date("Y"));
         });
     }
+
     public function scopeInsertBy($query, $user)
     {
         return $query->when($user->getRoleNames()->first() != 'Super Admin', function ($q) use ($user) {
@@ -168,7 +159,7 @@ class TransaksiMonitoring extends Model
                 if ($value == 4) return 'Rp. 600.000 - Rp. 999.999';
                 if ($value == 5) return 'Rp. 1.000.000 - Rp. 1.499.999';
                 if ($value == 6) return '>= Rp. 1.500.000';
-                // return '>= Rp. 1.500.000';
+                return 'Belum Digunakan';
             }
         );
     }

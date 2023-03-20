@@ -15,11 +15,11 @@
                         </a>
                     </div>
 
-                   
 
-                            
 
-                    
+
+
+
                     <!--//app-utilities-->
                 </div>
                 <!--//row-->
@@ -103,7 +103,7 @@
                             <span class="nav-icon fs-5 fw-bold">
                                 <i class="bi bi-graph-up-arrow"></i>
                             </span>
-                            <span>Monitoring Bantuan Modal</span>
+                            <span>Monitoring BanMod</span>
                             <span class="submenu-arrow">
                                 <i class="bi bi-chevron-down"></i>
                             </span>
@@ -112,13 +112,14 @@
                             data-bs-parent="#menu-accrodion">
                             <ul class="submenu-list list-unstyled">
                                 <li class="submenu-item"><a href="{{route('bantuanmodal.report.index')}}"
-                                    class="submenu-link">Dashboard</a></li>
+                                        class="submenu-link">Dashboard</a></li>
                                 <li class="submenu-item"><a href="{{route('bantuanmodal.monitoring.index')}}"
                                         class="submenu-link">Transaksi</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><hr style="border: 2px solid #7fd6c6;border-radius: 5px;"/>
+                    <li>
+                        <hr style="border: 2px solid #7fd6c6;border-radius: 5px;" />
 
                     <li class="nav-item">
                         <a href="{{route('logout')}}" class="nav-link @yield('link-active-logout')">
