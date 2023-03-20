@@ -1,5 +1,5 @@
 @extends('layout')
-@section('link-active-monitoring','active')
+@section('link-active-monev-modal','active')
 @section('content')
 <div class="row">
     <div class="col-12">

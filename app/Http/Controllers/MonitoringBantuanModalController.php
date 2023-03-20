@@ -51,7 +51,7 @@ class MonitoringBantuanModalController extends Controller
         $user = Auth::user();
         $DashboardMonitoringService = new DashboardMonitoringService($request, $user);
         $monitorings=$DashboardMonitoringService->rekapTable();
-        return view($this->view . 'index', compact('monitorings'));
+        return view($this->view . 'transaksi.index', compact('monitorings'));
     }
 
     public function show($id)
@@ -59,15 +59,15 @@ class MonitoringBantuanModalController extends Controller
         $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
         if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1) {
             $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view . 'show', compact('monitoring', 'detail'));
+            return view($this->view . 'transaksi.show', compact('monitoring', 'detail'));
         }
 
-        return view($this->view . 'show', compact('monitoring'));
+        return view($this->view . 'transaksi.show', compact('monitoring'));
     }
 
     public function create()
     {
-        return view($this->view . 'create');
+        return view($this->view . 'transaksi.create');
     }
 
     public function store(StoreMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)
@@ -96,10 +96,10 @@ class MonitoringBantuanModalController extends Controller
 
         if ($monitoring->radio_penggunaan_bantuan == 1) {
             $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view . 'edit', compact('monitoring', 'detail'));
+            return view($this->view . 'transaksi.edit', compact('monitoring', 'detail'));
         }
 
-        return view($this->view . 'edit', compact('monitoring'));
+        return view($this->view . 'transaksi.edit', compact('monitoring'));
     }
 
     public function update($id, UpdateMonitoringRequest $request, FotoMonitoringService $fotoMonitoringService)
@@ -176,28 +176,28 @@ class MonitoringBantuanModalController extends Controller
     private function caseJenisBantaunModal($kpm)
     {
         if ($kpm->jenis_bantuan_modal == 'MENJAHIT') {
-            return view($this->view . 'form.hasilUsaha.menjahit')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
+            return view($this->view . 'transaksi.form.hasilUsaha.menjahit')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
         }
 
         if ($kpm->jenis_bantuan_modal == 'CUCI KENDARAAN') {
-            return view($this->view . 'form.hasilUsaha.cuci_kendaraan')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
+            return view($this->view . 'transaksi.form.hasilUsaha.cuci_kendaraan')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
         }
 
         if ($kpm->jenis_bantuan_modal == 'KOPI KELILING') {
             $items = ItemWarkop_KopKelService::getItem();
-            return view($this->view . 'form.hasilUsaha.kopi_keliling')->with([
+            return view($this->view . 'transaksi.form.hasilUsaha.kopi_keliling')->with([
                 'jenis_bantuan_modal' => $kpm->jenis_bantuan_modal,
                 'items' => $items,
             ])->render();
         }
 
         if ($kpm->jenis_bantuan_modal == 'LAUNDRY') {
-            return view($this->view . 'form.hasilUsaha.laundry')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
+            return view($this->view . 'transaksi.form.hasilUsaha.laundry')->with('jenis_bantuan_modal', $kpm->jenis_bantuan_modal)->render();
         }
 
         if ($kpm->jenis_bantuan_modal == 'TOKO KELONTONG') {
             $items = ItemTokelService::getItem();
-            return view($this->view . 'form.hasilUsaha.toko_kelontong')->with([
+            return view($this->view . 'transaksi.form.hasilUsaha.toko_kelontong')->with([
                 'jenis_bantuan_modal' => $kpm->jenis_bantuan_modal,
                 'items' => $items
             ])->render();
@@ -205,7 +205,7 @@ class MonitoringBantuanModalController extends Controller
 
         if ($kpm->jenis_bantuan_modal == 'WARUNG KOPI') {
             $items = ItemWarkop_KopKelService::getItem();
-            return view($this->view . 'form.hasilUsaha.warung_kopi')->with([
+            return view($this->view . 'transaksi.form.hasilUsaha.warung_kopi')->with([
                 'jenis_bantuan_modal' => $kpm->jenis_bantuan_modal,
                 'items' => $items,
             ])->render();

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('link-active-monitoring','active')
+@section('link-active-monev-modal','active')
 @push('style')
 <style>
     .button {
@@ -13,7 +13,7 @@
         background-color: #5EC2AF;
         border: none;
         border-radius: 45px;
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 8px 15px rgba(109, 91, 91, 0.1);
         transition: all 0.3s ease 0s;
         cursor: pointer;
         outline: none;
@@ -41,7 +41,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h3 class="app-page-title">Monitoring Bantuan Modal</h3>
+        <h3 class="app-page-title">Entry Data Monitoring Bantuan Modal</h3>
         <div class="d-flex justify-content-center mb-3">
             <a href="{{route('bantuanmodal.monitoring.create')}}" class="button" style="padding-top: 5px">Tambah
                 Monitoring</a>

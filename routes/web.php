@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitoringBantuanModalController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -112,6 +113,16 @@ Route::group([
             // Route::post('/{id}/update','update')->name('update');
             Route::get('/delete/{id}','delete')->name('delete');
             Route::get('/find/{nik}','find')->name('find');
+        });
+
+        Route::group([
+            'controller'=>ReportController::class,
+            'as'=>'report.',
+            'prefix'=>'report',
+            'middleware'=>'role:Surveyor|Super Admin',
+        ], function(){
+            Route::get('/','index')->name('index');
+            // Route::get('/find/{nik}','find')->name('find');
         });
     });
 });
