@@ -145,7 +145,8 @@
                             <thead>
                                 <tr>
                                     <th rowspan="2" class="sticky-col no-col" style="background-color: #5EC2AF;color:white;">No</th>
-                                    <th rowspan="2" class="sticky-col first-col" style="background-color: #5EC2AF;color:white;">Nama</th>
+                                    <th rowspan="2" class="sticky-col first-col" style="background-color: #5EC2AF;color:white;"><span>Nama<i style="margin-left:5px"
+                                        class="bi bi-caret-down-fill"></i></span></th>
                                     <th rowspan="2" class="sticky-col second-col" style="background-color: #5EC2AF;color:white;"><span>Jenis<i style="margin-left:5px"
                                         class="bi bi-caret-down-fill"></i></span></th>
                                     <th rowspan="2"style="background-color: #5EC2AF;color:white;"><span>Jenis<i style="margin-left:5px"
