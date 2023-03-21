@@ -36,6 +36,10 @@
         text-align: left;
         display: inline-block;
     }
+
+    th{
+        cursor: pointer;
+    }
 </style>
 @endpush
 @section('content')
@@ -96,36 +100,49 @@
                         </form>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0 text-left">
+                <div>
+                    <table id="dtHorizontalVerticalExample" class="table table-hover mb-0 text-left">
                         <thead style="background-color: #5EC2AF;color:white;">
                             <tr>
                                 <th rowspan="2">No.</th>
-                                <th rowspan="2">Nama</th>
-                                <th rowspan="2">Jenis Modal Bantuan</th>
+                                <th rowspan="2" class="sticky-col second-col"><span>Nama<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th rowspan="2" class="sticky-col third-col"><span>Jenis<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
                                 <th colspan="12" style="text-align:center">Penghasilan Per Bulan</th>
-                                <th rowspan="2">Detail</th>
                             </tr>
                             <tr>
-                                <th>Januari</th>
-                                <th>Februari</th>
-                                <th>Maret</th>
-                                <th>April</th>
-                                <th>Mei</th>
-                                <th>Juni</th>
-                                <th>Juli</th>
-                                <th>Agustus</th>
-                                <th>September</th>
-                                <th>Oktober</th>
-                                <th>November</th>
-                                <th>Desember</th>
+                                <th style="width:200px"><span>Januari<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Februari<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Maret<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>April<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Mei<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Juni<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Juli<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Agustus<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:300px"><span>September<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Oktober<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>November<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
+                                <th style="width:200px"><span>Desember<i style="margin-left:5px"
+                                            class="bi bi-caret-down-fill"></i></span></th>
                             </tr>
                         </thead>
                         <tbody>
                         <tbody>
-                            @forelse ($monitorings as $key=>$monitoring)
-                            @continue($key=='penghasilan_sebulan')
                             <tr>
+                                @forelse ($monitorings as $key=>$monitoring)
+                                @continue($key=='penghasilan_sebulan')
                                 <td>{{$monitorings->firstItem()+$loop->index}}</td>
                                 <td>{{$monitoring->kpm->nama}}</td>
                                 <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
@@ -157,8 +174,6 @@
                                     $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
                                     $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
                             </tr>
                             @empty
                             <tr>
@@ -174,7 +189,7 @@
                                 <th>x</th>
                             </tr>
                         </tfoot> --}}
-                    </table>
+                    </table>                    
                 </div>
                 {{$monitorings->links()}}
             </div>
@@ -182,3 +197,14 @@
     </div>
 </div>
 @endsection
+@push('script')
+    <script>
+        $(document).ready(function () {
+        $('#dtHorizontalVerticalExample').DataTable({
+            "scrollX": true,
+            "scrollY": 200,
+        });
+        $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+@endpush
