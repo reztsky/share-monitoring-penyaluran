@@ -40,6 +40,44 @@
     th{
         cursor: pointer;
     }
+
+    .view {
+        margin: auto;
+        width: auto;
+    }
+
+    .wrapper {
+        position: relative;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    .sticky-col {
+        position: -webkit-sticky;
+        position: sticky;
+        /* background-color: #5EC2AF !important; */
+    }
+
+    .no-col {
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        left: 0px;
+    }
+
+    .first-col {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        left: 0px;
+    }
+
+    .second-col {
+        width: 250px;
+        min-width: 250px;
+        max-width: 250px;
+        left: 200px;
+    }
 </style>
 @endpush
 @section('content')
@@ -101,55 +139,56 @@
                     </div>
                 </div>
                 <div>
-                    <table id="dtHorizontalVerticalExample" class="table table-hover mb-0 text-left">
-                        <thead style="background-color: #5EC2AF;color:white;">
-                            <tr>
-                                <th rowspan="2">No.</th>
-                                <th rowspan="2" class="sticky-col second-col"><span>Nama<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th rowspan="2" class="sticky-col third-col"><span>Jenis<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th colspan="12" style="text-align:center">Penghasilan Per Bulan</th>
-                            </tr>
-                            <tr>
-                                <th style="width:200px"><span>Januari<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Februari<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Maret<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>April<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Mei<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Juni<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Juli<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Agustus<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:300px"><span>September<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Oktober<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>November<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                                <th style="width:200px"><span>Desember<i style="margin-left:5px"
-                                            class="bi bi-caret-down-fill"></i></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tbody>
-                            <tr>
+                    <div class="view">
+                        <div class="wrapper">
+                          <table class="table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="sticky-col no-col" style="background-color: #5EC2AF;color:white;">No</th>
+                                    <th rowspan="2" class="sticky-col first-col" style="background-color: #5EC2AF;color:white;">Nama</th>
+                                    <th rowspan="2" class="sticky-col second-col" style="background-color: #5EC2AF;color:white;"><span>Jenis<i style="margin-left:5px"
+                                        class="bi bi-caret-down-fill"></i></span></th>
+                                    <th rowspan="2"style="background-color: #5EC2AF;color:white;"><span>Jenis<i style="margin-left:5px"
+                                        class="bi bi-caret-down-fill"></i></span></th>
+                                    <th colspan="12" style="background-color: #5EC2AF;color:white;text-align:center">Penghasilan Per Bulan</th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Januari<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Februari<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Maret<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>April<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Mei<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Juni<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Juli<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Agustus<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:300px"><span>September<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Oktober<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>November<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                    <th style="background-color: #5EC2AF;color:white;width:200px"><span>Desember<i style="margin-left:5px"
+                                                class="bi bi-caret-down-fill"></i></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
                                 @forelse ($monitorings as $key=>$monitoring)
                                 @continue($key=='penghasilan_sebulan')
-                                <td>{{$monitorings->firstItem()+$loop->index}}</td>
-                                <td>{{$monitoring->kpm->nama}}</td>
-                                <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
+                                <td class="sticky-col no-col">{{$monitorings->firstItem()+$loop->index}}</td>
+                                <td class="sticky-col first-col" style="background-color: white;">{{$monitoring->kpm->nama}}</td>
+                                <td class="sticky-col second-col" style="background-color: white;" >{{$monitoring->kpm->jenis_bantuan_modal}}</td>
                                 @php
                                 $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
                                 @endphp
-
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? '-' :
                                     $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? '-' :
@@ -174,14 +213,16 @@
                                     $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
                                 <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
                                     $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="5">No Found Record</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                        {{-- <tfoot style="background-color: #5EC2AF;color:white">
+                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
+                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
+                              </tr>
+                              @empty
+                              <tr>
+                                  <td colspan="5">No Found Record</td>
+                              </tr>
+                              @endforelse
+                            </tbody>
+                            {{-- <tfoot style="background-color: #5EC2AF;color:white">
                             <tr>
                                 <th colspan="2">Total</th>
                                 <th>x</th>
@@ -189,7 +230,9 @@
                                 <th>x</th>
                             </tr>
                         </tfoot> --}}
-                    </table>                    
+                          </table>
+                        </div>
+                      </div>                 
                 </div>
                 {{$monitorings->links()}}
             </div>
@@ -197,14 +240,3 @@
     </div>
 </div>
 @endsection
-@push('script')
-    <script>
-        $(document).ready(function () {
-        $('#dtHorizontalVerticalExample').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-        });
-        $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
-@endpush
