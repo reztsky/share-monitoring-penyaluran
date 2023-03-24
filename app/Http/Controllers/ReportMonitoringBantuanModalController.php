@@ -13,8 +13,8 @@ class ReportMonitoringBantuanModalController extends Controller
     {
         $user = Auth::user();
         $DashboardMonitoringService = new DashboardMonitoringService($request, $user);
-        $reports=$DashboardMonitoringService->rekapTable();
-        return view($this->view . 'index', compact('reports'));
+        $monitorings=$DashboardMonitoringService->rekapTable();
+        return view($this->view . 'index', compact('monitorings'));
     }
 
    

@@ -1,4 +1,15 @@
 @extends('layout')
+@php
+    function penghasilan_sebulan ($value) {
+        if ($value == 1) return 'Rp. 0';
+        if ($value == 2) return 'Rp. 1 - Rp. 299.999';
+        if ($value == 3) return 'Rp. 300.000 - Rp. 599.999';
+        if ($value == 4) return 'Rp. 600.000 - Rp. 999.999';
+        if ($value == 5) return 'Rp. 1.000.000 - Rp. 1.499.999';
+        if ($value == 6) return '>= Rp. 1.500.000';
+        return 'Belum Digunakan';
+    }
+@endphp
 @section('link-active-monev-modal','active')
 @push('style')
 <style>
@@ -36,7 +47,50 @@
         text-align: left;
         display: inline-block;
     }
+
+    th {
+        cursor: pointer;
+    }
+
+    .view {
+        margin: auto;
+        width: auto;
+    }
+
+    .wrapper {
+        position: relative;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    .sticky-col {
+        position: -webkit-sticky;
+        position: sticky;
+        /* background-color: #5EC2AF !important; */
+    }
+
+    .no-col {
+        width: 60px;
+        min-width: 60px;
+        max-width: 60px;
+        left: 0px;
+    }
+
+    .first-col {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        left: 0px;
+    }
+
+    .second-col {
+        width: 250px;
+        min-width: 250px;
+        max-width: 250px;
+        left: 200px;
+    }
 </style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 @endpush
 @section('content')
 <div class="row">
@@ -51,7 +105,8 @@
                                     <strong>Periode Bulan Monitoring</strong></label>
                                 <div class="col-md-10 pe-1">
                                     <select name="periode_monitoring" id="periode_monitoring" class="form-select mt-2">
-                                        <option value="" @selected(request('periode_monitoring')=="" )>Pilih Periode</option>
+                                        <option value="" @selected(request('periode_monitoring')=="" )>Pilih Periode
+                                        </option>
                                         <option value="1" @selected(request('periode_monitoring')==1)>Januari</option>
                                         <option value="2" @selected(request('periode_monitoring')==2)>Februari</option>
                                         <option value="3" @selected(request('periode_monitoring')==3)>Maret</option>
@@ -62,8 +117,10 @@
                                         <option value="8" @selected(request('periode_monitoring')==8)>Agustus</option>
                                         <option value="9" @selected(request('periode_monitoring')==9)>September</option>
                                         <option value="10 @selected(request('periode_monitoring')==10)">Oktober</option>
-                                        <option value="11 @selected(request('periode_monitoring')==11)">November</option>
-                                        <option value="12 @selected(request('periode_monitoring')==12)">Desember</option>
+                                        <option value="11 @selected(request('periode_monitoring')==11)">November
+                                        </option>
+                                        <option value="12 @selected(request('periode_monitoring')==12)">Desember
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-md-2 ps-0">
@@ -77,70 +134,94 @@
                     </div>
                 </div>
                 <hr>
-                <div class="d-flex justify-content-end">
-                    <div class="col-md-4 col-sm-12 co-12">
-                        <form action="{{route('bantuanmodal.monitoring.report.index')}}" method="get">
-                            <div class="input-group mb-3 shadow">
-                                <input type="text" placeholder="Cari Data" class="form-control" name="keyword"
-                                    value="{{request('keyword')}}">
-                                <button type="submit" class="btn" style="background-color: #5EC2AF;color:white">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        </form>
+                <div>
+                    <div class="view">
+                        <div class="wrapper">
+                            <table class="table my-2 pt-2" id="coba">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2" 
+                                            style="background-color: #5EC2AF;color:white;">No</th>
+                                        <th rowspan="2"
+                                            style="background-color: #5EC2AF;color:white;">Nama</span>
+                                        </th>
+                                        <th rowspan="2"
+                                            style="background-color: #5EC2AF;color:white;">Jenis
+                                        </th>
+                                        <th colspan="12"
+                                            style="background-color: #5EC2AF;color:white;text-align:center">Penghasilan
+                                            Per Bulan</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Januari</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Februari</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Maret</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">April</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Mei</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Juni</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Juli</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Agustus</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:300px">September</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Oktober</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">November</th>
+                                        <th style="background-color: #5EC2AF;color:white;width:200px">Desember</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($monitorings as $key=>$monitoring)
+                                        @continue($key=='penghasilan_sebulan')
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$monitoring->nama}}</td>
+                                            <td>{{$monitoring->jenis_bantuan_modal}}</td>
+                                            @php
+                                            $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
+                                            @endphp
+                                             <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan)}}</td>
+                                            <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
+                                                penghasilan_sebulan($penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan)}}</td>
+                                        </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="5">No Found Record</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0 text-left">
-                        <thead style="background-color: #5EC2AF;color:white;">
-                            <tr>
-                                <th rowspan="2">No.</th>
-                                <th rowspan="2">Nama</th>
-                                <th rowspan="2">Jenis Modal Bantuan</th>
-                                <th colspan="12" style="text-align:center">Penghasilan Per Bulan</th>
-                                <th rowspan="2">Detail</th>
-                            </tr>
-                            <tr>
-                                <th>Januari</th>
-                                <th> 
-                                    Februari ^
-                                </th>
-                                <th>Maret</th>
-                                <th>April</th>
-                                <th>Mei</th>
-                                <th>Juni</th>
-                                <th>Juli</th>
-                                <th>Agustus</th>
-                                <th>September</th>
-                                <th>Oktober</th>
-                                <th>November</th>
-                                <th>Desember</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($reports as $report)
-                                <tr>
-                                    <td>{{$report->kpm->nama}}</td>
-                                    <td>{{$report->kpm->jenis_bantuan_modal}}</td>
-                                    @php
-                                        $
-                                    @endphp
-                                </tr>
-                            @empty
-                                
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-                {{$reports->links()}}
             </div>
         </div>
     </div>
 </div>
 @endsection
+@push('script')
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+    $('#coba').DataTable();
+} );
+    </script>
+@endpush
