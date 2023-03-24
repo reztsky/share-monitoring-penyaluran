@@ -91,6 +91,7 @@
     }
 </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.2.2/css/fixedColumns.dataTables.min.css">
 @endpush
 @section('content')
 <div class="row">
@@ -219,9 +220,17 @@
 @endsection
 @push('script')
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready( function () {
-    $('#coba').DataTable();
-} );
-    </script>
+<script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#coba').DataTable({
+            scrollX: true,
+            scrollCollapse : true,
+            paging:true,
+            fixedColumns:{
+                left:3
+            }
+        });
+    } );
+</script>
 @endpush
