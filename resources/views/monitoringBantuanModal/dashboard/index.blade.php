@@ -45,7 +45,7 @@
             <div class="app-card-body p-3">
                 <div class="d-flex">
                     <div class="col-md-4 col-sm-6 co-12">
-                        <form action="#" method="get">
+                        <form action="{{route('bantuanmodal.monitoring.report.index')}}" method="get">
                             <div class="row mb-3">
                                 <label class="h4 d-flex ">
                                     <strong>Periode Bulan Monitoring</strong></label>
@@ -79,7 +79,7 @@
                 <hr>
                 <div class="d-flex justify-content-end">
                     <div class="col-md-4 col-sm-12 co-12">
-                        <form action="{{route('bantuanmodal.monitoring.index')}}" method="get">
+                        <form action="{{route('bantuanmodal.monitoring.report.index')}}" method="get">
                             <div class="input-group mb-3 shadow">
                                 <input type="text" placeholder="Cari Data" class="form-control" name="keyword"
                                     value="{{request('keyword')}}">
@@ -108,7 +108,9 @@
                             </tr>
                             <tr>
                                 <th>Januari</th>
-                                <th>Februari</th>
+                                <th> 
+                                    Februari ^
+                                </th>
                                 <th>Maret</th>
                                 <th>April</th>
                                 <th>Mei</th>
@@ -122,61 +124,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tbody>
-                            @forelse ($monitorings as $key=>$monitoring)
-                            @continue($key=='penghasilan_sebulan')
-                            <tr>
-                                <td>{{$monitorings->firstItem()+$loop->index}}</td>
-                                <td>{{$monitoring->kpm->nama}}</td>
-                                <td>{{$monitoring->kpm->jenis_bantuan_modal}}</td>
-                                @php
-                                $penghasilan_sebulan=$monitorings['penghasilan_sebulan']->where('id_kpm_modal',$monitoring->id_kpm_modal);
-                                @endphp
-
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',1)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',1)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',2)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',2)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',3)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',3)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',4)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',4)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',5)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',5)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',6)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',6)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',7)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',7)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',8)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',8)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',9)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',9)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',10)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',10)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',11)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',11)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                                <td>{{is_null($penghasilan_sebulan->where('bulan',12)->first()) ? '-' :
-                                    $penghasilan_sebulan->where('bulan',12)->first()->penghasilan_sebulan}}</td>
-                            </tr>
+                            @forelse ($reports as $report)
+                                <tr>
+                                    <td>{{$report->kpm->nama}}</td>
+                                    <td>{{$report->kpm->jenis_bantuan_modal}}</td>
+                                    @php
+                                        $
+                                    @endphp
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="5">No Found Record</td>
-                            </tr>
+                                
                             @endforelse
                         </tbody>
-                        {{-- <tfoot style="background-color: #5EC2AF;color:white">
-                            <tr>
-                                <th colspan="2">Total</th>
-                                <th>x</th>
-                                <th>x</th>
-                                <th>x</th>
-                            </tr>
-                        </tfoot> --}}
                     </table>
                 </div>
-                {{$monitorings->links()}}
+                {{$reports->links()}}
             </div>
         </div>
     </div>

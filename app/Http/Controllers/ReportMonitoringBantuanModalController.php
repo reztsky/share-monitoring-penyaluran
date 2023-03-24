@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class ReportMonitoringBantuanModalController extends Controller
 {
-    private $view = 'monitoringBantuanModal.';
+    private $view = 'monitoringBantuanModal.dashboard.';
+
     public function index(Request $request)
     {
         $user = Auth::user();
         $DashboardMonitoringService = new DashboardMonitoringService($request, $user);
-        $monitorings=$DashboardMonitoringService->rekapTable();
-        return view($this->view . 'dashboard.index', compact('monitorings'));
+        $reports=$DashboardMonitoringService->rekapTable();
+        return view($this->view . 'index', compact('reports'));
     }
 
    

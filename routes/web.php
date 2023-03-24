@@ -74,7 +74,7 @@ Route::group([
     });
 
     Route::group([
-        'prefix'=>'bantuan-modal',
+        'prefix'=>'/bantuan-modal',
         'as'=>'bantuanmodal.',
     ], function(){
         Route::group([
@@ -101,30 +101,33 @@ Route::group([
         });
 
         Route::group([
-            'controller'=>MonitoringBantuanModalController::class,
             'as'=>'monitoring.',
-            'prefix'=>'monitoring',
-            'middleware'=>'role:Surveyor|Super Admin',
+            'prefix'=>'/monitoring',
         ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('/create','create')->name('create');
-            Route::post('/store','store')->name('store');
-            Route::get('/{id}/show','show')->name('show');
-            Route::get('/{id}/edit','edit')->name('edit');
-            Route::post('/{id}/update','update')->name('update');
-            Route::get('/delete/{id}','delete')->name('delete');
-            Route::get('/find/{nik}','find')->name('find');
-        });
+            Route::group([
+                'controller'=>MonitoringBantuanModalController::class,
+                'middleware'=>'role:Surveyor|Super Admin',
+            ], function(){
+                Route::get('/','index')->name('index');
+                Route::get('/create','create')->name('create');
+                Route::post('/store','store')->name('store');
+                Route::get('/{id}/show','show')->name('show');
+                Route::get('/{id}/edit','edit')->name('edit');
+                Route::post('/{id}/update','update')->name('update');
+                Route::get('/delete/{id}','delete')->name('delete');
+                Route::get('/find/{nik}','find')->name('find');
+            });
 
-        Route::group([
-            'controller'=>ReportMonitoringBantuanModalController::class,
-            'as'=>'report.',
-            'prefix'=>'report',
-            'middleware'=>'role:Surveyor|Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            // Route::get('/find/{nik}','find')->name('find');
-        });
+            Route::group([
+                'controller'=>ReportMonitoringBantuanModalController::class,
+                'as'=>'report.',
+                'prefix'=>'/report',
+                'middleware'=>'role:Surveyor|Super Admin',
+            ], function(){
+                Route::get('/','index')->name('index');
+            });
+
+        });        
     });
 });
 
