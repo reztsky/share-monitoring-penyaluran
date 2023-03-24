@@ -42,7 +42,8 @@ class DashboardMonitoringService
                 ])
                 ->groupBy([
                     'a.id_kpm_modal',
-                    'b.jenis_bantuan_modal'
+                    'b.jenis_bantuan_modal',
+                    'b.nama',
                 ])
                 ->get();
         });
