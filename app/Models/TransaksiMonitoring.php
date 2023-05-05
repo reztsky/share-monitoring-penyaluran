@@ -90,6 +90,8 @@ class TransaksiMonitoring extends Model
         });
     }
 
+    
+
     public function scopeMonth($query, $request)
     {
         return $query->when($request->filled('periode_monitoring'),function($q) use ($request){
