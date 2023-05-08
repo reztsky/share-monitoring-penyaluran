@@ -107,6 +107,13 @@ class TransaksiMonitoring extends Model
         });
     }
 
+    public function scopeSortBy($query,$request){
+        return $query->when($request->filled('sort_by'),function($q) use ($request){
+            $orderBy=explode(',',$request->sort_by);
+            return $q->orderBy($orderBy[0],$orderBy[1]);
+        });
+    }
+
     protected function statusPenggunaanBantuan(): Attribute
     {
         return Attribute::make(

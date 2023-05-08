@@ -5,7 +5,7 @@
     <div class="col-12">
         <h3 class="app-page-title">Edit Data Monitoring Bantuan Modal</h3>
         <div class="d-flex justify-content-end mb-3">
-            <a href="{{route('bantuanmodal.monitoring.index')}}" class="btn px-2 py-1"
+            <a href="{{ url()->previous() }}" class="btn px-2 py-1"
                 style="background-color: #BC4C4C;color:white;width:100px">Kembali</a>
         </div>
         @if ($errors->any())

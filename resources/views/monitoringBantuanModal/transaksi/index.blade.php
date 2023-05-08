@@ -67,8 +67,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12 col-12"></div>
-                            <div class="col-md-5 col-sm-12 col-12">
+                            <div class="col-md-4 col-sm-12 col-12">
+                                <div class="input-group mb-3 shadow">
+                                    <select name="sort_by" id="" class="form-select">
+                                        <option value="">Pilih Jenis Sort</option>
+                                        <option value="created_at,asc" @selected(request('sort_by')=='created_at,asc')>Tanggal Entry (Asc)</option>
+                                        <option value="created_at,desc" @selected(request('sort_by')=='created_at,desc')>Tanggal Entry (Desc)</option>
+                                        <option value="jenis_bantuan_modal,asc" @selected(request('sort_by')=='jenis_bantuan_modal,asc')>Jenis Modal Bantuan (Asc)</option>
+                                        <option value="jenis_bantuan_modal,desc" @selected(request('sort_by')=='jenis_bantuan_modal,desc')>Jenis Modal Bantuan (Desc)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-12">
                                 <div class="input-group mb-3 shadow">
                                     <input type="text" placeholder="Cari Data" class="form-control" name="keyword"
                                         value="{{ request('keyword') }}">
