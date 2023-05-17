@@ -6,6 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitoringBantuanModalController;
+use App\Http\Controllers\PelayananBantuanModalController;
+use App\Http\Controllers\PengajuanBantuanModalController;
+use App\Http\Controllers\PengecekanBantuanModalController;
+use App\Http\Controllers\PenyaluranBantuanModalController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportMonitoringBantuanModalController;
 use App\Http\Controllers\TransaksiController;
@@ -127,7 +131,48 @@ Route::group([
                 Route::get('/','index')->name('index');
             });
 
-        });        
+        });    
+    });
+
+    Route::group([
+        'prefix'=>'/pelayanan',
+        'as'=>'pelayanan.',
+    ], function(){
+        Route::group([
+            'controller'=>PelayananBantuanModalController::class,
+            'as'=>'dashboard.',
+            'prefix'=>'/dashboard',
+            // 'middleware'=>'role:Super Admin',
+        ], function(){
+            Route::get('/','index')->name('index');
+        });
+
+        Route::group([
+            'controller'=>PengajuanBantuanModalController::class,
+            'as'=>'pengajuan.',
+            'prefix'=>'/pengajuan',
+            // 'middleware'=>'role:Super Admin',
+        ], function(){
+            Route::get('/','index')->name('index');
+        });
+
+        Route::group([
+            'controller'=>PengecekanBantuanModalController::class,
+            'as'=>'pengecekan.',
+            'prefix'=>'/pengecekan',
+            // 'middleware'=>'role:Super Admin',
+        ], function(){
+            Route::get('/','index')->name('index');
+        });
+
+        Route::group([
+            'controller'=>PenyaluranBantuanModalController::class,
+            'as'=>'penyaluran.',
+            'prefix'=>'/penyaluran',
+            // 'middleware'=>'role:Super Admin',
+        ], function(){
+            Route::get('/','index')->name('index');
+        });    
     });
 });
 

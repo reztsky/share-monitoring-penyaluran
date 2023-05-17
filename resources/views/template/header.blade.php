@@ -118,6 +118,33 @@
                             </ul>
                         </div>
                     </li>
+
+                    {{-- Pengajuan Bantuan Modal --}}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link @yield('link-active-pengajuan-modal') submenu-toggle"
+                            data-bs-toggle="collapse" data-bs-target="#submenu-pengajuan-modal">
+                            <span class="nav-icon fs-5 fw-bold">
+                                <i class="bi bi-headset"></i>
+                            </span>
+                            <span>Pelayanan BanMod</span>
+                            <span class="submenu-arrow">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </a>
+                        <div id="submenu-pengajuan-modal" class="submenu collapse submenu-pengajuan-modal"
+                            data-bs-parent="#menu-accrodion">
+                            <ul class="submenu-list list-unstyled">
+                                <li class="submenu-item"><a href="{{route('pelayanan.dashboard.index')}}"
+                                        class="submenu-link">Dashboard</a></li>
+                                <li class="submenu-item"><a href="{{route('pelayanan.pengajuan.index')}}"
+                                        class="submenu-link">Pengajuan</a></li>
+                                <li class="submenu-item"><a href="{{route('pelayanan.pengecekan.index')}}"
+                                    class="submenu-link">Pengecekan</a></li>
+                                <li class="submenu-item"><a href="{{route('pelayanan.penyaluran.index')}}"
+                                    class="submenu-link">Penyaluran</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li>
                         <hr style="border: 2px solid #7fd6c6;border-radius: 5px;" />
 
