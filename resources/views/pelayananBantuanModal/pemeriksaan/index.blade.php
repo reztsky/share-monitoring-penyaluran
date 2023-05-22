@@ -36,14 +36,14 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h3 class="app-page-title">Pengecekan Bantuan Modal</h3>
+        <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Modal</h3>
 
         <div class="app-card shadow bg-white mt-4 p-2">
             <div class="app-card-body">
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <select name="jenis_banmod" id="jenis_banmod" class="form-select">
-                            <option value="">Jenis Bantuan </option>
+                        <select name="jenis_banmod" id="jenis_banmod" class="form-select" style="height: 40px">
+                            <option value="">Jenis Alat Bantu Disabilitas </option>
                             <option value="01">Kaki Palsu</option>
                             <option value="02">Tangan Palsu</option>
                             <option value="03">Alat Bantu Dengar</option>
@@ -55,17 +55,13 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                            <select name="jenis_banmod" id="jenis_banmod" class="form-select">
-                                <option value="">Jenis Bantuan </option>
-                                <option value="01">Kaki Palsu</option>
-                                <option value="02">Tangan Palsu</option>
-                                <option value="03">Alat Bantu Dengar</option>
-                                <option value="04">Kursi Roda</option>
-                                <option value="05">Walker</option>
-                                <option value="06">Stroller</option>
-                                <option value="07">Kurk</option>
-                                <option value="08">Tongkat Adaptif</option>
-                            </select>
+                        <div class="input-group">
+                            <input type="text" placeholder="Cari Data" class="form-control" name="keyword" value="{{request('keyword')}}">
+                            <button type="submit" class="btn" style="background-color: #5EC2AF;color:white"><span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                  </svg></span></button>
+                        </div>
                     </div>
                 </div>
                 
@@ -76,14 +72,12 @@
                                 <th class="cell">No.</th>
                                 <th class="cell">NIK</th>
                                 <th class="cell">Nama</th>
-                                <th class="cell">Jenis Bantuan</th>
-                                <th class="cell">Status Pengajuan</th>
+                                <th class="cell">Jenis Alat Bantu</th>
                                 <th class="cell">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

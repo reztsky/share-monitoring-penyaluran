@@ -36,7 +36,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h3 class="app-page-title">Monitoring Bantuan Modal</h3>
+        <h3 class="app-page-title">Pengajuan dan Pengecekan Bantuan Modal</h3>
         <div class="d-flex justify-content-center mb-3">
             <a href="{{route('pelayanan.pengajuan.create')}}" class="button" style="padding-top: 5px">Tambah
                 Pengajuan</a>
@@ -45,8 +45,8 @@
             <div class="app-card-body">
                 <div class="row mb-2">
                     <div class="col-md-6">
-                        <select name="jenis_banmod" id="jenis_banmod" class="form-select">
-                            <option value="">Jenis Bantuan </option>
+                        <select name="jenis_banmod" id="jenis_banmod" class="form-select" style="height: 40px">
+                            <option value="">Jenis Alat Bantu Disabilitas </option>
                             <option value="01">Kaki Palsu</option>
                             <option value="02">Tangan Palsu</option>
                             <option value="03">Alat Bantu Dengar</option>
@@ -74,9 +74,10 @@
                             <tr>
                                 <th class="cell">No.</th>
                                 <th class="cell">NIK</th>
-                                <th class="cell">No. KK</th>
                                 <th class="cell">Nama</th>
-                                <th class="cell">Jenis Bantuan</th>
+                                <th class="cell">Kelurahan</th>
+                                <th class="cell">Jenis Alat Bantu</th>
+                                <th class="cell">Status Pengajuan</th>
                                 <th class="cell">Aksi</th>
                             </tr>
                         </thead>
@@ -87,10 +88,16 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>
                                     <a href="{{route('pelayanan.pengajuan.show')}}"
                                         class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="center  btn btn-sm" style="background-color: #257BB7;height: 34px"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModals">
+                                        <i class="bi bi-person-check white"></i>
                                     </a>
                                     <a href="{{route('pelayanan.pengajuan.edit')}}"
                                         class="center  btn btn-sm" style="background-color:  #FFA17A;height: 34px">
@@ -112,7 +119,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Delete-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -128,6 +135,28 @@
                 <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
                     data-bs-dismiss="modal">Batal</button>
                 <a href="" class="btn" id="confirm-delete" style="background-color: #4CBCA1;color:white">Ya</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Acc-->
+<div class="modal fade" id="exampleModals" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body h5">
+                <mark>Data Penerima Sudah Sesuai dan Anda Setuju Pengajuan Alat Bantu Tersebut ?</mark>
+            </div>
+            <hr/>
+            <div class="pb-3">
+                <center>
+                <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
+                    data-bs-dismiss="modal">Tolak</button>
+                <a href="" class="btn" id="confirm-delete" style="background-color: #257BB7;color:white">Setuju</a></center>
             </div>
         </div>
     </div>

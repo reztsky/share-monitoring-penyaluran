@@ -137,9 +137,9 @@
                                 <li class="submenu-item"><a href="{{route('pelayanan.dashboard.index')}}"
                                         class="submenu-link">Dashboard</a></li>
                                 <li class="submenu-item"><a href="{{route('pelayanan.pengajuan.index')}}"
-                                        class="submenu-link">Pengajuan</a></li>
-                                <li class="submenu-item"><a href="{{route('pelayanan.pengecekan.index')}}"
-                                    class="submenu-link">Pengecekan</a></li>
+                                        class="submenu-link">Pengajuan & Pengecekan</a></li>
+                                <li class="submenu-item"><a href="{{route('pelayanan.pemeriksaan.index')}}"
+                                    class="submenu-link">Pemeriksaan & Pengukuran</a></li>
                                 <li class="submenu-item"><a href="{{route('pelayanan.penyaluran.index')}}"
                                     class="submenu-link">Penyaluran</a></li>
                             </ul>

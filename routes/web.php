@@ -7,6 +7,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MonitoringBantuanModalController;
 use App\Http\Controllers\PelayananBantuanModalController;
+use App\Http\Controllers\PemeriksaanBantuanModalController;
 use App\Http\Controllers\PengajuanBantuanModalController;
 use App\Http\Controllers\PengecekanBantuanModalController;
 use App\Http\Controllers\PenyaluranBantuanModalController;
@@ -160,9 +161,9 @@ Route::group([
         });
 
         Route::group([
-            'controller'=>PengecekanBantuanModalController::class,
-            'as'=>'pengecekan.',
-            'prefix'=>'/pengecekan',
+            'controller'=>PemeriksaanBantuanModalController::class,
+            'as'=>'pemeriksaan.',
+            'prefix'=>'/pemeriksaan',
             // 'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
