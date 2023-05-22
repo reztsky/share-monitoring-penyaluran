@@ -89,14 +89,18 @@
                                 <td></td>
                                 <td>
                                     <a href="{{route('pelayanan.pengajuan.show')}}"
-                                        class="col-md-4 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
+                                        class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
                                     <a href="{{route('pelayanan.pengajuan.edit')}}"
-                                        class="col-md-4 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
+                                        class="center  btn btn-sm" style="background-color:  #FFA17A;height: 34px">
                                         <i class="bi bi-pencil-fill white"></i>
                                     </a>
-                                    
+                                    <a class="center  btn btn-sm btn-delete" data-model-id="#"
+                                        style="background-color: #BC4C4C;color:white;height: 34px"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                            class="bi bi-trash-fill"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

@@ -7,7 +7,7 @@
             @csrf
             <div class="mb-2">
                 <label for="" class="form-label"><b>NIK KPM</b></label>
-                <input type="text" class="form-control" placeholder="No. Urut / NIK KPM" name="id_kpm">
+                <input type="number" class="form-control" placeholder="NIK KPM" name="id_kpm">
                 <div class="form-text text-danger">
                     @error('id_kpm') {{$message}} @enderror
                 </div>
