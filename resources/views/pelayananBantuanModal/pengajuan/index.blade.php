@@ -79,6 +79,7 @@
                                 <th class="cell">Jenis Alat Bantu</th>
                                 <th class="cell">Status Pengajuan</th>
                                 <th class="cell">Aksi</th>
+                                <th class="cell">Verifikasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,17 +89,14 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                <td>
+                                    <p id = "status" value="Menunggu">
                                 <td>
                                     <a href="{{route('pelayanan.pengajuan.show')}}"
                                         class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                         <i class="bi bi-eye-fill white"></i>
                                     </a>
-                                    <a href="#"
-                                        class="center  btn btn-sm" style="background-color: #257BB7;height: 34px"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModals">
-                                        <i class="bi bi-person-check white"></i>
-                                    </a>
+                                    
                                     <a href="{{route('pelayanan.pengajuan.edit')}}"
                                         class="center  btn btn-sm" style="background-color:  #FFA17A;height: 34px">
                                         <i class="bi bi-pencil-fill white"></i>
@@ -107,6 +105,13 @@
                                         style="background-color: #BC4C4C;color:white;height: 34px"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                             class="bi bi-trash-fill"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#"
+                                        class="center  btn btn-sm" style="background-color: #257BB7;height: 34px"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModals">
+                                        <i class="bi bi-person-check white"> Verifikasi</i> 
                                     </a>
                                 </td>
                             </tr>
@@ -154,20 +159,27 @@
             <hr/>
             <div class="pb-3">
                 <center>
-                <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
-                    data-bs-dismiss="modal">Tolak</button>
-                <a href="" class="btn" id="confirm-delete" style="background-color: #257BB7;color:white">Setuju</a></center>
+                    <a class="btn" id="2" onclick="change(2)" data-bs-dismiss="modal" style="background-color: #BC4C4C;color:white">Tolak</a>
+                    <a class="btn" id="1" onclick="change(1)" data-bs-dismiss="modal" style="background-color: #257BB7;color:white">Setuju</a>
+                </center>
             </div>
         </div>
     </div>
 </div>
 @endsection
-{{-- @push('script')
+ @push('script')
 <script>
-    $('.btn-delete').on('click',function(e){
-            var id=$(this).attr('data-model-id')
-            var url="{{route('bantuanmodal.monitoring.delete','')}}/"+id
-            $('#confirm-delete').attr('href',url)
-        })
+    function change(value){
+        if (value == 1) {
+            document.getElementById("status").innerHTML ='<p class="h6 mt-2" style="color: #257BB7">Disetujui</p>';
+        } else {
+            document.getElementById("status").innerHTML ='<p class="h6 mt-2" style="color: #BC4C4C">Ditolak</p>';
+        }
+    }
+    // $('.btn-delete').on('click',function(e){
+    //         var id=$(this).attr('data-model-id')
+    //         var url="{{route('bantuanmodal.monitoring.delete','')}}/"+id
+    //         $('#confirm-delete').attr('href',url)
+    //     })
 </script>
-@endpush --}}
+@endpush 
