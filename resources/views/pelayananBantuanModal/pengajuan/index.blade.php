@@ -108,11 +108,11 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#"
+                                    <button href="#"
                                         class="center  btn btn-sm" style="background-color: #257BB7;height: 34px"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModals">
+                                        data-bs-toggle="modal" id='button'  data-bs-target="#exampleModals">
                                         <i class="bi bi-person-check white"> Verifikasi</i> 
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -153,14 +153,14 @@
                 <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body h5">
-                <mark>Data Penerima Sudah Sesuai dan Anda Setuju Pengajuan Alat Bantu Tersebut ?</mark>
+            <div class="modal-body pt-4">
+                <p style="color:#BC4C4C">Menyetujui Pengajuan Alat Bantu Disabilitas tersebut ?<br/><mark>Setelah Verifikasi Data Tidak Dapat Diubah.</mark></p>
             </div>
             <hr/>
             <div class="pb-3">
                 <center>
-                    <a class="btn" id="2" onclick="change(2)" data-bs-dismiss="modal" style="background-color: #BC4C4C;color:white">Tolak</a>
-                    <a class="btn" id="1" onclick="change(1)" data-bs-dismiss="modal" style="background-color: #257BB7;color:white">Setuju</a>
+                    <button class="btn" id="btn" onclick="change(2)" data-bs-dismiss="modal" style="background-color: #BC4C4C;color:white;margin-right:2px">Tolak</a>
+                    <button class="btn" id="btn2" onclick="change(1)" data-bs-dismiss="modal" style="background-color: #257BB7;color:white;margin-left:2px">Setuju</a>
                 </center>
             </div>
         </div>
@@ -176,10 +176,23 @@
             document.getElementById("status").innerHTML ='<p class="h6 mt-2" style="color: #BC4C4C">Ditolak</p>';
         }
     }
+
     // $('.btn-delete').on('click',function(e){
     //         var id=$(this).attr('data-model-id')
     //         var url="{{route('bantuanmodal.monitoring.delete','')}}/"+id
     //         $('#confirm-delete').attr('href',url)
     //     })
+
+    const button = document.querySelector('#button');
+    const btn = document.querySelector('#btn');
+    const btn2 = document.querySelector('#btn2');
+
+    const disableButton = () => {
+        button.disabled = true;
+        button.style.background='#A0ACBD';
+    };
+
+    btn.addEventListener('click', disableButton);
+    btn2.addEventListener('click', disableButton);
 </script>
 @endpush 
