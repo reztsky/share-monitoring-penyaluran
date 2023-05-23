@@ -90,7 +90,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <p id = "status" value="Menunggu">
+                                    <p id = "status">
                                 <td>
                                     <a href="{{route('pelayanan.pengajuan.show')}}"
                                         class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
@@ -154,7 +154,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body pt-4">
-                <p style="color:#BC4C4C">Menyetujui Pengajuan Alat Bantu Disabilitas tersebut ?<br/><mark>Setelah Verifikasi Data Tidak Dapat Diubah.</mark></p>
+                <center>
+                    <img src="{{ asset('img/warning.png') }}" alt="alert" width="200" height="200">
+                    <p style="color:#BC4C4C"><strong>SETELAH VERIFIKASI DATA TIDAK DAPAT DIUBAH, <br/> APAKAH ANDA MENYETUJUI PENGAJUAN ALAT BANTU ?</strong></p>
+                </center>
             </div>
             <hr/>
             <div class="pb-3">
