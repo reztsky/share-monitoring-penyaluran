@@ -18,12 +18,19 @@ return new class extends Migration
             $table->string('nik',16);
             $table->string('no_kk',16);
             $table->string('nama');
+            $table->char('jenis_kelamin',1);
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
             $table->string('kecamatan');
             $table->string('kelurahan');
+            $table->char('rw',3);
+            $table->char('rt',3);
             $table->string('alamat');
+            $table->string('no_hp',15);
             $table->bigInteger('id_jenis_kebutuhan');
-            // $table->string('no_surat');
+            $table->integer('status_pengajuan')->comment('1 : Disetujui, 2 : Ditolak, 3 : Menunggu')->default(3);
             $table->timestamps();
+            // $table->string('no_surat');
         });
     }
 

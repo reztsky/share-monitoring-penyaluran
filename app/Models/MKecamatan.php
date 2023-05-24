@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MJenisKebutuhan extends Model
+class MKecamatan extends Model
 {
     use HasFactory;
 
     protected $fillable=[
-        'nama_kebutuhan'
+        'id',
+        'kecamatan'
     ];
 
-    public function Pengajuan(){
-        return $this->hasMany(PengajuanKebutuhan::class,'id_jenis_kebutuhan','id');
+    public function kelurahan(){
+        return $this->hasMany(MKelurahan::class,'id_kecamatan','id');
     }
 }

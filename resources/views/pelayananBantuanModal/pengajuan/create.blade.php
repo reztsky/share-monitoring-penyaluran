@@ -19,7 +19,7 @@
             </div>
             @endif
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{route('pelayanan.pengajuan.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">
@@ -28,33 +28,33 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">NIK</label>
                                 <div class="col-sm-8">
-                                    <input type="number"  class="form-control" value="" id="nik" placeholder="NIK" name="NIK" >
+                                    <input type="number"  class="form-control" value="{{old('nik')}}" id="nik" placeholder="NIK" name="nik" >
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">No. KK</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" value="" id="no_kk" placeholder="No. KK" name="no_kk" >
+                                    <input type="number" class="form-control" value="{{old('no_kk')}}" id="no_kk" placeholder="No. KK" name="no_kk" >
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Nama Penerima</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('nama_penerima')}}" id="nama_penerima" placeholder="Nama Penerima"
-                                        name="nama_penerima">
+                                    <input type="text" class="form-control" value="{{old('nama')}}" id="nama_penerima" placeholder="Nama Penerima"
+                                        name="nama">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-8 pt-2">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="jenkel"
-                                            id="p" value="1">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin"
+                                            id="p" value="P" checked @checked(old('jenis_kelamin')=='P')>
                                         <label class="form-check-label" for="p">Perempuan</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="jenkel"
-                                            id="l" value="2">
+                                        <input class="form-check-input" type="radio" name="jenis_kelamin"
+                                            id="l" value="L" @checked(old('jenis_kelamin')=='L')>
                                         <label class="form-check-label" for="l">Laki - laki</label>
                                     </div>
                                 </div>
@@ -77,6 +77,9 @@
                                 <div class="col-sm-8">
                                     <select name="kecamatan" id="kecamatan" class="form-select">
                                         <option value="">Kecamatan</option>
+                                        @foreach ($kecamatans as $kecamatan)
+                                            <option value="{{$kecamatan->kecamatan}}" data-idKecamatan="{{$kecamatan->id}}">{{$kecamatan->kecamatan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -84,7 +87,7 @@
                                 <label for="" class="col-sm-4 col-form-label">Kelurahan</label>
                                 <div class="col-sm-8">
                                     <select name="kelurahan" id="kelurahan" class="form-select">
-                                        <option value="">Kelurahan</option>
+                                        <option value="">Pilih Kecamatan</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,7 +108,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Alamat Lengkap</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('alamat_ktp')}}" id="alamat_ktp" placeholder="Alamat KTP" name="alamat_ktp"
+                                    <input type="text" class="form-control" value="{{old('alamat_ktp')}}" id="alamat_ktp" placeholder="Alamat KTP" name="alamat"
                                     >
                                 </div>
                             </div>
@@ -118,16 +121,11 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Jenis Alat Bantu Disabilitas</label>
                                 <div class="col-sm-8">
-                                    <select name="jenis_banmod" id="jenis_banmod" class="form-select">
+                                    <select name="id_jenis_kebutuhan" id="id_jenis_kebutuhan" class="form-select">
                                         <option value="">Jenis Alat Bantu Disabilitas </option>
-                                        <option value="01">Kaki Palsu</option>
-                                        <option value="02">Tangan Palsu</option>
-                                        <option value="03">Alat Bantu Dengar</option>
-                                        <option value="04">Kursi Roda</option>
-                                        <option value="05">Walker</option>
-                                        <option value="06">Stroller</option>
-                                        <option value="07">Kurk</option>
-                                        <option value="08">Tongkat Adaptif</option>
+                                        @foreach ($jenis_kebutuhans as $jenis_kebutuhan)
+                                            <option value="{{$jenis_kebutuhan->id}}">{{$jenis_kebutuhan->nama_kebutuhan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -143,3 +141,21 @@
     </div>
 </div>
 @endsection
+@push('script')
+    <script>
+        $('#kecamatan').on('change',function(e){
+            var id_kecamatan=$(this).find('option:selected').attr('data-idKecamatan');
+            var url="{{route('pelayanan.pengajuan.findKecamatan','')}}/"
+            $.ajax({
+                url:url+id_kecamatan,
+                success:function(kelurahans){
+                    var opt=`<option value="">Silahkan Pilih</option>`
+                    $.each(kelurahans,(index,kelurahan)=>{
+                        opt+=`<option value="${kelurahan.kelurahan}">${kelurahan.kelurahan}</option>`
+                    })
+                    $('#kelurahan').html(opt)
+                }
+            })
+        })
+    </script>
+@endpush
