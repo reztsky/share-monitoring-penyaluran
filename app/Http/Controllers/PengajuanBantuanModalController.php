@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class PengajuanBantuanModalController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
         $pengajuan_kebutuhans=PengajuanKebutuhan::select([
             'id',
@@ -22,9 +22,9 @@ class PengajuanBantuanModalController extends Controller
             'kelurahan',
             'status_pengajuan',
             'id_jenis_kebutuhan'
-        ])->with('kebutuhan')->paginate(10)->withQueryString();
-        
-        return view('pelayananBantuanModal.pengajuan.index',compact('pengajuan_kebutuhans'));
+        ])->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(1)->withQueryString();
+        $jenis_kebutuhans=MJenisKebutuhan::all(['id','nama_kebutuhan']);
+        return view('pelayananBantuanModal.pengajuan.index',compact('pengajuan_kebutuhans','jenis_kebutuhans'));
     }
 
     
