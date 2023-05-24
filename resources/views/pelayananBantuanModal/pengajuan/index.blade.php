@@ -164,90 +164,6 @@
                         {{ $pengajuan_kebutuhans->links() }}
                     </div>
                 </div>
-<div class="row">
-    <div class="col-12">
-        <h3 class="app-page-title">Pengajuan dan Pengecekan Bantuan Modal</h3>
-        <div class="d-flex justify-content-center mb-3">
-            <a href="{{route('pelayanan.pengajuan.create')}}" class="button" style="padding-top: 5px">Tambah
-                Pengajuan</a>
-        </div>
-        <div class="app-card shadow bg-white mt-4 p-2">
-            <div class="app-card-body">
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <select name="jenis_banmod" id="jenis_banmod" class="form-select" style="height: 40px">
-                            <option value="">Jenis Alat Bantu Disabilitas </option>
-                            <option value="01">Kaki Palsu</option>
-                            <option value="02">Tangan Palsu</option>
-                            <option value="03">Alat Bantu Dengar</option>
-                            <option value="04">Kursi Roda</option>
-                            <option value="05">Walker</option>
-                            <option value="06">Stroller</option>
-                            <option value="07">Kurk</option>
-                            <option value="08">Tongkat Adaptif</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="input-group">
-                            <input type="text" placeholder="Cari Data" class="form-control" name="keyword" value="{{request('keyword')}}">
-                            <button type="submit" class="btn" style="background-color: #5EC2AF;color:white"><span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                  </svg></span></button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0 text-left">
-                        <thead style="background-color: #5EC2AF;color:white">
-                            <tr>
-                                <th class="cell">No.</th>
-                                <th class="cell">NIK</th>
-                                <th class="cell">Nama</th>
-                                <th class="cell">Kelurahan</th>
-                                <th class="cell">Jenis Alat Bantu</th>
-                                <th class="cell">Status Pengajuan</th>
-                                <th class="cell">Aksi</th>
-                                <th class="cell">Verifikasi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <p id = "status">
-                                <td>
-                                    <a href="{{route('pelayanan.pengajuan.show')}}"
-                                        class="center  btn btn-sm" style="background-color: #4CBCA1;height: 34px">
-                                        <i class="bi bi-eye-fill white"></i>
-                                    </a>
-                                    
-                                    <a href="{{route('pelayanan.pengajuan.edit')}}"
-                                        class="center  btn btn-sm" style="background-color:  #FFA17A;height: 34px">
-                                        <i class="bi bi-pencil-fill white"></i>
-                                    </a>
-                                    <a class="center  btn btn-sm btn-delete" data-model-id="#"
-                                        style="background-color: #BC4C4C;color:white;height: 34px"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                            class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <button href="#"
-                                        class="center  btn btn-sm" style="background-color: #257BB7;height: 34px"
-                                        data-bs-toggle="modal" id='button'  data-bs-target="#exampleModals">
-                                        <i class="bi bi-person-check white"> Verifikasi</i> 
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
@@ -275,40 +191,48 @@
         </div>
     </div>
 
-<!-- Modal Acc-->
-<div class="modal fade" id="exampleModals" aria-labelledby="exampleModalLabels" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body h5">
-                <mark>Data Penerima Sudah Sesuai dan Anda Setuju Pengajuan Alat Bantu Tersebut ?</mark>
-            </div>
-            <hr/>
-            <div class="pb-3">
-                <center>
-                    <a class="btn" id="2" onclick="change(2)" data-bs-dismiss="modal" style="background-color: #BC4C4C;color:white">Tolak</a>
-                    <a class="btn" id="1" onclick="change(1)" data-bs-dismiss="modal" style="background-color: #257BB7;color:white">Setuju</a>
-                </center>
+    <!-- Modal Acc-->
+    <div class="modal fade" id="exampleModals" aria-labelledby="exampleModalLabels" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body h5">
+                    <mark>Data Penerima Sudah Sesuai dan Anda Setuju Pengajuan Alat Bantu Tersebut ?</mark>
+                </div>
+                <hr />
+                <div class="pb-3">
+                    <form action="" method="post" id="verif-tolak" class="verifikasi">
+                        @csrf
+                        <input type="hidden" name="status_pengajuan" id="" value="2">
+                        <button type="submit" class="btn-tolak" id="btn-tolak" data-bs-dismiss="modal"
+                            style="background-color: #BC4C4C;color:white">Tolak</a>
+                    </form>
+                    <form action="" method="post" id="verif-terima" class="verifikasi">
+                        @csrf
+                        <input type="hidden" name="status_pengajuan" id="" value="1">
+                        <button type="submit" class="btn-terima" id="btn-terima" data-bs-dismiss="modal"
+                            style="background-color: #257BB7;color:white">Terima</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 @endsection
- @push('script')
-<script>
-    function change(value){
-        if (value == 1) {
-            document.getElementById("status").innerHTML ='<p class="h6 mt-2" style="color: #257BB7">Disetujui</p>';
-        } else {
-            document.getElementById("status").innerHTML ='<p class="h6 mt-2" style="color: #BC4C4C">Ditolak</p>';
-        }
-    }
-    // $('.btn-delete').on('click',function(e){
-    //         var id=$(this).attr('data-model-id')
-    //         var url="{{route('bantuanmodal.monitoring.delete','')}}/"+id
-    //         $('#confirm-delete').attr('href',url)
-    //     })
-</script>
-@endpush 
+@push('script')
+    <script>
+        $('.btn-delete').on('click', function(e) {
+            var id = $(this).attr('data-model-id')
+            var url = "{{ route('pelayanan.pengajuan.delete', '') }}/" + id
+            $('#confirm-delete').attr('href', url)
+        })
+
+        $('.btn-verifikasi').on('click', function(e) {
+            var id = $(this).attr('data-idpengajuan');
+            var url = "{{ route('pelayanan.pengajuan.verifikasi', '') }}/" + id
+            $('.verifikasi').attr('action', url)
+        })
+    </script>
+@endpush
