@@ -200,23 +200,32 @@
                     <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body h5">
-                    <mark>Data Penerima Sudah Sesuai dan Anda Setuju Pengajuan Alat Bantu Tersebut ?</mark>
+                <div class="modal-body">
+                    <center>
+                        <img src="{{ asset('img/warning.png') }}" alt="alert" width="200" height="200">
+                        <p style="color:#BC4C4C"><strong>SETELAH VERIFIKASI STATUS PENGAJUAN TIDAK DAPAT DIUBAH, APAKAH ANDA MENYETUJUI PENGAJUAN ALAT BANTU INI ?</strong></p>
+                    </center>
                 </div>
-                <hr />
+                <hr/>
                 <div class="pb-3">
-                    <form action="" method="post" id="verif-tolak" class="verifikasi">
-                        @csrf
-                        <input type="hidden" name="status_pengajuan" id="" value="2">
-                        <button type="submit" class="btn-tolak" id="btn-tolak" data-bs-dismiss="modal"
-                            style="background-color: #BC4C4C;color:white">Tolak</a>
-                    </form>
-                    <form action="" method="post" id="verif-terima" class="verifikasi">
-                        @csrf
-                        <input type="hidden" name="status_pengajuan" id="" value="1">
-                        <button type="submit" class="btn-terima" id="btn-terima" data-bs-dismiss="modal"
-                            style="background-color: #257BB7;color:white">Terima</a>
-                    </form>
+                    <div class="row">
+                        <div class="col" style="padding-left: 170px">
+                            <form action="" method="post" id="verif-tolak" class="verifikasi" >
+                                @csrf
+                                <input type="hidden" name="status_pengajuan" id="" value="2">
+                                <button type="submit" class="btn" id="btn-tolak" data-bs-dismiss="modal"
+                                    style="background-color: #BC4C4C;color:white">Tolak</a>
+                            </form>
+                        </div>
+                        <div class="col" style="padding-right: 170px">
+                            <form action="" method="post" id="verif-terima" class="verifikasi">
+                                @csrf
+                                <input type="hidden" name="status_pengajuan" id="" value="1">
+                                <button type="submit" class="btn" id="btn-terima" data-bs-dismiss="modal"
+                                    style="background-color: #257BB7;color:white">Terima</a>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
