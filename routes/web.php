@@ -156,8 +156,13 @@ Route::group([
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/create','create')->name('create');
-            Route::get('/edit','edit')->name('edit');
-            Route::get('/show','show')->name('show');
+            Route::post('/store','store')->name('store');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/show/{id}','show')->name('show');
+            Route::get('/delete/{id}','destroy')->name('delete');
+            Route::get('/kelurahan/find/{id_kecamatan}','findKecamatan')->name('findKecamatan');
+            Route::post('/verifikasi/{id}','verifikasi')->name('verifikasi');
         });
 
         Route::group([

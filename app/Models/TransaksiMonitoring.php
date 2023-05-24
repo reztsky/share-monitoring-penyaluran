@@ -90,6 +90,8 @@ class TransaksiMonitoring extends Model
         });
     }
 
+    
+
     public function scopeMonth($query, $request)
     {
         return $query->when($request->filled('periode_monitoring'),function($q) use ($request){
@@ -102,6 +104,13 @@ class TransaksiMonitoring extends Model
     {
         return $query->when($user->getRoleNames()->first() != 'Super Admin', function ($q) use ($user) {
             return $q->where('inserted_by', $user->id);
+        });
+    }
+
+    public function scopeSortBy($query,$request){
+        return $query->when($request->filled('sort_by'),function($q) use ($request){
+            $orderBy=explode(',',$request->sort_by);
+            return $q->orderBy($orderBy[0],$orderBy[1]);
         });
     }
 

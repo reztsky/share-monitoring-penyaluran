@@ -51,7 +51,7 @@ class MonitoringBantuanModalController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->with(['kpm','user'])->paginate(15)->withQueryString();
+        $monitorings=TransaksiMonitoring::insertBy($user)->search($request)->month($request)->sortBy($request)->with(['kpm','user'])->paginate(15)->withQueryString();
         return view($this->view . 'index',compact('monitorings'));
     }
 
