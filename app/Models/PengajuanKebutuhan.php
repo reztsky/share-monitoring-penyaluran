@@ -49,5 +49,20 @@ class PengajuanKebutuhan extends Model
         return $this->belongsTo(MJenisKebutuhan::class, 'id_jenis_kebutuhan', 'id');
     }
 
+    public function scopeSearch($query,$request){
+        return $query->when($request->filled('keyword'),function($q) use ($request){
+            return $q->where(function($que) use ($request){
+                return $que->where('nik',$request->keyword)
+                ->orWhere('nama','like',"%{$request->keyword}%")
+                ->orWhere('kelurahan',$request->kelurahan);
+            });
+        });
+    }
+
+    public function scopeFilterJenisKebutuhan($query,$request){
+        return $query->when($request->filled('id_jenis_kebutuhan'),function($q) use($request){
+            return $q->where('id_jenis_kebutuhan',$request->id_jenis_kebutuhan);
+        });
+    }
     
 }
