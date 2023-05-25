@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('no_hp',15);
             $table->bigInteger('id_jenis_kebutuhan');
             $table->integer('status_pengajuan')->comment('1 : Disetujui, 2 : Ditolak, 3 : Menunggu')->default(3);
+            $table->string('dokumentasi');
+            $table->softDeletes();
             $table->timestamps();
             // $table->string('no_surat');
         });

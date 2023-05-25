@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             // RoleSeeder::class,
             // SurveyorSeeder::class,
-            // JenisKebetuhanSeeder::class,
+            JenisKebetuhanSeeder::class,
+            KecamatanSeeder::class,
+            KelurahanSeeder::class,
         ]);
     }
 }

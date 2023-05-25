@@ -27,6 +27,7 @@ class PengajuanKebutuhan extends Model
         'no_hp',
         'id_jenis_kebutuhan',
         'status_pengajuan',
+        'dokumentasi',
     ];
 
     protected function statusPengajuan() : Attribute{
@@ -43,6 +44,17 @@ class PengajuanKebutuhan extends Model
         return Attribute::make(
             get : fn($value)=>$value=='P' ? 'Perempuan' : 'Laki-Laki'
         );
+    }
+
+    public function scopeSelectCustom($query){
+        return $query->select([
+            'id',
+            'nik',
+            'nama',
+            'kelurahan',
+            'status_pengajuan',
+            'id_jenis_kebutuhan'
+        ]);
     }
 
     public function kebutuhan(){
@@ -63,6 +75,10 @@ class PengajuanKebutuhan extends Model
         return $query->when($request->filled('id_jenis_kebutuhan'),function($q) use($request){
             return $q->where('id_jenis_kebutuhan',$request->id_jenis_kebutuhan);
         });
+    }
+
+    public function scopeDiterima($query){
+        return $query->where('status_pengajuan',1);
     }
     
 }

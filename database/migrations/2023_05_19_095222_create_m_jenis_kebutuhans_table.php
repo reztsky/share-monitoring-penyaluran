@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('m_jenis_kebutuhans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kebutuhan');
+            $table->char('is_diukur',1);
             $table->timestamps();
         });
     }

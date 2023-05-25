@@ -10,7 +10,8 @@ class MJenisKebutuhan extends Model
     use HasFactory;
 
     protected $fillable=[
-        'nama_kebutuhan'
+        'nama_kebutuhan',
+        'is_diukur'
     ];
 
     public function Pengajuan(){

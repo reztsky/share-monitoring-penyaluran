@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MJenisKebutuhan;
+use App\Models\PengajuanKebutuhan;
 use Illuminate\Http\Request;
 
 class PemeriksaanBantuanModalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function index(Request $request)
     {
-        return view('pelayananBantuanModal.pemeriksaan.index');
+        $pengajuan_kebutuhans=PengajuanKebutuhan::selectCustom()->diterima()->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
+        $jenis_kebutuhans=MJenisKebutuhan::all(['nama_kebutuhan','id']);
+        return view('pelayananBantuanModal.pemeriksaan.index',compact('pengajuan_kebutuhans','jenis_kebutuhans'));
     }
 
     /**
