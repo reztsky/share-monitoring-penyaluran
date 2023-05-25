@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class penyaluranKebutuhan extends Model
+class PenyaluranKebutuhan extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
 
