@@ -103,9 +103,14 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-end mt-4">
-                                <button class="btn btn-success px-3 py-1">Simpan</button>
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-4 col-form-label">Dokumentasi Pengajuan</label>
+                                <div class="col-sm-8">
+                                    <img src="{{asset('storage/dokumentasi_pengajuan/'.$pengajuan_kebutuhan->dokumentasi)}}" alt="" class="img-fluid img-thumbnail" style="object-fit: cover;width:150px">
+                                </div>
                             </div>
+
+                        
                         </div>
                     </div>
                 </div>

@@ -96,6 +96,7 @@
                                         <td>{{ $pengajuan_kebutuhan->nik }}</td>
                                         <td>{{ $pengajuan_kebutuhan->nama }}</td>
                                         <td>{{ $pengajuan_kebutuhan->kebutuhan->nama_kebutuhan }}</td>
+                                        <td></td>
                                         <td>
                                             <center>
                                                 <a href="{{ route('pelayanan.pemeriksaan.show') }}"

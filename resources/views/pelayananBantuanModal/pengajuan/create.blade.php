@@ -132,7 +132,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Dokumentasi Pengajuan</label>
                                         <div class="col-sm-8">
-                                            <input type="file" class="form-control" name="foto_pengambilan" id="foto_pengambilan" accept="image/*" style="min-height:45px">
+                                            <input type="file" class="form-control" name="dokumentasi" id="dokumentasi" accept="image/*" style="min-height:45px">
                                         </div>
                             </div>
 
@@ -180,9 +180,9 @@ const MAX_HEIGHT = 1200;
 const MIME_TYPE = "image/jpeg";
 const QUALITY = 0.7;
 
-const foto_pengambilan=document.getElementById('foto_pengambilan')
+const dokumentasi=document.getElementById('dokumentasi')
 
-foto_pengambilan.addEventListener('change',(ev)=>{
+dokumentasi.addEventListener('change',(ev)=>{
     const file = ev.target.files[0]; // get the file
     const blobURL = URL.createObjectURL(file);
     const img = new Image();
@@ -210,7 +210,7 @@ foto_pengambilan.addEventListener('change',(ev)=>{
                 const dataTransfer=new DataTransfer()
                 dataTransfer.items.add(newImage)
                 //set image to input file data_compressed
-                document.getElementById('foto_pengambilan').files=dataTransfer.files
+                document.getElementById('dokumentasi').files=dataTransfer.files
             },
             MIME_TYPE,
             QUALITY

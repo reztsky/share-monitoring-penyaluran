@@ -8,6 +8,7 @@ use App\Models\MJenisKebutuhan;
 use App\Models\MKecamatan;
 use App\Models\MKelurahan;
 use App\Models\PengajuanKebutuhan;
+use App\Services\Pelayanan\Pengajuan\UploadFotoService;
 use Illuminate\Http\Request;
 
 class PengajuanBantuanModalController extends Controller
@@ -35,9 +36,10 @@ class PengajuanBantuanModalController extends Controller
         return view('pelayananBantuanModal.pengajuan.create',compact('jenis_kebutuhans','kecamatans'));
     }
 
-    public function store(StorePengajuanRequest $request)
+    public function store(StorePengajuanRequest $request, UploadFotoService $uploadFotoService)
     {
-        $validated=$request->validated();
+        $validated=$request->safe()->except('dokumentasi');
+        $validated['dokumentasi']=$uploadFotoService->upload($request->dokumentasi);
         $pengajuan_kebutuhan=PengajuanKebutuhan::create($validated);
         return redirect()->route('pelayanan.pengajuan.index')->with('notifikasi', 'Sukses Menambahkan Data');
     }

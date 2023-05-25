@@ -11,7 +11,7 @@ class PemeriksaanBantuanModalController extends Controller
     
     public function index(Request $request)
     {
-        $pengajuan_kebutuhans=PengajuanKebutuhan::selectCustom()->diterima()->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
+        $pengajuan_kebutuhans=PengajuanKebutuhan::selectCustom()->isDiukur('t')->diterima()->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
         $jenis_kebutuhans=MJenisKebutuhan::all(['nama_kebutuhan','id']);
         return view('pelayananBantuanModal.pemeriksaan.index',compact('pengajuan_kebutuhans','jenis_kebutuhans'));
     }

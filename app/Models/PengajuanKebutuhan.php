@@ -80,5 +80,11 @@ class PengajuanKebutuhan extends Model
     public function scopeDiterima($query){
         return $query->where('status_pengajuan',1);
     }
+
+    public function scopeIsDiukur($query,$is_diukur){
+        return $query->whereHas('kebutuhan',function($que) use ($is_diukur){
+            return $que->where('is_diukur',$is_diukur);
+        });
+    }
     
 }
