@@ -91,11 +91,6 @@
                                                 class="col-md-4 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
                                                 <i class="bi bi-eye-fill white"></i>
                                             </a>
-                                            <a href="{{ route('pelayanan.pemeriksaan.edit', '') }}"
-                                                class="col-md-4 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
-                                                <i class="bi bi-pencil-fill white"></i>
-                                            </a>
-
                                         </td>
                                     </tr>
                                 @endforeach
@@ -104,32 +99,74 @@
                         {{$pengajuan_kebutuhans->links()}}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Yakin Menghapus Data Ini ?
-                </div>
-                <a href=""></a>
-                <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
-                        data-bs-dismiss="modal">Batal</button>
-                    <a href="" class="btn" id="confirm-delete"
-                        style="background-color: #4CBCA1;color:white">Ya</a>
+                
+               
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Yakin Menghapus Data Ini ?
+            </div>
+            <a href=""></a>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
+                    data-bs-dismiss="modal">Batal</button>
+                <a href="" class="btn" id="confirm-delete" style="background-color: #4CBCA1;color:white">Ya</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Acc-->
+<div class="modal fade" id="exampleModals" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <img src="{{ asset('img/warning.png') }}" alt="alert" width="200" height="200">
+                    <p style="color:#BC4C4C"><strong>SETELAH VERIFIKASI TIDAK DAPAT DIUBAH, APAKAH ANDA MENYETUJUI PENGAJUAN ALAT BANTU INI ?</strong></p>
+                </center>
+            </div>
+            <hr/>
+            <div class="pb-3">
+                <div class="row">
+                    <div class="col" style="padding-left: 170px">
+                        <form action="" method="post" id="verif-tolak" class="verifikasi" >
+                            @csrf
+                            <input type="hidden" name="status_pengajuan" id="" value="2">
+                            <button type="submit" class="btn" id="btn-tolak" data-bs-dismiss="modal"
+                                style="background-color: #BC4C4C;color:white">Tolak</a>
+                        </form>
+                    </div>
+                    <div class="col" style="padding-right: 170px">
+                        <form action="" method="post" id="verif-terima" class="verifikasi">
+                            @csrf
+                            <input type="hidden" name="status_pengajuan" id="" value="1">
+                            <button type="submit" class="btn" id="btn-terima" data-bs-dismiss="modal"
+                                style="background-color: #257BB7;color:white">Terima</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 {{-- @push('script')
 <script>

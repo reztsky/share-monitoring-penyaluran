@@ -23,7 +23,7 @@ class PemeriksaanBantuanModalController extends Controller
      */
     public function create()
     {
-        //
+        return view('pelayananBantuanModal.pemeriksaan.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class PemeriksaanBantuanModalController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pelayananBantuanModal.pemeriksaan.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class PemeriksaanBantuanModalController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

@@ -172,10 +172,8 @@ Route::group([
             // 'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
-            Route::get('/show/{id}','show')->name('show');
-            Route::get('/edit/{id}','edit')->name('edit');
-            Route::post('/store','store')->name('store');
-            Route::post('/update/{id}','update')->name('update');
+            Route::get('/show','show')->name('show');
+            Route::get('/create','create')->name('create');
         });
 
         Route::group([

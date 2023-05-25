@@ -6,8 +6,8 @@
         <form action="#" method="post">
             @csrf
             <div class="mb-2">
-                <label for="" class="form-label"><b>NIK KPM</b></label>
-                <input type="number" class="form-control" placeholder="NIK KPM" name="id_kpm">
+                <label for="" class="form-label"><b>Tulis NIK Penerima</b></label>
+                <input type="number" class="form-control" placeholder="NIK" name="id_kpm">
                 <div class="form-text text-danger">
                     @error('id_kpm') {{$message}} @enderror
                 </div>
