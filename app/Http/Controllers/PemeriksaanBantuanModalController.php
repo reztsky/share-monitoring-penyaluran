@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Pelayanan\Pemeriksaan\StorePemeriksaanRequest;
 use App\Http\Requests\Pelayanan\Pemeriksaan\UpdatePemeriksaanRequest;
 use App\Models\MJenisKebutuhan;
 use App\Models\PemeriksaanKebutuhan;
-use App\Models\PengajuanKebutuhan;
-use App\Models\MKecamatan;
-use App\Models\MKelurahan;
 use App\Services\Pelayanan\Pemeriksaan\UploadBapService;
-use App\Services\Pelayanan\Pemeriksaan\UploadFotoService;
 use Illuminate\Http\Request;
 
 class PemeriksaanBantuanModalController extends Controller
@@ -19,6 +14,10 @@ class PemeriksaanBantuanModalController extends Controller
     public function index(Request $request)
     {
         $pemeriksaan_kebutuhans = PemeriksaanKebutuhan::select(['*'])->with(['pengajuan.kebutuhan'])
+            ->whereHas('pengajuan',function($query) use ($request){
+                return $query->search($request)
+                ->filterJenisKebutuhan($request);
+            })
             ->paginate(10)
             ->withQueryString();
         

@@ -24,9 +24,9 @@ class CreatePenyaluranRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_pengajuan','required',
-            'bap'=>'mimes:pdf|max:5000',
-            'foto_penyaluran'=>'image|max:2048',
+            'id_pengajuan'=>'required',
+            'bap'=>'required|mimes:pdf|max:5000',
+            'foto_penyaluran'=>'required|image|max:2048',
         ];
     }
 }
