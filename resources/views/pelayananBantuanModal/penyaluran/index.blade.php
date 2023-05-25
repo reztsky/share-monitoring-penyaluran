@@ -1,5 +1,5 @@
 @extends('layout')
-@section('link-active-monitoring','active')
+@section('link-active-pelayanan-modal', 'active')
 @section('content')
 <div class="col-md-12 col-sm-12 col-12">
     <div class="bg-white shadow p-3 rounded-3 my-3">
