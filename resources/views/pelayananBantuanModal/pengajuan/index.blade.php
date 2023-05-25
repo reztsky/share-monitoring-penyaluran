@@ -133,16 +133,16 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('pelayanan.pengajuan.show', $pengajuan_kebutuhan->id) }}"
-                                                class="center  btn btn-sm" style="background-color: #4CBCA1">
+                                                class="center  btn btn-sm" style="background-color: #4CBCA1;padding-top:10px">
                                                 <i class="bi bi-eye-fill white"></i>
                                             </a>
 
                                             <a href="{{ route('pelayanan.pengajuan.edit', $pengajuan_kebutuhan->id) }}"
-                                                class="center  btn btn-sm" style="background-color:  #FFA17A">
+                                                class="center  btn btn-sm" style="background-color:  #FFA17A;padding-top:10px">
                                                 <i class="bi bi-pencil-fill white"></i>
                                             </a>
                                             <a class="btn btn-sm btn-delete" data-model-id="{{ $pengajuan_kebutuhan->id }}"
-                                                style="background-color: #BC4C4C;color:white"
+                                                style="background-color: #BC4C4C;color:white;padding-top:10px"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                     class="bi bi-trash-fill"></i>
                                             </a>
@@ -150,7 +150,7 @@
                                         <td>
                                             <button class="center btn-verifikasi  btn btn-sm"
                                                 {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? 'disabled' : '' }}
-                                                style="background-color: {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? '#A0ACBD' : '#257BB7' }}"
+                                                style="background-color: {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? '#A0ACBD' : '#257BB7' }};padding-top:10px"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModals" id="button"
                                                 data-idpengajuan="{{ $pengajuan_kebutuhan->id }}">
                                                 <i class="bi bi-person-check white"> Verifikasi</i>
