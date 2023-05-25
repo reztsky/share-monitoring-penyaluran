@@ -173,7 +173,8 @@ Route::group([
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/show','show')->name('show');
-            Route::get('/create','create')->name('create');
+            Route::get('/edit/{id}','edit')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
         });
 
         Route::group([
@@ -183,7 +184,7 @@ Route::group([
             // 'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
-            Route::get('/show','show')->name('show');
+            Route::get('/create/{id}','create')->name('create');
         });    
     });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PengajuanKebutuhan;
 use Illuminate\Http\Request;
 
 class PenyaluranBantuanModalController extends Controller
@@ -13,7 +14,12 @@ class PenyaluranBantuanModalController extends Controller
      */
     public function index()
     {
-        return view('pelayananBantuanModal.penyaluran.index');
+        $tanpa_diperiksa=PengajuanKebutuhan::selectCustom()->isDiukur('f')->diterima()->with('kebutuhan');
+        $siap_salurs=PengajuanKebutuhan::selectCustom()->isDiukur('t')->diterima()->whereHas('pemeriksaan',function($query){
+            return $query->where('verifikasi',1);
+        })->with('kebutuhan')->union($tanpa_diperiksa)->paginate(1);
+        
+        return view('pelayananBantuanModal.penyaluran.index',compact('siap_salurs'));
     }
 
     /**
@@ -21,9 +27,9 @@ class PenyaluranBantuanModalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        
     }
 
     /**
@@ -43,8 +49,9 @@ class PenyaluranBantuanModalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nik)
     {
+
         return view('pelayananBantuanModal.penyaluran.show');
     }
 

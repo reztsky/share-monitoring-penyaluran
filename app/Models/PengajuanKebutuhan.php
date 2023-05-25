@@ -61,6 +61,10 @@ class PengajuanKebutuhan extends Model
         return $this->belongsTo(MJenisKebutuhan::class, 'id_jenis_kebutuhan', 'id');
     }
 
+    public function pemeriksaan(){
+        return $this->hasOne(PemeriksaanKebutuhan::class,'id_pengajuan','id');
+    }
+
     public function scopeSearch($query,$request){
         return $query->when($request->filled('keyword'),function($q) use ($request){
             return $q->where(function($que) use ($request){

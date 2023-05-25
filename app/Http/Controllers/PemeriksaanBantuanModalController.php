@@ -3,30 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Pelayanan\Pemeriksaan\StorePemeriksaanRequest;
+use App\Http\Requests\Pelayanan\Pemeriksaan\UpdatePemeriksaanRequest;
 use App\Models\MJenisKebutuhan;
 use App\Models\PemeriksaanKebutuhan;
 use App\Models\PengajuanKebutuhan;
 use App\Models\MKecamatan;
 use App\Models\MKelurahan;
+use App\Services\Pelayanan\Pemeriksaan\UploadBapService;
 use App\Services\Pelayanan\Pemeriksaan\UploadFotoService;
 use Illuminate\Http\Request;
 
 class PemeriksaanBantuanModalController extends Controller
 {
-    
+
     public function index(Request $request)
     {
-        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::select([
-            'id',
-            'nik',
-            'nama',
-            'kelurahan',
-            'status_pengajuan',
-            'id_jenis_kebutuhan'
-        ])->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
-        $jenis_kebutuhans=MJenisKebutuhan::all(['id','nama_kebutuhan']);
-        return view('pelayananBantuanModal.pemeriksaan.index',compact('pemeriksaan_kebutuhan','jenis_kebutuhans'));
-
+        $pemeriksaan_kebutuhans = PemeriksaanKebutuhan::select(['*'])->with(['pengajuan.kebutuhan'])
+            ->paginate(10)
+            ->withQueryString();
+        
+        $jenis_kebutuhans = MJenisKebutuhan::all(['id', 'nama_kebutuhan']);
+        return view('pelayananBantuanModal.pemeriksaan.index', compact('pemeriksaan_kebutuhans', 'jenis_kebutuhans'));
     }
 
     /**
@@ -34,79 +31,47 @@ class PemeriksaanBantuanModalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id,StorePemeriksaanRequest $request, UploadFotoService $uploadFotoService)
+    public function create()
     {
-        $validated=$request->safe()->except('dokumentasi');
-        $validated['dokumentasi']=$uploadFotoService->upload($request->dokumentasi);
-        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::findorFail($id);
-        $kecamatans=MKecamatan::all(['id','kecamatan']);
-        $kecamatan_pengaju=$kecamatans->where('kecamatan',$pemeriksaan_kebutuhan->kecamatan)->first();
-        $kelurahans=MKelurahan::byKecamatan($kecamatan_pengaju->id)->orderBy('kelurahan')->get();
-        $jenis_kebutuhans=MJenisKebutuhan::all();
-        return view('pelayananBantuanModal.pemeriksaan.create',compact('pemeriksaan_kebutuhan'));
+       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show($id)
     {
-        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::with('kebutuhan')->findorFail($id);
-        return view('pelayananBantuanModal.pemeriksaan.show',compact('pemeriksaan_kebutuhan'));
+        $pemeriksaan_kebutuhan = PemeriksaanKebutuhan::with('kebutuhan')->findorFail($id);
+        return view('pelayananBantuanModal.pemeriksaan.show', compact('pemeriksaan_kebutuhan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        
+        $pemeriksaan_kebutuhan = PemeriksaanKebutuhan::with('pengajuan.kebutuhan')->findorFail($id);
+        return view('pelayananBantuanModal.pemeriksaan.edit', compact('pemeriksaan_kebutuhan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(UpdatePemeriksaanRequest $request, $id,UploadBapService $uploadBapService)
     {
-        //
+        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::findOrFail($id);
+        $validated=$request->safe()->except(['bap']);
+
+        if($request->verifikasi==1) $validated['bap']=$uploadBapService->upload($request->bap);
+        else $validated['bap']=$uploadBapService->delete($pemeriksaan_kebutuhan->bap);
+
+        $pemeriksaan_kebutuhan->update($validated);
+        return redirect()->route('pelayanan.pemeriksaan.index')->with('notifikasi','Sukses Memverifikasi Data');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //
     }
-
-    public function verifikasi(Request $request,$id){
-        $pemeriksaan_kebutuhan=PengajuanKebutuhan::findOrFail($id);
-        $pemeriksaan_kebutuhan->status_pengajuan=$request->status_pengajuan;
-        $pemeriksaan_kebutuhan->save();
-        return redirect()->route('pelayanan.penyaluran.index')->with('notifikasi','Verifikasi Berhasil');
-    }
+   
 }

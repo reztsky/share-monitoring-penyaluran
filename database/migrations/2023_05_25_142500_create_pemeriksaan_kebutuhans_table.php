@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('pemeriksaan_kebutuhans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('dokumentasi');
+            $table->uuid('id_pengajuan');
+            $table->string('bap')->nullable();
+            $table->integer('verifikasi')->default(0)->comment('1 : Setuju / 2:Tolak / 0:null')->nullable();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
