@@ -44,14 +44,6 @@
                     <div class="col-md-6">
                         <select name="jenis_banmod" id="jenis_banmod" class="form-select" style="height: 40px">
                             <option value="">Jenis Alat Bantu Disabilitas </option>
-                            <option value="01">Kaki Palsu</option>
-                            <option value="02">Tangan Palsu</option>
-                            <option value="03">Alat Bantu Dengar</option>
-                            <option value="04">Kursi Roda</option>
-                            <option value="05">Walker</option>
-                            <option value="06">Stroller</option>
-                            <option value="07">Kurk</option>
-                            <option value="08">Tongkat Adaptif</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -72,8 +64,18 @@
                                 <th class="cell">No.</th>
                                 <th class="cell">NIK</th>
                                 <th class="cell">Nama</th>
-                                <th class="cell">Jenis Alat Bantu</th>
-                                <th class="cell">Aksi</th>
+                                <th class="cell">
+                                    <center>Jenis Alat Bantu</center>
+                                </th>
+                                <th class="cell">
+                                    <center>Status Pemeriksaan</center>
+                                </th>
+                                <th class="cell">
+                                    <center>Aksi</center>
+                                </th>
+                                <th class="cell">
+                                    <center>Verifikasi</center>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,15 +85,52 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('pelayanan.pengajuan.show')}}"
-                                        class="col-md-4 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
-                                        <i class="bi bi-eye-fill white"></i>
-                                    </a>
-                                    <a href="{{route('pelayanan.pengajuan.edit')}}"
-                                        class="col-md-4 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
-                                        <i class="bi bi-pencil-fill white"></i>
-                                    </a>
-                                    
+                                    <strong>
+                                        {{-- @if ($pengajuan_kebutuhan->getRawOriginal('status_pengajuan') == 3)
+                                            <center>
+                                                //Menunggu Konfirmasi
+                                                <p style="color:#FFA17A" id="status"
+                                                    value="{{ $pengajuan_kebutuhan->status_pengajuan }}">
+                                                    {{ $pengajuan_kebutuhan->status_pengajuan }}</p>
+                                            </center>
+                                        @elseif($pengajuan_kebutuhan->getRawOriginal('status_pengajuan') == 2)
+                                            <center>
+                                                //Ditolak
+                                                <p style="color:#BC4C4C" id="status"
+                                                    value="{{ $pengajuan_kebutuhan->status_pengajuan }}">
+                                                    {{ $pengajuan_kebutuhan->status_pengajuan }}</p>
+                                            </center>
+                                        @else
+                                            <center>
+                                                //Disetujui
+                                                <p style="color:#257BB7" id="status"
+                                                    value="{{ $pengajuan_kebutuhan->status_pengajuan }}">
+                                                    {{ $pengajuan_kebutuhan->status_pengajuan }}</p>
+                                            </center>
+                                        @endif --}}
+                                    </strong>
+                                </td>
+                                <td>
+                                    <center>
+                                        <a href="{{ route('pelayanan.pemeriksaan.show') }}"
+                                            class="col-md-4 btn btn-sm" style="background-color: #4CBCA1;height: 34px">
+                                            <i class="bi bi-eye-fill white"></i>
+                                        </a>
+                                        <a href="{{ route('pelayanan.pemeriksaan.create') }}"
+                                            class="col-md-4 btn btn-sm" style="background-color:  #FFA17A;height: 34px">
+                                            <i class="bi bi-pencil-fill white"></i>
+                                        </a>
+                                </center>
+                                </td>
+                                <td>
+                                    <center>
+                                        <button class="center btn-verifikasi  btn btn-sm"
+                                            {{-- {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? 'disabled' : '' }} --}}
+                                            {{-- style="background-color: {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? '#A0ACBD' : '#257BB7' }};height: 34px" --}}
+                                            data-bs-toggle="modal" data-bs-target="#exampleModals" id="button">
+                                            <i class="bi bi-person-check white"> Verifikasi</i>
+                                        </button>
+                                    </center>
                                 </td>
                             </tr>
                         </tbody>
@@ -119,6 +158,45 @@
                 <button type="button" class="btn" style="background-color: #BC4C4C;color:white"
                     data-bs-dismiss="modal">Batal</button>
                 <a href="" class="btn" id="confirm-delete" style="background-color: #4CBCA1;color:white">Ya</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Acc-->
+<div class="modal fade" id="exampleModals" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">Verifikasi Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <img src="{{ asset('img/warning.png') }}" alt="alert" width="200" height="200">
+                    <p style="color:#BC4C4C"><strong>SETELAH VERIFIKASI TIDAK DAPAT DIUBAH, APAKAH ANDA MENYETUJUI PENGAJUAN ALAT BANTU INI ?</strong></p>
+                </center>
+            </div>
+            <hr/>
+            <div class="pb-3">
+                <div class="row">
+                    <div class="col" style="padding-left: 170px">
+                        <form action="" method="post" id="verif-tolak" class="verifikasi" >
+                            @csrf
+                            <input type="hidden" name="status_pengajuan" id="" value="2">
+                            <button type="submit" class="btn" id="btn-tolak" data-bs-dismiss="modal"
+                                style="background-color: #BC4C4C;color:white">Tolak</a>
+                        </form>
+                    </div>
+                    <div class="col" style="padding-right: 170px">
+                        <form action="" method="post" id="verif-terima" class="verifikasi">
+                            @csrf
+                            <input type="hidden" name="status_pengajuan" id="" value="1">
+                            <button type="submit" class="btn" id="btn-terima" data-bs-dismiss="modal"
+                                style="background-color: #257BB7;color:white">Terima</a>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

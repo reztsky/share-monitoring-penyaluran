@@ -27,6 +27,7 @@ class PengajuanKebutuhan extends Model
         'no_hp',
         'id_jenis_kebutuhan',
         'status_pengajuan',
+        'foto_pengambilan',
     ];
 
     protected function statusPengajuan() : Attribute{
