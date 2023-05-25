@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Pelayanan\Pemeriksaan\StorePemeriksaanRequest;
 use App\Models\MJenisKebutuhan;
+use App\Models\PemeriksaanKebutuhan;
 use App\Models\PengajuanKebutuhan;
+use App\Models\MKecamatan;
+use App\Models\MKelurahan;
+use App\Services\Pelayanan\Pemeriksaan\UploadFotoService;
 use Illuminate\Http\Request;
 
 class PemeriksaanBantuanModalController extends Controller
@@ -11,9 +16,17 @@ class PemeriksaanBantuanModalController extends Controller
     
     public function index(Request $request)
     {
-        $pengajuan_kebutuhans=PengajuanKebutuhan::selectCustom()->isDiukur('t')->diterima()->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
-        $jenis_kebutuhans=MJenisKebutuhan::all(['nama_kebutuhan','id']);
-        return view('pelayananBantuanModal.pemeriksaan.index',compact('pengajuan_kebutuhans','jenis_kebutuhans'));
+        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::select([
+            'id',
+            'nik',
+            'nama',
+            'kelurahan',
+            'status_pengajuan',
+            'id_jenis_kebutuhan'
+        ])->search($request)->filterJenisKebutuhan($request)->with('kebutuhan')->paginate(10)->withQueryString();
+        $jenis_kebutuhans=MJenisKebutuhan::all(['id','nama_kebutuhan']);
+        return view('pelayananBantuanModal.pemeriksaan.index',compact('pemeriksaan_kebutuhan','jenis_kebutuhans'));
+
     }
 
     /**
@@ -21,9 +34,16 @@ class PemeriksaanBantuanModalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id,StorePemeriksaanRequest $request, UploadFotoService $uploadFotoService)
     {
-        return view('pelayananBantuanModal.pemeriksaan.create');
+        $validated=$request->safe()->except('dokumentasi');
+        $validated['dokumentasi']=$uploadFotoService->upload($request->dokumentasi);
+        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::findorFail($id);
+        $kecamatans=MKecamatan::all(['id','kecamatan']);
+        $kecamatan_pengaju=$kecamatans->where('kecamatan',$pemeriksaan_kebutuhan->kecamatan)->first();
+        $kelurahans=MKelurahan::byKecamatan($kecamatan_pengaju->id)->orderBy('kelurahan')->get();
+        $jenis_kebutuhans=MJenisKebutuhan::all();
+        return view('pelayananBantuanModal.pemeriksaan.create',compact('pemeriksaan_kebutuhan'));
     }
 
     /**
@@ -45,7 +65,8 @@ class PemeriksaanBantuanModalController extends Controller
      */
     public function show($id)
     {
-        return view('pelayananBantuanModal.pemeriksaan.show');
+        $pemeriksaan_kebutuhan=PemeriksaanKebutuhan::with('kebutuhan')->findorFail($id);
+        return view('pelayananBantuanModal.pemeriksaan.show',compact('pemeriksaan_kebutuhan'));
     }
 
     /**
@@ -80,5 +101,12 @@ class PemeriksaanBantuanModalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verifikasi(Request $request,$id){
+        $pemeriksaan_kebutuhan=PengajuanKebutuhan::findOrFail($id);
+        $pemeriksaan_kebutuhan->status_pengajuan=$request->status_pengajuan;
+        $pemeriksaan_kebutuhan->save();
+        return redirect()->route('pelayanan.penyaluran.index')->with('notifikasi','Verifikasi Berhasil');
     }
 }

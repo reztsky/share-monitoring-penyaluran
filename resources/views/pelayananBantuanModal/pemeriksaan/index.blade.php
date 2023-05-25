@@ -112,8 +112,8 @@
                                         <td>
                                             <center>
                                                 <button class="center btn-verifikasi  btn btn-sm"
-                                                    {{-- {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? 'disabled' : '' }} --}}
-                                                    {{-- style="background-color: {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? '#A0ACBD' : '#257BB7' }};height: 34px" --}}
+                                                    {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? 'disabled' : '' }}
+                                                    style="background-color: {{ $pengajuan_kebutuhan->getRawOriginal('status_pengajuan') != 3 ? '#A0ACBD' : '#257BB7' }};height: 34px" 
                                                     data-bs-toggle="modal" data-bs-target="#exampleModals" id="button">
                                                     <i class="bi bi-person-check white"> Verifikasi</i>
                                                 </button>

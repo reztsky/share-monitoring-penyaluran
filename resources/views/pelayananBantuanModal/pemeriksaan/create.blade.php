@@ -19,7 +19,7 @@
             </div>
             @endif
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pelayanan.pengajuan.create', $pemeriksaan_kebutuhan->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row app-card shadow-sm bg-white p-3">
                     <div class="app-card-body">
@@ -28,79 +28,78 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">NIK</label>
                                 <div class="col-sm-8">
-                                    <input type="number"  class="form-control" value="" id="nik" name="NIK" readonly>
+                                    {{$pemeriksaan_kebutuhan->nik}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">No. KK</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" value="" id="no_kk" name="no_kk" readonly>
+                                    {{$pemeriksaan_kebutuhan->no_kk}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Nama Penerima</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('nama_penerima')}}" id="nama_penerima" name="nama_penerima" readonly>
-                                </div>
+                                    {{$pemeriksaan_kebutuhan->nama}}                                </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-8 pt-2">
-                                    <input type="text" class="form-control" value="{{old('jenkel')}}" id="jenkel" name="jenkel" readonly>
+                                    {{$pemeriksaan_kebutuhan->jenis_kelamin}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Tempat Lahir</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('tempat_lahir')}}" id="tempat_lahir" name="tempat_lahir" readonly>
+                                    {{$pemeriksaan_kebutuhan->tempat_lahir}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control" value="{{old('tanggal_lahir')}}" id="tanggal_lahir" name="tanggal_lahir" readonly>
+                                    {{$pemeriksaan_kebutuhan->tanggal_lahir}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Kecamatan</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('kecamatan')}}" id="kecamatan" name="kecamatan" readonly>
+                                    {{$pemeriksaan_kebutuhan->kecamatan}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Kelurahan</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('kelurahan')}}" id="kelurahan" name="kelurahan" readonly>
+                                    {{$pemeriksaan_kebutuhan->kelurahan}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">RW</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" value="{{old('rw')}}" id="rw" name="rw" readonly>
+                                    {{$pemeriksaan_kebutuhan->rw}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">RT</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" value="{{old('rt')}}" id="rt" name="rt" readonly>
+                                    {{$pemeriksaan_kebutuhan->rt}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Alamat Lengkap</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('alamat_ktp')}}" id="alamat_ktp" name="alamat_ktp" readonly>
+                                    {{$pemeriksaan_kebutuhan->alamat}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label fw-bold">No. Hp</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" value="{{old('no_hp')}}" id="no_hp" placeholder="No. Hp" name="no_hp" readonly>
+                                    {{$pemeriksaan_kebutuhan->no_hp}}
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Jenis Alat Bantu Disabilitas</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{old('jenis_banmod')}}" id="jenis_banmod" name="jenis_banmod" readonly>
+                                    {{$pemeriksaan_kebutuhan->kebutuhan->nama_kebutuhan}}
                                 </div>
                             </div>
                             <hr/>
