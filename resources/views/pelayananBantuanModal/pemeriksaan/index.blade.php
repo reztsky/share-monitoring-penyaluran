@@ -75,8 +75,18 @@
                                     <th class="cell">No.</th>
                                     <th class="cell">NIK</th>
                                     <th class="cell">Nama</th>
-                                    <th class="cell">Jenis Alat Bantu</th>
-                                    <th class="cell">Aksi</th>
+                                    <th class="cell">
+                                        <center>Jenis Alat Bantu</center>
+                                    </th>
+                                    <th class="cell">
+                                        <center>Status Pemeriksaan</center>
+                                    </th>
+                                    <th class="cell">
+                                        <center>Aksi</center>
+                                    </th>
+                                    <th class="cell">
+                                        <center>Verifikasi</center>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
