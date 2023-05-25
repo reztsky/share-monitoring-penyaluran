@@ -27,7 +27,7 @@ class PemeriksaanKebutuhan extends Model
             get:function($value){
                 if($value==1)return 'Setuju';
                 if($value==2)return 'Tolak';
-                return 'Belum Diperiksa/Pengukuran';
+                return 'Belum Diperiksa / Masih Proses Pengukuran';
             }
         );
     }

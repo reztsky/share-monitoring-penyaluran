@@ -92,12 +92,27 @@
                                         <td>{{ $pemeriksaan_kebutuhans->firstItem() + $loop->index }}</td>
                                         <td>{{ $pemeriksaan_kebutuhan->pengajuan->nik }}</td>
                                         <td>{{ $pemeriksaan_kebutuhan->pengajuan->nama }}</td>
-                                        <td>{{ $pemeriksaan_kebutuhan->pengajuan->kebutuhan->nama_kebutuhan }}</td>
-                                        <td>{{ $pemeriksaan_kebutuhan->verifikasi}}</td>
+                                        <td><center>{{ $pemeriksaan_kebutuhan->pengajuan->kebutuhan->nama_kebutuhan }}</center></td>
                                         <td>
+                                            <center><strong>
+                                                <p class="center"
+                                                    style="color: {{ $pemeriksaan_kebutuhan->verifikasi != 'Setuju' ? '#FFA17A' : '#257BB7' }};padding-top:10px"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModals" id="button">
+                                                    {{ $pemeriksaan_kebutuhan->verifikasi}}
+                                                </p>
+                                            </strong></center>
+                                        </td>
+                                        <td>
+                                            {{-- if($value==1)return 'Setuju';
+                if($value==2)return 'Tolak';
+                return 'Belum Diperiksa / Masih Proses Pengukuran'; --}}
                                             <center>
-                                               <a href="{{route('pelayanan.pemeriksaan.edit',$pemeriksaan_kebutuhan->id)}}" class="btn btn-primary">Verifikasi</a>
-                                            </center>
+                                                @if ($pemeriksaan_kebutuhan->verifikasi == 'Belum Diperiksa / Masih Proses Pengukuran')
+                                                    <a href="{{route('pelayanan.pemeriksaan.edit',$pemeriksaan_kebutuhan->id)}}" class="btn" style="background-color: #257BB7;color:white" ><span><i class="bi bi-person-check white"></i></span>&nbsp;Verifikasi</a>
+                                                @else
+                                                    <a href="{{route('pelayanan.pemeriksaan.edit',$pemeriksaan_kebutuhan->id)}}" class="btn" style="background-color: #A0ACBD;color:white" ><span><i class="bi bi-person-check white"></i></span>&nbsp;Detail</a>
+                                                @endif
+                                            </center>                                         
                                         </td>
                                     </tr>
                                 @endforeach

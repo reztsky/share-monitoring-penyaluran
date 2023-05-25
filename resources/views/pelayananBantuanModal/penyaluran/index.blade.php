@@ -30,17 +30,18 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form><hr/>
+            <h5 >Data Penerima Salur Alat Bantu Disabilitas</h5>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <td>No.</td>
-                            <td>NIK</td>
-                            <td>Nama</td>
-                            <td>Jenis Kebutuhan</td>
-                            <td>Status Salur</td>
-                            <td>Aksi</td>
+                            <td style="color: white;background-color: #5EC2AF;">No.</td>
+                            <td style="color: white;background-color: #5EC2AF;">NIK</td>
+                            <td style="color: white;background-color: #5EC2AF;">Nama</td>
+                            <td style="color: white;background-color: #5EC2AF;">Jenis Kebutuhan</td>
+                            <td style="color: white;background-color: #5EC2AF;"><center>Status Salur</center></td>
+                            <td style="color: white;background-color: #5EC2AF;"><center>Aksi</center></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,14 +51,34 @@
                                 <td>{{ $siap_salur->nik }}</td>
                                 <td>{{ $siap_salur->nama }}</td>
                                 <td>{{ $siap_salur->kebutuhan->nama_kebutuhan }}</td>
-                                <td>{{ is_null($siap_salur->penyaluran) ? 'Belum Disalurkan' : 'Sudah Disalurkan' }}</td>
                                 <td>
-                                    @if (is_null($siap_salur->penyaluran))
-                                        <a href="{{ route('pelayanan.penyaluran.create', $siap_salur->id) }}">Salurkan</a>
-                                    @endif
-                                    @if (!is_null($siap_salur->penyaluran))
-                                        <a href="{{ route('pelayanan.penyaluran.show', $siap_salur->id) }}">Detail</a>
-                                    @endif
+                                    <center>
+                                        @if( is_null($siap_salur->penyaluran))
+                                            <strong>
+                                                <p class="center"
+                                                    style="color: #FFA17A">
+                                                    Belum Disalurkan
+                                                </p>
+                                            </strong>
+                                        @else
+                                            <strong>
+                                                <p class="center"
+                                                    style="color: #257BB7">
+                                                    Sudah Disalurkan
+                                                </p>
+                                            </strong>
+                                        @endif
+                                    </center>
+                                </td>
+                                <td>
+                                    <center>
+                                        @if (is_null($siap_salur->penyaluran))
+                                            <a href="{{ route('pelayanan.penyaluran.create', $siap_salur->id) }}" class="btn" style="background-color: #257BB7;color:white" >Salurkan</a>
+                                        @endif
+                                        @if (!is_null($siap_salur->penyaluran))
+                                            <strong><a href="{{ route('pelayanan.penyaluran.show', $siap_salur->id) }}" style="color:#A0ACBD" >Detail</a></strong>
+                                        @endif
+                                    </center>
                                 </td>
                             </tr>
                         @empty

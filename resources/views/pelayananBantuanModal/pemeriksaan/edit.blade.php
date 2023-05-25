@@ -116,6 +116,7 @@
                                             <input type="file" class="form-control" name="bap"
                                                 id="bap" accept="pdf/*" style="min-height:45px">
                                             <a class="text-decoration-underline" href="{{asset('storage/bap_pemeriksaan/'.$pemeriksaan_kebutuhan->bap)}}">{{$pemeriksaan_kebutuhan->bap}}</a>
+                                            <div class="form-text" style="color: crimson">*Format BAP : Pdf</div>
                                             @error('bap')
                                                 <div class="form-text text-danger">{{$message}}</div>
                                             @enderror
