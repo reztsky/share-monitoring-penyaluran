@@ -77,8 +77,13 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$rekap->nama_kebutuhan}}</td>
-                                <td>{{$rekap->pengajuan_count}}</td>
-                                <td>{{$rekap->penyaluran_count}}</td>
+                                <td>
+                                    <a
+                                        href="{{route('pelayanan.dashboard.detail',['jenis_bantuan'=>$rekap->id,'kategori'=>'PENGAJUAN'])}}">{{$rekap->pengajuan_count}}</a>
+                                </td>
+                                <td><a
+                                    href="{{route('pelayanan.dashboard.detail',['jenis_bantuan'=>$rekap->id,'kategori'=>'PENYALURAN'])}}">{{$rekap->penyaluran_count}}</a>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardAlatBantuService
 {
-
+    
     public function rekap(){
        return DB::table('m_jenis_kebutuhans as a')
        ->select(['a.id','a.nama_kebutuhan'])
@@ -19,13 +19,22 @@ class DashboardAlatBantuService
        ->groupBy(['a.nama_kebutuhan','a.id'])
         ->get();
     }
-    
 
-    private function pengajuan($enis_kebutuhan){
-        
+    
+    public function pengajuan($id_jenis_bantuan){
+        return DB::table('pengajuan_kebutuhans as a')
+        ->join('m_jenis_kebutuhans as b','b.id','=','a.id_jenis_kebutuhan')
+        ->select(['a.nik','a.nama','a.kelurahan','a.alamat','b.nama_kebutuhan','a.dokumentasi'])
+        ->where('id_jenis_kebutuhan',$id_jenis_bantuan)
+        ->paginate(10);
     }
 
-    private function penyaluran($jenis_kebutuhan){
-       
+    public function penyaluran($id_jenis_bantuan){
+        return DB::table('pengajuan_kebutuhans as a')
+        ->join('penyaluran_kebutuhans as b','a.id','=','b.id_pengajuan')
+        ->join('m_jenis_kebutuhans as c','c.id','=','a.id_jenis_kebutuhan')
+        ->select(['a.nik','a.nama','a.kelurahan','a.alamat','c.nama_kebutuhan','b.foto_penyaluran'])
+        ->where('a.id_jenis_kebutuhan',$id_jenis_bantuan)
+        ->paginate(10);
     }
 }
