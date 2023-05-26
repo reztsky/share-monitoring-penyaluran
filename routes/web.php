@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BantuanModalHomeController;
 use App\Http\Controllers\BantuanModalTransaksiController;
+use App\Http\Controllers\DashboardBantuanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
@@ -140,7 +141,7 @@ Route::group([
         'as'=>'pelayanan.',
     ], function(){
         Route::group([
-            'controller'=>PelayananBantuanModalController::class,
+            'controller'=>DashboardBantuanController::class,
             'as'=>'dashboard.',
             'prefix'=>'/dashboard',
             // 'middleware'=>'role:Super Admin',

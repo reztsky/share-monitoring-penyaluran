@@ -66,33 +66,29 @@
                     <thead>
                         <tr>
                             <th style="background-color: #5EC2AF;color:white;">No</th>
-                            <th style="background-color: #5EC2AF;color:white;">NIK</th>
-                            <th style="background-color: #5EC2AF;color:white;">Nama</th>
                             <th style="background-color: #5EC2AF;color:white;">Jenis Alat Bantu</th>
-                            <th style="background-color: #5EC2AF;color:white;">Kelurahan</th>
-                            <th style="background-color: #5EC2AF;color:white;">Salary</th>
+                            <th style="background-color: #5EC2AF;color:white;">Jumlah Pengajuan</th>
+                            <th style="background-color: #5EC2AF;color:white;">Jumlah Tersalur</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011-04-25</td>
-                            <td>$320,800</td>
-                        </tr>
+                      
+                        @foreach ($rekaps as $rekap)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$rekap->nama_kebutuhan}}</td>
+                                <td>{{$rekap->pengajuan_count}}</td>
+                                <td>{{$rekap->penyaluran_count}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
-                    {{-- <tfoot>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                    <tfoot>
+                        <tr style="background-color: #5EC2AF;color:white;">
+                            <th colspan="2">Total</th>
+                            <th>{{number_format($rekaps->sum('pengajuan_count'),0,',','.')}}</th>
+                            <th>{{number_format($rekaps->sum('penyaluran_count'),0,',','.')}}</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
         </div>
