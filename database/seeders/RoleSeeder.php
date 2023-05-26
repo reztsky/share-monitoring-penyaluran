@@ -17,14 +17,14 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $role=[
-            'name'=>'Super Admin'
+            'name'=>'Admin Pelayanan'
         ];
 
         $users=User::all();
         $role=Role::create($role);
 
         foreach ($users as $user) {
-            $user->assignRole('Super Admin');
+            $user->assignRole('Admin Pelayanan');
         }
 
     }

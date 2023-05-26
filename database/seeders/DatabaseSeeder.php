@@ -24,11 +24,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // KPMBLTSeeder::class,
             // UserSeeder::class,
-            // RoleSeeder::class,
+            RoleSeeder::class,
             // SurveyorSeeder::class,
-            JenisKebetuhanSeeder::class,
-            KecamatanSeeder::class,
-            KelurahanSeeder::class,
+            // JenisKebetuhanSeeder::class,
+            // KecamatanSeeder::class,
+            // KelurahanSeeder::class,
         ]);
     }
 }

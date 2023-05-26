@@ -144,7 +144,7 @@ Route::group([
             'controller'=>DashboardBantuanController::class,
             'as'=>'dashboard.',
             'prefix'=>'/dashboard',
-            // 'middleware'=>'role:Super Admin',
+            'middleware'=>'role:Admin Pelayanan',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('detail/{jenis_bantuan}/{kategori}','detail')->name('detail');
@@ -154,7 +154,7 @@ Route::group([
             'controller'=>PengajuanBantuanModalController::class,
             'as'=>'pengajuan.',
             'prefix'=>'/pengajuan',
-            // 'middleware'=>'role:Super Admin',
+            'middleware'=>'role:Admin Pelayanan',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/create','create')->name('create');
@@ -171,7 +171,7 @@ Route::group([
             'controller'=>PemeriksaanBantuanModalController::class,
             'as'=>'pemeriksaan.',
             'prefix'=>'/pemeriksaan',
-            // 'middleware'=>'role:Super Admin',
+            'middleware'=>'role:Admin Pelayanan',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/show','show')->name('show');
@@ -183,7 +183,7 @@ Route::group([
             'controller'=>PenyaluranBantuanModalController::class,
             'as'=>'penyaluran.',
             'prefix'=>'/penyaluran',
-            // 'middleware'=>'role:Super Admin',
+            'middleware'=>'role:Admin Pelayanan',
         ], function(){
             Route::get('/','index')->name('index');
             Route::get('/create/{id}','create')->name('create');
