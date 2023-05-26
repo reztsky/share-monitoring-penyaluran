@@ -18,7 +18,9 @@ class DashboardAlatBantuService
             ->leftJoin('pengajuan_kebutuhans as b', function ($join) use ($request) {
                 return $join->when($request->filled('tanggal_pengajuan'), function ($query) use ($request) {
                     return $query->where('b.tanggal_pengajuan', $request->tanggal_pengajuan);
-                })->on('a.id', '=', 'b.id_jenis_kebutuhan');
+                })
+                ->where('b.deleted_at',null)
+                ->on('a.id', '=', 'b.id_jenis_kebutuhan');
             })
             ->leftJoin('penyaluran_kebutuhans as c', 'b.id', '=', 'c.id_pengajuan')
             ->groupBy(['a.nama_kebutuhan', 'a.id'])
@@ -32,6 +34,7 @@ class DashboardAlatBantuService
             ->join('m_jenis_kebutuhans as b', 'b.id', '=', 'a.id_jenis_kebutuhan')
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.alamat', 'b.nama_kebutuhan', 'a.dokumentasi'])
             ->where('id_jenis_kebutuhan', $id_jenis_bantuan)
+            ->where('a.deleted_at',null)
             ->paginate(10);
     }
 
@@ -42,6 +45,7 @@ class DashboardAlatBantuService
             ->join('m_jenis_kebutuhans as c', 'c.id', '=', 'a.id_jenis_kebutuhan')
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.alamat', 'c.nama_kebutuhan', 'b.foto_penyaluran'])
             ->where('a.id_jenis_kebutuhan', $id_jenis_bantuan)
+            ->where('a.deleted_at',null)
             ->paginate(10);
     }
 }
