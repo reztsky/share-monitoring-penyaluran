@@ -51,6 +51,11 @@
         overflow: auto;
         white-space: nowrap;
     }
+
+    table.dataTable {
+     padding-top: 10px;
+}
+
 </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.2.2/css/fixedColumns.dataTables.min.css">
@@ -68,7 +73,7 @@
                         </div>
 
                         <div class="table-responsive table-striped" style="width:100%">
-                            <table id="example" class="table table-hover mb-3 text-left" style="margin-top:2cm">
+                            <table id="dataa" class="table table-hover mb-3 text-left" >
                                 <thead style="background-color: #5EC2AF;color:white">
                                     <tr>
                                         @if ($data->count()>0)
@@ -121,7 +126,7 @@
 <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
 <script>
     $(document).ready(function () {
-    $('#example').DataTable();
+    $('#dataa').DataTable();
 });
 </script>
 @endpush
