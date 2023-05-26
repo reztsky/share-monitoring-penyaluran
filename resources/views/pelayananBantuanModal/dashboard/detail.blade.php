@@ -100,7 +100,7 @@
                                         <td><a href="{{asset('storage/dokumentasi_penyaluran/'.$value)}}" target="_blank"
                                                 rel="noopener noreferrer">Bukti Penyaluran</a></td>
                                         @elseif($key=='dokumentasi')
-                                        <td><a href="{{asset('storage/dokumentasi/'.$value)}}" target="_blank"
+                                        <td><a href="{{asset('storage/dokumentasi_pengajuan/'.$value)}}" target="_blank"
                                                 rel="noopener noreferrer">Bukti Dokumentasi</a></td>
                                         @else
                                         <td>{{$value}}</td>
