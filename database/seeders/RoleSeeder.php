@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
@@ -20,12 +21,15 @@ class RoleSeeder extends Seeder
             'name'=>'Admin Pelayanan'
         ];
 
-        $users=User::all();
         $role=Role::create($role);
-
-        foreach ($users as $user) {
-            $user->assignRole('Admin Pelayanan');
-        }
+        $user=User::create([
+            'name'=>'Admin Pelayanan',
+            'username'=>'pelayanan',
+            'password'=>Hash::make('pelayanan123'),
+            'password_text'=>'pelayanan123',
+        ]);
+        $user->assignRole('Admin Pelayanan');
+        
 
     }
 }

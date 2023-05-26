@@ -41,6 +41,7 @@ class UpdatePengajuanReqeust extends FormRequest
             'alamat'=>'required',
             'no_hp'=>'required|numeric',
             'id_jenis_kebutuhan'=>'required|numeric',
+            'tanggal_pengajuan'=>'required|date|',
         ];
     }
 }

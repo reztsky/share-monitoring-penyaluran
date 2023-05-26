@@ -35,7 +35,7 @@ class PenyaluranBantuanModalController extends Controller
 
     public function store(CreatePenyaluranRequest $request, UploadFotoService $uploadFotoService, UploadBapService $uploadBapService)
     {
-        $validated=$request->safe()->only('id_pengajuan');
+        $validated=$request->safe()->only(['id_pengajuan','tanggal_salur']);
         $validated['bap']=$uploadBapService->upload($request->bap);
         $validated['foto_penyaluran']=$uploadFotoService->upload($request->foto_penyaluran);
         $penyaluran_kebutuhan=PenyaluranKebutuhan::create($validated);

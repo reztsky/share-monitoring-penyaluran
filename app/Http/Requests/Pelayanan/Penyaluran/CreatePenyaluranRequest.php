@@ -25,6 +25,7 @@ class CreatePenyaluranRequest extends FormRequest
     {
         return [
             'id_pengajuan'=>'required',
+            'tanggal_salur'=>'required|date|',
             'bap'=>'required|mimes:pdf|max:5000',
             'foto_penyaluran'=>'required|image|max:2048',
         ];

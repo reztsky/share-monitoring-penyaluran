@@ -13,6 +13,7 @@ class PenyaluranKebutuhan extends Model
 
     protected $fillable=[
         'id_pengajuan',
+        'tanggal_salur',
         'bap',
         'foto_penyaluran',
     ];

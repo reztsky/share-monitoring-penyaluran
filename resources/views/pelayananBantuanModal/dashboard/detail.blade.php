@@ -97,7 +97,7 @@
                                         @if (in_array($key,['nik','no_kk','nama_kebutuhan']))
                                         <center><td>{{$value}}</td></center>
                                         @elseif($key=='foto_penyaluran')
-                                        <td><a href="{{asset('storage/foto_penyaluran/'.$value)}}" target="_blank"
+                                        <td><a href="{{asset('storage/dokumentasi_penyaluran/'.$value)}}" target="_blank"
                                                 rel="noopener noreferrer">Bukti Penyaluran</a></td>
                                         @elseif($key=='dokumentasi')
                                         <td><a href="{{asset('storage/dokumentasi/'.$value)}}" target="_blank"

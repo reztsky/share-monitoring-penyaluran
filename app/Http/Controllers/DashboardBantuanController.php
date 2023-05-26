@@ -6,13 +6,14 @@ use App\Models\MJenisKebutuhan;
 use App\Models\PengajuanKebutuhan;
 use App\Models\PenyaluranKebutuhan;
 use App\Services\Pelayanan\DashboardAlatBantuService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardBantuanController extends Controller
 {
-    public function index(DashboardAlatBantuService $dashboardAlatBantu)
+    public function index(Request $request,DashboardAlatBantuService $dashboardAlatBantu)
     {
-        $rekaps=$dashboardAlatBantu->rekap();
+        $rekaps=$dashboardAlatBantu->rekap($request);
         return view('pelayananBantuanModal.dashboard.index', compact('rekaps'));
     }
     public function detail(DashboardAlatBantuService $dashboardAlatBantu,$jenis_bantuan,$kategori){

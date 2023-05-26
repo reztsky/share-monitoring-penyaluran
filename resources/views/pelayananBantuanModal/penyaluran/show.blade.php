@@ -102,7 +102,12 @@
                                     {{$pengajuan_kebutuhan->kebutuhan->nama_kebutuhan}}
                                 </div>
                             </div>
-
+                            <div class="row mb-3">
+                                <label for="" class="col-sm-4 col-form-label">Tanggal Salur</label>
+                                <div class="col-sm-8">
+                                    {{$pengajuan_kebutuhan->penyaluran->tanggal_salur}}
+                                </div>
+                            </div>
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Dokumentasi Penyaluran</label>
                                 <div class="col-sm-8">

@@ -68,8 +68,9 @@
                             <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">Kelurahan</label>
                                 <div class="col-sm-8">
-                                    <{{ $pengajuan_kebutuhan->kelurahan }} </div>
+                                    {{ $pengajuan_kebutuhan->kelurahan }}
                                 </div>
+                            </div>
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">RW</label>
                                     <div class="col-sm-8">
@@ -106,6 +107,12 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id_pengajuan" value="{{$pengajuan_kebutuhan->id}}">
+                                    <div class="row mb-3">
+                                        <label for="" class="col-sm-4 col-form-label">Tanggal Salur</label>
+                                        <div class="col-sm-8">
+                                            <input type="date"  class="form-control" value="{{old('tanggal_salur')}}" id="tanggal_salur" placeholder="tanggal_salur" name="tanggal_salur" >
+                                        </div>
+                                    </div>
                                     <div class="row mb-3">
                                         <label for="" class="col-sm-4 col-form-label">Dokumentasi Penyaluran</label>
                                         <div class="col-sm-8">

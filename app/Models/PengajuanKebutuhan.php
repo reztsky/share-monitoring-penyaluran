@@ -27,6 +27,7 @@ class PengajuanKebutuhan extends Model
         'no_hp',
         'id_jenis_kebutuhan',
         'status_pengajuan',
+        'tanggal_pengajuan',
         'dokumentasi',
     ];
 
