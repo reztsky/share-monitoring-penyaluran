@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PenyaluranKebutuhan extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
-    // Tesss Model Push,dwdw,adwawd
+    // Tesss Model Push,dwdw,adwawdds
     protected $fillable=[
         'id_pengajuan',
         'tanggal_salur',
