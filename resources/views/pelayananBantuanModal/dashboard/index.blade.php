@@ -63,16 +63,16 @@
                     <div class="view">
                         <form action="{{route('pelayanan.dashboard.index')}}" method="get">
                             <div class="row mb-3 align-items-center">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="">Tanggal Pengajuan</label>
                                     <input type="date" class="form-control" name="tanggal_pengajuan" value="{{request('tanggal_pengajuan')}}">
                                 </div>
-                                <div class="col-md-4">
-
+                                <div class="col-md-6 mt-4">
+                                    <button type="submit" class="btn btn-sm" style="background-color: #5EC2AF;color:white;">Filter</button>
                                 </div>
-                                <div class="col-md-4 align-item-end">
+                                {{-- <div class="col-md-4 align-item-end">
                                     <button type="submit" class="btn btn-sm btn-primary">Filter</button>
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
                         <div class="wrapper">
