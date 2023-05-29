@@ -67,7 +67,7 @@ class PengajuanKebutuhan extends Model
     }
 
     public function penyaluran(){
-        return $this->hasOne(penyaluranKebutuhan::class,'id_pengajuan','id');
+        return $this->hasOne(PenyaluranKebutuhan::class,'id_pengajuan','id');
     }
 
     public function scopeSearch($query,$request){
