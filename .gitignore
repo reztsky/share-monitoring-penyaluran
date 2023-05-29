@@ -13,3 +13,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/storage/app/public/foto_monitoring
+/storage/app/public/foto_pemberian
+/storage/app/public/dokumentasi_penyaluran
+/storage/app/public/dokumentasi_pengajuan
+/storage/app/public/bap_penyaluran
+/storage/app/public/bap_pemeriksaan
