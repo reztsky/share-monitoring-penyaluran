@@ -71,11 +71,12 @@
                                     {{ $pengajuan_kebutuhan->kelurahan }}
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mt-6">
                                 <label for="" class="col-sm-4 col-form-label">RW</label>
                                 <div class="col-sm-8">
                                     {{ $pengajuan_kebutuhan->rw }}
                                 </div>
+                            </div>
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">RT</label>
                                     <div class="col-sm-8">
@@ -152,6 +153,7 @@
                                     <div class="col-sm-8">
                                         <input type="file" class="form-control" name="foto_penyaluran"
                                             id="foto_penyaluran" accept="image/*" style="min-height:45px">
+                                            <div class="form-text" style="color: crimson">Format File : jpg, jpeg, png</div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -159,6 +161,7 @@
                                     <div class="col-sm-8">
                                         <input type="file" class="form-control" name="bap" id="bap"
                                             accept="pdf/*" style="min-height:45px">
+                                            <div class="form-text" style="color: crimson">Format File : pdf</div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end mt-4">

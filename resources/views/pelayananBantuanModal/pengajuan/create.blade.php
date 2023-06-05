@@ -36,17 +36,17 @@
                                     <label for="" class="col-sm-4 col-form-label">NIK</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ old('nik') }}"
-                                            id="nik" placeholder="NIK" name="nik">
+                                            id="nik" placeholder="NIK" name="nik" min=0>
 
-                                        <div id="alert-cek-pengajuan-sudah" class="text-danger form-text ps-1 d-none">NIK Sudah Pernah Diajukan</div>
-                                        <div id="alert-cek-pengajuan-belum" class="text-success form-text ps-1 d-none">NIK Belum Pernah Diajukan</div>
+                                        <div id="alert-cek-pengajuan-sudah" class="text-danger form-text ps-1 d-none"><strong><i class="bi bi-exclamation-circle-fill" style="margin-right: 5px"></i>NIK Sudah Pernah Diajukan</strong></div>
+                                        {{-- <div id="alert-cek-pengajuan-belum" class="text-success form-text ps-1 d-none"><strong><i class="bi bi-check-circle-fill" style="margin-right: 5px"></i>NIK Belum Pernah Diajukan</strong></div> --}}
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">No. KK</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ old('no_kk') }}"
-                                            id="no_kk" placeholder="No. KK" name="no_kk">
+                                            id="no_kk" placeholder="No. KK" name="no_kk" min=0>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -110,14 +110,14 @@
                                     <label for="" class="col-sm-4 col-form-label">RW</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ old('rw') }}"
-                                            id="rw" placeholder="RW" name="rw">
+                                            id="rw" placeholder="RW" name="rw" min=1>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">RT</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ old('rt') }}"
-                                            id="rt" placeholder="RT" name="rt">
+                                            id="rt" placeholder="RT" name="rt" min=1>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
