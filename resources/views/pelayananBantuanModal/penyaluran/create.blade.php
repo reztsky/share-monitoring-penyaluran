@@ -127,7 +127,7 @@
                                         </div>
                                         <div class="form-check align-self-center">
                                             <input class="form-check-input" type="radio" name="sumber_dana"
-                                                value="Lainnya" id="4"
+                                                value="LAINNYA" id="4"
                                                 onmousedown="this.form.sumber_dana_lainnya.disabled=this.checked">
                                             <input type="text" class="form-control" name="sumber_dana_lainnya"
                                                 id="sumber_dana" for="3" placeholder="LAINNYA" disabled>

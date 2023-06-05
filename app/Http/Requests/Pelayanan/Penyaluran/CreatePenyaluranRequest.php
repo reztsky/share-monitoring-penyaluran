@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Pelayanan\Penyaluran;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreatePenyaluranRequest extends FormRequest
 {
@@ -28,6 +29,8 @@ class CreatePenyaluranRequest extends FormRequest
             'tanggal_salur'=>'required|date|',
             'bap'=>'required|mimes:pdf|max:5000',
             'foto_penyaluran'=>'required|image|max:2048',
+            'sumber_dana'=>['required',Rule::in(['KEMENSOS','APBD','BASNAS','LAINNYA'])],
+            'sumber_dana_lainnya'=>'required_if:sumber_dana,LAINNYA'
         ];
     }
 }

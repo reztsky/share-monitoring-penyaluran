@@ -20,10 +20,10 @@ class PenyaluranBantuanModalController extends Controller
      */
     public function index(Request $request)
     {
-        $tanpa_diperiksa=PengajuanKebutuhan::selectCustom()->isDiukur('f')->diterima()->with(['kebutuhan','penyaluran'])->search($request)->filterJenisKebutuhan($request);
+        $tanpa_diperiksa=PengajuanKebutuhan::selectCustom()->isDiukur('f')->diterima()->with(['kebutuhan','penyaluran'])->statusPenyaluran($request)->search($request)->filterJenisKebutuhan($request);
         $siap_salurs=PengajuanKebutuhan::selectCustom()->isDiukur('t')->diterima()->with(['kebutuhan','penyaluran'])->whereHas('pemeriksaan',function($query){
             return $query->where('verifikasi',1);
-        })->with('kebutuhan')->search($request)->filterJenisKebutuhan($request)->union($tanpa_diperiksa)->paginate(10);
+        })->statusPenyaluran($request)->with('kebutuhan')->search($request)->filterJenisKebutuhan($request)->union($tanpa_diperiksa)->paginate(10);
         $jenis_kebutuhans = MJenisKebutuhan::all(['id', 'nama_kebutuhan']);
         return view('pelayananBantuanModal.penyaluran.index',compact('siap_salurs','jenis_kebutuhans'));
     }
@@ -36,7 +36,7 @@ class PenyaluranBantuanModalController extends Controller
 
     public function store(CreatePenyaluranRequest $request, UploadFotoService $uploadFotoService, UploadBapService $uploadBapService)
     {
-        $validated=$request->safe()->only(['id_pengajuan','tanggal_salur']);
+        $validated=$request->safe()->except(['bap','foto_penyaluran']);
         $validated['bap']=$uploadBapService->upload($request->bap);
         $validated['foto_penyaluran']=$uploadFotoService->upload($request->foto_penyaluran);
         $penyaluran_kebutuhan=PenyaluranKebutuhan::create($validated);

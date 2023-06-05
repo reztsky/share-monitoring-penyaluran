@@ -164,6 +164,7 @@ Route::group([
             Route::get('/show/{id}','show')->name('show');
             Route::get('/delete/{id}','destroy')->name('delete');
             Route::get('/kelurahan/find/{id_kecamatan}','findKecamatan')->name('findKecamatan');
+            Route::get('/cek-pengajuan/{nik}','cekPengajuan')->name('cekPengajuan');
             Route::post('/verifikasi/{id}','verifikasi')->name('verifikasi');
         });
 

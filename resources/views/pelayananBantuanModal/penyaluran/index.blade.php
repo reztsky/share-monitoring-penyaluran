@@ -17,8 +17,8 @@
                     <div class="col-md-4">
                         <select name="status_penyaluran" id="status_penyaluran" class="form-select" style="height: 40px">
                             <option value="">Status Penyaluran</option>
-                            <option value="">Sudah Disalurkan</option>
-                            <option value="">Belum Disalurkan</option>
+                            <option value="1" @selected(request('status_penyaluran')==1)>Sudah Disalurkan</option>
+                            <option value="2" @selected(request('status_penyaluran')==2)>Belum Disalurkan</option>
                         </select>
                     </div>
                     <div class="col-md-4">

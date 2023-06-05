@@ -85,6 +85,14 @@ class PengajuanBantuanModalController extends Controller
         return MKelurahan::select(['kelurahan', 'id'])->where('id_kecamatan', $id_kecamatan)->get()->toArray();
     }
 
+    public function cekPengajuan($nik){
+        $pengajuan_kebutuhan=PengajuanKebutuhan::where('nik',$nik)->count();
+        return response()->json([
+            'count'=>$pengajuan_kebutuhan,
+            'status'=>true
+        ],200);
+    }
+
     public function verifikasi(Request $request, $id)
     {
         $pengajuan_kebutuhan = PengajuanKebutuhan::with('kebutuhan')->findOrFail($id);

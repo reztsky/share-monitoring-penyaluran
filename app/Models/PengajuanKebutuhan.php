@@ -95,5 +95,13 @@ class PengajuanKebutuhan extends Model
             return $que->where('is_diukur',$is_diukur);
         });
     }
+
+    public function scopeStatusPenyaluran($query,$request){
+        return $query->when($request->filled('status_penyaluran'),function ($que) use ($request){
+            $status_penyaluran=$request->status_penyaluran;
+            if($status_penyaluran==1) return $que->has('penyaluran');
+            return $que->doesntHave('penyaluran');
+        });
+    }
     
 }
