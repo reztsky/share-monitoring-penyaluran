@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="table-responsive table-striped" style="width:100%">
-                            <table id="dataa" class="table table-hover mb-3 text-left" >
+                            <table id="example" class="table table-hover mb-3 text-left" >
                                 <thead style="background-color: #5EC2AF;color:white">
                                     <tr>
                                         @if ($data->count()>0)
@@ -91,7 +91,7 @@
                                 <tbody>
                                     @forelse ($data as $datas)
                                     <tr>
-                                        <td>{{$data->firstItem() + $loop->index}}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         @foreach ($datas as $key=>$value)
                                         @continue(in_array($key,['id','created_at','updated_at']))
                                         @if (in_array($key,['nik','no_kk','nama_kebutuhan']))
@@ -114,7 +114,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            {{$data->links()}}
+                            {{-- {{$data->links()}} --}}
                         </div>
             </div>
         </div>
@@ -122,11 +122,11 @@
 </div>
 @endsection
 @push('script')
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
-<script>
-    $(document).ready(function () {
-    $('#dataa').DataTable();
-});
-</script>
-@endpush
+            <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#example').DataTable();
+                });
+            </script>
+        @endpush

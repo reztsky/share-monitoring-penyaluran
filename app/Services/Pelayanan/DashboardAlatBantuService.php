@@ -35,7 +35,7 @@ class DashboardAlatBantuService
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.alamat', 'b.nama_kebutuhan', 'a.dokumentasi'])
             ->where('id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at',null)
-            ->paginate(10);
+            ->get();
     }
 
     public function penyaluran($id_jenis_bantuan)
@@ -46,6 +46,6 @@ class DashboardAlatBantuService
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.alamat', 'c.nama_kebutuhan', 'b.foto_penyaluran'])
             ->where('a.id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at',null)
-            ->paginate(10);
+            ->get();
     }
 }

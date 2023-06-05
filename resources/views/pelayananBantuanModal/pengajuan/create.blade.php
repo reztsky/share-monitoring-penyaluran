@@ -152,6 +152,7 @@
                                     <div class="col-sm-8">
                                         <input type="file" class="form-control" name="dokumentasi" id="dokumentasi"
                                             accept="image/*" style="min-height:45px">
+                                            <div class="form-text" style="color: crimson">Format File : jpg, jpeg, png</div>
                                     </div>
                                 </div>
 

@@ -109,6 +109,13 @@
                                 @csrf
                                 <input type="hidden" name="id_pengajuan" value="{{ $pengajuan_kebutuhan->id }}">
                                 <div class="row mb-3">
+                                    <label for="" class="col-sm-4 col-form-label">Tanggal Salur</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" value="{{ old('tanggal_salur') }}"
+                                            id="tanggal_salur" placeholder="tanggal_salur" name="tanggal_salur">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">Sumber Dana</label>
                                     <div class="col-sm-8">
                                         <div class="form-check">
@@ -139,13 +146,6 @@
                                         @error('sumber_dana')
                                             <div class="form-text text-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="" class="col-sm-4 col-form-label">Tanggal Salur</label>
-                                    <div class="col-sm-8">
-                                        <input type="date" class="form-control" value="{{ old('tanggal_salur') }}"
-                                            id="tanggal_salur" placeholder="tanggal_salur" name="tanggal_salur">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
