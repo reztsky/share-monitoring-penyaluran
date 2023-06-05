@@ -5,7 +5,7 @@
         <div class="bg-white shadow p-3 rounded-3 my-3">
             <form action="{{ route('pelayanan.penyaluran.index') }}" method="get">
                 <div class="row mb-2">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <select name="id_jenis_kebutuhan" id="id_jenis_kebutuhan" class="form-select" style="height: 40px">
                             <option value="">Jenis Alat Bantu Disabilitas </option>
                             @foreach ($jenis_kebutuhans as $jenis_kebutuhan)
@@ -14,7 +14,14 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <select name="status_penyaluran" id="status_penyaluran" class="form-select" style="height: 40px">
+                            <option value="">Status Penyaluran</option>
+                            <option value="">Sudah Disalurkan</option>
+                            <option value="">Belum Disalurkan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
                         <div class="input-group">
                             <input type="text" placeholder="Cari Data" class="form-control" name="keyword"
                                 value="{{ request('keyword') }}">
@@ -39,6 +46,7 @@
                             <td style="color: white;background-color: #5EC2AF;">No.</td>
                             <td style="color: white;background-color: #5EC2AF;">NIK</td>
                             <td style="color: white;background-color: #5EC2AF;">Nama</td>
+                            <td style="color: white;background-color: #5EC2AF;">Kelurahan</td>
                             <td style="color: white;background-color: #5EC2AF;">Jenis Kebutuhan</td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Status Salur</center></td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Aksi</center></td>
@@ -50,6 +58,7 @@
                                 <td>{{ $siap_salurs->firstItem() + $loop->index }}</td>
                                 <td>{{ $siap_salur->nik }}</td>
                                 <td>{{ $siap_salur->nama }}</td>
+                                <td>{{ $siap_salur->kelurahan }}</td>
                                 <td>{{ $siap_salur->kebutuhan->nama_kebutuhan }}</td>
                                 <td>
                                     <center>
@@ -91,3 +100,12 @@
         </div>
     </div>
 @endsection
+@push('script')
+            <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#example').DataTable();
+                });
+            </script>
+        @endpush
