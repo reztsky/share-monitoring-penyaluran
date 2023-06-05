@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 class PengajuanKebutuhan extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasUuids, SoftDeletes, Sortable;
 
     protected $fillable=[
         'nik',
@@ -29,6 +30,14 @@ class PengajuanKebutuhan extends Model
         'status_pengajuan',
         'tanggal_pengajuan',
         'dokumentasi',
+    ];
+
+    public $sortable=[
+        'nik',
+        'nama',
+        'kelurahan',
+        'status_pengajuan',
+        'id_jenis_kebutuhan',
     ];
 
     protected function statusPengajuan() : Attribute{

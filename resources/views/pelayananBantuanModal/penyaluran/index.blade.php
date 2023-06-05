@@ -44,6 +44,8 @@
                     <thead>
                         <tr>
                             <td style="color: white;background-color: #5EC2AF;">No.</td>
+                            {{-- <th class="cell" style="color: white;background-color: #5EC2AF;">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])</th> --}}
+                            {{-- <th class="cell">@sortablelink('nik', 'NIK')</th> --}}
                             <td style="color: white;background-color: #5EC2AF;">NIK</td>
                             <td style="color: white;background-color: #5EC2AF;">Nama</td>
                             <td style="color: white;background-color: #5EC2AF;">Kelurahan</td>

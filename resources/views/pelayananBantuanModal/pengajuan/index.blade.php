@@ -31,6 +31,9 @@
         .white a {
             color: #fff;
         }
+        th{
+            cursor: pointer;
+        }
     </style>
 @endpush
 @section('content')
@@ -79,21 +82,14 @@
                                     <th class="cell">
                                         <center>No.</center>
                                     </th>
-                                    <th class="cell">NIK</th>
-                                    <th class="cell">Nama</th>
-                                    <th class="cell">Kelurahan</th>
-                                    <th class="cell">
-                                        <center>Jenis Alat Bantu</center>
-                                    </th>
-                                    <th class="cell">
-                                        <center>Status Pengajuan</center>
-                                    </th>
-                                    <th class="cell">
-                                        <center>Aksi</center>
-                                    </th>
-                                    <th class="cell">
-                                        <center>Verifikasi</center>
-                                    </th>
+                                    {{-- <th class="cell">@sortablelink('nik') </th> --}}
+                                    <th class="cell">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])</th>
+                                    <th class="cell">@sortablelink('nama', 'NAMA', ['parameter' => 'nama'],  ['style' => 'color:white'])</th>
+                                    <th class="cell">@sortablelink('kelurahan', 'KELURAHAN', ['parameter' => 'kelurahan'],  ['style' => 'color:white'])</th>
+                                    <th class="cell"><center>@sortablelink('id_jenis_kebutuhan', 'ALAT BANTU', ['parameter' => 'id_jenis_kebutuhan'],  ['style' => 'color:white'])</center></th>
+                                    <th class="cell"><center>@sortablelink('status_pengajuan', 'STATUS PENGAJUAN', ['parameter' => 'status_pengajuan'],  ['style' => 'color:white'])</center></th>
+                                    <th class="cell"><center>Aksi</center></th>
+                                    <th class="cell"><center>Verifikasi</center></th>
                                 </tr>
                             </thead>
                             <tbody>
