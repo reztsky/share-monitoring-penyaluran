@@ -18,7 +18,7 @@ class PemeriksaanBantuanModalController extends Controller
                 return $query->search($request)
                 ->filterJenisKebutuhan($request);
             })
-            ->paginate(10)
+            ->paginate(25)
             ->withQueryString();
         
         $jenis_kebutuhans = MJenisKebutuhan::all(['id', 'nama_kebutuhan']);
