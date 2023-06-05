@@ -24,7 +24,7 @@ class PengajuanBantuanModalController extends Controller
             'kelurahan',
             'status_pengajuan',
             'id_jenis_kebutuhan'
-        ])->search($request)->filterJenisKebutuhan($request)->orderByDesc('id')->with('kebutuhan')->paginate(25)->withQueryString();
+        ])->search($request)->filterJenisKebutuhan($request)->orderByDesc('status_pengajuan')->with('kebutuhan')->paginate(25)->withQueryString();
         $jenis_kebutuhans = MJenisKebutuhan::all(['id', 'nama_kebutuhan']);
         return view('pelayananBantuanModal.pengajuan.index', compact('pengajuan_kebutuhans', 'jenis_kebutuhans'));
     }
