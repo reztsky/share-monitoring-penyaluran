@@ -114,10 +114,40 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
+                                        <label for="" class="col-sm-4 col-form-label">Sumber Dana</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="Kemensos" id="1" name="sumber_dana[]">
+                                                <label class="form-check-label" id="sumber_dana" for="1">KEMENSOS</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sumber_dana[]" value="APBD" id="2">
+                                                <label class="form-check-label" id="sumber_dana" for="2">APBD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sumber_dana[]" value="Basnas" id="3">
+                                                <label class="form-check-label" id="sumber_dana" for="3">BASNAS</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sumber_dana[]" value="Lainnya" id="4" onmousedown="this.form.sumber_dana.disabled=this.checked">
+                                                <input type="text" class="form-control" name="sumber_dana[]" id="sumber_dana" for="3" placeholder="Lain - lain" disabled>
+                                            </div>
+                                            {{-- <div class="form-check">
+                                                <input class="form-check-input" style="margin-top:10px" type="radio" id="3" onmousedown="this.form.kegunaan_hasil_usaha.disabled=this.checked">
+                                                <input type="text" class="form-control" name="kegunaan_hasil_usaha[]" id="kegunaan_hasil_usaha" for="3" placeholder="Lain - lain" disabled>
+                                            </div> --}}
+                                            {{-- <textarea class="form-control" value="" id="kegunaan_hasil_usaha" name="kegunaan_hasil_usaha" placeholder="Kegunaan Hasil Usaha" style=" min-height:40px;max-height40px"></textarea> --}}
+                                            @error('kegunaan_hasil_usaha')
+                                            <div class="form-text text-danger">{{$message}}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
                                         <label for="" class="col-sm-4 col-form-label">Dokumentasi Penyaluran</label>
                                         <div class="col-sm-8">
                                             <input type="file" class="form-control" name="foto_penyaluran"
                                                 id="foto_penyaluran" accept="image/*" style="min-height:45px">
+                                            <div class="form-text" style="color: crimson">Bentuk File : JPG, JPEG, PNG</div>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -125,6 +155,7 @@
                                         <div class="col-sm-8">
                                             <input type="file" class="form-control" name="bap" id="bap"
                                                 accept="pdf/*" style="min-height:45px">
+                                            <div class="form-text" style="color: crimson">Bentuk File : PDF</div>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end mt-4">
