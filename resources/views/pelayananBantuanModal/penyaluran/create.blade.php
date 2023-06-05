@@ -131,7 +131,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="sumber_dana" value="BASNAS"
                                                 id="3">
-                                            <label class="form-check-label" id="sumber_dana" for="3">BASNAS</label>
+                                            <label class="form-check-label" id="sumber_dana" for="3">BAZNAS</label>
                                         </div>
                                         <div class="form-check align-self-center">
                                             <input class="form-check-input" type="radio" name="sumber_dana"
