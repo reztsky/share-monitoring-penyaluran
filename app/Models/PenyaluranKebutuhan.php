@@ -16,6 +16,8 @@ class PenyaluranKebutuhan extends Model
         'tanggal_salur',
         'bap',
         'foto_penyaluran',
+        'sumber_dana',
+        'sumber_dana_lainnya',
     ];
 
     public function pengajuan(){
