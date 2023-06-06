@@ -158,7 +158,7 @@
                         </table>
                     </div>
                     <div class="p-2">
-                        {{ $pengajuan_kebutuhans->links() }}
+                        {!! $pengajuan_kebutuhans->appends(Request::except('page'))->render() !!}
                     </div>
                 </div>
             </div>

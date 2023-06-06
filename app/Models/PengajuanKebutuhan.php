@@ -32,12 +32,19 @@ class PengajuanKebutuhan extends Model
         'dokumentasi',
     ];
 
-    public $sortable=[
+    protected $sortable=[
         'nik',
         'nama',
         'kelurahan',
         'status_pengajuan',
         'id_jenis_kebutuhan',
+    ];
+
+    protected $sortableAs =[
+        'nik_custom',
+        'nama_custom',
+        'kelurahan_custom',
+        'jenis_kebutuhan_custom'
     ];
 
     protected function statusPengajuan() : Attribute{
@@ -111,6 +118,22 @@ class PengajuanKebutuhan extends Model
             if($status_penyaluran==1) return $que->has('penyaluran');
             return $que->doesntHave('penyaluran');
         });
+    }
+
+    public function nikCustomSortable($query,$direction){
+        return $query->orderBy('nik',$direction);
+    }
+
+    public function namaCustomSortable($query,$direction){
+        return $query->orderBy('nama',$direction);
+    }
+
+    public function kelurahanCustomSortable($query,$direction){
+        return $query->orderBy('kelurahan',$direction);
+    }
+
+    public function jenisKebutuhanCustomSortable($query,$direction){
+        return $query->orderBy('id_jenis_kebutuhan',$direction);
     }
     
 }

@@ -23,7 +23,7 @@ class PenyaluranBantuanModalController extends Controller
         $tanpa_diperiksa=PengajuanKebutuhan::selectCustom()->isDiukur('f')->diterima()->with(['kebutuhan','penyaluran'])->statusPenyaluran($request)->search($request)->filterJenisKebutuhan($request);
         $siap_salurs=PengajuanKebutuhan::selectCustom()->isDiukur('t')->diterima()->with(['kebutuhan','penyaluran'])->whereHas('pemeriksaan',function($query){
             return $query->where('verifikasi',1);
-        })->statusPenyaluran($request)->with('kebutuhan')->search($request)->filterJenisKebutuhan($request)->union($tanpa_diperiksa)->paginate(25);
+        })->statusPenyaluran($request)->with('kebutuhan')->search($request)->filterJenisKebutuhan($request)->union($tanpa_diperiksa)->sortable()->paginate(25);
         $jenis_kebutuhans = MJenisKebutuhan::all(['id', 'nama_kebutuhan']);
         return view('pelayananBantuanModal.penyaluran.index',compact('siap_salurs','jenis_kebutuhans'));
     }

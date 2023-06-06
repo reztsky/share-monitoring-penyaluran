@@ -46,10 +46,10 @@
                             <td style="color: white;background-color: #5EC2AF;">No.</td>
                             {{-- <th class="cell" style="color: white;background-color: #5EC2AF;">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])</th> --}}
                             {{-- <th class="cell">@sortablelink('nik', 'NIK')</th> --}}
-                            <td style="color: white;background-color: #5EC2AF;">NIK</td>
-                            <td style="color: white;background-color: #5EC2AF;">Nama</td>
-                            <td style="color: white;background-color: #5EC2AF;">Kelurahan</td>
-                            <td style="color: white;background-color: #5EC2AF;">Jenis Kebutuhan</td>
+                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('nik_custom','NIK')</td>
+                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('nama_custom','Nama')</td>
+                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('kelurahan_custom','Kelurahan')</td>
+                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('jenis_kebutuhan_custom','Jenis Kebutuhan')</td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Status Salur</center></td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Aksi</center></td>
                         </tr>
@@ -97,7 +97,7 @@
                     </tbody>
                 </table>
 
-                {{ $siap_salurs->links() }}
+                {!! $siap_salurs->appends(Request::except('page'))->render() !!}
             </div>
         </div>
     </div>
