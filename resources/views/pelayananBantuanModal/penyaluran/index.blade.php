@@ -44,12 +44,10 @@
                     <thead>
                         <tr>
                             <td style="color: white;background-color: #5EC2AF;">No.</td>
-                            {{-- <th class="cell" style="color: white;background-color: #5EC2AF;">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])</th> --}}
-                            {{-- <th class="cell">@sortablelink('nik', 'NIK')</th> --}}
-                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('nik_custom','NIK')</td>
-                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('nama_custom','Nama')</td>
-                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('kelurahan_custom','Kelurahan')</td>
-                            <td style="color: white;background-color: #5EC2AF;">@sortablelink('jenis_kebutuhan_custom','Jenis Kebutuhan')</td>
+                            <th style="color: white;background-color: #5EC2AF;"><strong>@sortablelink('nik_custom','NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></strong></th>
+                            <td style="color: white;background-color: #5EC2AF;"><strong>@sortablelink('nama_custom','Nama', ['parameter' => 'nama'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></strong></td>
+                            <td style="color: white;background-color: #5EC2AF;"><strong>@sortablelink('kelurahan_custom','Kelurahan', ['parameter' => 'kelurahan'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></strong></td>
+                            <td style="color: white;background-color: #5EC2AF;"><strong>@sortablelink('jenis_kebutuhan_custom','Jenis Kebutuhan', ['parameter' => 'jenis_kebutuhan'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></strong></td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Status Salur</center></td>
                             <td style="color: white;background-color: #5EC2AF;"><center>Aksi</center></td>
                         </tr>

@@ -83,11 +83,11 @@
                                         <center>No.</center>
                                     </th>
                                     {{-- <th class="cell">@sortablelink('nik') </th> --}}
-                                    <th class="cell">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])</th>
-                                    <th class="cell">@sortablelink('nama', 'NAMA', ['parameter' => 'nama'],  ['style' => 'color:white'])</th>
-                                    <th class="cell">@sortablelink('kelurahan', 'KELURAHAN', ['parameter' => 'kelurahan'],  ['style' => 'color:white'])</th>
-                                    <th class="cell"><center>@sortablelink('id_jenis_kebutuhan', 'ALAT BANTU', ['parameter' => 'id_jenis_kebutuhan'],  ['style' => 'color:white'])</center></th>
-                                    <th class="cell"><center>@sortablelink('status_pengajuan', 'STATUS PENGAJUAN', ['parameter' => 'status_pengajuan'],  ['style' => 'color:white'])</center></th>
+                                    <th class="cell">@sortablelink('nik', 'NIK', ['parameter' => 'nik'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></th>
+                                    <th class="cell">@sortablelink('nama', 'NAMA', ['parameter' => 'nama'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></th>
+                                    <th class="cell">@sortablelink('kelurahan', 'KELURAHAN', ['parameter' => 'kelurahan'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></th>
+                                    <th class="cell"><center>@sortablelink('id_jenis_kebutuhan', 'ALAT BANTU', ['parameter' => 'id_jenis_kebutuhan'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></center></th>
+                                    <th class="cell"><center>@sortablelink('status_pengajuan', 'STATUS PENGAJUAN', ['parameter' => 'status_pengajuan'],  ['style' => 'color:white'])<i class="bi bi-caret-down-fill" style="margin-left:4px"></i></center></th>
                                     <th class="cell"><center>Aksi</center></th>
                                     <th class="cell"><center>Verifikasi</center></th>
                                 </tr>
