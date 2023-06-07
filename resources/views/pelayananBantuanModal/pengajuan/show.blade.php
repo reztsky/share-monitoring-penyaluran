@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-end mb-3">
-                <a href="{{route('pelayanan.pengajuan.index')}}" class="btn px-2 py-1"
+                <a href="{{url()->previous()}}" class="btn px-2 py-1"
                     style="background-color: #BC4C4C;color:white;width:100px">Kembali</a>
             </div>
             @if ($errors->any())

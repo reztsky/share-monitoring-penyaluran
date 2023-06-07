@@ -158,7 +158,7 @@
 
 
                                 <div class="d-flex justify-content-end mt-4">
-                                    <button class="btn btn-success px-3 py-1">Simpan</button>
+                                    <button id="saveBtn" class="btn btn-success px-3 py-1">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -189,6 +189,7 @@
         $('#nik').on('keyup',function(e){
             $('#alert-cek-pengajuan-sudah').addClass('d-none')
             $('#alert-cek-pengajuan-belum').addClass('d-none')
+            $('#saveBtn').removeAttr('disabled')
             var nik=$(this).val()
             var url = "{{ route('pelayanan.pengajuan.cekPengajuan','') }}/"
             if(nik.length!=16) return 
@@ -199,6 +200,7 @@
                 success : function(result){
                     if(result.count<=0) return $('#alert-cek-pengajuan-belum').removeClass('d-none');
                     $('#alert-cek-pengajuan-sudah').removeClass('d-none')
+                    $('#saveBtn').attr('disabled','disabled')
                 }
             })
                 

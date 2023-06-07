@@ -25,7 +25,7 @@ class StorePengajuanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik'=>'required|numeric|digits:16',
+            'nik'=>'required|numeric|digits:16|unique:pengajuan_kebutuhans,nik',
             'no_kk'=>'required|numeric|digits:16',
             'nama'=>'required',
             'jenis_kelamin'=>[
