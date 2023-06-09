@@ -90,7 +90,7 @@ Route::group([
             'middleware'=>'role:Super Admin',
         ], function(){
             Route::get('/','index')->name('index');
-            Route::get('detail/{jenis_alat_bantuan}/{kategori}','detail')->name('detail');
+            Route::get('detail/{jenis_bantuan}/{kategori}','detail')->name('detail');
         });
 
         Route::group([

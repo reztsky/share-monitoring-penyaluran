@@ -10,6 +10,7 @@ class BantuanModalHomeController extends Controller
 {
     public function index(DashboardBantuanModalService $dashboardBantuanModal){
         $rekap=$dashboardBantuanModal->rekapTable();
+        // dd($rekap);
         return view('bantuanModal.dashboard.index',compact('rekap'));
     }
 
