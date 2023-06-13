@@ -57,6 +57,7 @@
 @endpush
 @section('content')
     <div class="row">
+        <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Alat Disabilitas</h3>
         <div class="col-md-12 col-sm-12 col-12">
             <div class="app-card shadow-sm mb-5">
                 <div class="app-card-body p-3">

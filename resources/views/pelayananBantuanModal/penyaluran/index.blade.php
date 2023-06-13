@@ -2,6 +2,7 @@
 @section('link-active-pelayanan-modal', 'active')
 @section('content')
     <div class="col-md-12 col-sm-12 col-12">
+        <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Alat Disabilitas</h3>
         <div class="bg-white shadow p-3 rounded-3 my-3">
             <form action="{{ route('pelayanan.penyaluran.index') }}" method="get">
                 <div class="row mb-2">
