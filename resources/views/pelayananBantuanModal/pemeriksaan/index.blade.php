@@ -36,8 +36,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Alat Disabilitas</h3>
-
+            <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Alat Disabilitas </h3>
             <div class="app-card shadow bg-white mt-4 p-2">
                 <div class="app-card-body">
                     <form action="{{ route('pelayanan.pemeriksaan.index') }}" method="get">
