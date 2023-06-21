@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('penyaluran_kebutuhans',function(Blueprint $table){
-            $table->date('tanggal_salur')->after('foto_penyaluran');
+            $table->date('tanggal_salur')->after('foto_penyaluran')->nullable();
         });
     }
 

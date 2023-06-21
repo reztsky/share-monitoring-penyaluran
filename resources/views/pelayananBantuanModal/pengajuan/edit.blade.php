@@ -33,6 +33,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
+                                    <label for="" class="col-sm-4 col-form-label">Asal Surat</label>
+                                    <div class="col-sm-8">
+                                        <input type="text"  class="form-control" value="{{$pengajuan_kebutuhan->asal_surat}}" id="tanggal_pengajuan" placeholder="tanggal_pengajuan" name="tanggal_pengajuan" >
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">NIK</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ $pengajuan_kebutuhan->nik }}"

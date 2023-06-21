@@ -26,6 +26,7 @@ class PengajuanKebutuhan extends Model
         'rt',
         'alamat',
         'no_hp',
+        'asal_surat',
         'id_jenis_kebutuhan',
         'status_pengajuan',
         'tanggal_pengajuan',
@@ -37,7 +38,7 @@ class PengajuanKebutuhan extends Model
         'nama',
         'kelurahan',
         'status_pengajuan',
-        'id_jenis_kebutuhan',
+        'id_jenis_kebutuhan'
     ];
 
     protected $sortableAs =[

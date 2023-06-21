@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pengajuan_kebutuhans',function(Blueprint $table){
-            $table->date('tanggal_pengajuan')->after('dokumentasi')->nullable();
+            $table->string('asal_surat')->after('no_hp')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pengajuan_kebutuhans',function(Blueprint $table){
-            $table->dropColumn('tanggal_pengajuan');
-        });
+        // Schema::table('pengajuan_kebutuhans', function (Blueprint $table) {
+        //     $table->dropColumn('asal_surat');
+        // });
     }
 };

@@ -53,7 +53,7 @@
                                     <label for="" class="col-sm-4 col-form-label">Nama Penerima</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="{{ old('nama') }}"
-                                            id="nama_penerima" placeholder="Nama Penerima" name="nama">
+                                            id="nama_penerima" placeholder="Nama Penerima" name="nama" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -75,7 +75,7 @@
                                     <label for="" class="col-sm-4 col-form-label">Tempat Lahir</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="{{ old('tempat_lahir') }}"
-                                            id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir">
+                                            id="tempat_lahir" placeholder="Tempat Lahir" name="tempat_lahir" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -124,7 +124,7 @@
                                     <label for="" class="col-sm-4 col-form-label">Alamat Lengkap</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="{{ old('alamat_ktp') }}"
-                                            id="alamat_ktp" placeholder="Alamat KTP" name="alamat">
+                                            id="alamat_ktp" placeholder="Alamat KTP" name="alamat" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -132,6 +132,13 @@
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" value="{{ old('no_hp') }}"
                                             id="no_hp" placeholder="No. Hp" name="no_hp" min=0>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-4 col-form-label">Asal Surat</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="{{ old('asal_surat') }}"
+                                            id="asal_surat" name="asal_surat" placeholder="Asal Surat" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <div class="row mb-3">

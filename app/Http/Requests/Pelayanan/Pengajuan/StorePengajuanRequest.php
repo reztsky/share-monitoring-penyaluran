@@ -44,6 +44,7 @@ class StorePengajuanRequest extends FormRequest
             'status_pengajuan'=>'required|numeric|max:3',
             'dokumentasi'=>'image|max:2048',
             'tanggal_pengajuan'=>'required|date|',
+            'asal_surat'=>'required'
         ];
     }
 
