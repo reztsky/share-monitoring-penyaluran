@@ -124,7 +124,7 @@
                                     <label for="" class="col-sm-4 col-form-label">Alamat Lengkap</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" value="{{ old('alamat_ktp') }}"
-                                            id="alamat_ktp" placeholder="Alamat KTP" name="alamat" style="text-transform:uppercase">
+                                            id="alamat_ktp" placeholder="Alamat Sesuai KTP" name="alamat" style="text-transform:uppercase">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
