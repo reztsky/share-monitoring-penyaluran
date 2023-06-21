@@ -25,6 +25,12 @@
                         <div class="g-3">
                             <h5 class="mb-4">HASIL PENYALURAN ALAT BANTUAN</h5>
                             <div class="row mb-3">
+                                <label for="" class="col-sm-4 col-form-label">Asal Surat</label>
+                                <div class="col-sm-8">
+                                    {{$pengajuan_kebutuhan->asal_surat}}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="" class="col-sm-4 col-form-label">NIK</label>
                                 <div class="col-sm-8">
                                     {{$pengajuan_kebutuhan->nik}}
