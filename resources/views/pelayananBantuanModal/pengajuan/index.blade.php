@@ -39,7 +39,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h3 class="app-page-title">Pemeriksaan dan Pengukuran Bantuan Alat Disabilitas</h3>
+            <h3 class="app-page-title">Pengajuan Bantuan Alat Disabilitas</h3>
             <div class="d-flex justify-content-center mb-3">
                 <a href="{{ route('pelayanan.pengajuan.create') }}" class="button" style="padding-top: 5px">Tambah
                     Pengajuan</a>
