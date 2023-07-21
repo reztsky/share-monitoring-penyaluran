@@ -118,8 +118,9 @@ class TransaksiMonitoring extends Model
     {
         return Attribute::make(
             get:function($value){
-                if($value==1) return 'Sudah Digunakan';
+                if($value==1) return 'Sudah Berjalan';
                 if($value==2) return 'Belum Digunakan';
+                if($value==3) return 'Dijual/Tidak Digunakan untuk Usaha';
                 return '-';
             }
         );

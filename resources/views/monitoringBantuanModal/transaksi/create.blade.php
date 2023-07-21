@@ -62,12 +62,17 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
                                 id="RadioOptions1" value="1" onchange="showStatus(this)">
-                            <label class="form-check-label" for="RadioOptions1">Sudah Digunakan</label>
+                            <label class="form-check-label" for="RadioOptions1">Sudah Berjalan</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
                                 id="RadioOptions2" value="2" onchange="showStatus(this)">
                             <label class="form-check-label" for="RadioOptions2">Belum Digunakan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
+                                id="RadioOptions3" value="3" onchange="showStatus(this)">
+                            <label class="form-check-label" for="RadioOptions3">Dijual/Tidak Digunakan untuk Usaha</label>
                         </div>
                     </center>
                 </div>
@@ -107,7 +112,7 @@
             document.getElementById('form-modal-usaha').classList.remove("d-none")
             document.getElementById('form-hasil-usaha').classList.remove("d-none")
             document.getElementById('form-belum-digunakan').classList.add("d-none")
-        } else if (select.value == 2){
+        } else if (select.value == 2 || select.value == 3){
             document.getElementById('form-modal-usaha').classList.add("d-none")
             document.getElementById('form-hasil-usaha').classList.add("d-none")
             document.getElementById('form-belum-digunakan').classList.remove("d-none")
