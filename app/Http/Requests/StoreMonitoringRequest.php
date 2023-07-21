@@ -46,7 +46,7 @@ class StoreMonitoringRequest extends FormRequest
             'tahun_monitoring'=>'required'
         ];
 
-        if($this->status_penggunaan_bantuan==2){
+        if($this->status_penggunaan_bantuan==2||$this->status_penggunaan_bantuan==3){
             return $rules;
         }
 
