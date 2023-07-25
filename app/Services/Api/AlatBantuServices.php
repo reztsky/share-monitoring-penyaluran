@@ -11,7 +11,7 @@ class AlatBantuServices
 
     public function rekap($request)
     {
-        $result= DB::table('m_jenis_kebutuhans as a')
+        $result = DB::table('m_jenis_kebutuhans as a')
             ->select(['a.id', 'a.nama_kebutuhan'])
             ->selectRaw('count(b.id) as pengajuan_count')
             ->selectRaw('count(c.id) as penyaluran_count')
@@ -21,45 +21,61 @@ class AlatBantuServices
             ->leftJoin('penyaluran_kebutuhans as c', 'b.id', '=', 'c.id_pengajuan')
             ->groupBy(['a.nama_kebutuhan', 'a.id'])
             ->when($request->filled('penyaluran_mulai_bulan'), function ($query) use ($request) {
-                return $query->whereMonth('c.tanggal_salur','>=', $request->penyaluran_mulai_bulan);
+                return $query->whereMonth('c.tanggal_salur', '>=', $request->penyaluran_mulai_bulan);
             })
-            ->when($request->filled('penyaluran_sampai_bulan'),function($query) use($request){
-                return $query->whereMonth('c.tanggal_salur','<=', $request->penyaluran_sampai_bulan);
+            ->when($request->filled('penyaluran_sampai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('c.tanggal_salur', '<=', $request->penyaluran_sampai_bulan);
             })
             ->whereYear('c.tanggal_salur', date('Y'))
             ->get();
-        return[
-            'periode'=>$request->post(),
-            'result'=>$result,
+
+        return [
+            'periode' => $request->post(),
+            'result' => $result,
         ];
     }
 
     public function findPengajuanById($request, $id_jenis_bantuan)
     {
-        return DB::table('pengajuan_kebutuhans as a')
+        $result = DB::table('pengajuan_kebutuhans as a')
             ->join('m_jenis_kebutuhans as b', 'b.id', '=', 'a.id_jenis_kebutuhan')
-            ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.kecamatan','a.alamat', 'b.nama_kebutuhan', 'a.dokumentasi'])
-            ->when($request->filled('bulan_pengajuan'), function ($query) use ($request) {
-                return $query->whereMonth('b.tanggal_pengajuan', $request->bulan_pengajuan)
-                    ->whereYear('b.tanggal_pengajuan', date('Y'));
+            ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.kecamatan', 'a.alamat', 'b.nama_kebutuhan', 'a.dokumentasi'])
+            ->when($request->filled('pengajuan_mulai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('b.tanggal_pengajuan', $request->pengajuan_mulai_bulan);
             })
+            ->when($request->filled('pengajuan_sampai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('b.tanggal_pengajuan', $request->pengajuan_sampai_bulan);
+            })
+            ->whereYear('b.tanggal_pengajuan', date('Y'))
             ->where('id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at', null)
             ->get();
+        return [
+            'periode' => $request->post(),
+            'result' => $result,
+        ];
     }
 
     public function findPenyaluranById($request, $id_jenis_bantuan)
     {
-        return DB::table('pengajuan_kebutuhans as a')
+        $result = DB::table('pengajuan_kebutuhans as a')
             ->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan')
             ->join('m_jenis_kebutuhans as c', 'c.id', '=', 'a.id_jenis_kebutuhan')
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.kecamatan', 'a.alamat', 'c.nama_kebutuhan', 'b.foto_penyaluran'])
-            ->when($request->filled('bulan_penyaluran'), function ($query) use ($request) {
-                return $query->whereMonth('b.tanggal_salur', $request->bulan_penyaluran)
-                    ->whereYear('b.tanggal_salur', date('Y'));
+            ->when($request->filled('penyaluran_mulai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('b.tanggal_salur', '>=', $request->penyaluran_mulai_bulan);
             })
+            ->when($request->filled('penyaluran_sampai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('b.tanggal_salur', '<=', $request->penyaluran_sampai_bulan);
+            })
+            ->whereYear('b.tanggal_salur', date('Y'))
             ->where('a.id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at', null)
             ->get();
+        // ->paginate(10);
+        return [
+            'periode' => $request->post(),
+            'result' => $result,
+        ];
     }
 }
