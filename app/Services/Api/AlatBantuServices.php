@@ -9,16 +9,9 @@ use Illuminate\Support\Facades\DB;
 class AlatBantuServices
 {
 
-    private $expired;
-
-    public function __construct()
-    {
-        $this->expired = Carbon::now()->addMinutes(5);
-    }
-
     public function rekap($request)
     {
-        return DB::table('m_jenis_kebutuhans as a')
+        $result= DB::table('m_jenis_kebutuhans as a')
             ->select(['a.id', 'a.nama_kebutuhan'])
             ->selectRaw('count(b.id) as pengajuan_count')
             ->selectRaw('count(c.id) as penyaluran_count')
@@ -27,14 +20,18 @@ class AlatBantuServices
             })
             ->leftJoin('penyaluran_kebutuhans as c', 'b.id', '=', 'c.id_pengajuan')
             ->groupBy(['a.nama_kebutuhan', 'a.id'])
-            ->when($request->filled('bulan_penyaluran'), function ($query) use ($request) {
-                return $query->whereMonth('c.tanggal_salur', $request->bulan_penyaluran)
-                    ->whereYear('c.tanggal_salur', date('Y'));
+            ->when($request->filled('penyaluran_mulai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('c.tanggal_salur','>=', $request->penyaluran_mulai_bulan);
             })
+            ->when($request->filled('penyaluran_sampai_bulan'),function($query) use($request){
+                return $query->whereMonth('c.tanggal_salur','<=', $request->penyaluran_sampai_bulan);
+            })
+            ->whereYear('c.tanggal_salur', date('Y'))
             ->get();
-
-        return Cache::remember('rekapAlatBantu', $this->expired, function () use ($request) {
-        });
+        return[
+            'periode'=>$request->post(),
+            'result'=>$result,
+        ];
     }
 
     public function findPengajuanById($request, $id_jenis_bantuan)

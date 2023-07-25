@@ -15,7 +15,7 @@ class ApiAlatBantuController extends Controller
             'status'=>$cek>0 ? true : false,
             'message'=>$cek>0 ? 'Sukses Get Data' : 'Gagal Get Data',
             'data'=>$rekaps
-        ]);
+        ],200);
     }
 
     public function detailPenyaluran($jenis_bantuan,Request $request,AlatBantuServices $alatBantuServices){
@@ -24,7 +24,7 @@ class ApiAlatBantuController extends Controller
             'status'=>true,
             'message'=>'Sukses Get Data',
             'data'=>$results
-        ]);
+        ],200);
     }
 
     public function detailPengajuan($jenis_bantuan,Request $request,AlatBantuServices $alatBantuServices){
@@ -33,6 +33,6 @@ class ApiAlatBantuController extends Controller
             'status'=>true,
             'message'=>'Sukses Get Data',
             'data'=>$results
-        ]);
+        ],200);
     }
 }
