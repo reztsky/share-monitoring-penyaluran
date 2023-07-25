@@ -49,7 +49,7 @@ class AlatBantuServices
                 return $query->whereMonth('b.tanggal_pengajuan', $request->pengajuan_sampai_bulan);
             })
             ->when($request->filled('tahun'),function($query) use ($request){
-                return $query->whereYear('c.tanggal_salur', $request->tahun);
+                return $query->whereYear('a.tanggal_pengajuan', $request->tahun);
             })
             ->where('id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at', null)
@@ -73,7 +73,7 @@ class AlatBantuServices
                 return $query->whereMonth('b.tanggal_salur', '<=', $request->penyaluran_sampai_bulan);
             })
             ->when($request->filled('tahun'),function($query) use ($request){
-                return $query->whereYear('c.tanggal_salur', $request->tahun);
+                return $query->whereYear('b.tanggal_salur', $request->tahun);
             })
             ->where('a.id_jenis_kebutuhan', $id_jenis_bantuan)
             ->where('a.deleted_at', null)
