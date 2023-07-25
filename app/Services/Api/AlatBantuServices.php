@@ -2,6 +2,7 @@
 
 namespace App\Services\Api;
 
+use App\Models\MJenisKebutuhan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,7 @@ class AlatBantuServices
 
     public function findPengajuanById($request, $id_jenis_bantuan)
     {
+        $jenis_kebutuhan=MJenisKebutuhan::select('nama_kebutuhan')->findOrFail($id_jenis_bantuan);
         $result = DB::table('pengajuan_kebutuhans as a')
             ->join('m_jenis_kebutuhans as b', 'b.id', '=', 'a.id_jenis_kebutuhan')
             ->select(['a.nik', 'a.nama', 'a.kelurahan', 'a.kecamatan', 'a.alamat', 'b.nama_kebutuhan', 'a.dokumentasi'])
@@ -56,12 +58,14 @@ class AlatBantuServices
             ->get();
         return [
             'periode' => $request->post(),
+            'jenis_kebutuhan'=>$jenis_kebutuhan,
             'result' => $result,
         ];
     }
 
     public function findPenyaluranById($request, $id_jenis_bantuan)
     {
+        $jenis_kebutuhan=MJenisKebutuhan::select('nama_kebutuhan')->findOrFail($id_jenis_bantuan);
         $result = DB::table('pengajuan_kebutuhans as a')
             ->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan')
             ->join('m_jenis_kebutuhans as c', 'c.id', '=', 'a.id_jenis_kebutuhan')
@@ -81,6 +85,7 @@ class AlatBantuServices
         // ->paginate(10);
         return [
             'periode' => $request->post(),
+            'jenis_kebutuhan'=>$jenis_kebutuhan,
             'result' => $result,
         ];
     }
