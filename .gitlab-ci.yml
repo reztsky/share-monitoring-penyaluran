@@ -20,8 +20,9 @@ deploy_master:
     - ssh-keyscan -H -p $PORT $PROD_HOST >> ~/.ssh/known_hosts
     - rsync -avzuh -O -e "ssh -p $PORT" ./ deployer-blt@$PROD_HOST:/DATA/blt/ --no-perms --delete --progress --exclude '.git*' --exclude-from=".gitignore"
     - cd
-    - cd /DATA/blt
     - ls
+    # - cd /DATA/blt
+    # - ls
     # - composer self-update --2
     # - composer update
     - echo "Deploying to Production DONE"
