@@ -19,7 +19,7 @@ deploy_master:
     - ssh-add <(echo "$PROD_PRIVATE_KEY")
     - ssh-keyscan -H -p $PORT $PROD_HOST >> ~/.ssh/known_hosts
     - rsync -avzuh -O -e "ssh -p $PORT" ./ deployer-blt@$PROD_HOST:/DATA/blt/ --no-perms --delete --progress --exclude '.git*' --exclude-from=".gitignore"
-    - cd ../../sull
+    - cd ../../sull_aa
     - ls
     # - cd /DATA/blt
     # - ls
