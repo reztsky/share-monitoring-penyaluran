@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\KpmBantuanModal;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Monitoring\DashboardMonitoringService;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class ReportMonitoringBantuanModalController extends Controller
 {
@@ -17,5 +20,10 @@ class ReportMonitoringBantuanModalController extends Controller
         return view($this->view . 'index', compact('monitorings'));
     }
 
+
+    public function excel(){
+        $kpm=KpmBantuanModal::all();
+        return (new FastExcel($kpm))->download('cobha.xlsx');
+    }
    
 }

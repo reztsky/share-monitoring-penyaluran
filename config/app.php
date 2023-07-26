@@ -198,6 +198,7 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+
         
     ],
 
@@ -216,6 +217,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
 
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'FastExcel'=>Rap2hpoutre\FastExcel\Facades\FastExcel::class,
     ])->toArray(),
 
 ];
