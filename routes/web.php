@@ -131,7 +131,6 @@ Route::group([
                 'middleware'=>'role:Surveyor|Super Admin',
             ], function(){
                 Route::get('/','index')->name('index');
-                Route::get('/excel','excel')->name('excel');
             });
 
         });    

@@ -19,11 +19,5 @@ class ReportMonitoringBantuanModalController extends Controller
         $monitorings=$DashboardMonitoringService->rekapTable();
         return view($this->view . 'index', compact('monitorings'));
     }
-
-
-    public function excel(){
-        $kpm=KpmBantuanModal::all();
-        return (new FastExcel($kpm))->download('cobha.xlsx');
-    }
    
 }
