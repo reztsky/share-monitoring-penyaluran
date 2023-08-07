@@ -71,8 +71,8 @@
                                             class="submenu-link">Dashboard</a></li>
                                     <li class="submenu-item"><a href="{{ route('blt.transaksi.index') }}"
                                             class="submenu-link">Transaksi</a></li>
-                                    <li class="submenu-item"><a href="{{ route('exportfoto.index','BLT') }}"
-                                            class="submenu-link">Export</a></li>
+                                    {{-- <li class="submenu-item"><a href="{{ route('exportfoto.index','BLT') }}"
+                                            class="submenu-link">Export</a></li> --}}
                                 </ul>
                             </div>
                         </li>
@@ -96,8 +96,8 @@
                                             class="submenu-link">Dashboard</a></li>
                                     <li class="submenu-item"><a href="{{ route('bantuanmodal.transaksi.index') }}"
                                             class="submenu-link">Transaksi</a></li>
-                                    <li class="submenu-item"><a href="{{ route('exportfoto.index','Bantuan-Modal') }}"
-                                            class="submenu-link">Export</a></li>
+                                    {{-- <li class="submenu-item"><a href="{{ route('exportfoto.index','Bantuan-Modal') }}"
+                                            class="submenu-link">Export</a></li> --}}
                                 </ul>
                             </div>
                         </li>
