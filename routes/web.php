@@ -3,6 +3,7 @@
 use App\Http\Controllers\BantuanModalHomeController;
 use App\Http\Controllers\BantuanModalTransaksiController;
 use App\Http\Controllers\DashboardBantuanController;
+use App\Http\Controllers\ExportFotoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
@@ -33,164 +34,172 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group([
-    'controller'=>LoginController::class,
-], function(){
-    Route::get('/','login')->name('login');
-    Route::post('/auth','auth')->name('auth');
-    Route::get('/logout','logout')->name('logout');
-    Route::get('/captcha-reload','captchaReload')->name('captchaReload');
+    'controller' => LoginController::class,
+], function () {
+    Route::get('/', 'login')->name('login');
+    Route::post('/auth', 'auth')->name('auth');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/captcha-reload', 'captchaReload')->name('captchaReload');
 });
 
 Route::group([
-    'middleware'=>'auth'
-], function(){
-    Route::group([
-        'controller'=>HomeController::class,
-        'as'=>'home.',
-        'prefix'=>'/home',
-    ], function(){
-        Route::get('/','index')->name('index');
-    });
-    
-    Route::group([
-        'prefix'=>'/blt-tunai',
-        'middleware'=>'role:Super Admin',
-        'as'=>'blt.'
-    ],function(){
-        Route::group([
-            'controller'=>LandingController::class,
-            'as'=>'dashboard.',
-            'prefix'=>'/dashboard',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('/detail-data','detail')->name('detail');
-        });
+    'middleware' => 'auth'
+], function () {
 
-        Route::group([
-            'controller'=>TransaksiController::class,
-            'as'=>'transaksi.',
-            'prefix'=>'/transkasi-salur',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::post('/find','find')->name('find');
-            Route::get('/show/{id}','show')->name('show');
-            Route::post('/store','store')->name('store');
-            Route::get('/soft-delete/{id}','softDelete')->name('softDelete');
-        });
+    Route::group([
+        'controller' => HomeController::class,
+        'as' => 'home.',
+        'prefix' => '/home',
+    ], function () {
+        Route::get('/', 'index')->name('index');
     });
 
     Route::group([
-        'prefix'=>'/bantuan-modal',
-        'as'=>'bantuanmodal.',
-    ], function(){
+        'controller' => ExportFotoController::class,
+        'as' => 'exportfoto.',
+        'prefix' => '/export-foto',
+    ], function () {
+        Route::get('/{kategori}', 'index')->name('index');
+        Route::post('/export', 'export')->name('export');
+    });
+
+    Route::group([
+        'prefix' => '/blt-tunai',
+        'middleware' => 'role:Super Admin',
+        'as' => 'blt.'
+    ], function () {
         Route::group([
-            'controller'=>BantuanModalHomeController::class,
-            'as'=>'dashboard.',
-            'prefix'=>'/dashboard',
-            'middleware'=>'role:Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('detail/{jenis_bantuan}/{kategori}','detail')->name('detail');
+            'controller' => LandingController::class,
+            'as' => 'dashboard.',
+            'prefix' => '/dashboard',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/detail-data', 'detail')->name('detail');
         });
 
         Route::group([
-            'controller'=>BantuanModalTransaksiController::class,
-            'as'=>'transaksi.',
-            'prefix'=>'/transaksi',
-            'middleware'=>'role:Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::post('/find','find')->name('find');
-            Route::get('/{id}/create','create')->name('create');
-            Route::post('/store','store')->name('store');
-            Route::get('/soft-delete/{id}','softDelete')->name('softDelete');
+            'controller' => TransaksiController::class,
+            'as' => 'transaksi.',
+            'prefix' => '/transkasi-salur',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/find', 'find')->name('find');
+            Route::get('/show/{id}', 'show')->name('show');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/soft-delete/{id}', 'softDelete')->name('softDelete');
+        });
+    });
+
+    Route::group([
+        'prefix' => '/bantuan-modal',
+        'as' => 'bantuanmodal.',
+    ], function () {
+        Route::group([
+            'controller' => BantuanModalHomeController::class,
+            'as' => 'dashboard.',
+            'prefix' => '/dashboard',
+            'middleware' => 'role:Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
         });
 
         Route::group([
-            'as'=>'monitoring.',
-            'prefix'=>'/monitoring',
-        ], function(){
+            'controller' => BantuanModalTransaksiController::class,
+            'as' => 'transaksi.',
+            'prefix' => '/transaksi',
+            'middleware' => 'role:Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/find', 'find')->name('find');
+            Route::get('/{id}/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/soft-delete/{id}', 'softDelete')->name('softDelete');
+        });
+
+        Route::group([
+            'as' => 'monitoring.',
+            'prefix' => '/monitoring',
+        ], function () {
             Route::group([
-                'controller'=>MonitoringBantuanModalController::class,
-                'middleware'=>'role:Surveyor|Super Admin',
-            ], function(){
-                Route::get('/','index')->name('index');
-                Route::get('/create','create')->name('create');
-                Route::post('/store','store')->name('store');
-                Route::get('/{id}/show','show')->name('show');
-                Route::get('/{id}/edit','edit')->name('edit');
-                Route::post('/{id}/update','update')->name('update');
-                Route::get('/delete/{id}','delete')->name('delete');
-                Route::get('/find/{nik}','find')->name('find');
+                'controller' => MonitoringBantuanModalController::class,
+                'middleware' => 'role:Surveyor|Super Admin',
+            ], function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/{id}/show', 'show')->name('show');
+                Route::get('/{id}/edit', 'edit')->name('edit');
+                Route::post('/{id}/update', 'update')->name('update');
+                Route::get('/delete/{id}', 'delete')->name('delete');
+                Route::get('/find/{nik}', 'find')->name('find');
             });
 
             Route::group([
-                'controller'=>ReportMonitoringBantuanModalController::class,
-                'as'=>'report.',
-                'prefix'=>'/report',
-                'middleware'=>'role:Surveyor|Super Admin',
-            ], function(){
-                Route::get('/','index')->name('index');
+                'controller' => ReportMonitoringBantuanModalController::class,
+                'as' => 'report.',
+                'prefix' => '/report',
+                'middleware' => 'role:Surveyor|Super Admin',
+            ], function () {
+                Route::get('/', 'index')->name('index');
             });
-
-        });    
+        });
     });
 
     Route::group([
-        'prefix'=>'/pelayanan',
-        'as'=>'pelayanan.',
-    ], function(){
+        'prefix' => '/pelayanan',
+        'as' => 'pelayanan.',
+    ], function () {
         Route::group([
-            'controller'=>DashboardBantuanController::class,
-            'as'=>'dashboard.',
-            'prefix'=>'/dashboard',
-            'middleware'=>'role:Admin Pelayanan|Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('detail/{jenis_bantuan}/{kategori}','detail')->name('detail');
+            'controller' => DashboardBantuanController::class,
+            'as' => 'dashboard.',
+            'prefix' => '/dashboard',
+            'middleware' => 'role:Admin Pelayanan|Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
         });
 
         Route::group([
-            'controller'=>PengajuanBantuanModalController::class,
-            'as'=>'pengajuan.',
-            'prefix'=>'/pengajuan',
-            'middleware'=>'role:Admin Pelayanan|Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('/create','create')->name('create');
-            Route::post('/store','store')->name('store');
-            Route::get('/edit/{id}','edit')->name('edit');
-            Route::post('/update/{id}','update')->name('update');
-            Route::get('/show/{id}','show')->name('show');
-            Route::get('/delete/{id}','destroy')->name('delete');
-            Route::get('/kelurahan/find/{id_kecamatan}','findKecamatan')->name('findKecamatan');
-            Route::get('/cek-pengajuan/{nik}','cekPengajuan')->name('cekPengajuan');
-            Route::post('/verifikasi/{id}','verifikasi')->name('verifikasi');
+            'controller' => PengajuanBantuanModalController::class,
+            'as' => 'pengajuan.',
+            'prefix' => '/pengajuan',
+            'middleware' => 'role:Admin Pelayanan|Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/update/{id}', 'update')->name('update');
+            Route::get('/show/{id}', 'show')->name('show');
+            Route::get('/delete/{id}', 'destroy')->name('delete');
+            Route::get('/kelurahan/find/{id_kecamatan}', 'findKecamatan')->name('findKecamatan');
+            Route::get('/cek-pengajuan/{nik}', 'cekPengajuan')->name('cekPengajuan');
+            Route::post('/verifikasi/{id}', 'verifikasi')->name('verifikasi');
         });
 
         Route::group([
-            'controller'=>PemeriksaanBantuanModalController::class,
-            'as'=>'pemeriksaan.',
-            'prefix'=>'/pemeriksaan',
-            'middleware'=>'role:Admin Pelayanan|Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('/show','show')->name('show');
-            Route::get('/edit/{id}','edit')->name('edit');
-            Route::post('/update/{id}','update')->name('update');
+            'controller' => PemeriksaanBantuanModalController::class,
+            'as' => 'pemeriksaan.',
+            'prefix' => '/pemeriksaan',
+            'middleware' => 'role:Admin Pelayanan|Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/show', 'show')->name('show');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/update/{id}', 'update')->name('update');
         });
 
         Route::group([
-            'controller'=>PenyaluranBantuanModalController::class,
-            'as'=>'penyaluran.',
-            'prefix'=>'/penyaluran',
-            'middleware'=>'role:Admin Pelayanan|Super Admin',
-        ], function(){
-            Route::get('/','index')->name('index');
-            Route::get('/create/{id}','create')->name('create');
-            Route::post('/store','store')->name('store');
-            Route::get('/show/{id}','show')->name('show');
-        });    
+            'controller' => PenyaluranBantuanModalController::class,
+            'as' => 'penyaluran.',
+            'prefix' => '/penyaluran',
+            'middleware' => 'role:Admin Pelayanan|Super Admin',
+        ], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create/{id}', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/show/{id}', 'show')->name('show');
+        });
     });
 });
-

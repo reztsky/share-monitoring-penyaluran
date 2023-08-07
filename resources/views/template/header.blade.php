@@ -43,7 +43,7 @@
                 <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                     <li class="nav-item">
                         <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link @yield('link-active-home')" href="{{route('home.index')}}">
+                        <a class="nav-link @yield('link-active-home')" href="{{ route('home.index') }}">
                             <span class="nav-icon fs-5 fw-bold">
                                 <i class="bi bi-house-door"></i>
                             </span>
@@ -51,105 +51,116 @@
                         </a>
                         <!--//nav-link-->
                     </li>
-                    {{-- BLT --}}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link  @yield('link-active-blt') submenu-toggle" data-bs-toggle="collapse"
-                            data-bs-target="#submenu-blt">
-                            <span class="nav-icon fs-5 fw-bold">
-                                <i class="bi bi-cash-coin"></i>
-                            </span>
-                            <span>BLT</span>
-                            <span class="submenu-arrow">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </a>
-                        <div id="submenu-blt" class="submenu collapse submenu-blt" data-bs-parent="#menu-accrodion">
-                            <ul class="submenu-list list-unstyled">
-                                <li class="submenu-item"><a href="{{route('blt.dashboard.index')}}"
-                                        class="submenu-link">Dashboard</a></li>
-                                <li class="submenu-item"><a href="{{route('blt.transaksi.index')}}"
-                                        class="submenu-link">Transaksi</a></li>
-                            </ul>
-                        </div>
-                    </li>
 
-                    {{-- Bantuan Modal --}}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link @yield('link-active-bantuan-modal') submenu-toggle"
-                            data-bs-toggle="collapse" data-bs-target="#submenu-bantuan-modal">
-                            <span class="nav-icon fs-5 fw-bold">
-                                <i class="bi bi-basket"></i>
-                            </span>
-                            <span>Bantuan Modal</span>
-                            <span class="submenu-arrow">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </a>
-                        <div id="submenu-bantuan-modal" class="submenu collapse submenu-bantuan-modal"
-                            data-bs-parent="#menu-accrodion">
-                            <ul class="submenu-list list-unstyled">
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.dashboard.index')}}"
-                                        class="submenu-link">Dashboard</a></li>
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.transaksi.index')}}"
-                                        class="submenu-link">Transaksi</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    @hasrole('Super Admin')
+                        {{-- BLT --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link  @yield('link-active-blt') submenu-toggle" data-bs-toggle="collapse"
+                                data-bs-target="#submenu-blt">
+                                <span class="nav-icon fs-5 fw-bold">
+                                    <i class="bi bi-cash-coin"></i>
+                                </span>
+                                <span>BLT</span>
+                                <span class="submenu-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </a>
+                            <div id="submenu-blt" class="submenu collapse submenu-blt" data-bs-parent="#menu-accrodion">
+                                <ul class="submenu-list list-unstyled">
+                                    <li class="submenu-item"><a href="{{ route('blt.dashboard.index') }}"
+                                            class="submenu-link">Dashboard</a></li>
+                                    <li class="submenu-item"><a href="{{ route('blt.transaksi.index') }}"
+                                            class="submenu-link">Transaksi</a></li>
+                                    <li class="submenu-item"><a href="{{ route('exportfoto.index','BLT') }}"
+                                            class="submenu-link">Export</a></li>
+                                </ul>
+                            </div>
+                        </li>
 
-                    {{-- Moniotring Bantuan Modal --}}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link @yield('link-active-monev-modal') submenu-toggle"
-                            data-bs-toggle="collapse" data-bs-target="#submenu-monev-modal">
-                            <span class="nav-icon fs-5 fw-bold">
-                                <i class="bi bi-graph-up-arrow"></i>
-                            </span>
-                            <span>Monitoring BanMod</span>
-                            <span class="submenu-arrow">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </a>
-                        <div id="submenu-monev-modal" class="submenu collapse submenu-monev-modal"
-                            data-bs-parent="#menu-accrodion">
-                            <ul class="submenu-list list-unstyled">
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.monitoring.report.index')}}"
-                                        class="submenu-link">Dashboard</a></li>
-                                <li class="submenu-item"><a href="{{route('bantuanmodal.monitoring.index')}}"
-                                        class="submenu-link">Transaksi</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                        {{-- Bantuan Modal --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @yield('link-active-bantuan-modal') submenu-toggle" data-bs-toggle="collapse"
+                                data-bs-target="#submenu-bantuan-modal">
+                                <span class="nav-icon fs-5 fw-bold">
+                                    <i class="bi bi-basket"></i>
+                                </span>
+                                <span>Bantuan Modal</span>
+                                <span class="submenu-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </a>
+                            <div id="submenu-bantuan-modal" class="submenu collapse submenu-bantuan-modal"
+                                data-bs-parent="#menu-accrodion">
+                                <ul class="submenu-list list-unstyled">
+                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.dashboard.index') }}"
+                                            class="submenu-link">Dashboard</a></li>
+                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.transaksi.index') }}"
+                                            class="submenu-link">Transaksi</a></li>
+                                    <li class="submenu-item"><a href="{{ route('exportfoto.index','Bantuan-Modal') }}"
+                                            class="submenu-link">Export</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endrole
 
-                    {{-- Pengajuan Bantuan Modal --}}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link @yield('link-active-pengajuan-modal') submenu-toggle"
-                            data-bs-toggle="collapse" data-bs-target="#submenu-pengajuan-modal">
-                            <span class="nav-icon fs-5 fw-bold">
-                                <i class="bi bi-headset"></i>
-                            </span>
-                            <span>Pelayanan BanMod</span>
-                            <span class="submenu-arrow">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </a>
-                        <div id="submenu-pengajuan-modal" class="submenu collapse submenu-pengajuan-modal"
-                            data-bs-parent="#menu-accrodion">
-                            <ul class="submenu-list list-unstyled">
-                                <li class="submenu-item"><a href="{{route('pelayanan.dashboard.index')}}"
-                                        class="submenu-link">Dashboard</a></li>
-                                <li class="submenu-item"><a href="{{route('pelayanan.pengajuan.index')}}"
-                                        class="submenu-link">Pengajuan & Pengecekan</a></li>
-                                <li class="submenu-item"><a href="{{route('pelayanan.pemeriksaan.index')}}"
-                                    class="submenu-link">Pemeriksaan & Pengukuran</a></li>
-                                <li class="submenu-item"><a href="{{route('pelayanan.penyaluran.index')}}"
-                                    class="submenu-link">Penyaluran</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    @hasanyrole('Super Admin|Surveyor')
+                        {{-- Moniotring Bantuan Modal --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @yield('link-active-monev-modal') submenu-toggle" data-bs-toggle="collapse"
+                                data-bs-target="#submenu-monev-modal">
+                                <span class="nav-icon fs-5 fw-bold">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </span>
+                                <span>Monitoring BanMod</span>
+                                <span class="submenu-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </a>
+                            <div id="submenu-monev-modal" class="submenu collapse submenu-monev-modal"
+                                data-bs-parent="#menu-accrodion">
+                                <ul class="submenu-list list-unstyled">
+                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.monitoring.report.index') }}"
+                                            class="submenu-link">Dashboard</a></li>
+                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.monitoring.index') }}"
+                                            class="submenu-link">Transaksi</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endhasanyrole
+
+                    @hasanyrole('Super Admin|Admin Pelayanan')
+                        {{-- Pengajuan Bantuan Modal --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link @yield('link-active-pengajuan-modal') submenu-toggle" data-bs-toggle="collapse"
+                                data-bs-target="#submenu-pengajuan-modal">
+                                <span class="nav-icon fs-5 fw-bold">
+                                    <i class="bi bi-headset"></i>
+                                </span>
+                                <span>Pelayanan BanMod</span>
+                                <span class="submenu-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </span>
+                            </a>
+                            <div id="submenu-pengajuan-modal" class="submenu collapse submenu-pengajuan-modal"
+                                data-bs-parent="#menu-accrodion">
+                                <ul class="submenu-list list-unstyled">
+                                    <li class="submenu-item"><a href="{{ route('pelayanan.dashboard.index') }}"
+                                            class="submenu-link">Dashboard</a></li>
+                                    <li class="submenu-item"><a href="{{ route('pelayanan.pengajuan.index') }}"
+                                            class="submenu-link">Pengajuan & Pengecekan</a></li>
+                                    <li class="submenu-item"><a href="{{ route('pelayanan.pemeriksaan.index') }}"
+                                            class="submenu-link">Pemeriksaan & Pengukuran</a></li>
+                                    <li class="submenu-item"><a href="{{ route('pelayanan.penyaluran.index') }}"
+                                            class="submenu-link">Penyaluran</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endhasanyrole
                     <li>
                         <hr style="border: 2px solid #7fd6c6;border-radius: 5px;" />
 
                     <li class="nav-item">
-                        <a href="{{route('logout')}}" class="nav-link @yield('link-active-logout')">
+                        <a href="{{ route('logout') }}" class="nav-link @yield('link-active-logout')">
                             <span class="nav-icon fs-5 fw-bold"><i class="bi bi-box-arrow-in-left"></i></span>
                             <span class="nav-link-text">Keluar</span>
                         </a>
