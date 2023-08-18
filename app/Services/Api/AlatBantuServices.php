@@ -31,7 +31,6 @@ class AlatBantuServices
                 return $query->whereYear('c.tanggal_salur', $request->tahun);
             })
             ->get();
-
         return [
             'periode' => $request->post(),
             'result' => $result,

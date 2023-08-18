@@ -16,6 +16,7 @@ use App\Http\Controllers\PenyaluranBantuanModalController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportMonitoringBantuanModalController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\UsulanDbhchtController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,20 @@ Route::group([
         'prefix' => '/home',
     ], function () {
         Route::get('/', 'index')->name('index');
+    });
+
+    Route::group([
+        'controller'=>UsulanDbhchtController::class,
+        'as'=>'usulan_dbhcht.',
+        'prefix'=>'usulan/',
+        'role'=>'Super Admin'
+    ], function(){
+        Route::get('/','index')->name('index');
+        Route::get('/detail','detail')->name('detail');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::post('/delete/{nik}','delete')->name('delete');
+        Route::get('/cekgakin/{nik}','cekGakin')->name('cekGakin');
     });
 
     Route::group([

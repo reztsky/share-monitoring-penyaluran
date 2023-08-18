@@ -52,6 +52,28 @@
                         <!--//nav-link-->
                     </li>
 
+                    {{-- Usulan Bantuan Modal DBHCHT --}}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link @yield('link-active-usulan-bantuan-modal') submenu-toggle" data-bs-toggle="collapse"
+                            data-bs-target="#submenu-usulan-bantuan-modal">
+                            <span class="nav-icon fs-5 fw-bold">
+                                <i class="bi bi-bookmark-plus"></i>
+                            </span>
+                            <span>Usulan Bantuan Modal</span>
+                            <span class="submenu-arrow">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
+                        </a>
+                        <div id="submenu-usulan-bantuan-modal" class="submenu collapse submenu-bantuan-modal"
+                            data-bs-parent="#menu-accrodion">
+                            <ul class="submenu-list list-unstyled">
+                                <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
+                                        class="submenu-link">Dashboard</a></li>
+                                <li class="submenu-item"><a href="{{ route('usulan_dbhcht.create') }}"
+                                        class="submenu-link">Usulan</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     @hasrole('Super Admin')
                         {{-- BLT --}}
                         <li class="nav-item">
