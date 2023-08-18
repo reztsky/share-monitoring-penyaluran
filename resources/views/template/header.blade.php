@@ -52,6 +52,7 @@
                         <!--//nav-link-->
                     </li>
 
+                    @hasanyrole('Super Admin|Kelurahan')
                     {{-- Usulan Bantuan Modal DBHCHT --}}
                     <li class="nav-item">
                         <a href="#" class="nav-link @yield('link-active-usulan-bantuan-modal') submenu-toggle" data-bs-toggle="collapse"
@@ -74,6 +75,8 @@
                             </ul>
                         </div>
                     </li>
+                    @endhasanyrole
+                    
                     @hasrole('Super Admin')
                         {{-- BLT --}}
                         <li class="nav-item">

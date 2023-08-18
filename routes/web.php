@@ -59,7 +59,7 @@ Route::group([
         'controller'=>UsulanDbhchtController::class,
         'as'=>'usulan_dbhcht.',
         'prefix'=>'usulan/',
-        'role'=>'Super Admin'
+        'middleware'=>'role:Super Admin|Kelurahan'
     ], function(){
         Route::get('/','index')->name('index');
         Route::get('/detail','detail')->name('detail');
