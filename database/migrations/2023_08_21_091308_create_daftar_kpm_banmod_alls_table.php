@@ -13,20 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usulan_dbhchts', function (Blueprint $table) {
+        Schema::create('daftar_kpm_banmod_alls', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('inserted_by');
+            $table->string('nama');
             $table->string('nik',16);
             $table->string('no_kk',16);
-            $table->string('nama');
-            $table->string('alamat');
-            $table->string('rt',3);
-            $table->string('rw',3);
-            $table->string('kecamatan');
+            $table->text('alamat');
             $table->string('kelurahan');
+            $table->string('kecamatan');
             $table->string('jenis_bantuan_modal');
-            $table->integer('tahun_anggaran');
-            $table->dateTime('deleted_at')->nullable();
+            $table->string('tahun_anggaran');
+            $table->integer('status_aktif');
             $table->timestamps();
         });
     }
@@ -38,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usulan_dbhchts');
+        Schema::dropIfExists('daftar_kpm_banmod_alls');
     }
 };

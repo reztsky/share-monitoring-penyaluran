@@ -10,7 +10,37 @@
             </ul>
         </div>
     @endif
-    <h1 class="app-page-title">Usulan Bantuan Modal DBHCHT</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="app-page-title">Usulan Bantuan Modal DBHCHT</h1>
+        <button class="btn-primary btn" data-bs-toggle="modal" data-bs-target="#ketentuanModal" id="btn-modal">Ketentuan</button>
+    </div>
+    {{-- MODAL KENTENTUAN --}}
+
+    <!-- Vertically centered modal -->
+    <div class="modal fade" id="ketentuanModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kententuan</h5>
+                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>KPM Harus Termasuk Dalam Data Keluarga Miskin</li>
+                        <li>Dalam 1 KK Hanya Boleh 1 Anggota Keluarga Yang Diusulkan</li>
+                        <li>KPM Belum Pernah Terdaftar Sebagai Penerima Bantuan Modal DBHCHT</li>
+                        <li>Kelurahan Hanya Bisa Mengusulkan KPM yang tercatat dalam Wilayah Administrasi Kelurahan Tersebut
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Saya Mengerti !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-12 col-12">
         <div class="bg-white p-3 my-2 shadow rounded-3">
             <form action="{{ route('usulan_dbhcht.store') }}" method="post" id="form-usulan" class="form-usulan">
@@ -48,6 +78,13 @@
 @push('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        
+        $('document').ready(function(){
+            $('#btn-modal').trigger('click')    
+        })
+        
+    </script>
+    <script>
         $('#jenis-bantuan-modal').on('change', function(e) {
             $('#keterangan-jenis-bantuan-modal').html('')
             var value = $(this).val()
@@ -56,7 +93,7 @@
             var jenisBanmods = {!! $jenisBanmods !!}
             var index = jenisBanmods.findIndex(object => object.jenis_bantuan_modal === value)
             var details = jenisBanmods[index]['detail']
-            var html = `<h4>Detail</h4><ol class="">`
+            var html = `<h4>Rincian Peralatan Usaha</h4><ol class="">`
             details.forEach((detail, index) => {
                 html += ` <li>${detail}</li>`
             });
@@ -74,11 +111,13 @@
                 type: 'get',
                 url: url + nik,
                 success: function(result) {
-                    if (result.status == 0) return $('#message-cekgakin').html('Tidak Terdaftar GAKIN/PRAMIS')
-                    if(result.isDiusulkan){
-                        var url="{{route('usulan_dbhcht.delete','')}}/"+result.data.nik
-                        $('#form-usulan').attr('action',url)
-                        $('#submit-btn').html('Batalkan Usulan').removeClass('btn-success').addClass('btn-danger')
+                    if (result.status == 0) return $('#message-cekgakin').html(result.message)
+                    if (result.isDiusulkan) {
+                        var url = "{{ route('usulan_dbhcht.delete', '') }}/" + result.data.nik
+                        $('#jenis-bantuan-modal').val(result.detail_usulan.jenis_bantuan_modal).change()
+                        $('#form-usulan').attr('action', url)
+                        $('#submit-btn').html('Batalkan Usulan').removeClass('btn-success').addClass(
+                            'btn-danger')
                     }
                     return $('#detail-kpm').html(setData(result))
                 }
@@ -103,12 +142,12 @@
                             <input type="hidden" name="alamat" value="${data.alamat}">
 
                             <dt class="col-sm-3">RT</dt>
-                            <dl class="col-sm-9">${data.no_rt}</dl>
-                            <input type="hidden" name="rt" value="${parseInt(data.no_rt)}">
+                            <dl class="col-sm-9">${data.no_rt===null ? 0 : parseInt(data.no_rt)}</dl>
+                            <input type="hidden" name="rt" value="${data.no_rt===null ? 0 : parseInt(data.no_rt)}">
 
                             <dt class="col-sm-3">RW</dt>
-                            <dl class="col-sm-9">${data.no_rw}</dl>
-                            <input type="hidden" name="rw" value="${parseInt(data.no_rw)}">
+                            <dl class="col-sm-9">${data.no_rw===null ? 0 : parseInt(data.no_rw)}</dl>
+                            <input type="hidden" name="rw" value="${data.no_rw===null ? 0 : parseInt(data.no_rw)}">
 
                             <dt class="col-sm-3">Kecamatan</dt>
                             <dl class="col-sm-9">${data.kecamatan}</dl>
@@ -121,9 +160,9 @@
         `
         }
 
-        $(document).on('click','#submit-btn',function(event) {
+        $(document).on('click', '#submit-btn', function(event) {
             event.preventDefault();
-            var form=$('.form-usulan');
+            var form = $('.form-usulan');
             Swal.fire({
                     title: 'Apakah Yakin Dengan Aksi Tersebut ?',
                     // text: "You won't be able to revert this!",

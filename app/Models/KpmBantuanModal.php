@@ -22,4 +22,9 @@ class KpmBantuanModal extends Model
     public function transaksi(){
         return $this->hasOne(TransaksiBantuanModal::class,'id_kpm','id');
     }
+
+    public function scopeCekData($query,$request){
+        return $query->where('nik', $request->nik)
+        ->orWhere('no_kk', $request->no_kk);
+    }
 }

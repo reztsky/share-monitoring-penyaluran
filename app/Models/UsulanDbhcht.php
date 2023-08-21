@@ -20,6 +20,7 @@ class UsulanDbhcht extends Model
         'kecamatan',
         'kelurahan',
         'jenis_bantuan_modal',
+        'inserted_by',
         'tahun_anggaran',
     ];
 
@@ -30,6 +31,7 @@ class UsulanDbhcht extends Model
     }
 
     public function scopeDashboard($query){
+        
         return $query->select('jenis_bantuan_modal')
             ->selectRaw('count(id) as jumlah')
             ->groupBy('jenis_bantuan_modal');
@@ -40,6 +42,15 @@ class UsulanDbhcht extends Model
             return $query->where('nik',$keyword)
             ->orWhere('nama','like','%'.$keyword.'%')
             ->orWhere('alamat','like','%'.$keyword.'%');
+        });
+    }
+
+    public function scopeFilterByKelurahan($query,$user){
+        $role=$user->roles->first()->name;
+        $user_detail=explode("|",$user->name);
+        return $query->when($role=='Kelurahan',function($q) use ($user_detail){
+            return $q->where('kelurahan',$user_detail[1])
+            ->where('kecamatan',$user_detail[2]);
         });
     }
 }

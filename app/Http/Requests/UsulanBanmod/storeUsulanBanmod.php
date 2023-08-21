@@ -3,6 +3,7 @@
 namespace App\Http\Requests\UsulanBanmod;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class storeUsulanBanmod extends FormRequest
 {
@@ -34,6 +35,14 @@ class storeUsulanBanmod extends FormRequest
             'kelurahan'=>'required',
             'jenis_bantuan_modal'=>'required',
             'tahun_anggaran'=>'required|numeric|digits:4',
+            'inserted_by'=>'required|numeric',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'inserted_by'=>Auth::user()->id,
+        ]);
     }
 }
