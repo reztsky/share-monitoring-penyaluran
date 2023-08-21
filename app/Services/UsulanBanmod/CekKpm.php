@@ -20,7 +20,7 @@ class CekKpm{
         $isDiusulkan=$this->isDiusulkan($nik);
         $cekGakin->put('isDiusulkan',$isDiusulkan['isDiusulkan']);
         $cekGakin->put('detail_usulan',$isDiusulkan['detail_usulan']);
-        // $cekGakin->put('isDiusulkan',$this->isDiusulkan($nik));
+        
         return $cekGakin;
     }
 
@@ -56,7 +56,7 @@ class CekKpm{
         ];
 
         return [
-            'isDiusulkan'=>false,
+            'isDiusulkan'=>true,
             'detail_usulan'=>$cek->first()->toArray(),
         ];
     }
