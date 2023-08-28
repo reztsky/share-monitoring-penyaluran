@@ -95,6 +95,7 @@ class UsulanDbhchtController extends Controller
     {
         $user = Auth::user();
         $count_dashboard = UsulanDbhcht::dashboard()->filterByKelurahan($user)->get();
+        // dd($count_dashboard);
         $jenisBanmods = JenisBantuanModal::jenisBanmod();
         return view('usulanBanmod.dashboard.index', compact('count_dashboard', 'jenisBanmods'));
     }

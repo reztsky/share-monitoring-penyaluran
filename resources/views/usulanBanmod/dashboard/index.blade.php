@@ -31,7 +31,7 @@
                     <tfoot>
                         <tr>
                             <th colspan="2">Total</th>
-                            <th>{{ $count_dashboard->sum('jumlah') }}</th>
+                            <th>{{ $count_dashboard->where('jenis_bantuan_modal','<>',"")->sum('jumlah') }}</th>
                         </tr>
                     </tfoot>
                 </table>
