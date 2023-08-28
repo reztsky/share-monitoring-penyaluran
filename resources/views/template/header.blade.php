@@ -78,9 +78,9 @@
                             <div id="submenu-usulan-bantuan-modal" class="submenu collapse submenu-bantuan-modal"
                                 data-bs-parent="#menu-accrodion">
                                 <ul class="submenu-list list-unstyled">
-                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
+                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboard') }}"
                                             class="submenu-link">Dashboard</a></li>
-                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.create') }}"
+                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
                                             class="submenu-link">Usulan</a></li>
                                 </ul>
                             </div>

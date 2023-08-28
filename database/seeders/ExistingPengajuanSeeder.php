@@ -11,40 +11,23 @@ use Illuminate\Database\Seeder;
 class ExistingPengajuanSeeder extends Seeder
 {
     private $pengajuans =array(
-        array("id_pengajuan"=>"99dcfe6e-f619-4888-89af-0f6205dfdabf","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-383b-4e34-9649-5a2cc9d37d0f","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-3ac6-4255-be00-e0bb98a90b50","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-3cb9-4da7-b6cf-cd83b12312d7","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-3f9a-4acf-adad-6d88c32402af","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-4255-4ab9-91fc-411dd5eb929a","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-4446-45b8-8795-4f7f75f0b505","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-461c-404d-9eb1-0ea4cb13ae46","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-47e0-47bb-8734-6dfd50979b18","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-4984-4d9f-bca9-d6489297e4a1","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-4c45-4aa5-bc86-1d55e39aa483","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-4e45-450a-96c6-51ca29365a7d","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-50ef-4e32-871c-2bd07a10a546","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-52f5-48b2-861b-9b8e983319e6","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-5549-4390-9bb2-6d9592e2e303","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-5783-4a41-98aa-26af1c171a66","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-5984-482f-a470-3a28a4db19f4","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-5c04-4d35-8b42-266897cb4fe0","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-5e78-4e01-80cc-54d25b875acf","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-6149-44ba-a617-b84b8cbb290c","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-63bf-432a-9765-95082359ffed","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfe70-6613-4f09-a147-ebae0f9cfefc","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfed0-371a-49b1-9c2a-5650d3ce46d4","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfed0-4790-4d80-8def-a34461b18f19","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfed0-4a65-4f1a-8e20-d195fb0cf42b","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfed0-4d24-4e0b-9b65-819d70355bab","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS"),
-        array("id_pengajuan"=>"99dcfed0-530a-4f64-9268-c7a35daaf13b","bap"=>"default.pdf","foto_penyaluran"=>"default.jpg","tanggal_salur"=>"2023-08-11","sumber_dana"=>"BAZNAS")
+        array("nik"=>3578304805100001,"no_kk"=>3578300810180004,"nama"=>"LAYLATUS SAHLA","jenis_kelamin"=>"P","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2010-05-08","kecamatan"=>"PAKAL","kelurahan"=>"BABAT JERAWAT","rw"=>4,"rt"=>9,"alamat"=>"DK. JERAWAT GG.IX","no_hp"=>'087853132671',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578083006100002,"no_kk"=>3578033001170010,"nama"=>"NUR COKRO SASONGKO","jenis_kelamin"=>"P","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2010-06-30","kecamatan"=>"RUNGKUT","kelurahan"=>"PENJARINGANSARI","rw"=>10,"rt"=>2,"alamat"=>"RUSUN PENJARINGANSARI B-418","no_hp"=>'08113431345',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578082210090004,"no_kk"=>3578080201081080 ,"nama"=>"MOHAMMAD ALIEF ALFIANSYAH","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2009-10-22","kecamatan"=>"GUBENG","kelurahan"=>"MOJO","rw"=>12,"rt"=>11,"alamat"=>"JOJORAN 3-D DALAM/16","no_hp"=>'085604317350',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578035206050002,"no_kk"=>3578030201082646,"nama"=>"MAZAYA FADILAH","jenis_kelamin"=>"P","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2005-06-12","kecamatan"=>"RUNGKUT","kelurahan"=>"KEDUNG BARUK","rw"=>3,"rt"=>2,"alamat"=>"KEDUNG BARUK gg 9/8-A SURABAYA","no_hp"=>'089667995106',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3309051008070004,"no_kk"=>3578090305160018,"nama"=>"MISBAH EKA MAULANA","jenis_kelamin"=>"L","tempat_lahir"=>"BOYOLALI","tanggal_lahir"=>"2007-08-10","kecamatan"=>"SUKOLILO","kelurahan"=>"KLAMPIS NGASEM","rw"=>6,"rt"=>2,"alamat"=>"MLETO 39 BELAKANG","no_hp"=>'085749445780',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578261304090001,"no_kk"=>3578260101089249,"nama"=>"ACHMAD SHOBIRIN AULADI","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2009-04-13","kecamatan"=>"MULYOREJO","kelurahan"=>"MANYAR SABRANGAN","rw"=>2,"rt"=>5,"alamat"=>"MANYAR SABRANGAN 143 SBY","no_hp"=>'081330135235',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578182502090001,"no_kk"=>3578180812100009,"nama"=>"NAJIBULLAH AMIEN","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2009-02-25","kecamatan"=>"LAKARSANTRI","kelurahan"=>"BANGKINGAN","rw"=>4,"rt"=>7,"alamat"=>"WISMA LIDAH KULON XI - 28","no_hp"=>'0859180700717',"asal_surat"=>"-","id_jenis_kebutuhan"=>5,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578121609070002 ,"no_kk"=>3578120303150004,"nama"=>"AKMALUL FIKRI","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2007-09-16","kecamatan"=>"PABEAN CANTIAN","kelurahan"=>"NYAMPLUNGAN","rw"=>1,"rt"=>2,"alamat"=>"BENTENG 17 FTR","no_hp"=>'083890219584',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578060907060001,"no_kk"=>3578061008170009,"nama"=>"SANDY HABIZAL SAPUTRA","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2006-07-09","kecamatan"=>"SAWAHAN","kelurahan"=>"PUTAT JAYA","rw"=>15,"rt"=>2,"alamat"=>"SIMO GUNUNG BARU JAYA BLOK C/12","no_hp"=>'081357776663',"asal_surat"=>"-","id_jenis_kebutuhan"=>5,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578150307050001,"no_kk"=>3578150201088449,"nama"=>"GALIH RISDANTO","jenis_kelamin"=>"L","tempat_lahir"=>"NGANJUK","tanggal_lahir"=>"2005-07-03","kecamatan"=>"KREMBANGAN","kelurahan"=>"MOROKREMBANGAN","rw"=>6,"rt"=>2,"alamat"=>"TAMBAK ASRI 04/8-B","no_hp"=>'089666802306',"asal_surat"=>"-","id_jenis_kebutuhan"=>3,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23"),
+        array("nik"=>3578090202090003,"no_kk"=>3578090202090003,"nama"=>"AHMAD ALI FIKRI","jenis_kelamin"=>"L","tempat_lahir"=>"SURABAYA","tanggal_lahir"=>"2009-02-02","kecamatan"=>"SUKOLILO","kelurahan"=>"MEDOKAN SEMAMPIR","rw"=>1,"rt"=>9,"alamat"=>"SEMAMPIR TENGAH 7/40","no_hp"=>'08970963824',"asal_surat"=>"-","id_jenis_kebutuhan"=>5,"status_pengajuan"=>3,"dokumentasi"=>"default.jpg","tanggal_pengajuan"=>"2023-08-23")
       );
-
     
     public function run()
     {
         foreach ($this->pengajuans as $pengajuan) {
-            PenyaluranKebutuhan::create($pengajuan);
+            PengajuanKebutuhan::create($pengajuan);
         }
     }
 }

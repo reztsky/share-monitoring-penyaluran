@@ -11,7 +11,7 @@
         </div>
     @endif
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="app-page-title">Usulan Bantuan Modal DBHCHT</h1>
+        <h1 class="app-page-title">Edit > Usulan Bantuan Modal DBHCHT</h1>
         <button class="btn-primary btn" data-bs-toggle="modal" data-bs-target="#ketentuanModal" id="btn-modal">Ketentuan</button>
     </div>
     {{-- MODAL KENTENTUAN --}}
@@ -41,19 +41,16 @@
         </div>
     </div>
 
-    <div class="alert alert-primary">
-        <h4 class="h4">Kuota Tersedia : <span id="kuota-tersedia"></span> KPM</h4>
-    </div>
     <div class="col-md-12 col-12">
         <div class="bg-white p-3 my-2 shadow rounded-3">
-            <form action="{{ route('usulan_dbhcht.store') }}" method="post" id="form-usulan" class="form-usulan">
+            <form action="{{ route('usulan_dbhcht.update',$usulan->id)}}" method="post" id="form-usulan" class="form-usulan">
                 @csrf
                 <div class="row">
                     <div class="mb-3">
                         <label for="" class="form-label fw-bold">NIK Calon Penerima</label>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="NIK Calon Penerima" id="nik"
-                                name="nik">
+                                name="nik" value="{{$usulan->nik}}">
                             <button type="button" class="input-group-text btn-success btn" id="cari-btn">Cari</button>
                         </div>
                         <div class="form-text text-danger" id="message-cekgakin"></div>
@@ -72,7 +69,7 @@
                 </div>
                 <input type="hidden" name="tahun_anggaran" value="2023">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-success" type="submit" id="submit-btn">Usulkan</button>
+                    <button class="btn btn-success" type="submit" id="submit-btn">Update</button>
                 </div>
             </form>
         </div>
@@ -83,7 +80,8 @@
     <script>
         
         $('document').ready(function(){
-            $('#btn-modal').trigger('click')    
+            $('#btn-modal').trigger('click')
+            $('#cari-btn').trigger('click')
             cekKuota();
         })
         
@@ -126,13 +124,14 @@
                 url: url + nik,
                 success: function(result) {
                     if (result.status == 0) return $('#message-cekgakin').html(result.message)
-                    if (result.isDiusulkan) {
-                        var url = "{{ route('usulan_dbhcht.delete', '') }}/" + result.data.nik
-                        $('#jenis-bantuan-modal').val(result.detail_usulan.jenis_bantuan_modal).change()
-                        $('#form-usulan').attr('action', url)
-                        $('#submit-btn').html('Batalkan Usulan').removeClass('btn-success').addClass(
-                            'btn-danger')
-                    }
+                    // if (result.isDiusulkan) {
+                    //     var url = "{{ route('usulan_dbhcht.delete', '') }}/" + result.data.nik
+                    //     $('#jenis-bantuan-modal').val(result.detail_usulan.jenis_bantuan_modal).change()
+                    //     $('#form-usulan').attr('action', url)
+                    //     $('#submit-btn').html('Batalkan Usulan').removeClass('btn-success').addClass(
+                    //         'btn-danger')
+                    // }
+                    $('#jenis-bantuan-modal').val(result.detail_usulan.jenis_bantuan_modal).change()
                     return $('#detail-kpm').html(setData(result))
                 }
             })

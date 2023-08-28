@@ -24,6 +24,25 @@ class UsulanDbhcht extends Model
         'tahun_anggaran',
     ];
 
+    public function scopeShowDataByRole($query,$user){
+        $role=$user->roles->first()->name;
+
+        $query->select([
+            'id',
+            'inserted_by',
+            'nik',
+            'nama',
+            'kecamatan',
+            'kelurahan',
+            'jenis_bantuan_modal',
+            'tahun_anggaran'
+        ]);
+
+        if($role=='Super Admin') return  $query;
+
+        return $query->where('inserted_by',$user->id);
+    }
+
     public function scopeCekData($query, $request)
     {
         return $query->where('nik', $request->nik)
