@@ -273,6 +273,35 @@ class JenisBantuanModal
                     'Shampoo'
                 ]
             ],
+            [
+                'jenis_bantuan_modal' => 'CUCI AC',
+                'detail' => [
+                    'High Pressure Cleaner (Portable)',
+                    'Tang Ampere Range Up to 400 A',
+                    'Terpal Plastik Penutup AC',
+                    'Lap Kanebo',
+                    'Kunci Inggris Uk. 10 inch',
+                    'Kunci Inggris Uk. 12 inch',
+                    'Tang Potong',
+                    'Tang Cucut',
+                    'Tang Kombinasi',
+                    'Obeng Kombinasi',
+                    'Palu Konde',
+                    'Kunci T Sok',
+                    'Kunci Ring Pas 14 pcs set'
+                ]
+            ],
+            [
+                'jenis_bantuan_modal' => 'CUCI HELM',
+                'detail' => [
+                    'Booth Portable',
+                    'Mesin Kompresor Listrik',
+                    'Mesin Pengering Helm',
+                    'Mesin Pengering Sepatu',
+                    'Shampoo helm',
+                    'Pengharum sepatu',
+                ]
+            ]
         ]);
     }
 }
