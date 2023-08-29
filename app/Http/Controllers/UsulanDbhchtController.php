@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UsulanDbhchtController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $usulans = UsulanDbhcht::showDataByRole(Auth::user())->paginate(10);
-        return view('usulanBanmod.index', compact('usulans'));
+        $usulans = UsulanDbhcht::filterByJenisBanmod($request)->search($request)->showDataByRole(Auth::user())->paginate(10)->withQueryString();
+        $jenisBanmods = JenisBantuanModal::jenisBanmod()->pluck('jenis_bantuan_modal');
+        return view('usulanBanmod.index', compact('usulans','jenisBanmods'));
     }
 
     public function create()
@@ -34,12 +35,12 @@ class UsulanDbhchtController extends Controller
         $cek_2022 = DaftarKpmBanmodAll::cekData($request)->count();
         $cek_kuota=(new KuotaTersedia(Auth::user()))->kuota();
 
-        if ($cek > 0) return redirect()->route('usulan_dbhcht.create')->with('notifikasi_gagal', 'Gagal Mengusulan : KPM / Anggota Keluarga Sudah Diusulkan');
-        if ($cek_2022 > 0) return redirect()->route('usulan_dbhcht.create')->with('notifikasi_gagal', 'Gagal Mengusulan : KPM Sudah Pernah Menerima Bantuan Modal');
-        if ($cek_kuota == 0) return redirect()->route('usulan_dbhcht.create')->with('notifikasi_gagal', 'Gagal Mengusulan : Kuota Sudah Tidak Tersedia');
+        if ($cek > 0) return redirect()->route('usulan_dbhcht.index')->with('notifikasi_gagal', 'Gagal Mengusulan : KPM / Anggota Keluarga Sudah Diusulkan');
+        if ($cek_2022 > 0) return redirect()->route('usulan_dbhcht.index')->with('notifikasi_gagal', 'Gagal Mengusulan : KPM Sudah Pernah Menerima Bantuan Modal');
+        if ($cek_kuota == 0) return redirect()->route('usulan_dbhcht.index')->with('notifikasi_gagal', 'Gagal Mengusulan : Kuota Sudah Tidak Tersedia');
 
         $usulanDbhcht = UsulanDbhcht::create($request->validated());
-        if (!$usulanDbhcht)  return redirect()->route('usulan_dbhcht.create')->with('notifikasi_gagal', 'Gagal Mengusulan : Error !');
+        if (!$usulanDbhcht)  return redirect()->route('usulan_dbhcht.index')->with('notifikasi_gagal', 'Gagal Mengusulan : Error Database !');
 
         $kuota_kel=KuotaKelurahan::where([
             'kecamatan' => $request->kecamatan,
@@ -51,7 +52,7 @@ class UsulanDbhchtController extends Controller
         ]);
 
         if($update_kuota_kel){
-            return redirect()->route('usulan_dbhcht.create')->with('notifikasi', 'Sukses Mengusulkan KPM');
+            return redirect()->route('usulan_dbhcht.index')->with('notifikasi', 'Sukses Mengusulkan KPM');
         }
 
     }
@@ -73,10 +74,10 @@ class UsulanDbhchtController extends Controller
 
     public function delete(Request $request)
     {
-        $usulanDbhcht = usulanDbhcht::whereNik($request->nik)->get()->first();
+        $usulanDbhcht = usulanDbhcht::findOrFail($request->id);
         $usulanDbhcht->delete();
         if ($usulanDbhcht) {
-            return redirect()->route('usulan_dbhcht.create')->with('notifikasi', 'Sukses Menghapus Usulan KPM');
+            return redirect()->route('usulan_dbhcht.index')->with('notifikasi', 'Sukses Menghapus Usulan KPM');
         }
     }
 
@@ -95,7 +96,6 @@ class UsulanDbhchtController extends Controller
     {
         $user = Auth::user();
         $count_dashboard = UsulanDbhcht::dashboard()->filterByKelurahan($user)->get();
-        // dd($count_dashboard);
         $jenisBanmods = JenisBantuanModal::jenisBanmod();
         return view('usulanBanmod.dashboard.index', compact('count_dashboard', 'jenisBanmods'));
     }
@@ -104,7 +104,7 @@ class UsulanDbhchtController extends Controller
     {
         $jenis_bantuan_modal = $request->jenis_bantuan_modal;
         $user = Auth::user();
-        $usulans = UsulanDbhcht::search($request->keyword)->select([
+        $usulans = UsulanDbhcht::search($request)->select([
             'nik',
             'nama',
             'no_kk',

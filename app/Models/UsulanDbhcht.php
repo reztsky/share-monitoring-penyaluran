@@ -56,11 +56,13 @@ class UsulanDbhcht extends Model
             ->groupBy('jenis_bantuan_modal');
     }
     
-    public function scopeSearch($query,$keyword){
-        return $query->where(function($query) use ($keyword){
-            return $query->where('nik',$keyword)
-            ->orWhere('nama','like','%'.$keyword.'%')
-            ->orWhere('alamat','like','%'.$keyword.'%');
+    public function scopeSearch($query,$request){
+        return $query->when($request->filled('keyword'),function($q) use ($request){
+            return $q->where(function($query) use ($request){
+                return $query->where('nik',$request->keyword)
+                ->orWhere('nama','like','%'.$request->keyword.'%')
+                ->orWhere('alamat','like','%'.$request->keyword.'%');
+            });
         });
     }
 
@@ -70,6 +72,17 @@ class UsulanDbhcht extends Model
         return $query->when($role=='Kelurahan',function($q) use ($user_detail){
             return $q->where('kelurahan',$user_detail[1])
             ->where('kecamatan',$user_detail[2]);
+        });
+    }
+
+    public function scopeFilterByJenisBanmod($query,$request){
+        return $query->when($request->filled('jenis_bantuan_modal'),function($q) use ($request){
+            $jenis_bantuan_modal=$request->jenis_bantuan_modal;
+            $q->when($jenis_bantuan_modal==0,function($que){
+                return $que->where('jenis_bantuan_modal',"");
+            }, function($que) use ($jenis_bantuan_modal){
+                return $que->where('jenis_bantuan_modal',$jenis_bantuan_modal);
+            });
         });
     }
 }

@@ -5,8 +5,8 @@
     <div class="col-md-12 col-12">
         <div class="bg-white p-3 my-2 shadow rounded-3">
             <div class="table-responsive">
-                <table class="table">
-                    <thead class="">
+                <table class="table table-hover mb-0 text-left">
+                    <thead class="" style="background-color: #5EC2AF;color:white">
                         <tr>
                             <th>No.</th>
                             <th>Jenis Bantuan Modal</th>

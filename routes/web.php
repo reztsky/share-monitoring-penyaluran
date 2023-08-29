@@ -66,7 +66,7 @@ Route::group([
         Route::get('/detail','detail')->name('detail');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');
-        Route::post('/delete/{nik}','delete')->name('delete');
+        Route::post('/delete/{id}','delete')->name('delete');
         Route::get('/cekgakin/{nik}','cekGakin')->name('cekGakin');
         Route::get('/cekKuota','cekKuota')->name('cekKuota');
         Route::get('/edit/{id}','edit')->middleware('cekInsertedByOnUsulan')->name('edit');
