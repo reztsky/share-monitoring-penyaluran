@@ -76,6 +76,16 @@ class UsulanDbhchtController extends Controller
     {
         $usulanDbhcht = usulanDbhcht::findOrFail($request->id);
         $usulanDbhcht->delete();
+        if (!$usulanDbhcht) { return redirect()->route('usulan_dbhcht.index')->with('notifikasi_gagal', 'Gagal Menghapus Usulan KPM');}
+
+        $kuota_kel=KuotaKelurahan::where([
+            'kecamatan' => $usulanDbhcht->kecamatan,
+            'kelurahan' => $usulanDbhcht->kelurahan
+        ])->first();
+        $kuota_kel->update([
+            'kuota_sisa'=>$kuota_kel->kuota_sisa+1
+        ]);
+        
         if ($usulanDbhcht) {
             return redirect()->route('usulan_dbhcht.index')->with('notifikasi', 'Sukses Menghapus Usulan KPM');
         }
