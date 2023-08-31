@@ -79,7 +79,11 @@
                                 data-bs-parent="#menu-accrodion">
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboard') }}"
-                                            class="submenu-link">Dashboard</a></li>
+                                            class="submenu-link">Dashboard Usulan</a></li>
+                                    @hasrole('Super Admin')
+                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboardKuota') }}"
+                                            class="submenu-link">Dashboard Kuota</a></li>
+                                    @endrole
                                     <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
                                             class="submenu-link">Usulan</a></li>
                                 </ul>

@@ -63,6 +63,7 @@ Route::group([
     ], function(){
         Route::get('/','index')->name('index');
         Route::get('/dashboard','dashboard')->name('dashboard');
+        Route::get('/dashboard-kuota','dashboardKuota')->name('dashboardKuota')->middleware('role:Super Admin');
         Route::get('/detail','detail')->name('detail');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');

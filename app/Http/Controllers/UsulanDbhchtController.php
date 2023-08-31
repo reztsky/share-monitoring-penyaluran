@@ -110,6 +110,11 @@ class UsulanDbhchtController extends Controller
         return view('usulanBanmod.dashboard.index', compact('count_dashboard', 'jenisBanmods'));
     }
 
+    public function dashboardKuota(){
+        $kuotas=KuotaKelurahan::selectRaw('kecamatan,sum(kuota_sisa) as kuota_sisa,sum(kuota_awal) as kuota_awal')->groupBy('kecamatan')->get();
+        return view('usulanBanmod.dashboard.index_kuota', compact('kuotas'));
+    }
+
     public function detail(Request $request)
     {
         $jenis_bantuan_modal = $request->jenis_bantuan_modal;
