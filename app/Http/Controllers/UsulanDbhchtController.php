@@ -18,8 +18,9 @@ class UsulanDbhchtController extends Controller
 {
     public function __construct()
     {
-        abort(503,"Maintance Mode");
+        // abort(503,"Maintance Mode");
     }
+    
     public function index(Request $request)
     {
         $usulans = UsulanDbhcht::filterByJenisBanmod($request)->search($request)->showDataByRole(Auth::user())->paginate(10)->withQueryString();
@@ -116,8 +117,6 @@ class UsulanDbhchtController extends Controller
 
     public function dashboardKuota(){
         $kuotas=KuotaKelurahan::selectRaw('kecamatan,kelurahan,kuota_sisa,kuota_awal')->get();
-        // dd($kuotas);
-        // $kuotas=KuotaKelurahan::selectRaw('kecamatan,kelurahan,kuota_sisa as kuota_sisa,kuota_awal) as kuota_awal')->groupBy('kecamatan','kelurahan')->get();
         return view('usulanBanmod.dashboard.index_kuota', compact('kuotas'));
     }
 
