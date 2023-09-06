@@ -59,19 +59,24 @@ Route::group([
         'controller'=>UsulanDbhchtController::class,
         'as'=>'usulan_dbhcht.',
         'prefix'=>'usulan/',
-        'middleware'=>'role:Super Admin|Kelurahan'
     ], function(){
-        Route::get('/','index')->name('index');
-        Route::get('/dashboard','dashboard')->name('dashboard');
-        Route::get('/dashboard-kuota','dashboardKuota')->name('dashboardKuota')->middleware('role:Super Admin');
-        Route::get('/detail','detail')->name('detail');
-        Route::get('/create','create')->name('create');
-        Route::post('/store','store')->name('store');
-        Route::post('/delete/{id}','delete')->name('delete');
-        Route::get('/cekgakin/{nik}','cekGakin')->name('cekGakin');
-        Route::get('/cekKuota','cekKuota')->name('cekKuota');
-        Route::get('/edit/{id}','edit')->middleware('cekInsertedByOnUsulan')->name('edit');
-        Route::post('/update/{id}','update')->name('update');
+        Route::group([
+            'middleware' =>'role:Super Admin|Kelurahan'
+        ], function(){
+            Route::get('/','index')->name('index');
+            Route::get('/create','create')->name('create');
+            Route::post('/store','store')->name('store');
+            Route::post('/delete/{id}','delete')->name('delete');
+            Route::get('/cekgakin/{nik}','cekGakin')->name('cekGakin');
+            Route::get('/cekKuota','cekKuota')->name('cekKuota');
+            Route::get('/edit/{id}','edit')->middleware('cekInsertedByOnUsulan')->name('edit');
+            Route::post('/update/{id}','update')->name('update');
+        });
+
+        Route::get('/detail','detail')->name('detail')->middleware('role:Super Admin|Kelurahan|Opd');
+        Route::get('/dashboard','dashboard')->name('dashboard')->middleware('role:Super Admin|Kelurahan|Opd');
+        Route::get('/dashboard-kuota','dashboardKuota')->name('dashboardKuota')->middleware('role:Super Admin|Opd');
+       
     });
 
     Route::group([
@@ -85,13 +90,13 @@ Route::group([
 
     Route::group([
         'prefix' => '/blt-tunai',
-        'middleware' => 'role:Super Admin',
         'as' => 'blt.'
     ], function () {
         Route::group([
             'controller' => LandingController::class,
             'as' => 'dashboard.',
             'prefix' => '/dashboard',
+            'middleware' => 'role:Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::get('/detail-data', 'detail')->name('detail');
@@ -101,6 +106,7 @@ Route::group([
             'controller' => TransaksiController::class,
             'as' => 'transaksi.',
             'prefix' => '/transkasi-salur',
+            'middleware' => 'role:Super Admin',
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::post('/find', 'find')->name('find');
@@ -118,7 +124,7 @@ Route::group([
             'controller' => BantuanModalHomeController::class,
             'as' => 'dashboard.',
             'prefix' => '/dashboard',
-            'middleware' => 'role:Super Admin',
+            'middleware' => 'role:Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
@@ -159,7 +165,7 @@ Route::group([
                 'controller' => ReportMonitoringBantuanModalController::class,
                 'as' => 'report.',
                 'prefix' => '/report',
-                'middleware' => 'role:Surveyor|Super Admin',
+                'middleware' => 'role:Surveyor|Super Admin|Opd',
             ], function () {
                 Route::get('/', 'index')->name('index');
             });
@@ -174,7 +180,7 @@ Route::group([
             'controller' => DashboardBantuanController::class,
             'as' => 'dashboard.',
             'prefix' => '/dashboard',
-            'middleware' => 'role:Admin Pelayanan|Super Admin',
+            'middleware' => 'role:Admin Pelayanan|Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');

@@ -62,7 +62,7 @@
                         <!--//nav-link-->
                     </li>
 
-                    @hasanyrole('Super Admin|Kelurahan')
+                    @hasanyrole('Super Admin|Kelurahan|Opd')
                         {{-- Usulan Bantuan Modal DBHCHT --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link @yield('link-active-usulan-bantuan-modal') submenu-toggle" data-bs-toggle="collapse"
@@ -80,18 +80,21 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboard') }}"
                                             class="submenu-link">Dashboard Usulan</a></li>
-                                    @hasrole('Super Admin')
-                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboardKuota') }}"
-                                            class="submenu-link">Dashboard Kuota</a></li>
-                                    @endrole
-                                    <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
-                                            class="submenu-link">Usulan</a></li>
+                                    @hasanyrole('Super Admin|Opd')
+                                        <li class="submenu-item"><a href="{{ route('usulan_dbhcht.dashboardKuota') }}"
+                                                class="submenu-link">Dashboard Kuota</a></li>
+                                    @endhasanyrole
+
+                                    @hasanyrole('Super Admin|Kelurahan')
+                                        <li class="submenu-item"><a href="{{ route('usulan_dbhcht.index') }}"
+                                                class="submenu-link">Usulan</a></li>
+                                    @endhasanyrole
                                 </ul>
                             </div>
                         </li>
                     @endhasanyrole
 
-                    @hasrole('Super Admin')
+                    @hasanyrole('Super Admin|Opd')
                         {{-- BLT --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link  @yield('link-active-blt') submenu-toggle" data-bs-toggle="collapse"
@@ -108,8 +111,10 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="{{ route('blt.dashboard.index') }}"
                                             class="submenu-link">Dashboard</a></li>
-                                    <li class="submenu-item"><a href="{{ route('blt.transaksi.index') }}"
-                                            class="submenu-link">Transaksi</a></li>
+                                    @hasrole('Super Admin')
+                                        <li class="submenu-item"><a href="{{ route('blt.transaksi.index') }}"
+                                                class="submenu-link">Transaksi</a></li>
+                                    @endhasrole
                                     {{-- <li class="submenu-item"><a href="{{ route('exportfoto.index','BLT') }}"
                                             class="submenu-link">Export</a></li> --}}
                                 </ul>
@@ -133,16 +138,18 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="{{ route('bantuanmodal.dashboard.index') }}"
                                             class="submenu-link">Dashboard</a></li>
-                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.transaksi.index') }}"
-                                            class="submenu-link">Transaksi</a></li>
+                                    @hasrole('Super Admin')
+                                        <li class="submenu-item"><a href="{{ route('bantuanmodal.transaksi.index') }}"
+                                                class="submenu-link">Transaksi</a></li>
+                                    @endhasrole
                                     {{-- <li class="submenu-item"><a href="{{ route('exportfoto.index','Bantuan-Modal') }}"
                                             class="submenu-link">Export</a></li> --}}
                                 </ul>
                             </div>
                         </li>
-                    @endrole
+                    @endhasanyrole
 
-                    @hasanyrole('Super Admin|Surveyor')
+                    @hasanyrole('Super Admin|Surveyor|Opd')
                         {{-- Moniotring Bantuan Modal --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link @yield('link-active-monev-modal') submenu-toggle" data-bs-toggle="collapse"
@@ -161,14 +168,16 @@
                                     <li class="submenu-item"><a
                                             href="{{ route('bantuanmodal.monitoring.report.index') }}"
                                             class="submenu-link">Dashboard</a></li>
-                                    <li class="submenu-item"><a href="{{ route('bantuanmodal.monitoring.index') }}"
-                                            class="submenu-link">Transaksi</a></li>
+                                    @hasanyrole('Super Admin|Surveyor')
+                                        <li class="submenu-item"><a href="{{ route('bantuanmodal.monitoring.index') }}"
+                                                class="submenu-link">Transaksi</a></li>
+                                    @endhasanyrole
                                 </ul>
                             </div>
                         </li>
                     @endhasanyrole
 
-                    @hasanyrole('Super Admin|Admin Pelayanan')
+                    @hasanyrole('Super Admin|Admin Pelayanan|Opd')
                         {{-- Pengajuan Bantuan Modal --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link @yield('link-active-pengajuan-modal') submenu-toggle" data-bs-toggle="collapse"
@@ -176,7 +185,7 @@
                                 <span class="nav-icon fs-5 fw-bold">
                                     <i class="bi bi-headset"></i>
                                 </span>
-                                <span>Pelayanan BanMod</span>
+                                <span>Pelayanan Alat Bantu</span>
                                 <span class="submenu-arrow">
                                     <i class="bi bi-chevron-down"></i>
                                 </span>
@@ -186,12 +195,15 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a href="{{ route('pelayanan.dashboard.index') }}"
                                             class="submenu-link">Dashboard</a></li>
-                                    <li class="submenu-item"><a href="{{ route('pelayanan.pengajuan.index') }}"
-                                            class="submenu-link">Pengajuan & Pengecekan</a></li>
-                                    <li class="submenu-item"><a href="{{ route('pelayanan.pemeriksaan.index') }}"
-                                            class="submenu-link">Pemeriksaan & Pengukuran</a></li>
-                                    <li class="submenu-item"><a href="{{ route('pelayanan.penyaluran.index') }}"
-                                            class="submenu-link">Penyaluran</a></li>
+
+                                    @hasanyrole('Super Admin|Admin Pelayanan')
+                                        <li class="submenu-item"><a href="{{ route('pelayanan.pengajuan.index') }}"
+                                                class="submenu-link">Pengajuan & Pengecekan</a></li>
+                                        <li class="submenu-item"><a href="{{ route('pelayanan.pemeriksaan.index') }}"
+                                                class="submenu-link">Pemeriksaan & Pengukuran</a></li>
+                                        <li class="submenu-item"><a href="{{ route('pelayanan.penyaluran.index') }}"
+                                                class="submenu-link">Penyaluran</a></li>
+                                    @endhasanyrole
                                 </ul>
                             </div>
                         </li>
