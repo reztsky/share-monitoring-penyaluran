@@ -20,7 +20,7 @@ class UsulanDbhchtController extends Controller
 {
     public function __construct()
     {
-        // abort(503,"Maintance Mode");
+        abort(403,"PENGUSULAN SEMENTARA DI TUTUP !");
     }
     
     public function index(Request $request)
