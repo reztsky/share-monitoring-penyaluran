@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BltTunai;
 
+use App\Http\Controllers\Controller;
 use App\Services\Home\BuruhPabrikService;
 use App\Services\Home\DashboardService;
 use App\Services\Home\DetailService;
 use App\Services\Home\MasyarakatUmumService;
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -19,8 +21,9 @@ class LandingController extends Controller
         $chartTersalur=$dashboardService->chartTersalur();
         $buruhPabriks=$buruhPabrikService->rekap();
         $masyarakatUmum=$masyarakatUmumService->rekap();
-        
-        return view('blt.dashboard.home',compact('chartTersalur','masyarakatUmum','buruhPabriks'));
+        $tahun_anggaran=TahunAnggaranServices::tahunAnggaranAktif();
+
+        return view('blt.dashboard.home',compact('chartTersalur','masyarakatUmum','buruhPabriks','tahun_anggaran'));
     }
 
     public function detail(Request $request){

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,5 +42,9 @@ class KpmBlt extends Model
 
     public function transaksi(){
         return $this->hasOne(TransaksiBlt::class,'id_kpm','id');
+    }
+
+    public function scopeTahunAktif($query){
+        return $query->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif());
     }
 }

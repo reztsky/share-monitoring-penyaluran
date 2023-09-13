@@ -2,6 +2,7 @@
 namespace App\Services\Home;
 
 use App\Models\KpmBlt;
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Support\Facades\DB;
 
 class BuruhPabrikService{
@@ -31,6 +32,7 @@ class BuruhPabrikService{
         ->select('keterangan')
         ->selectRaw('count(id) as jumlah')
         ->where('status_kpm_sebagai',1)
+        ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
         ->groupBy('keterangan')
         ->get();
     }
@@ -43,6 +45,7 @@ class BuruhPabrikService{
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
             ->where('b.deleted_at',null)
             ->where('a.status_kpm_sebagai',1)
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->get();
     }
 }

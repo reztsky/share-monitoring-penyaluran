@@ -2,6 +2,7 @@
 namespace App\Services\BantuanModal;
 
 use App\Models\KpmBantuanModal;
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Support\Facades\DB;
 
 class DetailDashboardBantuanModalService{
@@ -23,6 +24,7 @@ class DetailDashboardBantuanModalService{
 
     private function total(){
         return DB::table('kpm_bantuan_modals')->where('jenis_bantuan_modal',$this->jenis_bantuan)
+        ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
         ->where('status_aktif',1)
         ->paginate(15);
     }
@@ -31,6 +33,7 @@ class DetailDashboardBantuanModalService{
         return DB::table('kpm_bantuan_modals as a')
         ->join('transaksi_bantuan_modals as b','a.id','=','b.id_kpm')
         ->select(['a.*','b.foto_pemberian'])
+        ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
         ->where('b.deleted_at',null)
         ->where('a.jenis_bantuan_modal',$this->jenis_bantuan)
         ->where('a.status_aktif',1)
@@ -49,6 +52,7 @@ class DetailDashboardBantuanModalService{
             ->whereNotIn('id',$tesalur->pluck('id')->toArray())
             ->where('jenis_bantuan_modal',$this->jenis_bantuan)
             ->where('status_aktif',1)
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->paginate(15);
     }
 }

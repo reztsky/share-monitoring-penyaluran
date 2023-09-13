@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +27,9 @@ class KpmBantuanModal extends Model
     public function scopeCekData($query,$request){
         return $query->where('nik', $request->nik)
         ->orWhere('no_kk', $request->no_kk);
+    }
+
+    public function scopeTahunAktif($query){
+        return $query->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif());
     }
 }

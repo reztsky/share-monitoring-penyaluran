@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BltTunai;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Models\KpmBlt;
 use App\Models\TransaksiBlt;
@@ -24,7 +25,7 @@ class TransaksiController extends Controller
     }
 
     public function show($id){
-        $kpmBlt=KpmBlt::with('transaksi')->whereId($id)->orWhere('nik',$id)->get()->first();
+        $kpmBlt=KpmBlt::with('transaksi')->whereId($id)->orWhere('nik',$id)->tahunAktif()->get()->first();
         
         abort_if(is_null($kpmBlt),'404', 'Not Found');
 

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <h5 class="mt-4">Rekap Bantuan Modal 2023</h5>
+        <h5 class="mt-4">Rekap Bantuan Modal {{$tahun_anggaran}}</h5>
         <div class="col-md-12 col-sm-12 col-12">
             <div class="app-card shadow-sm mb-5">
                 <div class="app-card-body">

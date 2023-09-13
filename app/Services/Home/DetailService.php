@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Home;
 
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Support\Facades\DB;
 
 class DetailService{
@@ -39,6 +40,7 @@ class DetailService{
                     ->where('status_kpm_sebagai',2);
             })
             ->where('b.deleted_at',null)
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->when($this->jenis=='SISA',function($q){
                 return $q->get();
             }, function($q){
@@ -50,6 +52,7 @@ class DetailService{
     private function totalData(){
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->when($this->statuskpm==1,function($q){
                 //buruh pabrik
                 return $q->where('a.keterangan',$this->lokasi)
@@ -68,6 +71,7 @@ class DetailService{
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
             ->whereNotIn('id',$tesalur->pluck('id')->toArray())
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->when($this->statuskpm==1,function($q){
                 //buruh pabrik
                 return $q->where('a.keterangan',$this->lokasi)

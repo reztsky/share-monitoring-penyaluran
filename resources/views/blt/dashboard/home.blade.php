@@ -13,7 +13,7 @@
     </div>
     
     <div class="col-md-12 col-12">
-        <h5 class="mt-4">Rekap Penyaluran BLT DBHCHT 2020 Buruh Pabrik</h5>
+        <h5 class="mt-4">Rekap Penyaluran BLT DBHCHT {{$tahun_anggaran}} Buruh Pabrik</h5>
         <div class="mt-2 app-card shadow-sm mb-5">
             <div class="app-card-body">
                 <div class="table-responsive p-4">
@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="col-md-12 col-12">
-        <h5>Rekap Penyaluran BLT DBHCHT 2022 Masyarakat Umum</h5>
+        <h5>Rekap Penyaluran BLT DBHCHT {{$tahun_anggaran}} Masyarakat Umum</h5>
         <div class="app-card  shadow-sm mb-5">
             <div class="app-card-body">
                 <div class="table-responsive p-4">

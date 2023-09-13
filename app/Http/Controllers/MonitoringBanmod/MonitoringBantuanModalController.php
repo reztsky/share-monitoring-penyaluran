@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MonitoringBanmod;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMonitoringRequest;
 use App\Http\Requests\UpdateMonitoringRequest;
 use App\Models\DetailMonitoringCuciKendaraan;

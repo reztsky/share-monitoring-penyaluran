@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Home;
 
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Support\Facades\DB;
 
 class MasyarakatUmumService{
@@ -32,6 +33,7 @@ class MasyarakatUmumService{
             ->join('transaksi_blts as b','a.id','=','b.id_kpm')
             ->where('b.deleted_at',null)
             ->where('a.status_kpm_sebagai',2)
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->get();
     }
 
@@ -40,6 +42,7 @@ class MasyarakatUmumService{
             ->select('kecamatan')
             ->selectRaw('count(id) as total_data')
             ->where('status_kpm_sebagai',2)
+            ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
             ->groupBy('kecamatan')
             ->get();
     }

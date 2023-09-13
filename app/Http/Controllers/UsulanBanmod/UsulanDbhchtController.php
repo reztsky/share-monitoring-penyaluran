@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UsulanBanmod;
 
+
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UsulanBanmod\storeUsulanBanmod;
 use App\Http\Requests\UsulanBanmod\updateUsulanBanmod;
 use App\Models\DaftarKpmBanmodAll;

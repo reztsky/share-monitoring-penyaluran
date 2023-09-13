@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BltBantuanModal;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTransaksiBantuanModalRequest;
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiBantuanModal;
@@ -23,7 +24,7 @@ class BantuanModalTransaksiController extends Controller
     }
 
     public function create($id_kpm){
-        $kpm=KpmBantuanModal::with('transaksi')->findKpm($id_kpm)->get()->first();
+        $kpm=KpmBantuanModal::with('transaksi')->findKpm($id_kpm)->tahunAktif()->get()->first();
         abort_if(is_null($kpm),'404', 'Not Found');
         return view('bantuanModal.transaksi.create',compact('kpm'));
     }

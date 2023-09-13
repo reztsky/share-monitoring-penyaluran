@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AlatDisabilitas;
 
+use App\Http\Controllers\Controller;
 use App\Models\MJenisKebutuhan;
 use App\Models\PengajuanKebutuhan;
 use App\Models\PenyaluranKebutuhan;

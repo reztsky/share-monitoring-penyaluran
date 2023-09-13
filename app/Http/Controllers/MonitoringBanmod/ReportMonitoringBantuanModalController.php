@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MonitoringBanmod;
 
+use App\Http\Controllers\Controller;
 use App\Models\KpmBantuanModal;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Monitoring\DashboardMonitoringService;

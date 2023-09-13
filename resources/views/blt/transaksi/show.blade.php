@@ -39,7 +39,7 @@
                         <div id="root"></div>
                         <div class="d-flex justify-content-end gap-2">
                             @if (!is_null($kpmBlt->transaksi))
-                                <a href="{{route('blt.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
+                                <a href="{{route('blt.transaksi.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
                             @endif
                             <button class="btn-sm btn-success btn" type="submit">Update</button>
                         </div>

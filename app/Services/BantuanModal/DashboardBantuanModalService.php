@@ -3,6 +3,7 @@ namespace App\Services\BantuanModal;
 
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiBantuanModal;
+use App\Services\Settings\TahunAnggaranServices;
 use Illuminate\Support\Facades\DB;
 
 class DashboardBantuanModalService{
@@ -34,6 +35,7 @@ class DashboardBantuanModalService{
             'jenis_bantuan_modal',
         ])
         ->selectRaw('count(id) as total')
+        ->tahunAktif()
         ->where('status_aktif',1)
         ->groupBy(['jenis_bantuan_modal'])
         ->get();
@@ -46,6 +48,7 @@ class DashboardBantuanModalService{
         ->selectRaw('count(a.id) as tersalur')
         ->where('b.deleted_at',null)
         ->where('status_aktif',1)
+        ->where('tahun_anggaran',TahunAnggaranServices::tahunAnggaranAktif())
         ->groupBy('a.jenis_bantuan_modal')
         ->get();
     }
