@@ -1,22 +1,22 @@
 <?php
 
-use App\Http\Controllers\BantuanModalHomeController;
-use App\Http\Controllers\BantuanModalTransaksiController;
-use App\Http\Controllers\DashboardBantuanController;
-use App\Http\Controllers\ExportFotoController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MonitoringBantuanModalController;
-use App\Http\Controllers\PelayananBantuanModalController;
-use App\Http\Controllers\PemeriksaanBantuanModalController;
-use App\Http\Controllers\PengajuanBantuanModalController;
-use App\Http\Controllers\PengecekanBantuanModalController;
-use App\Http\Controllers\PenyaluranBantuanModalController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ReportMonitoringBantuanModalController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\UsulanDbhchtController;
+// use App\Http\Controllers\BantuanModalHomeController;
+// use App\Http\Controllers\BantuanModalTransaksiController;
+// use App\Http\Controllers\DashboardBantuanController;
+// use App\Http\Controllers\ExportFotoController;
+// use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\LandingController;
+// use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\MonitoringBantuanModalController;
+// use App\Http\Controllers\PelayananBantuanModalController;
+// use App\Http\Controllers\PemeriksaanBantuanModalController;
+// use App\Http\Controllers\PengajuanBantuanModalController;
+// use App\Http\Controllers\PengecekanBantuanModalController;
+// use App\Http\Controllers\PenyaluranBantuanModalController;
+// use App\Http\Controllers\ReportController;
+// use App\Http\Controllers\ReportMonitoringBantuanModalController;
+// use App\Http\Controllers\TransaksiController;
+// use App\Http\Controllers\UsulanDbhchtController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +44,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'auth'
+    'middleware' => ['auth']
 ], function () {
 
     Route::group([
