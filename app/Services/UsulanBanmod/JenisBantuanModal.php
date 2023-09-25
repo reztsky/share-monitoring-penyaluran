@@ -301,6 +301,18 @@ class JenisBantuanModal
                     'Shampoo helm',
                     'Pengharum sepatu',
                 ]
+            ],
+            [
+                'jenis_bantuan_modal' => 'BUBUR MADURA',
+                'detail' => [
+                    '-'
+                ]
+            ],
+            [
+                'jenis_bantuan_modal' => 'MESIN PEMOTONG SPUNBOND',
+                'detail' => [
+                    '-'
+                ]
             ]
         ]);
     }
