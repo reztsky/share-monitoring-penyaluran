@@ -12,20 +12,35 @@ use Illuminate\Http\Request;
 class TransaksiController extends Controller
 {
     public function index(){
-        return view('blt.transaksi.transaksi');
+        $tahap_max=KpmBlt::selectRaw('max(tahap) as tahap')->where('tahun_anggaran',date('Y'))->get()->first();
+        return view('blt.transaksi.transaksi',compact('tahap_max'));
     }
 
     
     public function find(Request $request){
+        $years=[date('Y')];
         $validated=$request->validate([
-            'id_kpm'=>'required|numeric|min:1'
+            'tahun_anggaran'=>'required|numeric|digits:4|in:'.implode(',',$years),
+            'tahap'=>'required|numeric|min:1',
+            'key'=>'required|numeric|min:1',
         ]);
         
-        return redirect()->route('blt.transaksi.show',['id'=>$request->id_kpm]);
+        return redirect()->route('blt.transaksi.show',[
+            'tahun'=>$request->tahun_anggaran,
+            'tahap'=>$request->tahap,
+            'key'=>$request->key
+        ]);
     }
 
-    public function show($id){
-        $kpmBlt=KpmBlt::with('transaksi')->whereId($id)->orWhere('nik',$id)->tahunAktif()->get()->first();
+    public function show($tahun,$tahap,$key){
+
+        $keywords=[
+            'tahun_anggaran'=>$tahun,
+            'tahap'=>$tahap,
+            'key'=>$key
+        ];
+
+        $kpmBlt=KpmBlt::with('transaksi')->search($keywords)->get()->first();
         
         abort_if(is_null($kpmBlt),'404', 'Not Found');
 

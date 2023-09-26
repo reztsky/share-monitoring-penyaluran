@@ -46,7 +46,7 @@
         <div class="app-card bg-white p-3 rounded rounded-3 shadow my-2">
             <form action="{{ route('usulan_dbhcht.index') }}" method="get">
                 <div class="d-flex justify-content-end">
-                    <div class="col-md-4 mx-3">
+                    <div class="col-md-6" style="margin-horizontal: 10px;padding-right: 15px" >
                         <select name="jenis_bantuan_modal" id="jenis_bantuan_modal" class="form-select"
                             style="height: 40px">
                             <option value="">Jenis Bantuan Modal</option>
@@ -57,7 +57,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="input-group">
                             <input type="text" placeholder="Cari Data (NIK/Nama....)" class="form-control shadow"
                                 name="keyword" value="{{ request('keyword') }}">
@@ -85,7 +85,7 @@
                             <td>Kelurahan</td>
                             <td>Jenis BanMod</td>
                             <td>TA</td>
-                            <td>Aksi</td>
+                            {{-- <td>Aksi</td> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -98,7 +98,7 @@
                                 <td>{{ $usulan->kelurahan }}</td>
                                 <td>{{ $usulan->jenis_bantuan_modal }}</td>
                                 <td>{{ $usulan->tahun_anggaran }}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{ route('usulan_dbhcht.edit', $usulan->id) }}"
                                         class="btn btn-success btn-sm">Edit</a>
                                     <button class="btn btn-danger btn-sm btn-delete"
@@ -106,7 +106,7 @@
                                     <form action="{{ route('usulan_dbhcht.delete', $usulan->id) }}"
                                         id="form-delete-{{ $usulan->id }}" method="POST" class="form-delete">@csrf
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                         @empty
                             <tr>

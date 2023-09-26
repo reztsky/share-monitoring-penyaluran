@@ -1,7 +1,42 @@
 @extends('layout')
 @section('link-active-bantuan-modal','active')
 @section('link-active-bantuan-modal-transaksi','active')
+@push('style')
+    <style>
+        .button {
+            width: 200px;
+            height: 35px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            /* letter-spacing: 2.5px; */
+            font-weight: 500;
+            color: white;
+            background-color: #5EC2AF;
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+        }
 
+        .button:hover {
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: ##747B80;
+            transform: translateY(-7px);
+        }
+
+        .white,
+        .white a {
+            color: #fff;
+        }
+
+        th {
+            cursor: pointer;
+        }
+    </style>
+@endpush
 @section('content')
 <div class="col-md-12 col-sm-12 col-12">
     <div class="bg-white shadow p-3 rounded-3 my-3">

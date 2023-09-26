@@ -4,18 +4,20 @@
 
 @section('content')
 <div class="col-md-12 col-12">
-    <h5 class="h5  text-center">Daftar Nama
-        @if ($kategori=='TERSALUR')
-            Penerima BLT Bantuan Modal Sudah Tersalur
-        @elseif($kategori=='SISA')
-            Penerima BLT Bantuan Modal Belum Tersalur
-        @else
-            Penerima BLT Bantuan Modal
-        @endif
-    </h5>
+    
     <div class="app-card shadow">
+        
         <div class="app-card-body">
-            <hr>
+            <h5 class="h5  text-center pt-3">Daftar Nama
+                @if ($kategori=='TERSALUR')
+                    Penerima BLT Bantuan Modal Sudah Tersalur
+                @elseif($kategori=='SISA')
+                    Penerima BLT Bantuan Modal Belum Tersalur
+                @else
+                    Penerima BLT Bantuan Modal
+                @endif
+            </h5>
+
             <div class="table table-responsive p-2">
                 <table class="table table-hover mb-0 text-left">
                     <thead style="background-color: #5EC2AF;color:white">

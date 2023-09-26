@@ -107,7 +107,7 @@ Route::group([
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::post('/find', 'find')->name('find');
-            Route::get('/show/{id}', 'show')->name('show');
+            Route::get('/show/{tahun}/{tahap}/{key}', 'show')->name('show');
             Route::post('/store', 'store')->name('store');
             Route::get('/soft-delete/{id}', 'softDelete')->name('softDelete');
         });
@@ -124,7 +124,7 @@ Route::group([
             'middleware' => 'role:Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
-            Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
+            Route::get('detail/{tahun}/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
         });
 
         Route::group([
@@ -135,7 +135,7 @@ Route::group([
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::post('/find', 'find')->name('find');
-            Route::get('/{id}/create', 'create')->name('create');
+            Route::get('/{tahun}/{tahap}/{key}/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
             Route::get('/soft-delete/{id}', 'softDelete')->name('softDelete');
         });

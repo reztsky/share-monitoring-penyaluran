@@ -1,5 +1,24 @@
 @extends('layout')
 @section('link-active-blt','active')
+@push('style')
+    <style>
+        .button {
+            width: 100px;
+            height: 35px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            /* letter-spacing: 2.5px; */
+            font-weight: 500;
+            color: white;
+            background-color: #5EC2AF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="col-md-12 col-12">
         <div class="bg-white shadow p-3 rounded-3 my-3">
@@ -41,7 +60,7 @@
                             @if (!is_null($kpmBlt->transaksi))
                                 <a href="{{route('blt.transaksi.softDelete',$kpmBlt->transaksi->id)}}" id="btn-delete" class="btn btn-danger btn-sm">Batalkan</a>
                             @endif
-                            <button class="btn-sm btn-success btn" type="submit">Update</button>
+                            <button class="button" type="submit">Simpan </button>
                         </div>
                     </form>
                 </div>

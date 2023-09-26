@@ -25,7 +25,7 @@ class UsulanDbhchtController extends Controller
     
     public function index(Request $request)
     {
-        abort(403,"PENGUSULAN DI TUTUP SEMENTARA WAKTU !");
+        
         $usulans = UsulanDbhcht::filterByJenisBanmod($request)->search($request)->showDataByRole(Auth::user())->paginate(10)->withQueryString();
         $jenisBanmods = JenisBantuanModal::jenisBanmod()->pluck('jenis_bantuan_modal');
         return view('usulanBanmod.index', compact('usulans','jenisBanmods'));
@@ -33,6 +33,7 @@ class UsulanDbhchtController extends Controller
 
     public function create()
     {
+        abort(403,"PENGUSULAN DI TUTUP SEMENTARA WAKTU !");
         $jenisBanmods = JenisBantuanModal::jenisBanmod();
         return view('usulanBanmod.create', compact('jenisBanmods'));
     }

@@ -12,7 +12,9 @@
 @endphp
 @section('link-active-monev-modal','active')
 @push('style')
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 <style>
+    
     .button {
         width: 200px;
         height: 35px;
@@ -90,7 +92,6 @@
         left: 200px;
     }
 </style>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.2.2/css/fixedColumns.dataTables.min.css">
 @endpush
 @section('content')
@@ -137,7 +138,7 @@
                 <hr>
                 <div>
                     <div class="view">
-                        <div class="wrapper">
+                        <div class="">
                             <table class="table my-2 pt-2" id="coba">
                                 <thead>
                                     <tr>
@@ -219,7 +220,8 @@
 </div>
 @endsection
 @push('script')
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
 <script>
     $(document).ready( function () {
