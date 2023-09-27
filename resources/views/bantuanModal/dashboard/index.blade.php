@@ -75,7 +75,7 @@
                             </thead>
                             <tbody>
                                 {{-- {{dd($rekap)}} --}}
-                                @foreach ($rekap as $row)
+                                @forelse ($rekap as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row['jenis_bantuan_modal'] }}</td>
@@ -101,7 +101,12 @@
                                                 ]) }}">{{ $row['sisa'] }}</a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="fw-bold text-center">Data Tidak Ditemukan !</td>
+                                    </tr>
+                                
+                                @endforelse
                             </tbody>
                             <tfoot style="background-color: #5EC2AF;color:white">
                                 <tr>
