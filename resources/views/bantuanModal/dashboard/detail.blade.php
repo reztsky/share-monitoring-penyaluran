@@ -25,7 +25,7 @@
                             @if ($details->count()>0)
                                 <th>No.</th>
                             @forelse ($details->first() as $key=>$value)
-                                @continue(in_array($key,['id','created_at','updated_at','status_aktif','kelurahan','tahap']))
+                                @continue(in_array($key,['id','created_at','updated_at','status_aktif','kelurahan','tahap','opd_verif_pimpinan','opd_asal']))
                                 <th>{{Str::upper(str_replace("_"," ",$key))}}</th>
                             @empty
     
@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{$details->firstItem() + $loop->index}}</td>
                             @foreach ($row as $key=>$value)
-                                @continue(in_array($key,['id','created_at','updated_at','status_aktif','kelurahan','tahap']))
+                                @continue(in_array($key,['id','created_at','updated_at','status_aktif','kelurahan','tahap','opd_verif_pimpinan','opd_asal']))
                                 @if (in_array($key,['nik','no_kk']))
                                     <td>{{Str::mask($value,'*',-10,9)}}</td>
                                 @elseif($key=='foto_pemberian')
