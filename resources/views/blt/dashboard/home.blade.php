@@ -174,13 +174,13 @@
 
                                         <td class="cell">
                                             <a
-                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'TOTAL', 'statuskpm' => 2]) }}">{{ $row['total_data'] }}</a>
+                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'TOTAL', 'statuskpm' => 2, 'tahun_anggaran' => request('tahun_anggaran'), 'tahap' => request('tahap') ]) }}">{{ $row['total_data'] }}</a>
                                         </td>
                                         <td class="cell"><a
-                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'TERSALUR', 'statuskpm' => 2]) }}">{{ $row['tersalur'] }}</a>
+                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'TERSALUR', 'statuskpm' => 2, 'tahun_anggaran' => request('tahun_anggaran'), 'tahap' => request('tahap')]) }}">{{ $row['tersalur'] }}</a>
                                         </td>
                                         <td class="cell"><a
-                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'SISA', 'statuskpm' => 2]) }}">{{ $row['sisa'] }}</a>
+                                                href="{{ route('blt.dashboard.detail', ['lokasi' => $row['x'], 'jenis' => 'SISA', 'statuskpm' => 2, 'tahun_anggaran' => request('tahun_anggaran'), 'tahap' => request('tahap')]) }}">{{ $row['sisa'] }}</a>
                                         </td>
                                     </tr>
                                     @php
