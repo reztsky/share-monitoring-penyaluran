@@ -35,4 +35,13 @@ class ApiAlatBantuController extends Controller
             'data'=>$results
         ],200);
     }
+
+    public function all(Request $request,AlatBantuServices $alatBantuServices){
+        $results=$alatBantuServices->all($request);
+        return response()->json([
+            'status'=>true,
+            'message'=>'Sukses Get Data',
+            'data'=>$results
+        ],200);
+    }
 }

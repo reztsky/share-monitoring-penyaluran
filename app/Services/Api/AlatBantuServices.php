@@ -10,6 +10,29 @@ use Illuminate\Support\Facades\DB;
 class AlatBantuServices
 {
 
+    public function all($request){
+        $result = DB::table('m_jenis_kebutuhans as a')
+            ->select(['a.id', 'a.nama_kebutuhan','b.*','c.*'])
+            ->leftJoin('pengajuan_kebutuhans as b', function ($join) {
+                return $join->where('b.deleted_at', null)->on('a.id', '=', 'b.id_jenis_kebutuhan');
+            })
+            ->leftJoin('penyaluran_kebutuhans as c', 'b.id', '=', 'c.id_pengajuan')
+            ->when($request->filled('penyaluran_mulai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('c.tanggal_salur', '>=', $request->penyaluran_mulai_bulan);
+            })
+            ->when($request->filled('penyaluran_sampai_bulan'), function ($query) use ($request) {
+                return $query->whereMonth('c.tanggal_salur', '<=', $request->penyaluran_sampai_bulan);
+            })
+            ->when($request->filled('tahun'),function($query) use ($request){
+                return $query->whereYear('c.tanggal_salur', $request->tahun);
+            })
+            ->get();
+        return [
+            'periode' => $request->post(),
+            'result' => $result,
+        ];
+    }
+
     public function rekap($request)
     {
         $result = DB::table('m_jenis_kebutuhans as a')

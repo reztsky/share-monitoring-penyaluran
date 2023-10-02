@@ -34,6 +34,7 @@ Route::group([
     'controller'=>ApiAlatBantuController::class
 ], function(){
     Route::post('/','index')->name('index');
+    Route::post('/all','all')->name('all');
     Route::post('detail/penyaluran/{jenis_bantuan}/','detailPenyaluran')->name('detailPenyaluran');
     Route::post('detail/pengajuan/{jenis_bantuan}/','detailPengajuan')->name('detailPengajuan');
 });
