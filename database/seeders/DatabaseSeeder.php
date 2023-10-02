@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             // ExistingPengajuanSeeder::class
             // UserKelurahanSeeder::class,
             // UserOpdSeeder::class,
+            UserBankJatimSeeder::class,
         ]);
     }
 }

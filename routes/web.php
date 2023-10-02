@@ -93,7 +93,7 @@ Route::group([
             'controller' => LandingController::class,
             'as' => 'dashboard.',
             'prefix' => '/dashboard',
-            'middleware' => 'role:Super Admin|Opd',
+            'middleware' => 'role:Super Admin|Opd|bank-jatim',
         ], function () {
             Route::get('/', 'index')->name('index');
             Route::get('/detail-data', 'detail')->name('detail');
