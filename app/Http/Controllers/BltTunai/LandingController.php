@@ -29,7 +29,7 @@ class LandingController extends Controller
     }
 
     public function detail(Request $request){
-        $detailService=new DetailService($request->lokasi,$request->jenis,$request->statuskpm,$request->tahun_anggaran,$request->tahap);
+        $detailService=new DetailService($request->lokasi,$request->jenis,$request->statuskpm,$request->tahun_anggaran,$request->tahap,$request->keyword);
         $result=$detailService->detail();
         
         return view('blt.dashboard.detail',compact('result'));

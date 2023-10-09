@@ -17,7 +17,7 @@
                     Penerima BLT Bantuan Modal
                 @endif
             </h5>
-
+            
             <div class="table table-responsive p-2">
                 <table class="table table-hover mb-0 text-left">
                     <thead style="background-color: #5EC2AF;color:white">

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class DetailService
 {
 
-    public function __construct(public $lokasi, public $jenis, public $statuskpm, public $tahun_anggaran = null, public $tahap = null)
+    public function __construct(public $lokasi, public $jenis, public $statuskpm, public $tahun_anggaran = null, public $tahap = null,public $keyword=null)
     {
     }
 
@@ -54,6 +54,12 @@ class DetailService
                     ->where('status_kpm_sebagai', 2);
             })
             ->where('b.deleted_at', null)
+            ->when(!is_null($this->keyword),function($q){
+                return $q->where(function($que){
+                    $que->where('nik',$this->keyword)
+                    ->orWhere('no_urut',$this->keyword);
+                });
+            })
             ->when(is_null($this->tahun_anggaran), function ($q) {
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
@@ -76,6 +82,12 @@ class DetailService
     {
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
+            ->when(!is_null($this->keyword),function($q){
+                return $q->where(function($que){
+                    $que->where('nik',$this->keyword)
+                    ->orWhere('no_urut',$this->keyword);
+                });
+            })
             ->when(is_null($this->tahun_anggaran), function ($q) {
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
@@ -106,6 +118,12 @@ class DetailService
         return DB::table('kpm_blts as a')
             ->select(['a.*'])
             ->whereNotIn('id', $tesalur->pluck('id')->toArray())
+            ->when(!is_null($this->keyword),function($q){
+                return $q->where(function($que){
+                    $que->where('nik',$this->keyword)
+                    ->orWhere('no_urut',$this->keyword);
+                });
+            })
             ->when(is_null($this->tahun_anggaran), function ($q) {
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
