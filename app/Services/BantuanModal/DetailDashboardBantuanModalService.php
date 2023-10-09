@@ -68,7 +68,11 @@ class DetailDashboardBantuanModalService
             ->whereNotIn('id', $tesalur->pluck('id')->toArray())
             ->where('jenis_bantuan_modal', $this->jenis_bantuan)
             ->where('status_aktif', 1)
-            ->where('tahun_anggaran', TahunAnggaranServices::tahunAnggaranAktif())
+            ->when(is_null($this->tahun_anggaran), function ($q) {
+                return $q->whereTahunAnggaran(date('Y'));
+            }, function ($q) {
+                return $q->whereTahunAnggaran($this->tahun_anggaran);
+            })
             ->paginate(15);
     }
 }
