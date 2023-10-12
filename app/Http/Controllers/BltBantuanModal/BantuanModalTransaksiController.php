@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTransaksiBantuanModalRequest;
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiBantuanModal;
 use App\Services\BantuanModal\UploadFotoBantuanModalService;
+use App\Services\BantuanModal\UploadPdfBantuanModalServices;
 use Illuminate\Http\Request;
 
 class BantuanModalTransaksiController extends Controller
@@ -43,10 +44,14 @@ class BantuanModalTransaksiController extends Controller
     }
 
     public function store(StoreTransaksiBantuanModalRequest $request){
-        $validated=$request->safe()->except('foto_pemberian');
+        $validated=$request->safe()->except(['foto_pemberian','ba_kpm','ba_kecamatan']);
+        
+        $validated['ba_kpm']=UploadPdfBantuanModalServices::uploadPdf($request->id_kpm,$request->ba_kpm,'KPM');
+        $validated['ba_kecamatan']=UploadPdfBantuanModalServices::uploadPdf($request->id_kpm,$request->ba_kecamatan,'Kecamatan');
         $validated['foto_pemberian']=UploadFotoBantuanModalService::upload($request->foto_pemberian,$request->id_kpm);
         
         $transaksiBltModal=TransaksiBantuanModal::updateOrCreate(['id_kpm'=>$request->id_kpm],$validated);
+        
         
         return redirect()->route('bantuanmodal.transaksi.index')->with('notifikasi','Sukses Menambahkan Data');
     }

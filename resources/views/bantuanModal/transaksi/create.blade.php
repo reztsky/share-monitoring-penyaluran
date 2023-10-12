@@ -42,7 +42,7 @@
         <div class="bg-white shadow p-3 rounded-3 my-3">
             <dl class="row">
                 @foreach ($kpm->toArray() as $key => $value)
-                    @continue(in_array($key, ['transaksi', 'status_aktif', 'kelurahan']))
+                    @continue(in_array($key, ['id','transaksi', 'status_aktif', 'kelurahan','opd_verif_pimpinan','opd_asal','keterangan_simbolis','tanggal_terima_kecamatan','tahap']))
 
                     <dt class="col-md-2 col-12">{{ Str::upper(str_replace('_', ' ', $key)) }}</dt>
                     <dl class="col-md-10 col-12">{{ Str::upper($value) }}</dl>
@@ -50,6 +50,10 @@
                 @if (!is_null($kpm->transaksi))
                     <dt class="col-md-2 col-12">DI ENTRY PADA</dt>
                     <dl class="col-md-10 col-12">{{ $kpm->transaksi->updated_at }}</dl>
+                    <dt class="col-md-2 col-12">BA. KECAMATAN</dt>
+                    <dl class="col-md-10 col-12"> <a target="_blank" href="{{asset('storage/ba_kecamatan/'.$kpm->transaksi->ba_kecamatan)}}">{{$kpm->transaksi->ba_kecamatan}}</a></dl>
+                    <dt class="col-md-2 col-12">BA. KPM</dt>
+                    <dl class="col-md-10 col-12"><a target="_blank" href="{{asset('storage/ba_kpm/'.$kpm->transaksi->ba_kpm)}}">{{$kpm->transaksi->ba_kpm}}</a></dl>
                     <dt class="col-md-2 col-12">FOTO PEMBERIAN</dt>
                     <dl class="col-md-10 col-12">
                         @foreach ($kpm->transaksi->foto_pemberian as $foto)

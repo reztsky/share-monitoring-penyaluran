@@ -12,7 +12,9 @@ class TransaksiBantuanModal extends Model
 
     protected $fillable=[
         'id_kpm',
-        'foto_pemberian'
+        'foto_pemberian',
+        'ba_kpm',
+        'ba_kecamatan',
     ];
 
     protected $casts=[
