@@ -59,6 +59,8 @@ class BantuanModalTransaksiController extends Controller
     public function softDelete($id){
         $transaksiBlt=TransaksiBantuanModal::findOrFail($id);
         UploadFotoBantuanModalService::deleteFotoIfExist($transaksiBlt->id_kpm);
+        UploadPdfBantuanModalServices::deletePdfIfExist($transaksiBlt->id_kpm,'KPM');
+        UploadPdfBantuanModalServices::deletePdfIfExist($transaksiBlt->id_kpm,'Kecamatan');
         $transaksiBlt->delete();
 
         return redirect()->route('bantuanmodal.transaksi.index')->with('notifikasi','Sukses Menghapus Data');
