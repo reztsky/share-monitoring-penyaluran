@@ -27,6 +27,7 @@ class StoreTransaksiBantuanModalRequest extends FormRequest
             'id_kpm'=>'required|numeric|exists:kpm_bantuan_modals,id',
             'ba_kpm'=>'nullable|max:2048|mimes:pdf',
             'ba_kecamatan'=>'nullable|max:2048|mimes:pdf',
+            'foto_kpm'=>'nullable|image|max:2048',
             'foto_pemberian.*'=>'required|image',
             'foto_pemberian'=>'array',
         ];

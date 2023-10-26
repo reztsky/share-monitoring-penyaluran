@@ -15,6 +15,7 @@ class TransaksiBantuanModal extends Model
         'foto_pemberian',
         'ba_kpm',
         'ba_kecamatan',
+        'foto_kpm',
     ];
 
     protected $casts=[

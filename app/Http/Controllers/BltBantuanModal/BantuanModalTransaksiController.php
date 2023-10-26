@@ -7,7 +7,9 @@ use App\Http\Requests\StoreTransaksiBantuanModalRequest;
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiBantuanModal;
 use App\Services\BantuanModal\UploadFotoBantuanModalService;
+use App\Services\BantuanModal\UploadFotoKpmService;
 use App\Services\BantuanModal\UploadPdfBantuanModalServices;
+use App\Services\Pelayanan\Pengajuan\UploadFotoService;
 use Illuminate\Http\Request;
 
 class BantuanModalTransaksiController extends Controller
@@ -44,11 +46,12 @@ class BantuanModalTransaksiController extends Controller
     }
 
     public function store(StoreTransaksiBantuanModalRequest $request){
-        $validated=$request->safe()->except(['foto_pemberian','ba_kpm','ba_kecamatan']);
+        $validated=$request->safe()->except(['foto_pemberian','ba_kpm','ba_kecamatan','foto_kpm']);
         
         $validated['ba_kpm']=UploadPdfBantuanModalServices::uploadPdf($request->id_kpm,$request->ba_kpm,'KPM');
         $validated['ba_kecamatan']=UploadPdfBantuanModalServices::uploadPdf($request->id_kpm,$request->ba_kecamatan,'Kecamatan');
         $validated['foto_pemberian']=UploadFotoBantuanModalService::upload($request->foto_pemberian,$request->id_kpm);
+        $validated['foto_kpm']=UploadFotoKpmService::upload($request->foto_kpm,$request->id_kpm);
         
         $transaksiBltModal=TransaksiBantuanModal::updateOrCreate(['id_kpm'=>$request->id_kpm],$validated);
         
@@ -59,6 +62,7 @@ class BantuanModalTransaksiController extends Controller
     public function softDelete($id){
         $transaksiBlt=TransaksiBantuanModal::findOrFail($id);
         UploadFotoBantuanModalService::deleteFotoIfExist($transaksiBlt->id_kpm);
+        UploadFotoKpmService::deleteFotoIfExist($transaksiBlt->id_kpm);
         UploadPdfBantuanModalServices::deletePdfIfExist($transaksiBlt->id_kpm,'KPM');
         UploadPdfBantuanModalServices::deletePdfIfExist($transaksiBlt->id_kpm,'Kecamatan');
         $transaksiBlt->delete();

@@ -42,7 +42,7 @@
         <div class="bg-white shadow p-3 rounded-3 my-3">
             <dl class="row">
                 @foreach ($kpm->toArray() as $key => $value)
-                    @continue(in_array($key, ['id','transaksi', 'status_aktif', 'kelurahan','opd_verif_pimpinan','opd_asal','keterangan_simbolis','tanggal_terima_kecamatan','tahap']))
+                    @continue(in_array($key, ['id', 'transaksi', 'status_aktif', 'kelurahan', 'opd_verif_pimpinan', 'opd_asal', 'keterangan_simbolis', 'tanggal_terima_kecamatan', 'tahap']))
 
                     <dt class="col-md-2 col-12">{{ Str::upper(str_replace('_', ' ', $key)) }}</dt>
                     <dl class="col-md-10 col-12">{{ Str::upper($value) }}</dl>
@@ -51,9 +51,17 @@
                     <dt class="col-md-2 col-12">DI ENTRY PADA</dt>
                     <dl class="col-md-10 col-12">{{ $kpm->transaksi->updated_at }}</dl>
                     <dt class="col-md-2 col-12">BA. KECAMATAN</dt>
-                    <dl class="col-md-10 col-12"> <a target="_blank" href="{{asset('storage/ba_kecamatan/'.$kpm->transaksi->ba_kecamatan)}}">{{$kpm->transaksi->ba_kecamatan}}</a></dl>
+                    <dl class="col-md-10 col-12"> <a target="_blank"
+                            href="{{ asset('storage/ba_kecamatan/' . $kpm->transaksi->ba_kecamatan) }}">{{ $kpm->transaksi->ba_kecamatan }}</a>
+                    </dl>
                     <dt class="col-md-2 col-12">BA. KPM</dt>
-                    <dl class="col-md-10 col-12"><a target="_blank" href="{{asset('storage/ba_kpm/'.$kpm->transaksi->ba_kpm)}}">{{$kpm->transaksi->ba_kpm}}</a></dl>
+                    <dl class="col-md-10 col-12"><a target="_blank"
+                            href="{{ asset('storage/ba_kpm/' . $kpm->transaksi->ba_kpm) }}">{{ $kpm->transaksi->ba_kpm }}</a>
+                    </dl>
+                    <dt class="col-md-2 col-12">FOTO PEMBERIAN KE KPM</dt>
+                    <dl class="col-md-10 col-12"><img src="{{ asset('storage/foto_kpm/' . $kpm->transaksi->foto_kpm) }}" alt="" class="img-thumbnail"
+                        style="max-width:200px;max-height:200px;object-fit:cover">
+                    </dl>
                     <dt class="col-md-2 col-12">FOTO PEMBERIAN</dt>
                     <dl class="col-md-10 col-12">
                         @foreach ($kpm->transaksi->foto_pemberian as $foto)
@@ -74,7 +82,7 @@
                             <label for="" class="form-label">BA KPM</label>
                             <input type="file" class="form-control" name="ba_kpm" id="ba_kpm">
                             @error('ba_kpm')
-                                <div class="form-text text-danger">{{$message}}</div>
+                                <div class="form-text text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -82,7 +90,15 @@
                             <label for="" class="form-label">BA Kecamatan</label>
                             <input type="file" class="form-control" name="ba_kecamatan" id="ba_kecamatan">
                             @error('ba_kecamatan')
-                                <div class="form-text text-danger">{{$message}}</div>
+                                <div class="form-text text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="" class="form-label">Foto Pemberian Bantuan Modal ke KPM</label>
+                            <input type="file" class="form-control" name="foto_kpm" id="foto_kpm">
+                            @error('foto_kpm')
+                                <div class="form-text text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -97,7 +113,7 @@
                                 <div class="form-text text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        
+
 
                         <div id="root" class="d-none"></div>
                         <div class="d-flex justify-content-end gap-2">
@@ -172,6 +188,83 @@
             }
 
 
+        })
+
+
+        function calculateSize(img, maxWidth, maxHeight) {
+            let width = img.width;
+            let height = img.height;
+
+            // calculate the width and height, constraining the proportions
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            return [width, height];
+        }
+
+        // Utility functions for demo purpose
+
+        function displayInfo(label, file) {
+            const p = document.createElement('p');
+            p.innerText = `${label} - ${readableBytes(file.size)}`;
+            document.getElementById('root').append(p);
+        }
+
+        function readableBytes(bytes) {
+            const i = Math.floor(Math.log(bytes) / Math.log(1024)),
+                sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+            return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
+        }
+    </script>
+
+    <script>
+        const foto_pengambilan = document.getElementById('foto_kpm')
+
+        foto_pengambilan.addEventListener('change', (ev) => {
+            const file = ev.target.files[0]; // get the file
+            const blobURL = URL.createObjectURL(file);
+            const img = new Image();
+
+            img.src = blobURL
+
+            img.onerror = () => {
+                URL.revokeObjectURL(this.src)
+                alert('Cannot Load Image');
+            }
+
+            img.onload = function() {
+                URL.revokeObjectURL(this.src)
+                const [newWidth, newHeight] = calculateSize(img, MAX_WIDTH, MAX_HEIGHT);
+                const canvas = document.createElement("canvas");
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                canvas.toBlob(
+                    (blob) => {
+
+                        const newImage = new File([blob], file.name)
+                        const dataTransfer = new DataTransfer()
+                        dataTransfer.items.add(newImage)
+                        //set image to input file data_compressed
+                        document.getElementById('foto_kpm').files = dataTransfer.files
+                    },
+                    MIME_TYPE,
+                    QUALITY
+                );
+
+                // document.getElementById("root").append(canvas);
+            }
         })
 
 
