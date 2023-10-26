@@ -30,20 +30,25 @@ class UpdateMonitoringRequest extends FormRequest
             'alamat_tempat_usaha'=>'required',
             'jenis_bantuan_modal'=>'required',
             'no_hp'=>'required',
-            'pengelolaan_usaha'=>'required|numeric|min:1|max:2',
-            'bentuk_usaha'=>'required|numeric|min:1|max:2',
-            'penggunaan_bantuan'=>'required|numeric|min:1|max:3',
-            'alasan_penggunaan_bantuan'=>'required_if:penggunaan_bantuan,3',
-            'penghasilan_sebulan'=>'required|numeric|min:1|max:6',
-            'kegunaan_hasil_usaha'=>'required|array|min:1',
+            'status_penggunaan_bantuan'=>'required|numeric',
+            'alasan_penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,2|nullable',
+            'pengelolaan_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'bentuk_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
+            'penghasilan_sebulan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:8|nullable',
+            'kegunaan_hasil_usaha'=>'required_if:status_penggunaan_bantuan,1|array|min:1|nullable',
             'kendala'=>'required',
             'harapan'=>'required',
-            'dokumentasi'=>'image|max:5120'
+            'dokumentasi'=>'nullable|image|max:5120',
+            'periode_monitoring'=>'required|numeric|min:1|max:12',
+            'tahun_monitoring'=>'required'
         ];
-        $validationByJenisModal=$this->validationByJenisModal();
-        $rules=$rules+$validationByJenisModal;
-        
+
         return $rules;
+
+        // $validationByJenisModal=$this->validationByJenisModal();
+        // $rules=$rules+$validationByJenisModal;
+        
     }
 
     protected function prepareForValidation(){

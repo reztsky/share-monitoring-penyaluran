@@ -59,10 +59,10 @@ class MonitoringBantuanModalController extends Controller
     public function show($id)
     {
         $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
-        if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1) {
-            $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view . 'show', compact('monitoring', 'detail'));
-        }
+        // if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1) {
+        //     $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        //     return view($this->view . 'show', compact('monitoring', 'detail'));
+        // }
 
         return view($this->view . 'show', compact('monitoring'));
     }
@@ -76,17 +76,17 @@ class MonitoringBantuanModalController extends Controller
     {
         // Retrive Form Input
         $formTransaksiMonitoring = $request->safe()->only($this->arrayMonitoring);
-        $detailMonitoring = $request->safe()->except($this->arrayMonitoring);
+        // $detailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
         // Create Transaksi Monitoring
         $formTransaksiMonitoring['dokumentasi'] = $fotoMonitoringService->upload($request->dokumentasi);
         $transaksiMonitoring = TransaksiMonitoring::create($formTransaksiMonitoring);
 
         // Create Detail Transaksi
-        if ($request->status_penggunaan_bantuan == 1) {
-            $formDetailMonitoring = array_merge($detailMonitoring, ['id_transaksi' => $transaksiMonitoring->id]);
-            $detailMonitoring = $this->storeDetailByJenisBantuanModal($request->jenis_bantuan_modal, $formDetailMonitoring);
-        }
+        // if ($request->status_penggunaan_bantuan == 1) {
+        //     $formDetailMonitoring = array_merge($detailMonitoring, ['id_transaksi' => $transaksiMonitoring->id]);
+        //     $detailMonitoring = $this->storeDetailByJenisBantuanModal($request->jenis_bantuan_modal, $formDetailMonitoring);
+        // }
 
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi', 'Sukses Menambahkan Data');
     }
@@ -96,10 +96,10 @@ class MonitoringBantuanModalController extends Controller
         $monitoring = TransaksiMonitoring::with(['kpm'])->findOrFail($id);
         $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
 
-        if ($monitoring->radio_penggunaan_bantuan == 1) {
-            $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
-            return view($this->view . 'edit', compact('monitoring', 'detail'));
-        }
+        // if ($monitoring->radio_penggunaan_bantuan == 1) {
+        //     $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->get()->first();
+        //     return view($this->view . 'edit', compact('monitoring', 'detail'));
+        // }
 
         return view($this->view . 'edit', compact('monitoring','detail'));
     }
@@ -108,7 +108,7 @@ class MonitoringBantuanModalController extends Controller
     {
         // Retrive Form Input
         $formTransaksiMonitoring = $request->safe()->only($this->arrayMonitoring);
-        $formDetailMonitoring = $request->safe()->except($this->arrayMonitoring);
+        // $formDetailMonitoring = $request->safe()->except($this->arrayMonitoring);
 
         // Get Monitoring
         $monitoring = TransaksiMonitoring::findOrFail($id);
@@ -123,7 +123,7 @@ class MonitoringBantuanModalController extends Controller
         $monitoring->update($formTransaksiMonitoring);
 
         // Get Detail Monitoring & Update It
-        $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
+        // $detail = $monitoring->detail($monitoring->jenis_bantuan_modal)->update($formDetailMonitoring);
 
         return redirect()->route('bantuanmodal.monitoring.index')->with('notifikasi', 'Sukses Mengubah Data');
     }
@@ -143,8 +143,13 @@ class MonitoringBantuanModalController extends Controller
     {
         $kpm = KpmBantuanModal::findKpm($nik)->get()->first();
         if (is_null($kpm)) return response()->json(['data' => $kpm], 200);
-        $template = $this->caseJenisBantaunModal($kpm);
-        return response()->json(['data' => $kpm, 'template' => $template], 200);
+        return response()->json([
+            'data'=>$kpm
+        ],200);
+
+        // Old Monitoring With Detail Each Banmod
+        // $template = $this->caseJenisBantaunModal($kpm);
+        // return response()->json(['data' => $kpm, 'template' => $template], 200);
     }
 
 

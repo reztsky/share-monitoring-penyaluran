@@ -16,7 +16,7 @@ class UserOpdSeeder extends Seeder
      * @return void
      */
     public $users=array(
-        array("name" => "INSPEKTORAT", "username" => "inspektorat", "password_text" => "insp@2022", "password" => "insp@2022")
+        array("name" => "DINAS SOSIAL", "username" => "dinsos", "password_text" => "linjams0s_sby23", "password" => "linjams0s_sby23")
     );
     public $role = [
         'name' => 'Opd'
@@ -24,7 +24,7 @@ class UserOpdSeeder extends Seeder
 
     public function run()
     {
-        $role = Role::create($this->role);
+        // $role = Role::create($this->role);
         foreach ($this->users as $user) {
             $userx=User::create([
                 'name'=>$user['name'],
@@ -32,7 +32,7 @@ class UserOpdSeeder extends Seeder
                 'username'=>$user['username'],
                 'password_text'=>$user['password'],
             ]);
-            $userx->assignRole($role);
+            $userx->assignRole('Opd');
         }
     }
 }

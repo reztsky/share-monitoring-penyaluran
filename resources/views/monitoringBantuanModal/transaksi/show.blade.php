@@ -111,6 +111,21 @@
                                 <p class="bold col-sm-8 col-form-label form-label" id="penggunaan_bantuan">
                                     {{ $monitoring->penggunaan_bantuan }}</p>
                             </div>
+                            <div class="row mb-3 ">
+                                <label for="" class="col-sm-4 col-form-label">Penghasilan dalam sebulan </label>
+                                <p class="bold col-sm-6 col-form-label form-label" id="penghasilan_sebulan">{{$monitoring->penghasilan_sebulan}}
+                                </p>
+                            </div>
+                            <div class="row mb-3 ">
+                                <label for="" class="col-sm-4 col-form-label">Hasil usaha digunakan untuk</label>
+                                <ul class="list-unstyled bold col-sm-8 col-form-label form-label">
+                                    @foreach ($monitoring->kegunaan_hasil_usaha as $kegunaan)
+                                        <li>
+                                            - {{$kegunaan}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @else
                             <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
                                 <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
@@ -122,7 +137,7 @@
                 </div>
             </div>
 
-            @if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1)
+            {{-- @if ($monitoring->getRawOriginal('status_penggunaan_bantuan') == 1)
                 <div class="row app-card shadow-sm bg-white p-3 mt-4">
                     <div class="app-card-body">
                         @switch($monitoring->jenis_bantuan_modal)
@@ -151,7 +166,7 @@
                         @endswitch
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
             <div class="row app-card shadow-sm bg-white p-3 mt-4">
                 <div class="app-card-body">

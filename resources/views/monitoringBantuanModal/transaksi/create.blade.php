@@ -50,31 +50,36 @@
                 <div class="row mb-3">
                     <label for="" class="col-sm-4 col-form-label">Periode Tahun Monitoring</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tahun_monitoring" readonly value="{{date('Y')}}">
+                        <select name="tahun_monitoring" id="" class="form-select">
+                            @foreach (range(date('Y'),2022) as $year)
+                                <option value="{{$year}}" @selected(date('Y')==$year)>{{$year}}</option>
+                            @endforeach
+                        </select>
+                        {{-- <input type="text" class="form-control" name="tahun_monitoring" readonly value="{{date('Y')}}"> --}}
                     </div>
                 </div>
             </div>
-            <div class="row app-card shadow-sm bg-white p-3 mt-4">
-                <h5 class="mb-4">Pengelolaan Modal Usaha</h5>
-                <div class="mb-3">
-                    <center>
-                        <label for="" class="col-form-label"><strong>Status Penggunaan Bantuan</strong></label><br />
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
-                                id="RadioOptions1" value="1" onchange="showStatus(this)">
-                            <label class="form-check-label" for="RadioOptions1">Sudah Berjalan</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
-                                id="RadioOptions2" value="2" onchange="showStatus(this)">
-                            <label class="form-check-label" for="RadioOptions2">Belum Digunakan</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
-                                id="RadioOptions3" value="3" onchange="showStatus(this)">
-                            <label class="form-check-label" for="RadioOptions3">Dijual/Tidak Digunakan untuk Usaha</label>
-                        </div>
-                    </center>
+                <div class="row app-card shadow-sm bg-white p-3 mt-4">
+                    <h5 class="mb-4">Pengelolaan Modal Usaha</h5>
+                    <div class="mb-3">
+                        <center>
+                            <label for="" class="col-form-label"><strong>Status Penggunaan Bantuan</strong></label><br />
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
+                                    id="RadioOptions1" value="1" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions1">Sudah Berjalan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
+                                    id="RadioOptions2" value="2" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions2">Belum Digunakan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
+                                    id="RadioOptions3" value="3" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions3">Dijual/Tidak Digunakan untuk Usaha</label>
+                            </div>
+                        </center>
                 </div>
                 <div class="app-card-body">
                     {{-- Modal Usaha Belum Digunakan --}}
@@ -88,11 +93,9 @@
                     </div>
 
                     {{-- Hasil Usaha --}}
-                    <div id="form-hasil-usaha" class="d-none">
+                    {{-- <div id="form-hasil-usaha" class="d-none">
                         @include('monitoringBantuanModal.transaksi.form.form_hasil_usaha')
-                    </div>
-
-
+                    </div> --}}
                 </div>
             </div>
 
@@ -110,11 +113,11 @@
     function showStatus(select) {
         if (select.value == 1) {
             document.getElementById('form-modal-usaha').classList.remove("d-none")
-            document.getElementById('form-hasil-usaha').classList.remove("d-none")
+            // document.getElementById('form-hasil-usaha').classList.remove("d-none")
             document.getElementById('form-belum-digunakan').classList.add("d-none")
         } else if (select.value == 2 || select.value == 3){
             document.getElementById('form-modal-usaha').classList.add("d-none")
-            document.getElementById('form-hasil-usaha').classList.add("d-none")
+            // document.getElementById('form-hasil-usaha').classList.add("d-none")
             document.getElementById('form-belum-digunakan').classList.remove("d-none")
         }
     }

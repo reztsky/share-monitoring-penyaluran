@@ -25,7 +25,6 @@ class StoreMonitoringRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($this);
         $rules=[
             'inserted_by'=>'required|numeric|min:1',
             'id_kpm_modal'=>'required|numeric|',
@@ -37,7 +36,7 @@ class StoreMonitoringRequest extends FormRequest
             'pengelolaan_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
             'bentuk_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
             'penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
-            'penghasilan_sebulan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:6|nullable',
+            'penghasilan_sebulan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:8|nullable',
             'kegunaan_hasil_usaha'=>'required_if:status_penggunaan_bantuan,1|array|min:1|nullable',
             'kendala'=>'required',
             'harapan'=>'required',
@@ -46,13 +45,14 @@ class StoreMonitoringRequest extends FormRequest
             'tahun_monitoring'=>'required'
         ];
 
-        if($this->status_penggunaan_bantuan==2||$this->status_penggunaan_bantuan==3){
-            return $rules;
-        }
-
-        $rulesByJenisModal=$this->validationByJenisModal();
-        $rules=$rules+$rulesByJenisModal;
         return $rules;
+
+        // if($this->status_penggunaan_bantuan==2||$this->status_penggunaan_bantuan==3){
+        //     return $rules;
+        // }
+
+        // $rulesByJenisModal=$this->validationByJenisModal();
+        // $rules=$rules+$rulesByJenisModal;
 
     }
 
