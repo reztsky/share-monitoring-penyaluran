@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 class UploadFotoKpmService{
 
     public static function upload($file,$id_kpm){
-        if(is_null($file)) return self::find($id_kpm);
+        if(is_null($file)) return null;
         self::deleteFotoIfExist($id_kpm);
 
         $fileName=$file->hashName();
@@ -17,7 +17,7 @@ class UploadFotoKpmService{
     }
 
     public static function find($id_kpm){
-        return TransaksiBantuanModal::whereIdKpm($id_kpm)->first()->foto_pemberian;
+        return TransaksiBantuanModal::whereIdKpm($id_kpm)->first()->foto_kpm;
     }
 
     public static function deleteFotoIfExist($id_kpm){    
