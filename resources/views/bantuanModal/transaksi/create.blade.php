@@ -81,6 +81,11 @@
                         <div class="mb-2">
                             <label for="" class="form-label">BA KPM</label>
                             <input type="file" class="form-control" name="ba_kpm" id="ba_kpm">
+                            <div class="form-text text-danger">
+                                <ul class="">
+                                    <li>Ukuran File Maks. 2MB</li>
+                                </ul>
+                            </div>
                             @error('ba_kpm')
                                 <div class="form-text text-danger">{{ $message }}</div>
                             @enderror
@@ -89,6 +94,11 @@
                         <div class="mb-2">
                             <label for="" class="form-label">BA Kecamatan</label>
                             <input type="file" class="form-control" name="ba_kecamatan" id="ba_kecamatan">
+                            <div class="form-text text-danger">
+                                <ul>
+                                    <li>Ukuran File Maks. 2MB</li>
+                                </ul>
+                            </div>
                             @error('ba_kecamatan')
                                 <div class="form-text text-danger">{{ $message }}</div>
                             @enderror
