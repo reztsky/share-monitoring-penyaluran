@@ -126,11 +126,17 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @else
+                        @elseif(in_array($monitoring->getRawOriginal('status_penggunaan_bantuan'),[2,3])) 
                             <div class="row mb-3" id="form-alasan-penggunaan-bantuan">
                                 <label for="" class="col-sm-4 col-form-label">Alasan Belum Digunakan</label>
                                 <div class="col-sm-8 col-form-label form-label" id="alasan_penggunaan_bantuan">
                                     {!! $monitoring->alasan_penggunaan_bantuan !!}</div>
+                            </div>
+                        @else
+                            <div class="row mb-3" id="form-keterangan-pendukung-pindah">
+                                <label for="" class="col-sm-4 col-form-label">Keterangan Pendukung (Pindah/Tidak Ditemukan)</label>
+                                <div class="col-sm-8 col-form-label form-label" id="orm-keterangan-pendukung-pindah">
+                                    {!! $monitoring->keterangan_pendukung_pindah !!}</div>
                             </div>
                         @endif
                     </div>

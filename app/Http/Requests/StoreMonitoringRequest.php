@@ -33,6 +33,7 @@ class StoreMonitoringRequest extends FormRequest
             'no_hp'=>'required',
             'status_penggunaan_bantuan'=>'required|numeric',
             'alasan_penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,2|nullable',
+            'keterangan_pendukung_pindah'=>'required_if:status_penggunaan_bantuan,4|nullable',
             'pengelolaan_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
             'bentuk_usaha'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',
             'penggunaan_bantuan'=>'required_if:status_penggunaan_bantuan,1|numeric|min:1|max:2|nullable',

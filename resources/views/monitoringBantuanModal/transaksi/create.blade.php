@@ -79,9 +79,19 @@
                                     id="RadioOptions3" value="3" onchange="showStatus(this)">
                                 <label class="form-check-label" for="RadioOptions3">Dijual/Tidak Digunakan untuk Usaha</label>
                             </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status_penggunaan_bantuan"
+                                    id="RadioOptions4" value="4" onchange="showStatus(this)">
+                                <label class="form-check-label" for="RadioOptions4">Pindah/Tidak Ditemukan</label>
+                            </div>
                         </center>
                 </div>
                 <div class="app-card-body">
+                    {{-- Keterangan Pendukung Pindah --}}
+                    <div id="form-keterangan-pendukung-pindah" class="d-none">
+                        @include('monitoringBantuanModal.transaksi.form.form_keterangan_pendukung_pindah')
+                    </div>
+
                     {{-- Modal Usaha Belum Digunakan --}}
                     <div id="form-belum-digunakan" class="d-none">
                         @include('monitoringBantuanModal.transaksi.form.form_belum_digunakan')
@@ -113,12 +123,18 @@
     function showStatus(select) {
         if (select.value == 1) {
             document.getElementById('form-modal-usaha').classList.remove("d-none")
-            // document.getElementById('form-hasil-usaha').classList.remove("d-none")
+            document.getElementById('form-keterangan-pendukung-pindah').classList.add("d-none")
             document.getElementById('form-belum-digunakan').classList.add("d-none")
+            // document.getElementById('form-hasil-usaha').classList.remove("d-none")
         } else if (select.value == 2 || select.value == 3){
             document.getElementById('form-modal-usaha').classList.add("d-none")
-            // document.getElementById('form-hasil-usaha').classList.add("d-none")
+            document.getElementById('form-keterangan-pendukung-pindah').classList.add("d-none")
             document.getElementById('form-belum-digunakan').classList.remove("d-none")
+            // document.getElementById('form-hasil-usaha').classList.add("d-none")
+        }else if(select.value==4){
+            document.getElementById('form-keterangan-pendukung-pindah').classList.remove("d-none")
+            document.getElementById('form-modal-usaha').classList.add("d-none")
+            document.getElementById('form-belum-digunakan').classList.add("d-none")
         }
     }
 </script>

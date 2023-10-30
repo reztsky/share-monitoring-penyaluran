@@ -23,6 +23,7 @@ class TransaksiMonitoring extends Model
         'bentuk_usaha',
         'penggunaan_bantuan',
         'alasan_penggunaan_bantuan',
+        'keterangan_pendukung_pindah',
         // Hasil Usaha
         'penghasilan_sebulan',
         'kegunaan_hasil_usaha',
@@ -121,6 +122,7 @@ class TransaksiMonitoring extends Model
                 if($value==1) return 'Sudah Berjalan';
                 if($value==2) return 'Belum Digunakan';
                 if($value==3) return 'Dijual/Tidak Digunakan untuk Usaha';
+                if($value==4) return 'Pindah/Tidak Ditemukan';
                 return '-';
             }
         );

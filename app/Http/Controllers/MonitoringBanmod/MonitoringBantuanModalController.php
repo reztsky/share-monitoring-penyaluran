@@ -38,6 +38,7 @@ class MonitoringBantuanModalController extends Controller
         'bentuk_usaha',
         'penggunaan_bantuan',
         'alasan_penggunaan_bantuan',
+        'keterangan_pendukung_pindah',
         // Hasil Usaha
         'penghasilan_sebulan',
         'kegunaan_hasil_usaha',
