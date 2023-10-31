@@ -57,7 +57,7 @@
                     </div>
     
                     <div class="col-md-6 mb-3">
-                        <label for="" class="form-label">Sumber Dana</label>
+                        <label for="" class="form-label">Sumber Anggaran</label>
                         <div class="col-md-12" style="margin-horizontal: 10px;padding-right: 15px" >
                             <select name="sumber_dana" id="" class="form-select">        
                                     <option value="All" @selected('All' == request('sumber_dana'))>Semua</option>
