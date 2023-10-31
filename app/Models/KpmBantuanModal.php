@@ -20,6 +20,7 @@ class KpmBantuanModal extends Model
         'jenis_bantuan_modal',
         'status_aktif',
         'tahun_anggaran',
+        'sumber_dana',
         'tahap'
     ];
 

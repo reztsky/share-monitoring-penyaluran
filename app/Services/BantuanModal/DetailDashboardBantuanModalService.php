@@ -4,13 +4,14 @@ namespace App\Services\BantuanModal;
 
 use App\Models\KpmBantuanModal;
 use App\Services\Settings\TahunAnggaranServices;
+use App\Services\Settings\SumberDanaServices;
 use Illuminate\Support\Facades\DB;
 
 class DetailDashboardBantuanModalService
 {
 
 
-    public function __construct(public $tahun_anggaran = null, public $jenis_bantuan, public $kategori)
+    public function __construct(public $tahun_anggaran = null,public $jenis_bantuan, public $kategori, public $sumber_dana)
     {
     }
 
@@ -29,11 +30,17 @@ class DetailDashboardBantuanModalService
 
     private function total()
     {
+
         return DB::table('kpm_bantuan_modals')->where('jenis_bantuan_modal', $this->jenis_bantuan)
             ->when(is_null($this->tahun_anggaran), function ($q) {
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
                 return $q->whereTahunAnggaran($this->tahun_anggaran);
+            })
+            ->when(is_null($this->sumber_dana)||($this->sumber_dana=='All'), function ($q) {
+                return $q->whereIn('sumber_dana',['Dinas Sosial','Baznas','BSP']);
+            }, function ($q) {
+                return $q->whereSumberDana($this->sumber_dana);
             })
             ->where('status_aktif', 1)
             ->paginate(15);
@@ -48,6 +55,11 @@ class DetailDashboardBantuanModalService
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
                 return $q->whereTahunAnggaran($this->tahun_anggaran);
+            })
+            ->when(is_null($this->sumber_dana)||($this->sumber_dana=='All'), function ($q) {
+                return $q->whereIn('sumber_dana',['Dinas Sosial','Baznas','BSP']);
+            }, function ($q) {
+                return $q->whereSumberDana($this->sumber_dana);
             })
             ->where('b.deleted_at', null)
             ->where('a.jenis_bantuan_modal', $this->jenis_bantuan)
@@ -72,6 +84,11 @@ class DetailDashboardBantuanModalService
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
                 return $q->whereTahunAnggaran($this->tahun_anggaran);
+            })
+            ->when(is_null($this->sumber_dana)||($this->sumber_dana=='All'), function ($q) {
+                return $q->whereIn('sumber_dana',['Dinas Sosial','Baznas','BSP']);
+            }, function ($q) {
+                return $q->whereSumberDana($this->sumber_dana);
             })
             ->paginate(15);
     }

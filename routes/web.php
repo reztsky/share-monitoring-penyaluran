@@ -124,7 +124,7 @@ Route::group([
             'middleware' => 'role:Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
-            Route::get('detail/{tahun}/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
+            Route::get('detail/{tahun}/{jenis_bantuan}/{kategori}/{sumber_dana}', 'detail')->name('detail');
         });
 
         Route::group([
@@ -180,7 +180,7 @@ Route::group([
             'middleware' => 'role:Admin Pelayanan|Super Admin|Opd',
         ], function () {
             Route::get('/', 'index')->name('index');
-            Route::get('detail/{jenis_bantuan}/{kategori}', 'detail')->name('detail');
+            Route::get('detail/{jenis_bantuan}/{kategori}/{sumber_dana)', 'detail')->name('detail');
         });
 
         Route::group([

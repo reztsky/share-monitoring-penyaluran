@@ -5,16 +5,16 @@ namespace App\Services\BantuanModal;
 use App\Models\KpmBantuanModal;
 use App\Models\TransaksiBantuanModal;
 use App\Services\Settings\TahunAnggaranServices;
+use App\Services\Settings\SumberDanaServices;
 use Illuminate\Support\Facades\DB;
 
 class DashboardBantuanModalService
 {
 
-    public function rekapTable($tahun_anggaran = null)
+    public function rekapTable($tahun_anggaran = null,$sumber_dana = null)
     {
-        $total = $this->all($tahun_anggaran);
-        // dd($total);
-        $tersalur = $this->tersalur($tahun_anggaran);
+        $total = $this->all($tahun_anggaran,$sumber_dana);
+        $tersalur = $this->tersalur($tahun_anggaran,$sumber_dana);
         $result = collect([]);
 
         $total->each(function ($item, $key) use ($tersalur, $result) {
@@ -31,7 +31,7 @@ class DashboardBantuanModalService
         return $result;
     }
 
-    private function all($tahun_anggaran = null)
+    private function all($tahun_anggaran = null,$sumber_dana = null)
     {
         return KpmBantuanModal::query()
             ->select([
@@ -43,12 +43,17 @@ class DashboardBantuanModalService
             }, function ($q) use ($tahun_anggaran) {
                 return $q->whereTahunAnggaran($tahun_anggaran);
             })
+            ->when(is_null($sumber_dana) || ($sumber_dana=='All'), function ($q) {
+                return $q->whereIn('sumber_dana',['Dinas Sosial','Baznas','BSP']);
+            }, function ($q) use ($sumber_dana){
+                return $q->whereSumberDana($sumber_dana);
+            })
             ->where('status_aktif', 1)
             ->groupBy(['jenis_bantuan_modal'])
             ->get();
     }
 
-    private function tersalur($tahun_anggaran = null)
+    private function tersalur($tahun_anggaran = null,$sumber_dana = null)
     {
         return DB::table('kpm_bantuan_modals as a')
             ->join('transaksi_bantuan_modals as b', 'a.id', '=', 'b.id_kpm')
@@ -60,6 +65,11 @@ class DashboardBantuanModalService
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) use ($tahun_anggaran) {
                 return $q->whereTahunAnggaran($tahun_anggaran);
+            })
+            ->when(is_null($sumber_dana)|| ($sumber_dana=='All'), function ($q) {
+                return $q->whereIn('sumber_dana',['Dinas Sosial','Baznas','BSP']);
+            }, function ($q) use ($sumber_dana){
+                return $q->whereSumberDana($sumber_dana);
             })
             ->groupBy('a.jenis_bantuan_modal')
             ->get();

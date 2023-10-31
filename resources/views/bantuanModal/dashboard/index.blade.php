@@ -40,18 +40,35 @@
 @section('content')
         <div class="app-card shadow-sm rounded-3 p-3 my-3 border-1 border">
             <form action="{{ route('bantuanmodal.dashboard.index') }}" method="get">
-                <div class="row mb-3">
-                    <label for="" class="form-label">Tahun Anggaran</label>
-                    <div class="col-md-12" style="margin-horizontal: 10px;padding-right: 15px" >
-                        <select name="tahun_anggaran" id="" class="form-select">
-                            @foreach (range(date('Y'), 2022) as $year)
-                                <option value="{{ $year }}" @selected($year == request('tahun_anggaran'))>{{ $year }}
-                                </option>
-                            @endforeach
-                        </select>
+                <div class="row">
+                    <div class="col-md-6  mb-3">
+                        <label for="" class="form-label">Tahun Anggaran</label>
+                        <div class="col-md-12" style="margin-horizontal: 10px;padding-right: 15px" >
+                            <select name="tahun_anggaran" id="" class="form-select">
+                                @foreach (range(date('Y'), 2022) as $year)
+                                    <option value="{{ $year }}" @selected($year == request('tahun_anggaran'))>{{ $year }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-center" style="padding-top:15px">
+                            <button class="button">Filter</button>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-center" style="padding-top:15px">
-                        <button class="button">Filter</button>
+    
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="form-label">Sumber Dana</label>
+                        <div class="col-md-12" style="margin-horizontal: 10px;padding-right: 15px" >
+                            <select name="sumber_dana" id="" class="form-select">        
+                                    <option value="All" @selected('All' == request('sumber_dana'))>Semua</option>
+                                    <option value="Dinas Sosial" @selected('Dinas Sosial' == request('sumber_dana'))>Dinas Sosial</option>
+                                    <option value="Baznas" @selected('Baznas' == request('sumber_dana'))>Baznas</option>
+                                    <option value="BSP" @selected('BSP' == request('sumber_dana'))>BSP</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-center" style="padding-top:15px">
+                            <button class="button">Filter</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -82,6 +99,7 @@
                                         <td> <a
                                                 href="{{ route('bantuanmodal.dashboard.detail', [
                                                     'tahun'=>is_null(request('tahun_anggaran')) ? date('Y') : request('tahun_anggaran'),
+                                                    'sumber_dana'=>is_null(request('sumber_dana')) ? 'All' : request('sumber_dana'),
                                                     'jenis_bantuan' => $row['jenis_bantuan_modal'],
                                                     'kategori' => 'TOTAL',
                                                 ]) }}">{{ $row['total'] }}</a>
@@ -89,6 +107,7 @@
                                         <td> <a
                                                 href="{{ route('bantuanmodal.dashboard.detail', [
                                                     'tahun'=>is_null(request('tahun_anggaran')) ? date('Y') : request('tahun_anggaran'),
+                                                    'sumber_dana'=>is_null(request('sumber_dana')) ? 'All' : request('sumber_dana'),
                                                     'jenis_bantuan' => $row['jenis_bantuan_modal'],
                                                     'kategori' => 'TERSALUR',
                                                 ]) }}">{{ $row['tersalur'] }}</a>
@@ -96,6 +115,7 @@
                                         <td> <a
                                                 href="{{ route('bantuanmodal.dashboard.detail', [
                                                     'tahun'=>is_null(request('tahun_anggaran')) ? date('Y') : request('tahun_anggaran'),
+                                                    'sumber_dana'=>is_null(request('sumber_dana')) ? 'All' : request('sumber_dana'),
                                                     'jenis_bantuan' => $row['jenis_bantuan_modal'],
                                                     'kategori' => 'SISA',
                                                 ]) }}">{{ $row['sisa'] }}</a>
