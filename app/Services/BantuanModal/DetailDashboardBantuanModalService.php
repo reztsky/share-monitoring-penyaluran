@@ -50,7 +50,7 @@ class DetailDashboardBantuanModalService
     {
         return DB::table('kpm_bantuan_modals as a')
             ->join('transaksi_bantuan_modals as b', 'a.id', '=', 'b.id_kpm')
-            ->select(['a.*', 'b.foto_pemberian'])
+            ->select(['a.*', 'b.foto_pemberian', 'b.foto_kpm', 'b.ba_kpm', 'b.ba_kecamatan'])
             ->when(is_null($this->tahun_anggaran), function ($q) {
                 return $q->whereTahunAnggaran(date('Y'));
             }, function ($q) {
