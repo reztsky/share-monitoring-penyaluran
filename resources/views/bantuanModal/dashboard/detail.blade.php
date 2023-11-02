@@ -45,12 +45,25 @@
                                 @elseif($key=='foto_pemberian')
                                     <td>
                                         @foreach (json_decode($value) as $key=>$foto)
-                                            <a href="{{asset('storage/foto_pemberian/'.$foto)}}" target="_blank" rel="noopener noreferrer">Dokumentasi {{$key+1}}</a><br>
+                                            <a href="{{asset('storage/foto_pemberian/'.$foto)}}" target="_blank" rel="noopener noreferrer">Foto Pemberian {{$key+1}}</a><br>
                                         @endforeach
+                                    </td>
+                                @elseif($key=='foto_kpm')
+                                    <td>
+                                        <a href="{{asset('storage/foto_kpm/'.$value)}}" target="_blank" rel="noopener noreferrer">Foto KPM</a><br>
+                                    </td>
+                                @elseif($key=='ba_kpm')
+                                    <td>
+                                        <a href="{{asset('storage/ba_kpm/'.$value)}}" target="_blank" rel="noopener noreferrer">BA KPM</a><br>
+                                    </td>
+                                @elseif($key=='ba_kecamatan')
+                                    <td>
+                                        <a href="{{asset('storage/ba_kecamatan/'.$value)}}" target="_blank" rel="noopener noreferrer">BA kecamatan</a><br>
                                     </td>
                                 @else
                                     <td>{{$value}}</td>
                                 @endif
+                                
                             @endforeach
                         </tr>
                         @empty
