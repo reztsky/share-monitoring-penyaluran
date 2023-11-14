@@ -114,4 +114,20 @@ class AlatBantuServices
             'result' => $result,
         ];
     }
+
+    public function countByGender($is_tersalur=false){
+        $result=DB::table('pengajuan_kebutuhans as a')
+        ->select('a.jenis_kelamin')
+        ->selectRaw('count(a.id) as jumlah')
+        ->when($is_tersalur,function($query){
+            $query->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan');
+        })
+        ->groupBy('a.jenis_kelamin')
+        ->where('a.deleted_at', null)
+        ->get();
+        return[
+            'is_tersalur'=>$is_tersalur,
+            'result'=>$result
+        ];
+    }
 }

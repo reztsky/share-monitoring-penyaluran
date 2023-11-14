@@ -44,4 +44,14 @@ class ApiAlatBantuController extends Controller
             'data'=>$results
         ],200);
     }
+
+    public function countByGender(Request $request,AlatBantuServices $alatBantuServices){
+        $is_tersalur=filter_var($request->is_tersalur, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        $results=$alatBantuServices->countByGender($is_tersalur);
+        return response()->json([
+            'status'=>true,
+            'message'=>'Sukses Get Data',
+            'data'=>$results
+        ],200);
+    }
 }
