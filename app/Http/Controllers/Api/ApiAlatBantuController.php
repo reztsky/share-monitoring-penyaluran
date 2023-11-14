@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\MJenisKebutuhan;
 use App\Services\Api\AlatBantuServices;
 use Illuminate\Http\Request;
 
@@ -19,11 +20,18 @@ class ApiAlatBantuController extends Controller
     }
 
     public function detailPenyaluran($jenis_bantuan,Request $request,AlatBantuServices $alatBantuServices){
+        $jenis_kebutuhan = MJenisKebutuhan::select('nama_kebutuhan')->findOrFail($jenis_bantuan);
+        $result_counts=$alatBantuServices->countGenderTersalur($request,$jenis_bantuan);
         $results=$alatBantuServices->findPenyaluranById($request,$jenis_bantuan);
         return response()->json([
             'status'=>true,
             'message'=>'Sukses Get Data',
-            'data'=>$results
+            'data'=>[
+                'periode' => $request->post(),
+                'jenis_kebutuhan' => $jenis_kebutuhan,
+                'kpm'=>$results,
+                'count'=>$result_counts,
+            ]
         ],200);
     }
 
@@ -45,13 +53,13 @@ class ApiAlatBantuController extends Controller
         ],200);
     }
 
-    public function countByGender(Request $request,AlatBantuServices $alatBantuServices){
-        $is_tersalur=filter_var($request->is_tersalur, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        $results=$alatBantuServices->countByGender($is_tersalur);
-        return response()->json([
-            'status'=>true,
-            'message'=>'Sukses Get Data',
-            'data'=>$results
-        ],200);
-    }
+    // public function countByGender(Request $request,AlatBantuServices $alatBantuServices){
+    //     $is_tersalur=filter_var($request->is_tersalur, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+    //     $results=$alatBantuServices->countByGender($is_tersalur);
+    //     return response()->json([
+    //         'status'=>true,
+    //         'message'=>'Sukses Get Data',
+    //         'data'=>$results
+    //     ],200);
+    // }
 }

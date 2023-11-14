@@ -37,5 +37,5 @@ Route::group([
     Route::post('/all','all')->name('all');
     Route::post('detail/penyaluran/{jenis_bantuan}/','detailPenyaluran')->name('detailPenyaluran');
     Route::post('detail/pengajuan/{jenis_bantuan}/','detailPengajuan')->name('detailPengajuan');
-    Route::post('/count-gender','countByGender')->name('countByGender');
+    // Route::post('/count-gender','countByGender')->name('countByGender');
 });

@@ -90,7 +90,6 @@ class AlatBantuServices
 
     public function findPenyaluranById($request, $id_jenis_bantuan)
     {
-        $jenis_kebutuhan = MJenisKebutuhan::select('nama_kebutuhan')->findOrFail($id_jenis_bantuan);
         $result = DB::table('pengajuan_kebutuhans as a')
             ->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan')
             ->join('m_jenis_kebutuhans as c', 'c.id', '=', 'a.id_jenis_kebutuhan')
@@ -109,24 +108,31 @@ class AlatBantuServices
             ->get();
         // ->paginate(10);
         return [
-            'periode' => $request->post(),
-            'jenis_kebutuhan' => $jenis_kebutuhan,
             'result' => $result,
         ];
     }
 
-    public function countByGender($is_tersalur=false){
+    public function countGenderTersalur($request,$id_jenis_bantuan){
         $result=DB::table('pengajuan_kebutuhans as a')
         ->select('a.jenis_kelamin')
         ->selectRaw('count(a.id) as jumlah')
-        ->when($is_tersalur,function($query){
-            $query->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan');
+        ->join('penyaluran_kebutuhans as b', 'a.id', '=', 'b.id_pengajuan')
+        ->join('m_jenis_kebutuhans as c', 'c.id', '=', 'a.id_jenis_kebutuhan')
+        ->when($request->filled('penyaluran_mulai_bulan'), function ($query) use ($request) {
+            return $query->whereMonth('b.tanggal_salur', '>=', $request->penyaluran_mulai_bulan);
         })
-        ->groupBy('a.jenis_kelamin')
+        ->when($request->filled('penyaluran_sampai_bulan'), function ($query) use ($request) {
+            return $query->whereMonth('b.tanggal_salur', '<=', $request->penyaluran_sampai_bulan);
+        })
+        ->when($request->filled('tahun'), function ($query) use ($request) {
+            return $query->whereYear('b.tanggal_salur', $request->tahun);
+        })
+        ->where('a.id_jenis_kebutuhan', $id_jenis_bantuan)
         ->where('a.deleted_at', null)
+        ->groupBy('a.jenis_kelamin')
         ->get();
+
         return[
-            'is_tersalur'=>$is_tersalur,
             'result'=>$result
         ];
     }
