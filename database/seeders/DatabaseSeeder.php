@@ -22,18 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);\
 
         $this->call([
-            // KPMBLTSeeder::class,
-            // UserSeeder::class,
-            // RoleSeeder::class,
-            // // SurveyorSeeder::class,
-            // JenisKebetuhanSeeder::class,
-            // KecamatanSeeder::class,
-            // KelurahanSeeder::class,
-            // KuotaKelurahanSeeder::class,
-            ExistingPengajuanSeeder::class
-            // UserKelurahanSeeder::class,
-            // UserOpdSeeder::class,
-            // UserBankJatimSeeder::class,
+            
         ]);
     }
 }
